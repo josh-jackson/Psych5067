@@ -1,0 +1,71 @@
+---
+title: "Quantitative Methods II, Psych 5067 "
+author: "Instructor: Joshua Jackson, PhD"
+date: "Spring 2017"
+output: html_document
+---
+
+
+**Course Descrition** 
+
+This course will provide a detailed overview of multiple regression as a data-analytic method. The course provides a conceptual background of the central ideas and applications along with the necessary applied skills to carry out analyses of continunous and categorical data. The analytic approaches are thus applicable to experimental research in which factors are manipulated and to observational research. Goals are threefold: (1) learn how to look at and think about data – to check for problems in regression models, errors in computer outputs, identify missuses of regression, (2) be able to examine the relationship among regression models, theoretical models, and your data, and (3) construct regression equations to examine specific hypotheses and interpret resulting models and regression coefficients. 
+
+**Class textbook** 
+
+- Learning Statistics with R by Daniel Navarro <https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/>
+
+*Recommended text (not required)*
+
+-Aiken, L. S., & West, S. G. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage Publications.
+
+-Cohen, J., Cohen, P., West, S. G., & Aiken, L. A. (2003). Applied multiple regression/correlation analysis for the behavioral sciences (3rd edition). Hillsdale, NJ: Lawrence Erlbaum Associates.
+
+-Cumming, G. (2013). Understanding the new statistics: Effect sizes, confidence intervals, and meta-analysis. Routledge.
+
+-Myers, J.L., Well, A. D., & Lorch, R. F. (2010). Research Design & Statistical Analysis (3rd Ed.), New York, NY: Routledge. 
+
+-McElreath, R. (2016). Statistical Rethinking: A Bayesian Course with Examples in R. CRC Press. 
+
+**Grading** 
+The class consists of 2 in class tests, a cumulative final exam and 4 "take home" projects. The 2 exams make up 40% of your grade (20% each). The final exam will account for 20% while the 4 take home projects fulfills the remaining 40% of your final grade (10% each). 
+
+**Homework** 
+Periodically, homework will be assigned to assist you with the material. In contrast to last semester, homework is entirely optional. However, successful completion of homework is correlated with exam performance, especially the take home exam. 
+
+**Schedule**
+
+| Week | Date  |  Topic                                                     | Readings             |
+-------|-------|------------------------------------------------------------|----------------------|
+| 1    | 1/17  | Introduction and Recap                                     |                      |
+| -    | 1/19  | Correlation                                                |                      |
+| 2    | 1/24  | Correlation / ggplot2                                      |                      |
+| -    | 1/26  | Univariate Regression                                      |                      |
+| 3    | 2/2   | Univariate Regression                                      |                      |
+| -    | 2/2   | ANOVA and Categorical predictors                           |                      |
+| 4    | 2/7   | Partial Correlations                                       |                      |
+| -    | 2/9   | Multiple Regression                                        |                      |
+| 5    | 2/14  | Multiple Regression                                        |                      |
+| -    | 2/16  | Multiple Regression                                        |                      |
+| 6    | 2/21  | **Exam 1**                                                 |                      |
+| -    | 2/23  | Assumptions, model diagnostics                             |                      |
+| 7    | 2/28  | Assumptions, model diagnostics                             |                      |
+| -    | 3/2   | Moderation/interaction                                     |                      |
+| 8    | 3/7   | Polynomials                                                |                      |
+| -    | 3/9   | Logistic regression                                        |                      |
+| 9    | 3/14  | **Spring Break!**                                          |                      |
+| -    | 3/16  | **Spring Break!**                                          |                      |
+| 10   | 3/21  | Categorical predictors redux                               |                      |
+| -    | 3/23  | Factorial ANOVA                                            |                      |
+| 11   | 3/28  | Factorial ANOVA                                            |                      |
+| -    | 3/30  | GLM & ANCOVA                                               |                      |
+| 12   | 4/4   | **Exam 2**                                                 |                      |
+| -    | 4/6   | Repeated measures/HLM                                      |                      |
+| 13   | 4/11  | Repeated measures/HLM                                      |                      |
+| -    | 4/13  | Repeated measures/HLM                                      |                      |
+| 14   | 4/18  | Mediation                                                  |                      |
+| -    | 4/20  | Bayesian Statistics                                        |                      |
+| 15   | 4/25  | Bayes Factrors                                             |                      |
+| -    | 4/27  | Bayesian regression                                        |                      |
+| -    | -     | **Final Exam**                                             |                      |
+
+
