@@ -1,6 +1,7 @@
 ---
-title: "5067 Home page"
+title: "Updates and announcements:"
 output: html_document
 ---
 
-Updates and announcements:
+- January 7th - take a look at the syllabus and make sure you have R and Rstudio ready to go on the first day of class 
+- January 6th - website is live! 
