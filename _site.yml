@@ -7,7 +7,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "syllabus"
-      href: 2017_syllabus.html
+      href: 2017_Syllabus.html
     - text: "data"
       href:  data.html
     - text: "lectures"
