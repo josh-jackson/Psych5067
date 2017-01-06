@@ -1,0 +1,192 @@
+---
+title: "Regression"
+author: "Josh Jackson"
+date: "October 4, 2016"
+output:
+  ioslides_presentation: default
+  
+---
+
+## What is a regression equation? 
+Functional relationship, ideally like a physical law
+
+Uncovered through measurement
+
+## Scatter Plot with best fit line
+```{r}
+
+```
+
+## E(Y|X)
+- The regression of Y (DV) on X (IV) corresponds to the line that gives the mean value of Y corresponding to each possible value of X
+
+- "Our best guess"
+
+## What is our best guess if we...
+- Didn't collect any data? 
+- No correlation? 
+- Positive association?
+- Negative association?
+
+## Regression Equation
+
+
+##Regression terms
+- Y/DV/Outcome/Response/Criterion
+- X/IV/Predictor/Explanatory variable
+- Regression coeffiecent (weight)/b/b*/$beta$
+- Intercept bo/$beta_{0}$
+- Error/Residuals
+
+## Predicted and Observed scores
+
+
+##OLS
+- Ordinary Least Squares (OLS) estimation
+(equation)
+- Minimizes deviations
+
+## Regression coefficient
+$$ b_{yx} = \frac{cov_{X,Y}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} $$
+
+##Interpretation
+The slope equals the estimated change in Y for a 1-unit change in X
+
+##Standardized regression
+- Regression using z-scores for Y and X
+- Correlation equals standardized regression coefficent
+$$ b_{yx} = r_{xy} \frac{s_{y}}{s_{x}} $$
+$$ r_{xy} = b_{yx} \frac{s_{x}}{s_{y}} $$
+$$ \beta_{yx} = b_{yx}^{*} = r_{xy} $$   
+- Interpreatioion?
+
+## Raw score regression equation
+-intercept serves to adjust for differences in means between X and Y
+ (on board find thestandard regression equation)
+
+## Example
+```{r}
+
+#(give anova and summary)
+
+```
+
+
+## lm object
+
+```{r, eval=FALSE}
+coef  <- coefficients(model)       # coefficients
+resid <- residuals(model)          # residuals
+yHat  <- fitted.values(model)      # fitted values
+rsq   <- summary(model)$r.squared  # R-sq for the model
+se    <- summary(model)$sigma      # se of the model
+```
+
+#residuals
+```{r}
+
+#resid <- residuals(model)  
+#head(resid)
+
+```
+variation that is left over in Y, after accounting for X
+(for multiple regression have them plot the different permutations of x on x2, y on x1 resid, x1 resid and x2)
+
+## Statistical Inference
+- The way the world is = our model + error
+- How good is our model? 
+
+## Partitioning variance in Y
+- Consider the case with no correlation btw X and Y
+- (yhat = ybar)
+
+## Partitioning variance in Y
+- To the extent that we can generate different predicted values of Y based on the values of the predictors, we are doing well in our prediction
+
+## Partitioning variance in Y
+(equation)
+
+## Partitioning the variance for ANOVA
+- SS total = SS between + SS within
+
+## Partitioning variance in Y
+(full equation)
+
+## Coefficient of Determination
+
+## Example
+```{r}
+
+```
+
+## Computing Sum of Squares
+
+## Mean square error (MSE)
+- unbiased estiamtmate of error variance
+- measure of discrepancy between the data and the model
+- the MSE is the variance around the fitted regression line
+
+## Omnibus test
+
+## Regression coefficient
+
+## What does the regression coefficient test?
+- Does X provide any predictive information? 
+- Does X provide any explanatory power regarding the variability of Y? 
+- Is the the average value the best guess (i.e., is Y bar equal to the predicted value of Y?)
+- Is the regression line flat? 
+- Are X and Y correlated?  
+
+## Regression coefficient
+
+## Intercept
+
+## Confidence intervals
+
+## Model comparisons
+(use R to show this)
+
+## Standard deviation of the residual (sigma)
+- aka residual standard error (sigma)
+- aka standard error fo the estimate
+
+- Interpreted in original units (cf R2)
+- Standard deviation of Y not accounted by model
+- MSE is related to sigma, sqrt(SSE)/df(error) = sigma 
+- (note df might be off slightly because of unbiasing)
+
+## Confidence Bands
+(ggplot2)
+
+## Confidence Bands
+- Why is this helpful? 
+(Univariate vs regression model)
+
+## Thought questions
+
+## Prediction
+
+```{r}
+
+```
+
+
+- More later when we start Bayesian modeling
+- A new Y given x, rather than Ybar given x. 
+
+## Regression to the mean
+
+## ANOVA redux
+(example in R to show lm)
+
+## Coding of qualitative variables
+
+## Dummy coding
+
+## Treatment 
+## Effects
+## Sum coding
+
+
+
+

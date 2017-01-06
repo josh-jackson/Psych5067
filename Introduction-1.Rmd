@@ -1,0 +1,73 @@
+---
+title: "Introduction"
+author: "Josh Jackson"
+date: "October 4, 2016"
+output:
+  ioslides_presentation: default
+---
+
+## Goals for semester
+
+- Analyze and interpret  general(ized) linear models
+
+- Be able to graph your data
+
+- Identify and diagnose problems when they arise
+
+##Important links
+- [Class website](http://www.XXXX.com)
+
+- [Class readings](http://www.XXXX.com)
+
+- [LSR](http://www.XXXX.com)
+
+##Goals for today
+- Review of last semester
+
+## What should you have learned? 
+- R
+
+- Scale of measurement 
+
+- Sampling distributions
+
+- p-values and NHST
+
+- effect sizes and confidence intervals
+
+- power
+
+## R, Rstudio, rmarkdown, knitr
+- Know it, love it
+
+- See also: projects, github, osf 
+
+## Sampling distributions
+- binomial, poisson, negative binomial 
+
+- normal, t 
+
+- F, chi-square
+
+- standard error
+
+## p-values 
+- Definition
+
+- Family wise error
+
+- Issues with 
+
+## effect size and CIs
+- Common effect size metrics?
+
+- Definition and utility of CI? 
+
+## Last thoughts
+- Any questions? 
+
+- Looking forward: Relationships, measurement and correlations
+
+
+
+
