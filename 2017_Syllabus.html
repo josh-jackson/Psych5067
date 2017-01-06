@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Instructor: Joshua Jackson, PhD" />
+
+
+<title>Quantitative Methods II, Psych 5067</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">psych 5067: quant methods II </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="2017_Syllabus.html">syllabus</a>
+</li>
+<li>
+  <a href="data.html">data</a>
+</li>
+<li>
+  <a href="lectures.html">lectures</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Quantitative Methods II, Psych 5067</h1>
+<h4 class="author"><em>Instructor: Joshua Jackson, PhD</em></h4>
+<h4 class="date"><em>Spring 2017</em></h4>
+
+</div>
+
+
+<p><strong>Course Descrition</strong></p>
+<p>This course will provide a detailed overview of multiple regression as a data-analytic method. The course provides a conceptual background of the central ideas and applications along with the necessary applied skills to carry out analyses of continunous and categorical data. The analytic approaches are thus applicable to experimental research in which factors are manipulated and to observational research. Goals are threefold: (1) learn how to look at and think about data – to check for problems in regression models, errors in computer outputs, identify missuses of regression, (2) be able to examine the relationship among regression models, theoretical models, and your data, and (3) construct regression equations to examine specific hypotheses and interpret resulting models and regression coefficients.</p>
+<p><strong>Class textbook</strong></p>
+<ul>
+<li>Learning Statistics with R by Daniel Navarro <a href="https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/" class="uri">https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/</a></li>
+</ul>
+<p><em>Recommended text (not required)</em></p>
+<p>-Aiken, L. S., &amp; West, S. G. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage Publications.</p>
+<p>-Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. A. (2003). Applied multiple regression/correlation analysis for the behavioral sciences (3rd edition). Hillsdale, NJ: Lawrence Erlbaum Associates.</p>
+<p>-Cumming, G. (2013). Understanding the new statistics: Effect sizes, confidence intervals, and meta-analysis. Routledge.</p>
+<p>-Myers, J.L., Well, A. D., &amp; Lorch, R. F. (2010). Research Design &amp; Statistical Analysis (3rd Ed.), New York, NY: Routledge.</p>
+<p>-McElreath, R. (2016). Statistical Rethinking: A Bayesian Course with Examples in R. CRC Press.</p>
+<p><strong>Grading</strong> The class consists of 2 in class tests, a cumulative final exam and 4 “take home” projects. The 2 exams make up 40% of your grade (20% each). The final exam will account for 20% while the 4 take home projects fulfills the remaining 40% of your final grade (10% each).</p>
+<p><strong>Homework</strong> Periodically, homework will be assigned to assist you with the material. In contrast to last semester, homework is entirely optional. However, successful completion of homework is correlated with exam performance, especially the take home exam.</p>
+<p><strong>Schedule</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Date</th>
+<th>Topic</th>
+<th>Readings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1/17</td>
+<td>Introduction and Recap</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>1/19</td>
+<td>Correlation</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1/24</td>
+<td>Correlation / ggplot2</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>1/26</td>
+<td>Univariate Regression</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>2/2</td>
+<td>Univariate Regression</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/2</td>
+<td>ANOVA and Categorical predictors</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2/7</td>
+<td>Partial Correlations</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/9</td>
+<td>Multiple Regression</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>2/14</td>
+<td>Multiple Regression</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/16</td>
+<td>Multiple Regression</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>2/21</td>
+<td><strong>Exam 1</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/23</td>
+<td>Assumptions, model diagnostics</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>2/28</td>
+<td>Assumptions, model diagnostics</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/2</td>
+<td>Moderation/interaction</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>3/7</td>
+<td>Polynomials</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/9</td>
+<td>Logistic regression</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>3/14</td>
+<td><strong>Spring Break!</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/16</td>
+<td><strong>Spring Break!</strong></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>3/21</td>
+<td>Categorical predictors redux</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/23</td>
+<td>Factorial ANOVA</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>3/28</td>
+<td>Factorial ANOVA</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/30</td>
+<td>GLM &amp; ANCOVA</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>4/4</td>
+<td><strong>Exam 2</strong></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/6</td>
+<td>Repeated measures/HLM</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>4/11</td>
+<td>Repeated measures/HLM</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/13</td>
+<td>Repeated measures/HLM</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>4/18</td>
+<td>Mediation</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/20</td>
+<td>Bayesian Statistics</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>4/25</td>
+<td>Bayes Factrors</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/27</td>
+<td>Bayesian regression</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td>-</td>
+<td><strong>Final Exam</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

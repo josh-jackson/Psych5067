@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Correlations</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Correlations',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Josh Jackson' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">October 4, 2016</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>Relationships</h2></hgroup><article  id="relationships">
+
+<ul>
+<li><p>What is the relationship between IV and DV?</p></li>
+<li>Relationships depend a lot on measurement</li>
+<li><p>E.g. chi-square for categorical</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Modeling relationships</h2></hgroup><article  id="modeling-relationships">
+
+<pre class = 'prettyprint lang-r'>t.test(y ~ x, data)</pre>
+
+<ul>
+<li>This semester we will examine this relationship through GLM that takes the form for y = x + e</li>
+<li>What analysis you use will depend on how you measure your IV (X) and your DV (Y)</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Dispersion</h2></hgroup><article  id="dispersion">
+
+<p>Variation (sum of squares) \[ SS = {\sum{(x-\bar{x})^2}} \] \[ SS = {\sum{(x-\mu)^2}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Dispersion</h2></hgroup><article  id="dispersion-1">
+
+<p>Variance \[ s^{2} = {\frac{\sum{(x-\bar{x})^2}}{N-1}} \] \[ \sigma^{2} = {\frac{\sum{(x-\mu)^2}}{N}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Dispersion</h2></hgroup><article  id="dispersion-2">
+
+<p>Standard Deviation \[ s = \sqrt{\frac{\sum{(x-\bar{x})^2}}{N-1}} \] \[ \sigma = \sqrt{\frac{\sum{(x-\mu)^2}}{N}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Associations</h2></hgroup><article  id="associations">
+
+<p>Covariation (cross products) \[ SS = {\sum{{(x-\bar{x})(y-\bar{y})}}} \] \[ SS = {\sum{{(x-\mu_{x})(y-\mu_{y})}}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Associations</h2></hgroup><article  id="associations-1">
+
+<p>Covariance \[ cov_{xy}^{2} = {\frac{\sum{(x-\bar{x})(y-\bar{y})}}{N-1}} \] \[ \sigma_{xy}^{2} = {\frac{\sum{(x-\mu_{x})(y-\mu_{y})}}{N}} \]</p>
+
+<ul class = 'build'>
+<li>Covariance matrix is basis for many analyses</li>
+<li>What are some issues that may arise when comparing covariances?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Associations</h2></hgroup><article  id="associations-2">
+
+<p>Correlations \[ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} \] \[ r_{xy} = {\frac{\sum({z_{x}z_{y})}}{N}} \]</p>
+
+<p>Many other formulas exist for specific types of data, these were more helpful when we computed everything by hand (more on this later)</p>
+
+</article></slide><slide class=''><hgroup><h2>Associations</h2></hgroup><article  id="associations-3">
+
+<p>Correlations</p>
+
+<ul>
+<li>How much two variables are linearly related</li>
+<li>-1 to 1</li>
+<li>Invariant to changes in mean or scaling</li>
+<li>Most common (and basic) effect size measure</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Associations</h2></hgroup><article  id="associations-4">
+
+<p>Correlations <img src="Correlations-2_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Z-scores</h2></hgroup><article  id="z-scores">
+
+<p>\[ z = {\frac{\sum{(x-\bar{x})}}{N}} \]</p>
+
+<p>What are the characteristics of z-scores?</p>
+
+</article></slide><slide class=''><hgroup><h2>Correlations</h2></hgroup><article  id="correlations">
+
+<h3>Hypothesis testing</h3>
+
+<p>\[ H_{0}: \rho_{xy} = 0 \] \[ H_{A}: \rho_{xy} \neq 0 \]</p>
+
+<ul class = 'build'>
+<li>Assumes:</li>
+<li>Observations are independent</li>
+<li>symmetric bivariate distribution (joint probability distribution)</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article >
+
+<p><img src="Correlations-2_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Correlations</h2></hgroup><article  id="correlations-1">
+
+<h3>Hypothesis testing</h3>
+
+<p>\[ H_{0}: \rho_{xy} = 0 \] \[ H_{A}: \rho_{xy} \neq 0 \]</p>
+
+<p>Test statistic</p>
+
+<p>\[  t = {\frac{r}{SE_{r}}} \] \[  t = {\frac{r}{\sqrt{\frac{1-r^{2}}{N-2}}}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Effect size</h2></hgroup><article  id="effect-size">
+
+<ul class = 'build'>
+<li>The strength of relationship between two variables</li>
+</ul>
+
+<ul class = 'build'>
+<li>Ω2, η2, cohen’s d, cohen’s f, hedges g, R2 , Risk-ratio, etc</li>
+</ul>
+
+<ul class = 'build'>
+<li>Significance is a function of effect size and sample size</li>
+</ul>
+
+<ul class = 'build'>
+<li>Statistical significance ≠ practical significance</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Effect size</h2></hgroup><article  id="effect-size-1">
+
+<h3>How big is practical?</h3>
+
+<ul class = 'build'>
+<li>Cohen (.1, .3., .5)</li>
+<li>Meyer &amp; Hemphill .3 is average</li>
+<li>Rosenthaul</li>
+<li><table class = 'rmdtable'>
+<tr class="header">
+<th align="left">Drug TX?</th>
+<th align="left">Alive</th>
+<th align="left">Dead</th>
+</tr>
+<tr class="odd">
+<td align="left">Treatment</td>
+<td align="left">65</td>
+<td align="left">35</td>
+</tr>
+<tr class="even">
+<td align="left">No Tx</td>
+<td align="left">35</td>
+<td align="left">65</td>
+</tr>
+</table></li>
+</ul>
+
+<ul class = 'build'>
+<li>Variance explained (more later)</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>What is the size of the correlation?</h2></hgroup><article  id="what-is-the-size-of-the-correlation">
+
+<p>Chemotherapy and breast cancer survival Batting ability and hit success on a single at bat Antihistamine use and reduced sneezing/runny nose Combat exposure and PTSD Ibuprofen on pain reduction Gender and weight Therapy and well being Observer ratings of attractiveness Gender and arm strength Nearness to equator and daily temperature for U.S.</p>
+
+</article></slide><slide class=''><hgroup><h2>Questions to ask yourself:</h2></hgroup><article  id="questions-to-ask-yourself">
+
+<p>What is your N? What is the typical effect size in the field? Study design? What is your DV? Importance (reaction time vs cancer)? Same method as IV (method variance)?</p>
+
+</article></slide><slide class=''><hgroup><h2>Power calculations</h2></hgroup><article  id="power-calculations">
+
+<pre class = 'prettyprint lang-r'>library(pwr)
+pwr.r.test(n = , r = .1, sig.level = .05 , power = .8)</pre>
+
+<pre >## 
+##      approximate correlation power calculation (arctangh transformation) 
+## 
+##               n = 781.7516
+##               r = 0.1
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided</pre>
+
+<pre class = 'prettyprint lang-r'>pwr.r.test(n = , r = .3, sig.level = .05 , power = .8)</pre>
+
+<pre >## 
+##      approximate correlation power calculation (arctangh transformation) 
+## 
+##               n = 84.07364
+##               r = 0.3
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided</pre>
+
+</article></slide><slide class=''><hgroup><h2>Power calculations</h2></hgroup><article  id="power-calculations-1">
+
+<ul>
+<li>But what is your confidence?</li>
+<li>N = 84 gives you CI[.09, 48]</li>
+<li>Schönbrodt &amp; Perugini (2013) suggest correlations stabalize at 250+ regardless of effect</li>
+<li>CI[.19, .39]</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Fisher’s r to z’ transformation</h2></hgroup><article  id="fishers-r-to-z-transformation">
+
+<ul>
+<li>If we want to make calculations based on \(\rho \neq 0\) then we will run into a skewed sampling distribution</li>
+</ul>
+
+<p><img src="Correlations-2_files/figure-html/unnamed-chunk-6-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Fisher’s r to z’ transformation</h2></hgroup><article  id="fishers-r-to-z-transformation-1">
+
+<ul>
+<li>Skewed sampling distribution will rear its head when:
+
+<ul>
+<li>\(H_{0}: \rho \neq 0\)</li>
+<li>Calculating confidence intervals</li>
+<li>Testing two correlations against one another</li>
+</ul></li>
+</ul>
+
+<p>\[ z^{&#39;} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Fisher’s r to z’ transformation</h2></hgroup><article  id="fishers-r-to-z-transformation-2">
+
+<img src='/Users/Jackson/Box%20Sync/5067%20Regression%20Spring/Regression%20Lectures/fisher.png' title='fig:'/><p class='caption'>Alt text</p>
+
+</article></slide><slide class=''><hgroup><h2>How to do in R</h2></hgroup><article  id="how-to-do-in-r">
+
+<pre class = 'prettyprint lang-r'>#rfisherz(rho)
+#fisherz2r(z)</pre>
+
+</article></slide><slide class=''><hgroup><h2>Factors that influence r</h2></hgroup><article  id="factors-that-influence-r">
+
+<ol>
+<li>Restriction of range</li>
+<li>Very skewed distributions</li>
+<li>Non-linear associations</li>
+<li>Measurement overlap</li>
+<li>Reliability</li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability">
+
+</article></slide><slide class=''><hgroup><h2>Types of correlations</h2></hgroup><article  id="types-of-correlations">
+
+<ol>
+<li></li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>&quot;Homework&quot;</h2></hgroup><article  id="homework">
+
+<ol>
+<li>Create a correlation matrix of the datafile XX.</li>
+<li>Is our correlation between SAT and longevity (r = .21061, N =600) significantly different than the meta-analytic estimate (.2554)?</li>
+<li>Create a confidence interval around r=.30 &quot;by hand&quot; and using an rpackage with N = 50 and N = 500</li>
+<li>Test two correlations against one another</li>
+</ol></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
