@@ -11,4 +11,11 @@ navbar:
     - text: "data"
       href:  data.html
     - text: "lectures"
-      href: lectures.html
+      menu: 
+        - text: "intro"
+          href: Introduction-1.html
+        - text: "correlations"
+          href: Correlations-2.html
+        - text: "regression"
+          href: Regression-3.html
+         
