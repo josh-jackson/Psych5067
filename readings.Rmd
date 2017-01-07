@@ -1,10 +1,6 @@
 ---
 title: "Readings"
-output:
-  pdf_document:
-    toc: no
-  html_document:
-    toc: no
+output: html_document
 ---
 
 Learning Stats for R is our main textbook but there will be additional chapters, articles and blogposts. These are found below. 

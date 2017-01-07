@@ -1,5 +1,5 @@
 ---
-title: "Quantitative Methods II, Psych 5067 "
+title: "Quantitative Methods II, Psych 5067"
 author: "Instructor: Joshua Jackson, PhD"
 date: "Spring 2017"
 output: html_document

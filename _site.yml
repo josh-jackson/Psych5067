@@ -2,22 +2,21 @@ name: "5067"
 output_dir: "."
 navbar:
   title: "psych 5067: quant methods II "
-  type: inverse
   left:
     - text: "Home"
       href: index.html
     - text: "syllabus"
       href:  2017_Syllabus.html
     - text: "readings"
-      href:  readings.html
+      href: readings.html
     - text: "data"
       href:  data.html
     - text: "lectures"
       menu: 
-        - text: "intro"
+        - text: "1. intro"
           href: Introduction-1.html
-       - text: "correlations"
+        - text: "2. correlations"
           href: Correlations-2.html
-        - text: "regression"
+        - text: "3. regression"
           href: Regression-3.html
          

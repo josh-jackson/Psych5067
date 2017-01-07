@@ -4,7 +4,6 @@ author: "Josh Jackson"
 date: "October 4, 2016"
 output:
   ioslides_presentation: default
-  
 ---
 
 ## What is a regression equation? 
