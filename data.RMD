@@ -2,7 +2,7 @@
 title: "Data"
 output: html_document
 ---
-Download datasets as needed. Click to download. If data displays in your browser, right-click and select save link as… (or similar).
+Download datasets as needed. Click to download. If data displays in your browser, right-click and download linked file as… (or similar). Published articles, if available, that uses the data are also included. 
 
 
 ```{r,include=FALSE}

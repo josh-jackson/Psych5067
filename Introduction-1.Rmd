@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 author: "Josh Jackson"
-date: "October 4, 2016"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   ioslides_presentation: default
 ---
@@ -15,21 +15,21 @@ output:
 - Identify and diagnose problems when they arise
 
 ##Important links
-- [Class website](http://www.XXXX.com)
+- [Class website](https://josh-jackson.github.io/Psych5067/)
 
-- [Class readings](http://www.XXXX.com)
+- [Class readings](https://josh-jackson.github.io/Psych5067/readings.html)
 
-- [LSR](http://www.XXXX.com)
+- [LSR](https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/)
 
 ##Goals for today
 - Review of last semester
 
-## What should you have learned? 
+## What should you already know? 
 - R
 
-- Scale of measurement 
+- scale of measurement 
 
-- Sampling distributions
+- sampling distributions
 
 - p-values and NHST
 
@@ -40,7 +40,7 @@ output:
 ## R, Rstudio, rmarkdown, knitr
 - Know it, love it
 
-- See also: projects, github, osf 
+- See also: projects, github, osf, shiny 
 
 ## Sampling distributions
 - binomial, poisson, negative binomial 
@@ -61,7 +61,9 @@ output:
 ## effect size and CIs
 - Common effect size metrics?
 
-- Definition and utility of CI? 
+- Interpretation and utility of CI? 
+
+- How does the CI relate to the sample and sampling distribution? 
 
 ## Last thoughts
 - Any questions? 

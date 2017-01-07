@@ -37,9 +37,9 @@ Periodically, homework will be assigned to assist you with the material. In cont
 | Week | Date  |  Topic                                                     | Readings             |
 -------|-------|------------------------------------------------------------|----------------------|
 | 1    | 1/17  | Introduction and Recap                                     |                      |
-| -    | 1/19  | Correlation                                                |                      |
-| 2    | 1/24  | Correlation / ggplot2                                      |                      |
-| -    | 1/26  | Univariate Regression                                      |                      |
+| -    | 1/19  | Correlation                                                |   LSR 5.7             |
+| 2    | 1/24  | Correlation / ggplot2                                      |   Correlation Revelle                   |
+| -    | 1/26  | Univariate Regression                                      |   LSR Ch 15                  |
 | 3    | 2/2   | Univariate Regression                                      |                      |
 | -    | 2/2   | ANOVA and Categorical predictors                           |                      |
 | 4    | 2/7   | Partial Correlations                                       |                      |
