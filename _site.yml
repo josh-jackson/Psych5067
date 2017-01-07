@@ -7,7 +7,7 @@ navbar:
     - text: "Home"
       href: index.html
     - text: "syllabus"
-      href: 2017_Syllabus.html
+      href:  2017_Syllabus.html
     - text: "readings"
       href:  readings.html
     - text: "data"
@@ -16,8 +16,8 @@ navbar:
       menu: 
         - text: "intro"
           href: Introduction-1.html
-       # - text: "correlations"
+       - text: "correlations"
           href: Correlations-2.html
-       # - text: "regression"
+        - text: "regression"
           href: Regression-3.html
          
