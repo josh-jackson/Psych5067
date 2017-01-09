@@ -1,7 +1,7 @@
 ---
 title: "Correlations"
 author: "Josh Jackson"
-date: "October 4, 2016"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   ioslides_presentation: default
 ---
@@ -11,7 +11,7 @@ output:
 
 - What is the relationship between IV and DV?
 
-  * Relationships depend a lot on measurement
+  * Measuring relationships depend on type of measurement
   * E.g. chi-square for categorical
   
 ## Modeling relationships
@@ -53,8 +53,10 @@ $$ \sigma_{xy}^{2} = {\frac{\sum{(x-\mu_{x})(y-\mu_{y})}}{N}} $$
 
 ## Associations
 Correlations
-$$ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} $$
 $$ r_{xy} = {\frac{\sum({z_{x}z_{y})}}{N}} $$
+
+$$ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} $$
+
 
 Many other formulas exist for specific types of data, these were more helpful when we computed everything by hand (more on this later)
 
@@ -98,7 +100,7 @@ $$ H_{A}: \rho_{xy} \neq 0 $$
 
 >- Assumes: 
 >- Observations are independent
->- symmetric bivariate distribution (joint probability distribution)
+>- Symmetric bivariate distribution (joint probability distribution)
 
 
 ----
@@ -155,6 +157,8 @@ Test statistic
 $$  t = {\frac{r}{SE_{r}}} $$
 $$  t = {\frac{r}{\sqrt{\frac{1-r^{2}}{N-2}}}} $$
 
+df = N-2
+
 ## Effect size 
 
 >- The strength of relationship between two variables
@@ -180,24 +184,36 @@ No Tx     |  35   |  65
 >- Variance explained (more later)
 
 ##What is the size of the correlation?
-Chemotherapy and breast cancer survival 
-Batting ability and hit success on a single at bat 
-Antihistamine use and reduced sneezing/runny nose 
-Combat exposure and PTSD 
-Ibuprofen on pain reduction 
-Gender and weight 
-Therapy and well being 
-Observer ratings of attractiveness 
-Gender and arm strength 
-Nearness to equator and daily temperature for U.S. 
+- Chemotherapy and breast cancer survival?   
+- Batting ability and hit success on a single at bat?   
+- Antihistamine use and reduced sneezing/runny nose?   
+- Combat exposure and PTSD?   
+- Ibuprofen on pain reduction?   
+- Gender and weight?   
+- Therapy and well being?   
+- Observer ratings of attractiveness?   
+- Gender and arm strength?   
+- Nearness to equator and daily temperature for U.S.?   
+
+##What is the size of the correlation?
+- Chemotherapy and breast cancer survival? (.03)   
+- Batting ability and hit success on a single at bat? (.06)   
+- Antihistamine use and reduced sneezing/runny nose? (.11)   
+- Combat exposure and PTSD? (.11)   
+- Ibuprofen on pain reduction? (.14)   
+- Gender and weight? (.26)   
+- Therapy and well being? (.32)   
+- Observer ratings of attractiveness? (.39)   
+- Gender and arm strength? (.55)   
+- Nearness to equator and daily temperature for U.S.? (.60)
 
 ##Questions to ask yourself:
-What is your N?
-What is the typical effect size in the field?
-Study design?
-What is your DV?
-Importance (reaction time vs cancer)?
-Same method as IV (method variance)?
+What is your N?  
+What is the typical effect size in the field?  
+Study design?  
+What is your DV?  
+Importance (reaction time vs cancer)?  
+Same method as IV (method variance)?  
 
 ##Power calculations
 ```{r}
@@ -209,13 +225,15 @@ pwr.r.test(n = , r = .3, sig.level = .05 , power = .8)
 ##Power calculations
 - But what is your confidence? 
 - N = 84 gives you CI[.09, 48]
-- Schönbrodt & Perugini (2013) suggest correlations stabalize at 250+ regardless of effect
+- Schönbrodt & Perugini (2013) suggest correlations stabilize at 250+ regardless of effect
 - CI[.19, .39]
 
 ## Fisher’s r to z’ transformation
 - If we want to make calculations based on $\rho \neq 0$ then we will run into a skewed sampling distribution
  
 ```{r,echo=FALSE, cache=TRUE }
+library(ggplot2)
+
 r=0.95
 n=50
 rep=10000
@@ -233,29 +251,70 @@ ggplot(correlation, aes(cor)) + geom_histogram(breaks=seq(.85, .99, by = .001), 
     * $H_{0}: \rho \neq 0$
     * Calculating confidence intervals
     * Testing two correlations against one another
-    
+- r to z': 
+
 $$ z^{'} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} $$
 
 ## Fisher’s r to z’ transformation
-![Alt text](/Users/Jackson/Box Sync/5067 Regression Spring/Regression Lectures/fisher.png)
 
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/fisher.png" width="600" height="500"/>
+
+##
+Steps for computing confidence interval
+1. Transform r into z'
+2. Compute CI as you normally would using z'
+3. revert back to r
+
+$$ r = {\frac{e^{2z'}-1}{e^{2z'}+1}} $$
 
 ## How to do in R
-```{r}
-#rfisherz(rho)
-#fisherz2r(z)
+```{r, eval=FALSE}
+library(psych)
+fisherz(r)
+fisherz2r(z)
 ```
 
+## Two independent groups test
+-Does the correlation in group 1 differ from the correlation in group 2? 
+$$ H_{A}: \rho_{1} = \rho_{2} $$
+$$ H_{A}: \rho_{1} \neq \rho_{2} $$
+-Normally distributed
+$$ Z = {\frac{z'_{1}-z'_{2}}{se_{z1-z2}}} $$
 
-## Factors that influence r
-1. Restriction of range
-2. Very skewed distributions
+## Two independent groups test
+- different standard error compared to 1 sample test
+$$ Z = {\frac{z'_{1}-z'_{2}}{se_{z1-z2}}} $$
+$$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1}{n_{2}-3}}}} $$
+
+
+## Other correlation tests:
+1. Set of correltions
+2. Dependent correlations (i.e., within same group)  
+  
+  These are more easily tested via Structural Equation Modeling (SEM)
+
+## Factors that influence r (and most other test statistics)
+1. Restriction of range (GRE scores and success)
+2. Very skewed distributions (smoking and health)
 3. Non-linear associations
-4. Measurement overlap
+4. Measurement overlap (modality and content)
 5. Reliability
 
 ## Reliability
-
+- All measurement includes error
+- Score = true score + measurement error (CTT version)
+- Reliability assesses the consistency of measurement
+  
+## Reliability
+- All measurement includes error
+- Score = true score + measurement error
+- Reliability assesses the consistency of measurement
+  
+  Which would you rather have? 
+  - 1 item final exam versus 30 item? 
+  - assessment via trained clinician vs tarot cards ?
+  - fMRI during minor earthquake vs no earthquake?
+  
 
 ##Types of correlations
 1. 

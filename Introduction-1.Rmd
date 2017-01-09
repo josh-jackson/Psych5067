@@ -21,6 +21,14 @@ output:
 
 - [LSR](https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/)
 
+## Important information
+
+- Most important information is on the slides
+
+- Readings serve to suppliment and enhance
+
+- Important equations will be presented via slides
+
 ##Goals for today
 - Review of last semester
 
