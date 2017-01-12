@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2017-01-09" />
+  <meta name="date" content="2017-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,7 +94,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">January 09, 2017</p>
+            <p style="margin-top: 6px; margin-left: -2px;">January 12, 2017</p>
           </hgroup>
   </slide>
 
@@ -367,10 +367,9 @@ fisherz2r(z)</pre>
 
 <ol>
 <li>Set of correltions</li>
-<li>Dependent correlations (i.e., within same group)</li>
+<li>Dependent correlations (i.e., within same group)<br/>These are more easily tested via Structural Equation Modeling (SEM)</li>
+<li>Intra Class Correlation (ICC)</li>
 </ol>
-
-<p>These are more easily tested via Structural Equation Modeling (SEM)</p>
 
 </article></slide><slide class=''><hgroup><h2>Factors that influence r (and most other test statistics)</h2></hgroup><article  id="factors-that-influence-r-and-most-other-test-statistics">
 
@@ -400,19 +399,72 @@ fisherz2r(z)</pre>
 
 <p>Which would you rather have? - 1 item final exam versus 30 item? - assessment via trained clinician vs tarot cards ? - fMRI during minor earthquake vs no earthquake?</p>
 
+</article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability-2">
+
+<ul>
+<li>Cannot correlate error (randomness) with something</li>
+<li>Because we do not measure our variables perfectly we get lower correlations compared to true correlations</li>
+<li>If we want to have a valid measure it better be a reliable measure</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability-3">
+
+<ul>
+<li>think of reliability as a correlation with a measure and itself in a different world, at a different time, or a different but equal version</li>
+</ul>
+
+<p>\[ r_{XX} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability-4">
+
+<ul>
+<li>true score variance divided by observed variance</li>
+<li>how do you assess theoretical variance i.e., true score variance?</li>
+</ul>
+
+<p>\[ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} \] \[ r_{XY} = .6 {\sqrt {(.70) (.70)}} \] ## Reliability</p>
+
+<p>\[ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX} r_{YY}}}}} \]</p>
+
+<p>\[ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} \] ## Reliability</p>
+
+<ul>
+<li>if you are going to measure something do it well</li>
+<li>applies to ALL IVs and DVs, and all designs</li>
+<li>remember this when interpretting other&#39;s research</li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>Types of correlations</h2></hgroup><article  id="types-of-correlations">
 
-<ol>
-<li></li>
-</ol>
-
-</article></slide><slide class=''><hgroup><h2>&quot;Homework&quot;</h2></hgroup><article  id="homework">
+</article></slide><slide class=''><hgroup><h2>Types of correlations</h2></hgroup><article  id="types-of-correlations-1">
 
 <ol>
-<li>Create a correlation matrix of the datafile XX.</li>
-<li>Is our correlation between SAT and longevity (r = .21061, N =600) significantly different than the meta-analytic estimate (.2554)?</li>
-<li>Create a confidence interval around r=.30 &quot;by hand&quot; and using an rpackage with N = 50 and N = 500</li>
-<li>Test two correlations against one another</li>
+<li>Point Biserial
+
+<ul>
+<li>continuous and dichtomous</li>
+</ul></li>
+<li>Phi coefficient
+
+<ul>
+<li>both dichotomous</li>
+</ul></li>
+<li>Spearman rank order
+
+<ul>
+<li>ranked data (nonparametric)</li>
+</ul></li>
+<li>Biserial (assumes dichotomous is continous)</li>
+<li>Tetrachoric (assumes dichotomous is continous)
+
+<ul>
+<li>both dichotomous</li>
+</ul></li>
+<li>Polychoric (assumes continous)
+
+<ul>
+<li>ordinal</li>
+</ul></li>
 </ol></article></slide>
 
 

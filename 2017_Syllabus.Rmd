@@ -27,20 +27,18 @@ This course will provide a detailed overview of multiple regression as a data-an
 -McElreath, R. (2016). Statistical Rethinking: A Bayesian Course with Examples in R. CRC Press. 
 
 **Grading** 
-The class consists of 2 in class tests, a cumulative final exam and 4 "take home" projects. The 2 exams make up 40% of your grade (20% each). The final exam will account for 20% while the 4 take home projects fulfills the remaining 40% of your final grade (10% each). 
+The class consists of 2 in class tests, a cumulative final exam and roughly 8 "take home" projects. The 2 exams make up 40% of your grade (20% each). The final exam will account for 20% while the 8 take home projects fulfills the remaining 40% of your final grade (5% each). 
 
-**Homework** 
-Periodically, homework will be assigned to assist you with the material. In contrast to last semester, homework is entirely optional. However, successful completion of homework is correlated with exam performance, especially the take home exam. 
 
 **Schedule**
 
 | Week | Date  |  Topic                                                     | Readings             |
 -------|-------|------------------------------------------------------------|----------------------|
 | 1    | 1/17  | Introduction and Recap                                     |                      |
-| -    | 1/19  | Correlation                                                |   LSR 5.7             |
-| 2    | 1/24  | Correlation / ggplot2                                      |   Correlation Revelle                   |
-| -    | 1/26  | Univariate Regression                                      |   LSR Ch 15                  |
-| 3    | 2/2   | Univariate Regression                                      |                      |
+| -    | 1/19  | Correlation                                                |   LSR 5.7            |
+| 2    | 1/24  | Correlation / ggplot2                                      |  Correlation Revelle |
+| -    | 1/26  | Univariate Regression                                      |   LSR Ch 15          |
+| 3    | 1/31  | Univariate Regression                                      |                      |
 | -    | 2/2   | ANOVA and Categorical predictors                           |                      |
 | 4    | 2/7   | Partial Correlations                                       |                      |
 | -    | 2/9   | Multiple Regression                                        |                      |

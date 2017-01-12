@@ -1,7 +1,7 @@
 ---
 title: "Introduction"
 author: "Josh Jackson"
-date: "October 4, 2016"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   ioslides_presentation: default
 ---
@@ -35,6 +35,8 @@ output:
 ## What should you already know? 
 - R
 
+- visualizing data - histograms, density plots 
+
 - scale of measurement 
 
 - sampling distributions
@@ -67,6 +69,8 @@ output:
 - Issues with 
 
 ## effect size and CIs
+- There is imprecision in all that you do
+
 - Common effect size metrics?
 
 - Interpretation and utility of CI? 

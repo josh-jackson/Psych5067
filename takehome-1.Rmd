@@ -1,0 +1,20 @@
+---
+title: "Takehome-1"
+output: html_document
+---
+
+
+```{r, eval=FALSE, echo=FALSE}
+# #Using the Dawtry et al., 2015 Psychological Science article and accompanying dataset, please answer the questions below. Show all your code and results. 
+# 
+# 1. Is our correlation between SAT and longevity (r = .21061, N =600) significantly different than the meta-analytic estimate (.2554)? Do it "by hand" and using an R function
+# 3. Create a confidence interval around r=.30 "by hand" and using R function with N = 50 and N = 500. Interpret. 
+# 4. Create a correlation matrix of the datafile XX. 
+# 5. Create a scatter plot for variable XX and XX
+# 6. Test two correlations against one another. 
+# 7. Replicate the analysis in XXX by creating a composite of XXXX and XXXX. 
+# 8. What are the means and standard deviations of the sample? Conduct a reliability test. 
+# 9. Dichotomize a variable data and run bi-serial correlation. Now run a t-test. Then run a point bi-serial correlation. What is similar and what is different across these tests? 
+# 
+```
+
