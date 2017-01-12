@@ -10,7 +10,11 @@ navbar:
     - text: "readings"
       href: readings.html
     - text: "data"
-      href:  data.html
+      href: data.html
+    - text: "take home projects"
+      menu:
+        - text: "takehome-1"
+          href: takehome-1.html  
     - text: "lectures"
       menu: 
         - text: "1. intro"

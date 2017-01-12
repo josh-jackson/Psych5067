@@ -71,13 +71,13 @@ Correlations
 ```{r,echo=FALSE, message=FALSE, cache=TRUE}
 library(psych)
 library(ggplot2)
-data1 <- galton
+galton.data <- galton
 ```
 
 ## Associations
 Correlations
 ```{r, echo=FALSE, cache=TRUE}
-ggplot(data1, aes(x=parent, y=child)) +
+ggplot(galton.data, aes(x=parent, y=child)) +
     geom_point() +    
     geom_smooth(method=lm,   # Add linear regression line
                 se=FALSE) +     # Don't add shaded confidence region
@@ -290,9 +290,9 @@ $$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1
 ## Other correlation tests:
 1. Set of correltions
 2. Dependent correlations (i.e., within same group)  
-  
   These are more easily tested via Structural Equation Modeling (SEM)
-
+3. Intra Class Correlation (ICC)
+  
 ## Factors that influence r (and most other test statistics)
 1. Restriction of range (GRE scores and success)
 2. Very skewed distributions (smoking and health)
@@ -315,13 +315,50 @@ $$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1
   - assessment via trained clinician vs tarot cards ?
   - fMRI during minor earthquake vs no earthquake?
   
+## Reliability
+
+- Cannot correlate error (randomness) with something
+- Because we do not measure our variables perfectly we get lower correlations compared to true correlations
+- If we want to have a valid measure it better be a reliable measure
+
+## Reliability
+- think of reliability as a correlation with a measure and itself in a different world, at a different time, or a different but equal version
+
+$$ r_{XX} $$
+
+## Reliability
+- true score variance divided by observed variance
+- how do you assess theoretical variance i.e., true score variance? 
+
+$$ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} $$
+$$ r_{XY} = .6 {\sqrt {(.70) (.70)}} $$
+## Reliability
+
+$$ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX} r_{YY}}}}} $$
+
+$$ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} $$
+## Reliability
+
+- if you are going to measure something do it well
+- applies to ALL IVs and DVs, and all designs
+- remember this when interpretting other's research
 
 ##Types of correlations
-1. 
 
-## "Homework"
-1. Create a correlation matrix of the datafile XX. 
-2. Is our correlation between SAT and longevity (r = .21061, N =600) significantly different than the meta-analytic estimate (.2554)?
-3. Create a confidence interval around r=.30 "by hand" and using an rpackage with N = 50 and N = 500
-4. Test two correlations against one another
+
+##Types of correlations
+1. Point Biserial
+    +  continuous and dichtomous
+2. Phi coefficient
+    + both dichotomous
+3. Spearman rank order
+    + ranked data (nonparametric)
+4. Biserial (assumes dichotomous is continous)
+5. Tetrachoric (assumes dichotomous is continous)
+    + both dichotomous
+6. Polychoric (assumes continous)
+    + ordinal
+  
+
+
 
