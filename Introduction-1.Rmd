@@ -25,7 +25,7 @@ output:
 
 - Most important information is on the slides
 
-- Readings serve to suppliment and enhance
+- Readings serve to supplement and enhance
 
 - Important equations will be presented via slides
 
@@ -35,7 +35,7 @@ output:
 ## What should you already know? 
 - R
 
-- visualizing data - histograms, density plots 
+- visualizing data 
 
 - scale of measurement 
 
@@ -47,10 +47,25 @@ output:
 
 - power
 
+## visualizing data
+
+- histograms, density plots, bar graphs
+
+- ggplot2
+
+- wow graphs and interpretable scales
+
 ## R, Rstudio, rmarkdown, knitr
-- Know it, love it
+
+- Reproducible reports: Rmd -> html/pdf 
 
 - See also: projects, github, osf, shiny 
+
+## scales of measurement
+
+- nominal, ordinal, interval ratio
+
+- quantitative (continuous) vs qualitative (categorical)
 
 ## Sampling distributions
 - binomial, poisson, negative binomial 
@@ -63,6 +78,8 @@ output:
 
 ## p-values 
 - Definition
+
+- Relationship to NHST
 
 - Family wise error
 
