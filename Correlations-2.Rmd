@@ -66,6 +66,15 @@ $$ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} $$
 
 Many other formulas exist for specific types of data, these were more helpful when we computed everything by hand (more on this later)
 
+
+## Z-scores
+$$ r_{xy} = {\frac{\sum({z_{x}z_{y})}}{N}} $$
+
+What are the characteristics of z-scores? 
+$$ z = {\frac{\sum{(x-\bar{x})}}{N}} $$
+
+
+
 ## Associations
 Correlations
 
@@ -90,12 +99,6 @@ ggplot(galton.data, aes(x=parent, y=child)) +
     labs(x = "parent height", y = "child height")
 ```
 
-
-
-## Z-scores
-$$ z = {\frac{\sum{(x-\bar{x})}}{N}} $$
-
-What are the characteristics of z-scores? 
 
 
 ## Correlations 
