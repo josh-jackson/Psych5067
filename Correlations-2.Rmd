@@ -5,7 +5,7 @@ date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   ioslides_presentation: default
 ---
-
+## class 2
 
 ## Relationships
 
