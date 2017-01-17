@@ -12,8 +12,10 @@ output: html_document
 **Office hours**: 10-11 Wednesday and by appointment  
 
 **TA**: Debbie Yee  
-**Office**:   
+**Office**:   319b  
 **Office hours**:   
+Mondays 5:30-7 PM  
+Thursdays 12-2 PM  
 
 <br>  
 

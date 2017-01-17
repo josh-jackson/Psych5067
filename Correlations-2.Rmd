@@ -6,7 +6,6 @@ output:
   ioslides_presentation: default
 ---
 
-
 ## Relationships
 
 - What is the relationship between IV and DV?
