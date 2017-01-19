@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2017-01-18" />
+  <meta name="date" content="2017-01-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,11 +94,33 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">January 18, 2017</p>
+            <p style="margin-top: 6px; margin-left: -2px;">January 19, 2017</p>
           </hgroup>
   </slide>
 
-<slide class=''><hgroup><h2>Relationships</h2></hgroup><article  id="relationships">
+<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h2></hgroup><article  id="head">
+
+</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h2></hgroup><article  id="head-1">
+
+</article></slide><slide class=''><hgroup><h2>class 2</h2></hgroup><article  id="class-2">
+
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>16b537c3919937dca06628fbedd8f713488e8a0b c5599fb69d535e9b45596e4d7afdf6be15cd5fea</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+
+</article></slide><slide class=''><hgroup><h2>Relationships</h2></hgroup><article  id="relationships">
 
 <ul>
 <li><p>What is the relationship between IV and DV?</p></li>
@@ -352,7 +374,7 @@ pwr.r.test(n = , r = .1, sig.level = .05 , power = .8)</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
 
-<p>Steps for computing confidence interval 1. Transform r into z&#39; 2. Compute CI as you normally would using z&#39; 3. revert back to r</p>
+<p>Steps for computing confidence interval 1. Transform r into z&#39;<br/>2. Compute CI as you normally would using z&#39;<br/>3. revert back to r</p>
 
 <p>\[ r = {\frac{e^{2z&#39;}-1}{e^{2z&#39;}+1}} \]</p>
 
@@ -402,11 +424,11 @@ fisherz2r(z)</pre>
 
 <ul>
 <li>All measurement includes error</li>
-<li>Score = true score + measurement error</li>
+<li>Score = true score + measurement error (CTT version)</li>
 <li>Reliability assesses the consistency of measurement</li>
 </ul>
 
-<p>Which would you rather have? - 1 item final exam versus 30 item? - assessment via trained clinician vs tarot cards ? - fMRI during minor earthquake vs no earthquake?</p>
+<p>Which would you rather have?<br/>- 1 item final exam versus 30 item?<br/>- assessment via trained clinician vs tarot cards?<br/>- fMRI during minor earthquake vs no earthquake?</p>
 
 </article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability-2">
 
@@ -431,11 +453,29 @@ fisherz2r(z)</pre>
 <li>how do you assess theoretical variance i.e., true score variance?</li>
 </ul>
 
-<p>\[ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} \] \[ r_{XY} = .6 {\sqrt {(.70) (.70)}} \] ## Reliability</p>
+<p>\[ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} \] \[ r_{XY} = .6 {\sqrt {(.70) (.70)}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability-5">
 
 <p>\[ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX} r_{YY}}}}} \]</p>
 
-<p>\[ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} \] ## Reliability</p>
+<p>\[ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Most common ways to assess</h2></hgroup><article  id="most-common-ways-to-assess">
+
+<ul>
+<li>cronbachs alpha</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>library (psych)
+alpha(measure)</pre>
+
+<ul>
+<li>test - retest reliability</li>
+<li>Kappa or ICC</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Reliability</h2></hgroup><article  id="reliability-6">
 
 <ul>
 <li>if you are going to measure something do it well</li>

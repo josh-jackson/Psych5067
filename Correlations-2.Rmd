@@ -277,9 +277,9 @@ $$ z^{'} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} $$
 
 ##
 Steps for computing confidence interval
-1. Transform r into z'
-2. Compute CI as you normally would using z'
-3. revert back to r
+1. Transform r into z'  
+2. Compute CI as you normally would using z'  
+3. revert back to r  
 
 $$ r = {\frac{e^{2z'}-1}{e^{2z'}+1}} $$
 
@@ -323,13 +323,13 @@ $$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1
   
 ## Reliability
 - All measurement includes error
-- Score = true score + measurement error
+- Score = true score + measurement error (CTT version)
 - Reliability assesses the consistency of measurement
   
-  Which would you rather have? 
-  - 1 item final exam versus 30 item? 
-  - assessment via trained clinician vs tarot cards ?
-  - fMRI during minor earthquake vs no earthquake?
+  Which would you rather have?  
+  - 1 item final exam versus 30 item?   
+  - assessment via trained clinician vs tarot cards?  
+  - fMRI during minor earthquake vs no earthquake?  
   
 ## Reliability
 
@@ -338,21 +338,36 @@ $$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1
 - If we want to have a valid measure it better be a reliable measure
 
 ## Reliability
+
 - think of reliability as a correlation with a measure and itself in a different world, at a different time, or a different but equal version
 
 $$ r_{XX} $$
 
-## Reliability
+## Reliability  
+
 - true score variance divided by observed variance
 - how do you assess theoretical variance i.e., true score variance? 
 
 $$ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} $$
 $$ r_{XY} = .6 {\sqrt {(.70) (.70)}} $$
+
 ## Reliability
 
 $$ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX} r_{YY}}}}} $$
 
 $$ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} $$
+
+
+## Most common ways to assess
+
+- cronbachs alpha 
+```{r, eval=FALSE}
+library (psych)
+alpha(measure)
+```
+- test - retest reliability
+- Kappa or ICC
+
 ## Reliability
 
 - if you are going to measure something do it well

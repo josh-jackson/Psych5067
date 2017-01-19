@@ -5,16 +5,31 @@ output: html_document
 
 
 ```{r, eval=FALSE, echo=FALSE}
-# #Using the Dawtry et al., 2015 Psychological Science article and accompanying dataset, please answer the questions below. Show all your code and results. 
+#Please answer the questions below. Show all your code and results. Dawtry et al., 2015 Psychological Science article and accompanying dataset are needed to answer questions 3 - 11.  
 # 
-# 1. Is our correlation between SAT and longevity (r = .21061, N =600) significantly different than the meta-analytic estimate (.2554)? Do it "by hand" and using an R function
-# 3. Create a confidence interval around r=.30 "by hand" and using R function with N = 50 and N = 500. Interpret. 
-# 4. Create a correlation matrix of the datafile XX. 
-# 5. Create a scatter plot for variable XX and XX
-# 6. Test two correlations against one another. 
-# 7. Replicate the analysis in XXX by creating a composite of XXXX and XXXX. 
-# 8. What are the means and standard deviations of the sample? Conduct a reliability test. 
-# 9. Dichotomize a variable data and run bi-serial correlation. Now run a t-test. Then run a point bi-serial correlation. What is similar and what is different across these tests? 
-# 
+# 1. You are contacted by the deans office. They ran a correlation between Wash U SAT scores and happiness and found a correlation of r = .21061 (N = 600). They want to know if this is lower than a published meta-analytic estimate (.2554)? Do this "by hand" and using an R function
+
+# 2. Create a 95% confidence interval around r = .30 "by hand" and using an R function for sample sizes of N = 50 and N = 500. Interpret each CI in your own words and compare and contrast the two CIs. 
+
+# 3. Using data from Dawtry et al. Study 1, calculate cronbachs reliabity for redistribution attitudes. (Note, some items may need to be reverse scored) 
+
+# 4. Replicate the correlation matrix in Table 1.   
+
+# 5. Calculate the means and standard deviations for Table 1 variables. 
+
+# 6. Graph the distributions of Household Income, Fairness and Satisfaction, Social circle mean income, population mean income, and political preference. Comment on anything you find irregular or interesting.  
+
+# 7. Create a scatter plot with a best fit line for redistribution and political preference variables.
+
+# 8. Dichotomize the politcal preferences data into a dichotomous conservative and democrat variable, assuming the midpoint is conservative. Run bi-serial correlation. Now run a t-test. Run a Pearson Correlation. Run a one-way ANOVA. Then run a point bi-serial correlation. What are interesteing commonalities and differences across the tests? 
+
+# 9. Using the newly created political preference group variable, calculate the correlation between support for redistribution and household income. Is the correlation between conservatives and democrats significantly different from one another? 
+
+# 10. Calculate a 95% confidence interval for each of the values in table 1. 
+
+# 11. What level of power would the authors have for population inequality and support for redistribution if the the population effect size is .15.  
+
 ```
+
+
 
