@@ -186,6 +186,15 @@ $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
 $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
 - SS total = SS between + SS within
 
+## Similarity with ANOVA
+Example. 
+```{r}
+t.test()
+anova()
+lm()
+```
+
+
 ## Partitioning variation in Y
 $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
 $$ s_{y}^2 = s_{regression}^2 + s_{residual}^2 $$
@@ -208,9 +217,16 @@ summary(fit.1)
 
 ```{r}
 cor.test(galton.data$parent, galton.data$child)
+cor(galton.data$parent, galton.data$child)
 ```
 
 ## Computing Sum of Squares
+
+$$  \frac{SS_{regression}}{SS_{Y}} = R^2 $$
+$$  {SS_{regression}} = R^2({SS_{Y})} $$
+$$  {SS_{residual}} = SS_{Y} - R^2({SS_{Y})} $$
+
+$$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
 
 ## Mean square error (MSE)
 - unbiased estiamtmate of error variance

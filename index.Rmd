@@ -3,6 +3,8 @@ title: "Updates and announcements:"
 output: html_document
 ---
   
+- January 20th - Debbie will host a dplyr tutorial on Monday (1/23) from 5:30-6:30 PM, rm 215 A.
+
 - January 17th - First day of class!     
     
 - January 7th - take a look at the syllabus and make sure you have R and Rstudio ready to go on the first day of class 

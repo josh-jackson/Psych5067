@@ -74,13 +74,6 @@ $$ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} $$
 Many other formulas exist for specific types of data, these were more helpful when we computed everything by hand (more on this later)
 
 
-## Z-scores
-$$ r_{xy} = {\frac{\sum({z_{x}z_{y})}}{N}} $$
-
-What are the characteristics of z-scores? 
-$$ z = {\frac{\sum{(x-\bar{x})}}{N}} $$
-
-
 
 ## Associations
 Correlations
@@ -364,6 +357,8 @@ $$ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} $$
 ```{r, eval=FALSE}
 library (psych)
 alpha(measure)
+## Gives average split half correlation
+## Can tell you if you are assessing a single construct
 ```
 - test - retest reliability
 - Kappa or ICC
