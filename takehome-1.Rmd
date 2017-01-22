@@ -13,7 +13,11 @@ Note: "by hand" means using the formulas to calculate the answers. This is contr
 <br>
 <br>
 
+<<<<<<< HEAD
 #### Please answer the questions below. Show all your code and results. You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset (found on the data page) to answer questions 3 - 11. ####
+=======
+#### Please answer the questions below. Show all your code and results. You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset to answer questions 3 - 11. ####
+>>>>>>> 3d026a6ff19ef6ef23bd4be21cdee9fddafb84ac
 
 1.  You are contacted by the deans office. They ran a correlation between Wash U SAT scores and happiness and found a correlation of r = .21061 with a sample of N = 600. They want to know if this is lower than a published meta-analytic estimate (.2554)? Do this "by hand". 
 
