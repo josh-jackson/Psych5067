@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2017-01-19" />
+  <meta name="date" content="2017-01-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,7 +94,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">January 19, 2017</p>
+            <p style="margin-top: 6px; margin-left: -2px;">January 22, 2017</p>
           </hgroup>
   </slide>
 
@@ -361,6 +361,14 @@ describe(galton.data.1$.fitted)      </pre>
 
 <p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 \] - SS total = SS between + SS within</p>
 
+</article></slide><slide class=''><hgroup><h2>Similarity with ANOVA</h2></hgroup><article  id="similarity-with-anova">
+
+<p>Example.</p>
+
+<pre class = 'prettyprint lang-r'>t.test()
+anova()
+lm()</pre>
+
 </article></slide><slide class=''><hgroup><h2>Partitioning variation in Y</h2></hgroup><article  id="partitioning-variation-in-y">
 
 <p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 \] \[ s_{y}^2 = s_{regression}^2 + s_{residual}^2 \] \[ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  \]</p>
@@ -406,7 +414,15 @@ describe(galton.data.1$.fitted)      </pre>
 ##       cor 
 ## 0.4587624</pre>
 
+<pre class = 'prettyprint lang-r'>cor(galton.data$parent, galton.data$child)</pre>
+
+<pre >## [1] 0.4587624</pre>
+
 </article></slide><slide class=''><hgroup><h2>Computing Sum of Squares</h2></hgroup><article  id="computing-sum-of-squares">
+
+<p>\[  \frac{SS_{regression}}{SS_{Y}} = R^2 \] \[  {SS_{regression}} = R^2({SS_{Y})} \] \[  {SS_{residual}} = SS_{Y} - R^2({SS_{Y})} \]</p>
+
+<p>\[  {SS_{residual}} = (1- R^2){SS_{Y}} \]</p>
 
 </article></slide><slide class=''><hgroup><h2>Mean square error (MSE)</h2></hgroup><article  id="mean-square-error-mse">
 

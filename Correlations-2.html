@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2017-01-19" />
+  <meta name="date" content="2017-01-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,33 +94,11 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">January 19, 2017</p>
+            <p style="margin-top: 6px; margin-left: -2px;">January 22, 2017</p>
           </hgroup>
   </slide>
 
-<slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h2></hgroup><article  id="head">
-
-</article></slide><slide class='segue dark nobackground level1'><hgroup class = 'auto-fadein'><h2>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h2></hgroup><article  id="head-1">
-
-</article></slide><slide class=''><hgroup><h2>class 2</h2></hgroup><article  id="class-2">
-
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>16b537c3919937dca06628fbedd8f713488e8a0b c5599fb69d535e9b45596e4d7afdf6be15cd5fea</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-
-</article></slide><slide class=''><hgroup><h2>Relationships</h2></hgroup><article  id="relationships">
+<slide class=''><hgroup><h2>Relationships</h2></hgroup><article  id="relationships">
 
 <ul>
 <li><p>What is the relationship between IV and DV?</p></li>
@@ -178,12 +156,6 @@
 <p>\[ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} \]</p>
 
 <p>Many other formulas exist for specific types of data, these were more helpful when we computed everything by hand (more on this later)</p>
-
-</article></slide><slide class=''><hgroup><h2>Z-scores</h2></hgroup><article  id="z-scores">
-
-<p>\[ r_{xy} = {\frac{\sum({z_{x}z_{y})}}{N}} \]</p>
-
-<p>What are the characteristics of z-scores? \[ z = {\frac{\sum{(x-\bar{x})}}{N}} \]</p>
 
 </article></slide><slide class=''><hgroup><h2>Associations</h2></hgroup><article  id="associations-3">
 
@@ -468,7 +440,9 @@ fisherz2r(z)</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>library (psych)
-alpha(measure)</pre>
+alpha(measure)
+## Gives average split half correlation
+## Can tell you if you are assessing a single construct</pre>
 
 <ul>
 <li>test - retest reliability</li>

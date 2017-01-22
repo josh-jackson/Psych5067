@@ -188,7 +188,7 @@ $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
 
 ## Similarity with ANOVA
 Example. 
-```{r}
+```{r, eval=FALSE}
 t.test()
 anova()
 lm()
