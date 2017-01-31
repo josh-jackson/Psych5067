@@ -188,10 +188,32 @@ $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
 
 ## Similarity with ANOVA
 Example. 
-```{r, eval=FALSE}
-t.test()
-anova()
-lm()
+```{r, echo=FALSE}
+
+ANOVA.example <- read.csv("~/Box Sync/5066 Quant I Fall/HW5 data.csv")
+ANOVA.example$tx <- ANOVA.example$age
+
+```
+```{r}
+t.test(traffic.risk ~ tx, data = ANOVA.example)
+```
+##  Similarity with ANOVA
+```{r}
+model.1<- aov(traffic.risk ~ tx, data = ANOVA.example)
+summary(model.1)
+```
+
+##  Similarity with ANOVA
+```{r}
+model.2 <- lm(traffic.risk ~ tx, data = ANOVA.example)
+anova(model.2)
+```
+
+
+##  Similarity with ANOVA
+```{r}
+model.2 <- lm(traffic.risk ~ tx, data = ANOVA.example)
+summary(model.2)
 ```
 
 

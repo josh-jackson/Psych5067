@@ -1,0 +1,64 @@
+---
+title: "Bayesian"
+output: ioslides_presentation
+---
+
+## ESP Example ##
+Colbert vid
+
+## ESP Example ##
+
+- Doesn't this just seem wrong? 
+- But it passes how we evaluate papers 
+
+## Prior beliefs are important
+
+- cannot be integrated easily within frequentistic statistics
+
+
+## The effect of observations ##
+
+For a rational person, the role of data in statistics is evidentiary.
+
+Beliefs after observation=Total evidence observed+Beliefs before observation
+That is, we combine observational evidence with beliefs to obtain new beliefs: rational learning
+
+## Some definitions ## 
+Suppose we have beliefs about a parameter θ (a population mean, a variance, a probability...). We represent uncertainty with probability distributions.
+
+The uncertainty we have about θ is denoted p(θ).
+We can now express ideas like: Pr(θ<100), E(θ), etc...
+Most useful thing ever: we can condition on data!
+Uncertainty in θ after seeing data y is p(θ∣y).
+How do we get from p(θ) to p(θ∣y)? By using the evidence in y.
+
+## Using probability theory to change beliefs ##
+The central inferential principle in Bayesian statistics is Bayes' theorem.
+Pr(A∣B)=Pr(B∣A)Pr(A)/Pr(B) (Rewrite)
+
+deceptively simple consequence of the definition of conditional probability that achieves great significance when we apply it to beliefs:
+
+Plausibility(A given data)=Plausibility(data given A)Plausibility(data)Plausibility(A)
+
+## How should we assess evidence? ##
+If uncertainty is represented by probability, then can use Bayes' theorem:
+p(θ∣y)=p(y∣θ)p(y)×p(θ)
+Beliefs after (posterior)=Evidence (likelihood)+Beliefs before (prior)
+p(y∣θ) is our model of the data, called the likelihood. What is p(y)?
+
+p(y)=∫Θp(y∣θ)p(θ)dθ=Average likelihood
+If a particular θ is better than average in explaining the data, then our belief in that θ grows; otherwise, it shrinks.
+
+## Binomial example ##
+
+
+
+
+
+
+
+
+## Bayes Factor
+- bayes theorm in its 
+- posterior odds = bayes factor X prior odds
+
