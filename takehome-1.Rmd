@@ -29,7 +29,7 @@ Note: "by hand" means using the formulas to calculate the answers. This is contr
 
 7. Create a scatter plot with a best fit line for redistribution and political preference variables.
 
-8. Dichotomize the political preferences data into a dichotomous conservative and democrat variable, assuming the midpoint is conservative. Run bi-serial correlation. Now run a t-test. Run a Pearson Correlation. Run a one-way ANOVA. Then run a point bi-serial correlation. Any interesting commonalities or differences across the tests? 
+8. Dichotomize the political preferences data into a dichotomous conservative and democrat variable, assuming the midpoint is conservative. Run bi-serial correlation with redistribution. Now run a t-test with the same variables. Run a Pearson Correlation. Run a one-way ANOVA. Then run a point bi-serial correlation. Any interesting commonalities or differences across the tests? 
 
 9. Using the newly created political preference group variable, calculate the correlation between support for redistribution and household income. Is the correlation between conservatives and democrats significantly different from one another? 
 

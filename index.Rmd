@@ -4,6 +4,9 @@ output: html_document
 ---
   <br>
   
+  
+- February 2nd - Question #8 on first take home exam is clarified. Email if you have any further questions. 
+
 - January 21st - First take home project is posted. Due 2/8. See projects page for more instructions. 
 
 - January 20th - Debbie will host a dplyr tutorial on Monday (1/23) from 5:30-6:30 PM, rm 215 A.
