@@ -10,7 +10,7 @@
 
 
 
-  <meta name="date" content="2017-01-31" />
+  <meta name="date" content="2017-02-02" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -94,7 +94,7 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">January 31, 2017</p>
+            <p style="margin-top: 6px; margin-left: -2px;">February 02, 2017</p>
           </hgroup>
   </slide>
 
@@ -250,7 +250,8 @@ fit.1.data</pre>
 
 <p>augment ammends the original dataset with all the lm objects. The names of the objects are different than a normal lm object, namely they have a &quot;.&quot;&quot; infront of the name</p>
 
-<pre class = 'prettyprint lang-r'>galton.data.1 &lt;- augment(fit.1, galton.data)
+<pre class = 'prettyprint lang-r'>library(broom)
+galton.data.1 &lt;- augment(fit.1, galton.data)
 head(galton.data.1)</pre>
 
 <pre >##   parent child  .fitted   .se.fit     .resid        .hat   .sigma
@@ -440,6 +441,8 @@ summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example-1">
 
+<pre class = 'prettyprint lang-r'>summary(fit.1)</pre>
+
 <pre >## 
 ## Call:
 ## lm(formula = parent ~ child, data = galton.data)
@@ -475,9 +478,16 @@ summary(model.2)</pre>
 ##       cor 
 ## 0.4587624</pre>
 
-<pre class = 'prettyprint lang-r'>cor(galton.data$parent, galton.data$child)</pre>
+</article></slide><slide class=''><hgroup><h2>calculating R2</h2></hgroup><article  id="calculating-r2">
 
-<pre >## [1] 0.4587624</pre>
+<pre >## Analysis of Variance Table
+## 
+## Response: parent
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## child       1  623.26  623.26  246.84 &lt; 2.2e-16 ***
+## Residuals 926 2338.10    2.52                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 
 </article></slide><slide class=''><hgroup><h2>Computing Sum of Squares</h2></hgroup><article  id="computing-sum-of-squares">
 
@@ -488,14 +498,89 @@ summary(model.2)</pre>
 </article></slide><slide class=''><hgroup><h2>Mean square error (MSE)</h2></hgroup><article  id="mean-square-error-mse">
 
 <ul>
-<li>unbiased estiamtmate of error variance</li>
+<li>unbiased estimate of error variance</li>
 <li>measure of discrepancy between the data and the model</li>
 <li>the MSE is the variance around the fitted regression line</li>
 </ul>
 
+</article></slide><slide class=''><hgroup><h2>MSE and residual standard error</h2></hgroup><article  id="mse-and-residual-standard-error">
+
+<p>MSE = 2.52</p>
+
+<pre >## 
+## Call:
+## lm(formula = parent ~ child, data = galton.data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.6702 -1.1702 -0.1471  1.1324  4.2722 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 46.13535    1.41225   32.67   &lt;2e-16 ***
+## child        0.32565    0.02073   15.71   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.589 on 926 degrees of freedom
+## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
+## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
+
+</article></slide><slide class=''><hgroup><h2>residual standard error (sigma)</h2></hgroup><article  id="residual-standard-error-sigma">
+
+<pre class = 'prettyprint lang-r'>describe(galton.data$parent)</pre>
+
+<pre >##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
+## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
+##      se
+## X1 0.06</pre>
+
+</article></slide><slide class=''><hgroup><h2>residual standard error (sigma)</h2></hgroup><article  id="residual-standard-error-sigma-1">
+
+<ul>
+<li>aka standard deviation of the residual</li>
+<li><p>aka standard error of the estimate</p></li>
+<li>Interpreted in original units (cf R2)</li>
+<li>Standard deviation of Y not accounted by model</li>
+<li>MSE is related to sigma, sqrt[(SSE)/df(error)] = sigma</li>
+<li><p>(note df might be off slightly because of unbiasing)</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>residual standard error (sigma)</h2></hgroup><article  id="residual-standard-error-sigma-2">
+
+<pre class = 'prettyprint lang-r'>head(galton.data.1)</pre>
+
+<pre >##   parent child  .fitted   .se.fit     .resid        .hat   .sigma
+## 1   70.5  61.7 66.22780 0.1423187  4.2721996 0.008021794 1.583599
+## 2   68.5  61.7 66.22780 0.1423187  2.2721996 0.008021794 1.588097
+## 3   65.5  61.7 66.22780 0.1423187 -0.7278004 0.008021794 1.589686
+## 4   64.5  61.7 66.22780 0.1423187 -1.7278004 0.008021794 1.588844
+## 5   64.0  61.7 66.22780 0.1423187 -2.2278004 0.008021794 1.588165
+## 6   67.5  62.2 66.39062 0.1327306  1.1093758 0.006977341 1.589446
+##        .cooksd .std.resid
+## 1 0.0294637423  2.6994436
+## 2 0.0083344662  1.4357182
+## 3 0.0008550854 -0.4598700
+## 4 0.0048191674 -1.0917327
+## 5 0.0080119350 -1.4076640
+## 6 0.0017244340  0.7006045</pre>
+
+<pre class = 'prettyprint lang-r'>describe(galton.data.1$.resid)</pre>
+
+<pre >##    vars   n mean   sd median trimmed  mad   min  max range skew kurtosis
+## X1    1 928    0 1.59  -0.15    0.02 1.52 -4.67 4.27  8.94 -0.1    -0.17
+##      se
+## X1 0.05</pre>
+
 </article></slide><slide class=''><hgroup><h2>Omnibus test</h2></hgroup><article  id="omnibus-test">
 
+<p>\[ H_{0}: \rho_{XY}^2= 0 \] \[ H_{1}: \rho_{XY}^2 \neq 0 \]</p>
+
+<p>\[ F = \frac{MS_{regression}}{MS_{residial}} \]</p>
+
 </article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
+
+<p>\[ H_{0}: \beta_{XY}= 0 \] \[ H_{0}: \beta_{XY} \neq 0 \]</p>
 
 </article></slide><slide class=''><hgroup><h2>What does the regression coefficient test?</h2></hgroup><article  id="what-does-the-regression-coefficient-test">
 
@@ -509,26 +594,21 @@ summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-2">
 
+<p>\[ se_{b} = \frac{s_{Y}}{s_{Y}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \] \[ t(n-2) = \frac{b_{yx}}{se_{b}} \] ** what is standardized equation?</p>
+
 </article></slide><slide class=''><hgroup><h2>Intercept</h2></hgroup><article  id="intercept">
 
-</article></slide><slide class=''><hgroup><h2>Confidence intervals</h2></hgroup><article  id="confidence-intervals">
-
-</article></slide><slide class=''><hgroup><h2>Model comparisons</h2></hgroup><article  id="model-comparisons">
-
-<pre class = 'prettyprint lang-r'>#anova()</pre>
-
-</article></slide><slide class=''><hgroup><h2>Standard deviation of the residual (sigma)</h2></hgroup><article  id="standard-deviation-of-the-residual-sigma">
-
 <ul>
-<li>aka residual standard error (sigma)</li>
-<li><p>aka standard error fo the estimate</p></li>
-<li>Interpreted in original units (cf R2)</li>
-<li>Standard deviation of Y not accounted by model</li>
-<li>MSE is related to sigma, sqrt(SSE)/df(error) = sigma</li>
-<li><p>(note df might be off slightly because of unbiasing)</p></li>
+<li>same idea, more complex se calculation</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
+</article></slide><slide class=''><hgroup><h2>Confidence interval for coefficents</h2></hgroup><article  id="confidence-interval-for-coefficents">
+
+<ul>
+<li>same equation as we&#39;ve been working with</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Confidence Bands for regression line</h2></hgroup><article  id="confidence-bands-for-regression-line">
 
 <pre class = 'prettyprint lang-r'>library(ggplot2)</pre>
 
@@ -539,11 +619,31 @@ summary(model.2)</pre>
 ## 
 ##     %+%, alpha</pre>
 
-</article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands-1">
+<pre class = 'prettyprint lang-r'>ggplot(galton.data, aes(x=parent, y=child)) +
+    geom_smooth(method=lm,   # Add linear regression line
+                se=TRUE) +     # Don&#39;t add shaded confidence region
+    labs(x = &quot;parent height&quot;, y = &quot;child height&quot;)</pre>
+
+<p><img src="Regression-3_files/figure-html/unnamed-chunk-24-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
 
 <ul>
-<li>Why is this helpful? (Univariate vs regression model)</li>
+<li>Why is this helpful?</li>
+<li>Compare mean estimate for height of 70 based on regression vs binning</li>
 </ul>
+
+<pre class = 'prettyprint lang-r'>library(ggplot2)
+ggplot(galton.data, aes(x=parent, y=child)) +
+      geom_point() +   
+  geom_smooth(method=lm,   # Add linear regression line
+                se=TRUE) </pre>
+
+<p><img src="Regression-3_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands-1">
+
+<p>\[ \hat{Y}\pm t_{critical} * se_{residual}\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  \]</p>
 
 </article></slide><slide class=''><hgroup><h2>Prediction</h2></hgroup><article  id="prediction">
 
@@ -551,12 +651,6 @@ summary(model.2)</pre>
 <li>More later when we start Bayesian modeling</li>
 <li>A new Y given x, rather than Ybar given x.</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Regression to the mean</h2></hgroup><article  id="regression-to-the-mean">
-
-</article></slide><slide class=''><hgroup><h2>ANOVA redux</h2></hgroup><article  id="anova-redux">
-
-<p>(example in R to show lm)</p>
 
 </article></slide><slide class=''><hgroup><h2>Coding of qualitative variables</h2></hgroup><article  id="coding-of-qualitative-variables">
 
