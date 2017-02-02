@@ -176,15 +176,15 @@ $$ Y = \hat{Y} + e$$
 $$ Y = \hat{Y} + (Y - \hat{Y}) $$
 $$ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) $$
 $$ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 $$
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
+$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 
 ## Partitioning the variation in Y
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
+$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 
 - SS total = SS regression + SS residual (or error)
 
 ## Partitioning the variation for ANOVA
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
+$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 - SS total = SS between + SS within
 
 ## Similarity with ANOVA
@@ -219,7 +219,7 @@ summary(model.2)
 
 
 ## Partitioning variation in Y
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 $$
+$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 $$ s_{y}^2 = s_{regression}^2 + s_{residual}^2 $$
 $$ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  $$
 
@@ -305,7 +305,7 @@ $$ F = \frac{MS_{regression}}{MS_{residial}} $$
 ## Regression coefficient
 
 $$ H_{0}: \beta_{XY}= 0 $$
-$$ H_{0}: \beta_{XY} \neq 0 $$
+$$ H_{1}: \beta_{XY} \neq 0 $$
 
 ## What does the regression coefficient test?
 - Does X provide any predictive information? 
@@ -315,7 +315,7 @@ $$ H_{0}: \beta_{XY} \neq 0 $$
 - Are X and Y correlated?  
 
 ## Regression coefficient
-$$ se_{b} = \frac{s_{Y}}{s_{Y}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} $$
+$$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} $$
 $$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
 ** what is standardized equation? 
 
