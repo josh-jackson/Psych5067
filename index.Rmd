@@ -5,7 +5,11 @@ output: html_document
   <br>
   
   
+<<<<<<< HEAD
 - February 2nd - Question #8 on first take home exam is clarified. Also, for #1, some were having trouble finding the standard error equation. It is equation 4.15 in the Revelle reading. Email if you have any further questions. 
+=======
+- February 2nd - Question #8 on first take home exam is clarified. Email if you have any further questions. 
+>>>>>>> 5c9f50a376fb0c43ad47e48644b67295885bb4ee
 
 - January 21st - First take home project is posted. Due 2/8. See projects page for more instructions. 
 
