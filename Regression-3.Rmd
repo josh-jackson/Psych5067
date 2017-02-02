@@ -127,6 +127,7 @@ fit.1.data
 ## lm objects
 augment ammends the original dataset with all the lm objects. The names of the objects are different than a normal lm object, namely they have a "."" infront of the name
 ```{r}
+library(broom)
 galton.data.1 <- augment(fit.1, galton.data)
 head(galton.data.1)
 ```
@@ -229,7 +230,7 @@ $$ \frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2 $$
 
 
 ## Example
-```{r, echo=FALSE}
+```{r}
 
 summary(fit.1)
 
@@ -239,7 +240,13 @@ summary(fit.1)
 
 ```{r}
 cor.test(galton.data$parent, galton.data$child)
-cor(galton.data$parent, galton.data$child)
+```
+
+## calculating R2
+```{r, echo=FALSE}
+
+anova(fit.1)
+
 ```
 
 ## Computing Sum of Squares
@@ -251,13 +258,54 @@ $$  {SS_{residual}} = SS_{Y} - R^2({SS_{Y})} $$
 $$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
 
 ## Mean square error (MSE)
-- unbiased estiamtmate of error variance
+- unbiased estimate of error variance
 - measure of discrepancy between the data and the model
 - the MSE is the variance around the fitted regression line
 
+## MSE and residual standard error
+
+MSE = 2.52
+```{r, echo=FALSE}
+summary(fit.1)
+```
+
+
+## residual standard error (sigma)
+
+```{r}
+describe(galton.data$parent)
+```
+
+## residual standard error (sigma)
+
+- aka standard deviation of the residual
+- aka standard error of the estimate
+
+- Interpreted in original units (cf R2)
+- Standard deviation of Y not accounted by model
+- MSE is related to sigma, sqrt[(SSE)/df(error)] = sigma 
+- (note df might be off slightly because of unbiasing)
+
+
+## residual standard error (sigma)
+
+```{r}
+head(galton.data.1)
+describe(galton.data.1$.resid)
+
+```
+
 ## Omnibus test
 
+$$ H_{0}: \rho_{XY}^2= 0 $$
+$$ H_{1}: \rho_{XY}^2 \neq 0 $$
+
+$$ F = \frac{MS_{regression}}{MS_{residial}} $$
+
 ## Regression coefficient
+
+$$ H_{0}: \beta_{XY}= 0 $$
+$$ H_{0}: \beta_{XY} \neq 0 $$
 
 ## What does the regression coefficient test?
 - Does X provide any predictive information? 
@@ -267,36 +315,42 @@ $$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
 - Are X and Y correlated?  
 
 ## Regression coefficient
+$$ se_{b} = \frac{s_{Y}}{s_{Y}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} $$
+$$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
+** what is standardized equation? 
 
 ## Intercept
 
-## Confidence intervals
+- same idea, more complex se calculation
 
-## Model comparisons
-```{r}
-#anova()
-```
+## Confidence interval for coefficents
 
+- same equation as we've been working with
 
-## Standard deviation of the residual (sigma)
-- aka residual standard error (sigma)
-- aka standard error fo the estimate
-
-- Interpreted in original units (cf R2)
-- Standard deviation of Y not accounted by model
-- MSE is related to sigma, sqrt(SSE)/df(error) = sigma 
-- (note df might be off slightly because of unbiasing)
-
-## Confidence Bands
+## Confidence Bands for regression line
 ```{r}
 library(ggplot2)
-
+ggplot(galton.data, aes(x=parent, y=child)) +
+    geom_smooth(method=lm,   # Add linear regression line
+                se=TRUE) +     # Don't add shaded confidence region
+    labs(x = "parent height", y = "child height")
 ```
-
 
 ## Confidence Bands
 - Why is this helpful? 
-(Univariate vs regression model)
+- Compare mean estimate for height of 70 based on regression vs binning
+
+```{r}
+library(ggplot2)
+ggplot(galton.data, aes(x=parent, y=child)) +
+      geom_point() +   
+  geom_smooth(method=lm,   # Add linear regression line
+                se=TRUE) 
+```
+
+## Confidence Bands
+
+$$ \hat{Y}\pm t_{critical} * se_{residual}\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  $$
 
 
 ## Prediction
@@ -305,14 +359,9 @@ library(ggplot2)
 
 ```
 
-
 - More later when we start Bayesian modeling
 - A new Y given x, rather than Ybar given x. 
 
-## Regression to the mean
-
-## ANOVA redux
-(example in R to show lm)
 
 ## Coding of qualitative variables
 
