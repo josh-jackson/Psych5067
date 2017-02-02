@@ -328,7 +328,7 @@ $$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
 - same equation as we've been working with
 
 ## Confidence Bands for regression line
-```{r}
+```{r, echo=FALSE, message=FALSE}
 library(ggplot2)
 ggplot(galton.data, aes(x=parent, y=child)) +
     geom_smooth(method=lm,   # Add linear regression line
@@ -337,10 +337,9 @@ ggplot(galton.data, aes(x=parent, y=child)) +
 ```
 
 ## Confidence Bands
-- Why is this helpful? 
 - Compare mean estimate for height of 70 based on regression vs binning
 
-```{r}
+```{r, echo=FALSE}
 library(ggplot2)
 ggplot(galton.data, aes(x=parent, y=child)) +
       geom_point() +   

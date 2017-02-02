@@ -348,11 +348,11 @@ describe(galton.data.1$.fitted)      </pre>
 
 </article></slide><slide class=''><hgroup><h2>Partitioning variance in Y into 3 components</h2></hgroup><article  id="partitioning-variance-in-y-into-3-components">
 
-<p>\[ Y = \hat{Y} + e\] \[ Y = \hat{Y} + (Y - \hat{Y}) \] \[ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) \] \[ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 \] \[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 \]</p>
+<p>\[ Y = \hat{Y} + e\] \[ Y = \hat{Y} + (Y - \hat{Y}) \] \[ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) \] \[ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 \] \[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</p>
 
 </article></slide><slide class=''><hgroup><h2>Partitioning the variation in Y</h2></hgroup><article  id="partitioning-the-variation-in-y">
 
-<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 \]</p>
+<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</p>
 
 <ul>
 <li>SS total = SS regression + SS residual (or error)</li>
@@ -360,7 +360,7 @@ describe(galton.data.1$.fitted)      </pre>
 
 </article></slide><slide class=''><hgroup><h2>Partitioning the variation for ANOVA</h2></hgroup><article  id="partitioning-the-variation-for-anova">
 
-<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 \] - SS total = SS between + SS within</p>
+<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \] - SS total = SS between + SS within</p>
 
 </article></slide><slide class=''><hgroup><h2>Similarity with ANOVA</h2></hgroup><article  id="similarity-with-anova">
 
@@ -433,7 +433,7 @@ summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Partitioning variation in Y</h2></hgroup><article  id="partitioning-variation-in-y">
 
-<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y}) + \sum(Y - \hat{Y})^2 \] \[ s_{y}^2 = s_{regression}^2 + s_{residual}^2 \] \[ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  \]</p>
+<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \] \[ s_{y}^2 = s_{regression}^2 + s_{residual}^2 \] \[ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  \]</p>
 
 </article></slide><slide class=''><hgroup><h2>Coefficient of Determination</h2></hgroup><article  id="coefficient-of-determination">
 
@@ -580,7 +580,7 @@ summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
 
-<p>\[ H_{0}: \beta_{XY}= 0 \] \[ H_{0}: \beta_{XY} \neq 0 \]</p>
+<p>\[ H_{0}: \beta_{XY}= 0 \] \[ H_{1}: \beta_{XY} \neq 0 \]</p>
 
 </article></slide><slide class=''><hgroup><h2>What does the regression coefficient test?</h2></hgroup><article  id="what-does-the-regression-coefficient-test">
 
@@ -594,7 +594,7 @@ summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-2">
 
-<p>\[ se_{b} = \frac{s_{Y}}{s_{Y}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \] \[ t(n-2) = \frac{b_{yx}}{se_{b}} \] ** what is standardized equation?</p>
+<p>\[ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \] \[ t(n-2) = \frac{b_{yx}}{se_{b}} \] ** what is standardized equation?</p>
 
 </article></slide><slide class=''><hgroup><h2>Intercept</h2></hgroup><article  id="intercept">
 
@@ -610,34 +610,13 @@ summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Confidence Bands for regression line</h2></hgroup><article  id="confidence-bands-for-regression-line">
 
-<pre class = 'prettyprint lang-r'>library(ggplot2)</pre>
-
-<pre >## 
-## Attaching package: &#39;ggplot2&#39;</pre>
-
-<pre >## The following objects are masked from &#39;package:psych&#39;:
-## 
-##     %+%, alpha</pre>
-
-<pre class = 'prettyprint lang-r'>ggplot(galton.data, aes(x=parent, y=child)) +
-    geom_smooth(method=lm,   # Add linear regression line
-                se=TRUE) +     # Don&#39;t add shaded confidence region
-    labs(x = &quot;parent height&quot;, y = &quot;child height&quot;)</pre>
-
 <p><img src="Regression-3_files/figure-html/unnamed-chunk-24-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
 
 <ul>
-<li>Why is this helpful?</li>
 <li>Compare mean estimate for height of 70 based on regression vs binning</li>
 </ul>
-
-<pre class = 'prettyprint lang-r'>library(ggplot2)
-ggplot(galton.data, aes(x=parent, y=child)) +
-      geom_point() +   
-  geom_smooth(method=lm,   # Add linear regression line
-                se=TRUE) </pre>
 
 <p><img src="Regression-3_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
 
