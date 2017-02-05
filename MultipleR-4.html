@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Multiple Regression</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Multiple Regression',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            ]
+    };
+  </script>
+
+  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>casual relationships</h2></hgroup><article  id="casual-relationships">
+
+<ul>
+<li>does parent SES cause better grades?
+
+<ul>
+<li>r(gpa, ses) = .33, b = .41</li>
+</ul></li>
+<li>potential confound of peer relationships
+
+<ul>
+<li>r(ses, peer) = .29</li>
+<li>r(gpa, peer) = .37</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Multiple ways variables can relate</h2></hgroup><article  id="multiple-ways-variables-can-relate">
+
+<ul>
+<li>spurious relationship</li>
+<li>indirect (mediation)</li>
+<li>moderate (interaction)</li>
+<li>multiple &quot;causes&quot;</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>multiple regression model</h2></hgroup><article  id="multiple-regression-model">
+
+<p>\[ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Coefficient of Determination</h2></hgroup><article  id="coefficient-of-determination">
+
+<p>\[R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>GPA = SES + Peer relationships</h2></hgroup><article  id="gpa-ses-peer-relationships">
+
+<p>-Can be thought of as overlapping Venn diagrams <img src="R2-1.png" width="500" height="500"/></p>
+
+</article></slide><slide class=''><hgroup><h2>redundent vs non-redundent information</h2></hgroup><article  id="redundent-vs-non-redundent-information">
+
+<p><img src="R2.png" width="800" height="500"/></p>
+
+</article></slide><slide class=''><hgroup><h2>types of correlations</h2></hgroup><article  id="types-of-correlations">
+
+<ul>
+<li>pearson ignores all outside variables</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>types of correlations</h2></hgroup><article  id="types-of-correlations-1">
+
+<ul>
+<li>semi-partial
+
+<ul>
+<li>the extent to which the part of X1 that is independent of x2 correlates with all of Y</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>semi-partial</h2></hgroup><article  id="semi-partial">
+
+<p><img src="R2-2.png" width="500" height="500"/></p>
+
+</article></slide><slide class=''><hgroup><h2>semi-partial</h2></hgroup><article  id="semi-partial-1">
+
+<p>\[ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} \] \[ sr^2 = R_{Y.12}^2 - r_{Y2}^2 \]</p>
+
+</article></slide><slide class=''><hgroup><h2>types of correlations</h2></hgroup><article  id="types-of-correlations-2">
+
+<ul>
+<li>partial<br/></li>
+<li>the extent to which the part of X1 that is independent of X2 is correlated with the part of Y that is also independent of X2</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>partial correlation</h2></hgroup><article  id="partial-correlation">
+
+<p><img src="R2-3.png" width="500" height="500"/></p>
+
+</article></slide><slide class=''><hgroup><h2>partial correlation</h2></hgroup><article  id="partial-correlation-1">
+
+<p>\[ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} \]</p>
+
+<p>\[ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>partial correlation</h2></hgroup><article  id="partial-correlation-2">
+
+<p>\[ pr^2 = \frac{R_{Y.12}^2 - r_{Y2}^2}{1-r_{Y2}^2} \]</p>
+
+<p>\[ sr^2 = R_{Y.12}^2 - r_{Y2}^2 \]</p>
+
+</article></slide><slide class=''><hgroup><h2>when to use what?</h2></hgroup><article  id="when-to-use-what">
+
+<ul>
+<li>semi-partial is best suited to show incremental variance (more practical)</li>
+<li>partial is more effective to rule out third variable (theoretical)</li>
+<li>partial will be larger</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>same t-test for semi-, partial and partial regression coefficient</h2></hgroup><article  id="same-t-test-for-semi--partial-and-partial-regression-coefficient">
+
+</article></slide><slide class=''><hgroup><h2>how to interpret partial regression cofficients?</h2></hgroup><article  id="how-to-interpret-partial-regression-cofficients">
+
+<ul>
+<li><p>residual in simple regression can be thought of as a measure of Y that is left over after accounting for your DV</p></li>
+<li>partial correlation can be created by:</li>
+</ul>
+
+<ol>
+<li>create measure of X1 independent of X2</li>
+<li>create measure of Y independent of X2</li>
+<li>correlate new measures</li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>interpretting multiple regression model</h2></hgroup><article  id="interpretting-multiple-regression-model">
+
+<p>\[ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  \]<br/>- intercept is when all predictors = 0<br/>- regression coefficients are partial regression coefficients<br/>- predicted change in y for a 1 unit change in x, holding all other predictors constant</p>
+
+</article></slide><slide class=''><hgroup><h2>example</h2></hgroup><article  id="example">
+
+<pre class = 'prettyprint lang-r'>mr.model &lt;- lm(Stress ~ Support + Anxiety, data = Multipleregression)
+summary(mr.model)</pre>
+
+<pre >## 
+## Call:
+## lm(formula = Stress ~ Support + Anxiety, data = Multipleregression)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1958 -0.8994 -0.1370  0.9990  3.6995 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.31587    0.85596  -0.369 0.712792    
+## Support      0.40618    0.05115   7.941 1.49e-12 ***
+## Anxiety      0.25609    0.06740   3.799 0.000234 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.519 on 115 degrees of freedom
+## Multiple R-squared:  0.3556, Adjusted R-squared:  0.3444 
+## F-statistic: 31.73 on 2 and 115 DF,  p-value: 1.062e-11</pre>
+
+</article></slide><slide class=''><hgroup><h2>visualizing multiple regression</h2></hgroup><article  id="visualizing-multiple-regression">
+
+<pre class = 'prettyprint lang-r'>library(visreg)
+visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;persp&quot;)</pre>
+
+<p><img src="MultipleR-4_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section"></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

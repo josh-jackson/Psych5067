@@ -1,0 +1,27 @@
+---
+title: "Takehome-2 Regression"
+output: html_document
+---
+
+
+# Due: 2/20  
+<br>
+Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+<br>
+All take home projects are **INDEPENDENT** projects; do not share code or answers.   
+
+1. You are given data with M SD and a correlation between r = . By hand, calculate the regression equation. Interpret each term in terms of the variables. 
+
+2. Convert #1 into a standardized regression euqation. Interpet each term. 
+
+3. Using the xxxx data, run a regression between X and Y. Then run a regression between Y and X. What is similar and different between these analyese? 
+
+4. Graph the regression. include confidence band and raw data points.  
+
+5. For the regression of X predicting Y, correlate the fitted values with: a. residuals, b. Xs, C., Y.  
+
+6. Using the anova function for the model output, calculate R squared "by hand"
+
+7. Using the XX data, run a regression using 1.) factor scores, 2.) dummy codes, 3. effect codes. Compare and contrast results. 
+ 
+

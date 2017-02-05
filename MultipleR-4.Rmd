@@ -1,0 +1,111 @@
+---
+title: "Multiple Regression"
+output: ioslides_presentation
+---
+
+## casual relationships
+- does parent SES cause better grades?
+    + r(gpa, ses) = .33, b = .41
+- potential confound of peer relationships
+    + r(ses, peer) = .29
+    + r(gpa, peer) = .37
+    
+## Multiple ways variables can relate
+- spurious relationship
+- indirect (mediation)
+- moderate (interaction)
+- multiple "causes"
+
+## multiple regression model
+
+$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
+
+
+## Coefficient of Determination
+
+$$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
+
+
+## GPA = SES + Peer relationships
+-Can be thought of as overlapping Venn diagrams
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-1.png" width="500" height="500"/>
+
+## redundent vs non-redundent information 
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2.png" width="800" height="500"/>
+
+## types of correlations
+- pearson ignores all outside variables
+
+## types of correlations
+- semi-partial  
+    + the extent to which the part of X1 that is independent of x2 correlates with all of Y
+    
+## semi-partial
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-2.png" width="500" height="500"/>
+
+## semi-partial
+$$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
+$$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
+
+## types of correlations
+- partial  
+- the extent to which the part of X1  that is independent of X2  is correlated with the part of Y that is also independent of X2 
+
+## partial correlation
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-3.png" width="500" height="500"/>
+
+## partial correlation
+$$ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} $$
+
+$$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
+
+## partial correlation
+
+$$ pr^2 = \frac{R_{Y.12}^2 - r_{Y2}^2}{1-r_{Y2}^2} $$
+
+$$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
+
+
+
+## when to use what? 
+ - semi-partial is best suited to show incremental variance (more practical)
+ - partial is more effective to rule out third variable 
+(theoretical)
+- partial will be larger
+
+## same t-test for semi-, partial and partial regression coefficient
+
+## how to interpret partial regression cofficients? 
+- residual in simple regression can be thought of as a measure of Y that is left over after accounting for your DV
+
+- partial correlation can be created by:
+1. create measure of X1 independent of X2
+2. create measure of Y independent of X2
+3. correlate new measures
+
+## interpretting multiple regression model
+$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$  
+- intercept is when all predictors = 0  
+- regression coefficients are partial regression coefficients  
+- predicted change in y for a 1 unit change in x, holding all other predictors constant  
+
+## example
+```{r, echo = FALSE}
+Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/regression/Multipleregression.csv")
+```
+
+```{r}
+mr.model <- lm(Stress ~ Support + Anxiety, data = Multipleregression)
+summary(mr.model)
+```
+
+## visualizing multiple regression
+
+```{r}
+library(visreg)
+visreg2d(mr.model,"Support", "Anxiety", plot.type = "persp")
+```
+
+
+
+##
