@@ -15,6 +15,8 @@ navbar:
       menu:
         - text: "takehome-1"
           href: takehome-1.html  
+        - text: "takehome-2"
+          href: takehome-2.html
     - text: "lectures"
       menu: 
         - text: "1. intro"

@@ -10,18 +10,18 @@ Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a r
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers.   
 
-1. You are given data with M SD and a correlation between r = . By hand, calculate the regression equation. Interpret each term in terms of the variables. 
+1. You are given data with two variables, X and Y. The mean of X is 3 with a SD .75. Y has a mean of 4 with a SD of .50. The correlation between the two is r = .3. "By hand", calculate the regression equation. Interpret each term in equation. 
 
-2. Convert #1 into a standardized regression euqation. Interpet each term. 
+2. "By hand," convert the equation in #1 into a standardized regression equation. Interpet each term. 
 
-3. Using the xxxx data, run a regression between X and Y. Then run a regression between Y and X. What is similar and different between these analyese? 
+3. Using the Anxiety data, run a regression with Social Support (X) predicting Anxiety(Y). Then run a regression with Anxiety predicting Social Support. What is similar and different between these analyese? 
 
-4. Graph the regression. include confidence band and raw data points.  
+4. Graph the regression with Anxiety as the DV. Include confidence band and raw data points.  
 
-5. For the regression of X predicting Y, correlate the fitted values with: a. residuals, b. Xs, C., Y.  
+5. For the regression of Social Support predicting Anxiety, correlate the fitted values with: a. residuals, b. Social Support, C., Anxiety. Explain the patterns you find.   
 
-6. Using the anova function for the model output, calculate R squared "by hand"
+6. Using the anova function for the model output, calculate R squared "by hand". Interpret. 
 
-7. Using the XX data, run a regression using 1.) factor scores, 2.) dummy codes, 3. effect codes. Compare and contrast results. 
+7. Using the group variable to predict Support, run a regression using 1) group "factor" labels, 2) transforming the factor scores into dummy codes with tx = 0, 3) dummy codes with control = 0 and 4) effect codes. Interpret each term and then compare and contrast results across models. 
  
 
