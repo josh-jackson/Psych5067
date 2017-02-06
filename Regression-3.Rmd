@@ -1,4 +1,4 @@
----
+lm---
 title: "Regression"
 author: "Josh Jackson"
 date: "`r format(Sys.time(), '%B %d, %Y')`"

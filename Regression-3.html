@@ -1,190 +1,328 @@
 <!DOCTYPE html>
-<html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-  <title>Regression</title>
 
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <meta name="generator" content="pandoc" />
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
 
 
 
-  <meta name="date" content="2017-02-05" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
+<title></title>
 
-  <base target="_blank">
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
-  <script type="text/javascript">
-    var SLIDE_CONFIG = {
-      // Slide settings
-      settings: {
-                title: 'Regression',
-                        useBuilds: true,
-        usePrettify: true,
-        enableSlideAreas: true,
-        enableTouch: true,
-                      },
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
 
-      // Author information
-      presenters: [
-            {
-        name:  'Josh Jackson' ,
-        company: '',
-        gplus: '',
-        twitter: '',
-        www: '',
-        github: ''
-      },
-            ]
-    };
-  </script>
 
-  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
-  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
-  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
-  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
-  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
-  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
-  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
-  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
-  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
-  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
 
-  <style type="text/css">
-
-    b, strong {
-      font-weight: bold;
-    }
-
-    em {
-      font-style: italic;
-    }
-
-    slides > slide {
-      -webkit-transition: all 0.4s ease-in-out;
-      -moz-transition: all 0.4s ease-in-out;
-      -o-transition: all 0.4s ease-in-out;
-      transition: all 0.4s ease-in-out;
-    }
-
-    .auto-fadein {
-      -webkit-transition: opacity 0.6s ease-in;
-      -webkit-transition-delay: 0.4s;
-      -moz-transition: opacity 0.6s ease-in 0.4s;
-      -o-transition: opacity 0.6s ease-in 0.4s;
-      transition: opacity 0.6s ease-in 0.4s;
-      opacity: 0;
-    }
-
-  </style>
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
 
 
 </head>
 
-<body style="opacity: 0">
+<body>
 
-<slides>
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
 
-  <slide class="title-slide segue nobackground">
-        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
-    <hgroup class="auto-fadein">
-      <h1 data-config-title><!-- populated from slide_config.json --></h1>
-      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
-      <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">February 05, 2017</p>
-          </hgroup>
-  </slide>
 
-<slide class=''><hgroup><h2>What is a regression equation?</h2></hgroup><article  id="what-is-a-regression-equation">
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
 
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">psych 5067: quant methods II </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="2017_Syllabus.html">syllabus</a>
+</li>
+<li>
+  <a href="readings.html">readings</a>
+</li>
+<li>
+  <a href="data.html">data</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    take home projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="takehome-1.html">takehome-1</a>
+    </li>
+    <li>
+      <a href="takehome-2.html">takehome-2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction-1.html">1. intro</a>
+    </li>
+    <li>
+      <a href="Correlations-2.html">2. correlations</a>
+    </li>
+    <li>
+      <a href="Regression-3.html">3. regression</a>
+    </li>
+    <li>
+      <a href="MultipleR-4.html">4. multiple regression</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<p>lm— title: “Regression” author: “Josh Jackson” date: “February 06, 2017” output: ioslides_presentation: default —</p>
+<div id="what-is-a-regression-equation" class="section level2">
+<h2>What is a regression equation?</h2>
 <p>Functional relationship, ideally like a physical law</p>
-
 <p>Uncovered through measurement</p>
-
-</article></slide><slide class=''><hgroup><h2>Scatter Plot with best fit line</h2></hgroup><article  id="scatter-plot-with-best-fit-line">
-
-<p><img src="Regression-3_files/figure-html/unnamed-chunk-2-1.png" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Expected value of Y given X</h2></hgroup><article  id="expected-value-of-y-given-x">
-
+</div>
+<div id="scatter-plot-with-best-fit-line" class="section level2">
+<h2>Scatter Plot with best fit line</h2>
+<p><img src="Regression-3_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="expected-value-of-y-given-x" class="section level2">
+<h2>Expected value of Y given X</h2>
 <ul>
 <li>E(Y|X)</li>
 <li><p>The regression of Y (DV) on X (IV) corresponds to the line that gives the mean value of Y corresponding to each possible value of X</p></li>
-<li><p>&quot;Our best guess&quot;</p></li>
+<li><p>“Our best guess”</p></li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>What is our best guess if we&#8230;</h2></hgroup><article  id="what-is-our-best-guess-if-we...">
-
+</div>
+<div id="what-is-our-best-guess-if-we" class="section level2">
+<h2>What is our best guess if we…</h2>
 <ul>
-<li>Didn&#39;t collect any data?</li>
+<li>Didn’t collect any data?</li>
 <li>No correlation?</li>
 <li>Positive association?</li>
 <li>Negative association?</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Regression Equation</h2></hgroup><article  id="regression-equation">
-
-<p>\[ Y = b_{0} + b_{1}X +e  \] \[ \hat{Y} = b_{0} + b_{1}X  \] \[ \mu_{Y} = \beta_{0} + \beta_{1}X + \epsilon   \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Regression terms</h2></hgroup><article  id="regression-terms">
-
+</div>
+<div id="regression-equation" class="section level2">
+<h2>Regression Equation</h2>
+<p><span class="math display">\[ Y = b_{0} + b_{1}X +e  \]</span> <span class="math display">\[ \hat{Y} = b_{0} + b_{1}X  \]</span> <span class="math display">\[ \mu_{Y} = \beta_{0} + \beta_{1}X + \epsilon   \]</span></p>
+</div>
+<div id="regression-terms" class="section level2">
+<h2>Regression terms</h2>
 <ul>
 <li>Y/DV/Outcome/Response/Criterion</li>
 <li>X/IV/Predictor/Explanatory variable</li>
-<li>Regression coeffiecent (weight)/b/b*/\(\beta\)</li>
-<li>Intercept bo/\(\beta_{0}\)</li>
+<li>Regression coeffiecent (weight)/b/b*/<span class="math inline">\(\beta\)</span></li>
+<li>Intercept bo/<span class="math inline">\(\beta_{0}\)</span></li>
 <li>Error/Residuals</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>OLS</h2></hgroup><article  id="ols">
-
+</div>
+<div id="ols" class="section level2">
+<h2>OLS</h2>
 <ul>
 <li>Ordinary Least Squares (OLS) estimation</li>
 <li>Minimizes deviations</li>
 </ul>
-
-<p>\[ min\sum(Y_{i}-\hat{Y})^{2} \]</p>
-
+<p><span class="math display">\[ min\sum(Y_{i}-\hat{Y})^{2} \]</span></p>
 <ul>
 <li>Other estimation procedures possible (and necessary in some cases)</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient">
-
-<p>\[ b_{yx} = \frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Interpretation</h2></hgroup><article  id="interpretation">
-
+</div>
+<div id="regression-coefficient" class="section level2">
+<h2>Regression coefficient</h2>
+<p><span class="math display">\[ b_{yx} = \frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} \]</span></p>
+</div>
+<div id="interpretation" class="section level2">
+<h2>Interpretation</h2>
 <p>The slope equals the estimated change in Y for a 1-unit change in X</p>
-
-</article></slide><slide class=''><hgroup><h2>Standardized regression</h2></hgroup><article  id="standardized-regression">
-
+</div>
+<div id="standardized-regression" class="section level2">
+<h2>Standardized regression</h2>
 <ul>
 <li>Regression using z-scores for Y and X</li>
-<li>Correlation equals standardized regression coefficent \[ b_{yx} = r_{xy} \frac{s_{y}}{s_{x}} \] \[ r_{xy} = b_{yx} \frac{s_{x}}{s_{y}} \] \[ \beta_{yx} = b_{yx}^{*} = r_{xy} \]</li>
+<li>Correlation equals standardized regression coefficent <span class="math display">\[ b_{yx} = r_{xy} \frac{s_{y}}{s_{x}} \]</span> <span class="math display">\[ r_{xy} = b_{yx} \frac{s_{x}}{s_{y}} \]</span> <span class="math display">\[ \beta_{yx} = b_{yx}^{*} = r_{xy} \]</span></li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Standardized regression equation</h2></hgroup><article  id="standardized-regression-equation">
-
-<p>\[ Y = b_{1}^{*}X + e  \] - Interpretation?</p>
-
-</article></slide><slide class=''><hgroup><h2>Raw score regression equation</h2></hgroup><article  id="raw-score-regression-equation">
-
+</div>
+<div id="standardized-regression-equation" class="section level2">
+<h2>Standardized regression equation</h2>
+<p><span class="math display">\[ Y = b_{1}^{*}X + e  \]</span> - Interpretation?</p>
+</div>
+<div id="raw-score-regression-equation" class="section level2">
+<h2>Raw score regression equation</h2>
 <ul>
 <li>intercept serves to adjust for differences in means between X and Y</li>
 </ul>
-
-<p>\[ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) \] - if standardized, intercept drops out<br/>- otherwise, intercept is where regression line crosses the y-axis at X = 0</p>
-
-</article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example">
-
-<pre class = 'prettyprint lang-r'>fit.1 &lt;- lm(parent ~ child, data = galton.data)
-summary(fit.1)</pre>
-
-<pre >## 
+<p><span class="math display">\[ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) \]</span> - if standardized, intercept drops out<br />
+- otherwise, intercept is where regression line crosses the y-axis at X = 0</p>
+</div>
+<div id="example" class="section level2">
+<h2>Example</h2>
+<pre class="r"><code>fit.1 &lt;- lm(parent ~ child, data = galton.data)
+summary(fit.1)</code></pre>
+<pre><code>## 
 ## Call:
 ## lm(formula = parent ~ child, data = galton.data)
 ## 
@@ -201,60 +339,53 @@ summary(fit.1)</pre>
 ## 
 ## Residual standard error: 1.589 on 926 degrees of freedom
 ## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
-## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
-
-</article></slide><slide class=''><hgroup><h2>ANOVA table</h2></hgroup><article  id="anova-table">
-
-<pre class = 'prettyprint lang-r'>anova(fit.1)</pre>
-
-<pre >## Analysis of Variance Table
+## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="anova-table" class="section level2">
+<h2>ANOVA table</h2>
+<pre class="r"><code>anova(fit.1)</code></pre>
+<pre><code>## Analysis of Variance Table
 ## 
 ## Response: parent
 ##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
 ## child       1  623.26  623.26  246.84 &lt; 2.2e-16 ***
 ## Residuals 926 2338.10    2.52                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
-
-</article></slide><slide class=''><hgroup><h2>lm objects</h2></hgroup><article  id="lm-objects">
-
-<pre class = 'prettyprint lang-r'>coefficients(fit.1)       # coefficients
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="lm-objects" class="section level2">
+<h2>lm objects</h2>
+<pre class="r"><code>coefficients(fit.1)       # coefficients
 residuals(fit.1)          # residuals
 fitted.values(fit.1)      # fitted values
 summary(fit.1)$r.squared  # R-sq for the model
-summary(fit.1)$sigma      # se of the model</pre>
-
-</article></slide><slide class=''><hgroup><h2>lm objects</h2></hgroup><article  id="lm-objects-1">
-
+summary(fit.1)$sigma      # se of the model</code></pre>
+</div>
+<div id="lm-objects-1" class="section level2">
+<h2>lm objects</h2>
 <p>The way R handles model objects is a little cumbersome as they are not data frames. You can see your output and maybe do some basic descriptives but you wont be able to do advanced manipulation</p>
-
-<pre class = 'prettyprint lang-r'>head(resid(fit.1))</pre>
-
-<pre >##          1          2          3          4          5          6 
-##  4.2721996  2.2721996 -0.7278004 -1.7278004 -2.2278004  1.1093758</pre>
-
-</article></slide><slide class=''><hgroup><h2>lm objects</h2></hgroup><article  id="lm-objects-2">
-
+<pre class="r"><code>head(resid(fit.1))</code></pre>
+<pre><code>##          1          2          3          4          5          6 
+##  4.2721996  2.2721996 -0.7278004 -1.7278004 -2.2278004  1.1093758</code></pre>
+</div>
+<div id="lm-objects-2" class="section level2">
+<h2>lm objects</h2>
 <p>If you want to use your model results/objects later on you (hint, we will) you need to turn them into an easier to use form</p>
-
-<pre class = 'prettyprint lang-r'># broom package (found in the tidyverse package)
+<pre class="r"><code># broom package (found in the tidyverse package)
 library(broom)
 fit.1.data &lt;- tidy(fit.1) #tidy turns the summary into a dataframe 
-fit.1.data</pre>
-
-<pre >##          term   estimate std.error statistic       p.value
+fit.1.data</code></pre>
+<pre><code>##          term   estimate std.error statistic       p.value
 ## 1 (Intercept) 46.1353499 1.4122473  32.66804 2.526465e-156
-## 2       child  0.3256475 0.0207272  15.71112  1.732509e-49</pre>
-
-</article></slide><slide class=''><hgroup><h2>lm objects</h2></hgroup><article  id="lm-objects-3">
-
-<p>augment ammends the original dataset with all the lm objects. The names of the objects are different than a normal lm object, namely they have a &quot;.&quot;&quot; infront of the name</p>
-
-<pre class = 'prettyprint lang-r'>library(broom)
+## 2       child  0.3256475 0.0207272  15.71112  1.732509e-49</code></pre>
+</div>
+<div id="lm-objects-3" class="section level2">
+<h2>lm objects</h2>
+<p>augment ammends the original dataset with all the lm objects. The names of the objects are different than a normal lm object, namely they have a “.”&quot; infront of the name</p>
+<pre class="r"><code>library(broom)
 galton.data.1 &lt;- augment(fit.1, galton.data)
-head(galton.data.1)</pre>
-
-<pre >##   parent child  .fitted   .se.fit     .resid        .hat   .sigma
+head(galton.data.1)</code></pre>
+<pre><code>##   parent child  .fitted   .se.fit     .resid        .hat   .sigma
 ## 1   70.5  61.7 66.22780 0.1423187  4.2721996 0.008021794 1.583599
 ## 2   68.5  61.7 66.22780 0.1423187  2.2721996 0.008021794 1.588097
 ## 3   65.5  61.7 66.22780 0.1423187 -0.7278004 0.008021794 1.589686
@@ -267,31 +398,27 @@ head(galton.data.1)</pre>
 ## 3 0.0008550854 -0.4598700
 ## 4 0.0048191674 -1.0917327
 ## 5 0.0080119350 -1.4076640
-## 6 0.0017244340  0.7006045</pre>
+## 6 0.0017244340  0.7006045</code></pre>
+</div>
+<div id="fitted-values-y-hats" class="section level2">
+<h2>fitted values, Y-hats</h2>
+<pre class="r"><code>library(psych)
 
-</article></slide><slide class=''><hgroup><h2>fitted values, Y-hats</h2></hgroup><article  id="fitted-values-y-hats">
-
-<pre class = 'prettyprint lang-r'>library(psych)
-
-describe(galton.data.1$.fitted)      </pre>
-
-<pre >##    vars   n  mean   sd median trimmed  mad   min   max range  skew
+describe(galton.data.1$.fitted)      </code></pre>
+<pre><code>##    vars   n  mean   sd median trimmed  mad   min   max range  skew
 ## X1    1 928 68.31 0.82  68.34   68.32 0.97 66.23 70.14  3.91 -0.09
 ##    kurtosis   se
-## X1    -0.35 0.03</pre>
-
-<pre class = 'prettyprint lang-r'>describe(galton.data.1$parent)</pre>
-
-<pre >##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
+## X1    -0.35 0.03</code></pre>
+<pre class="r"><code>describe(galton.data.1$parent)</code></pre>
+<pre><code>##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
 ## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
 ##      se
-## X1 0.06</pre>
-
-</article></slide><slide class=''><hgroup><h2>Correlation</h2></hgroup><article  id="correlation">
-
-<pre class = 'prettyprint lang-r'>cor.test(galton.data.1$parent, galton.data.1$.fitted)</pre>
-
-<pre >## 
+## X1 0.06</code></pre>
+</div>
+<div id="correlation" class="section level2">
+<h2>Correlation</h2>
+<pre class="r"><code>cor.test(galton.data.1$parent, galton.data.1$.fitted)</code></pre>
+<pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  galton.data.1$parent and galton.data.1$.fitted
@@ -301,74 +428,65 @@ describe(galton.data.1$.fitted)      </pre>
 ##  0.4064067 0.5081153
 ## sample estimates:
 ##       cor 
-## 0.4587624</pre>
-
-</article></slide><slide class=''><hgroup><h2>residuals</h2></hgroup><article  id="residuals">
-
-<pre class = 'prettyprint lang-r'>head(galton.data.1$.resid)</pre>
-
-<pre >## [1]  4.2721996  2.2721996 -0.7278004 -1.7278004 -2.2278004  1.1093758</pre>
-
-<pre class = 'prettyprint lang-r'>describe(galton.data.1$.resid)</pre>
-
-<pre >##    vars   n mean   sd median trimmed  mad   min  max range skew kurtosis
+## 0.4587624</code></pre>
+</div>
+<div id="residuals" class="section level2">
+<h2>residuals</h2>
+<pre class="r"><code>head(galton.data.1$.resid)</code></pre>
+<pre><code>## [1]  4.2721996  2.2721996 -0.7278004 -1.7278004 -2.2278004  1.1093758</code></pre>
+<pre class="r"><code>describe(galton.data.1$.resid)</code></pre>
+<pre><code>##    vars   n mean   sd median trimmed  mad   min  max range skew kurtosis
 ## X1    1 928    0 1.59  -0.15    0.02 1.52 -4.67 4.27  8.94 -0.1    -0.17
 ##      se
-## X1 0.05</pre>
-
-<pre class = 'prettyprint lang-r'>describe(galton.data.1$parent)</pre>
-
-<pre >##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
+## X1 0.05</code></pre>
+<pre class="r"><code>describe(galton.data.1$parent)</code></pre>
+<pre><code>##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
 ## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
 ##      se
-## X1 0.06</pre>
-
+## X1 0.06</code></pre>
 <ul>
 <li>variation that is left over in Y, after accounting for X</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Statistical Inference</h2></hgroup><article  id="statistical-inference">
-
+</div>
+<div id="statistical-inference" class="section level2">
+<h2>Statistical Inference</h2>
 <ul>
 <li>The way the world is = our model + error</li>
-<li>How good is our model? Does it &quot;fit&quot; the data well?</li>
+<li>How good is our model? Does it “fit” the data well?</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Partitioning variance in Y</h2></hgroup><article  id="partitioning-variance-in-y">
-
+</div>
+<div id="partitioning-variance-in-y" class="section level2">
+<h2>Partitioning variance in Y</h2>
 <ul>
-<li>Consider the case with no correlation btw X and Y \[ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) \] \[ \hat{Y} = \bar{Y} \]</li>
+<li>Consider the case with no correlation btw X and Y <span class="math display">\[ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) \]</span> <span class="math display">\[ \hat{Y} = \bar{Y} \]</span></li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Partitioning variance in Y</h2></hgroup><article  id="partitioning-variance-in-y-1">
-
+</div>
+<div id="partitioning-variance-in-y-1" class="section level2">
+<h2>Partitioning variance in Y</h2>
 <ul>
 <li>To the extent that we can generate different predicted values of Y based on the values of the predictors, we are doing well in our prediction</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Partitioning variance in Y into 3 components</h2></hgroup><article  id="partitioning-variance-in-y-into-3-components">
-
-<p>\[ Y = \hat{Y} + e\] \[ Y = \hat{Y} + (Y - \hat{Y}) \] \[ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) \] \[ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 \] \[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Partitioning the variation in Y</h2></hgroup><article  id="partitioning-the-variation-in-y">
-
-<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</p>
-
+</div>
+<div id="partitioning-variance-in-y-into-3-components" class="section level2">
+<h2>Partitioning variance in Y into 3 components</h2>
+<p><span class="math display">\[ Y = \hat{Y} + e\]</span> <span class="math display">\[ Y = \hat{Y} + (Y - \hat{Y}) \]</span> <span class="math display">\[ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) \]</span> <span class="math display">\[ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 \]</span> <span class="math display">\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</span></p>
+</div>
+<div id="partitioning-the-variation-in-y" class="section level2">
+<h2>Partitioning the variation in Y</h2>
+<p><span class="math display">\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</span></p>
 <ul>
 <li>SS total = SS regression + SS residual (or error)</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Partitioning the variation for ANOVA</h2></hgroup><article  id="partitioning-the-variation-for-anova">
-
-<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \] - SS total = SS between + SS within</p>
-
-</article></slide><slide class=''><hgroup><h2>Similarity with ANOVA</h2></hgroup><article  id="similarity-with-anova">
-
+</div>
+<div id="partitioning-the-variation-for-anova" class="section level2">
+<h2>Partitioning the variation for ANOVA</h2>
+<p><span class="math display">\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</span> - SS total = SS between + SS within</p>
+</div>
+<div id="similarity-with-anova" class="section level2">
+<h2>Similarity with ANOVA</h2>
 <p>Example.</p>
-
-<pre class = 'prettyprint lang-r'>t.test(traffic.risk ~ tx, data = ANOVA.example)</pre>
-
-<pre >## 
+<pre class="r"><code>t.test(traffic.risk ~ tx, data = ANOVA.example)</code></pre>
+<pre><code>## 
 ##  Welch Two Sample t-test
 ## 
 ## data:  traffic.risk by tx
@@ -378,40 +496,37 @@ describe(galton.data.1$.fitted)      </pre>
 ##  0.2879201 0.6742914
 ## sample estimates:
 ## mean in group 0 mean in group 1 
-##        2.650641        2.169535</pre>
-
-</article></slide><slide class=''><hgroup><h2>Similarity with ANOVA</h2></hgroup><article  id="similarity-with-anova-1">
-
-<pre class = 'prettyprint lang-r'>model.1&lt;- aov(traffic.risk ~ tx, data = ANOVA.example)
-summary(model.1)</pre>
-
-<pre >##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+##        2.650641        2.169535</code></pre>
+</div>
+<div id="similarity-with-anova-1" class="section level2">
+<h2>Similarity with ANOVA</h2>
+<pre class="r"><code>model.1&lt;- aov(traffic.risk ~ tx, data = ANOVA.example)
+summary(model.1)</code></pre>
+<pre><code>##              Df Sum Sq Mean Sq F value   Pr(&gt;F)    
 ## tx            1   14.8  14.800    24.4 1.38e-06 ***
 ## Residuals   268  162.6   0.607                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 10 observations deleted due to missingness</pre>
-
-</article></slide><slide class=''><hgroup><h2>Similarity with ANOVA</h2></hgroup><article  id="similarity-with-anova-2">
-
-<pre class = 'prettyprint lang-r'>model.2 &lt;- lm(traffic.risk ~ tx, data = ANOVA.example)
-anova(model.2)</pre>
-
-<pre >## Analysis of Variance Table
+## 10 observations deleted due to missingness</code></pre>
+</div>
+<div id="similarity-with-anova-2" class="section level2">
+<h2>Similarity with ANOVA</h2>
+<pre class="r"><code>model.2 &lt;- lm(traffic.risk ~ tx, data = ANOVA.example)
+anova(model.2)</code></pre>
+<pre><code>## Analysis of Variance Table
 ## 
 ## Response: traffic.risk
 ##            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
 ## tx          1  14.80 14.7999  24.398 1.381e-06 ***
 ## Residuals 268 162.57  0.6066                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
-
-</article></slide><slide class=''><hgroup><h2>Similarity with ANOVA</h2></hgroup><article  id="similarity-with-anova-3">
-
-<pre class = 'prettyprint lang-r'>model.2 &lt;- lm(traffic.risk ~ tx, data = ANOVA.example)
-summary(model.2)</pre>
-
-<pre >## 
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="similarity-with-anova-3" class="section level2">
+<h2>Similarity with ANOVA</h2>
+<pre class="r"><code>model.2 &lt;- lm(traffic.risk ~ tx, data = ANOVA.example)
+summary(model.2)</code></pre>
+<pre><code>## 
 ## Call:
 ## lm(formula = traffic.risk ~ tx, data = ANOVA.example)
 ## 
@@ -429,21 +544,20 @@ summary(model.2)</pre>
 ## Residual standard error: 0.7789 on 268 degrees of freedom
 ##   (10 observations deleted due to missingness)
 ## Multiple R-squared:  0.08344,    Adjusted R-squared:  0.08002 
-## F-statistic:  24.4 on 1 and 268 DF,  p-value: 1.381e-06</pre>
-
-</article></slide><slide class=''><hgroup><h2>Partitioning variation in Y</h2></hgroup><article  id="partitioning-variation-in-y">
-
-<p>\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \] \[ s_{y}^2 = s_{regression}^2 + s_{residual}^2 \] \[ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Coefficient of Determination</h2></hgroup><article  id="coefficient-of-determination">
-
-<p>\[ \frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2 \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example-1">
-
-<pre class = 'prettyprint lang-r'>summary(fit.1)</pre>
-
-<pre >## 
+## F-statistic:  24.4 on 1 and 268 DF,  p-value: 1.381e-06</code></pre>
+</div>
+<div id="partitioning-variation-in-y" class="section level2">
+<h2>Partitioning variation in Y</h2>
+<p><span class="math display">\[ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 \]</span> <span class="math display">\[ s_{y}^2 = s_{regression}^2 + s_{residual}^2 \]</span> <span class="math display">\[ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  \]</span></p>
+</div>
+<div id="coefficient-of-determination" class="section level2">
+<h2>Coefficient of Determination</h2>
+<p><span class="math display">\[ \frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2 \]</span></p>
+</div>
+<div id="example-1" class="section level2">
+<h2>Example</h2>
+<pre class="r"><code>summary(fit.1)</code></pre>
+<pre><code>## 
 ## Call:
 ## lm(formula = parent ~ child, data = galton.data)
 ## 
@@ -460,13 +574,12 @@ summary(model.2)</pre>
 ## 
 ## Residual standard error: 1.589 on 926 degrees of freedom
 ## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
-## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
-
-</article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example-2">
-
-<pre class = 'prettyprint lang-r'>cor.test(galton.data$parent, galton.data$child)</pre>
-
-<pre >## 
+## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="example-2" class="section level2">
+<h2>Example</h2>
+<pre class="r"><code>cor.test(galton.data$parent, galton.data$child)</code></pre>
+<pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  galton.data$parent and galton.data$child
@@ -476,38 +589,36 @@ summary(model.2)</pre>
 ##  0.4064067 0.5081153
 ## sample estimates:
 ##       cor 
-## 0.4587624</pre>
-
-</article></slide><slide class=''><hgroup><h2>calculating R2</h2></hgroup><article  id="calculating-r2">
-
-<pre >## Analysis of Variance Table
+## 0.4587624</code></pre>
+</div>
+<div id="calculating-r2" class="section level2">
+<h2>calculating R2</h2>
+<pre><code>## Analysis of Variance Table
 ## 
 ## Response: parent
 ##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
 ## child       1  623.26  623.26  246.84 &lt; 2.2e-16 ***
 ## Residuals 926 2338.10    2.52                      
 ## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
-
-</article></slide><slide class=''><hgroup><h2>Computing Sum of Squares</h2></hgroup><article  id="computing-sum-of-squares">
-
-<p>\[  \frac{SS_{regression}}{SS_{Y}} = R^2 \] \[  {SS_{regression}} = R^2({SS_{Y})} \] \[  {SS_{residual}} = SS_{Y} - R^2({SS_{Y})} \]</p>
-
-<p>\[  {SS_{residual}} = (1- R^2){SS_{Y}} \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Mean square error (MSE)</h2></hgroup><article  id="mean-square-error-mse">
-
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="computing-sum-of-squares" class="section level2">
+<h2>Computing Sum of Squares</h2>
+<p><span class="math display">\[  \frac{SS_{regression}}{SS_{Y}} = R^2 \]</span> <span class="math display">\[  {SS_{regression}} = R^2({SS_{Y})} \]</span> <span class="math display">\[  {SS_{residual}} = SS_{Y} - R^2({SS_{Y})} \]</span></p>
+<p><span class="math display">\[  {SS_{residual}} = (1- R^2){SS_{Y}} \]</span></p>
+</div>
+<div id="mean-square-error-mse" class="section level2">
+<h2>Mean square error (MSE)</h2>
 <ul>
 <li>unbiased estimate of error variance</li>
 <li>measure of discrepancy between the data and the model</li>
 <li>the MSE is the variance around the fitted regression line</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>MSE and residual standard error</h2></hgroup><article  id="mse-and-residual-standard-error">
-
+</div>
+<div id="mse-and-residual-standard-error" class="section level2">
+<h2>MSE and residual standard error</h2>
 <p>MSE = 2.52</p>
-
-<pre >## 
+<pre><code>## 
 ## Call:
 ## lm(formula = parent ~ child, data = galton.data)
 ## 
@@ -524,19 +635,18 @@ summary(model.2)</pre>
 ## 
 ## Residual standard error: 1.589 on 926 degrees of freedom
 ## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
-## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
-
-</article></slide><slide class=''><hgroup><h2>residual standard error (sigma)</h2></hgroup><article  id="residual-standard-error-sigma">
-
-<pre class = 'prettyprint lang-r'>describe(galton.data$parent)</pre>
-
-<pre >##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
+## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div id="residual-standard-error-sigma" class="section level2">
+<h2>residual standard error (sigma)</h2>
+<pre class="r"><code>describe(galton.data$parent)</code></pre>
+<pre><code>##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
 ## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
 ##      se
-## X1 0.06</pre>
-
-</article></slide><slide class=''><hgroup><h2>residual standard error (sigma)</h2></hgroup><article  id="residual-standard-error-sigma-1">
-
+## X1 0.06</code></pre>
+</div>
+<div id="residual-standard-error-sigma-1" class="section level2">
+<h2>residual standard error (sigma)</h2>
 <ul>
 <li>aka standard deviation of the residual</li>
 <li><p>aka standard error of the estimate</p></li>
@@ -545,12 +655,11 @@ summary(model.2)</pre>
 <li>MSE is related to sigma, sqrt[(SSE)/df(error)] = sigma</li>
 <li><p>(note df might be off slightly because of unbiasing)</p></li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>residual standard error (sigma)</h2></hgroup><article  id="residual-standard-error-sigma-2">
-
-<pre class = 'prettyprint lang-r'>head(galton.data.1)</pre>
-
-<pre >##   parent child  .fitted   .se.fit     .resid        .hat   .sigma
+</div>
+<div id="residual-standard-error-sigma-2" class="section level2">
+<h2>residual standard error (sigma)</h2>
+<pre class="r"><code>head(galton.data.1)</code></pre>
+<pre><code>##   parent child  .fitted   .se.fit     .resid        .hat   .sigma
 ## 1   70.5  61.7 66.22780 0.1423187  4.2721996 0.008021794 1.583599
 ## 2   68.5  61.7 66.22780 0.1423187  2.2721996 0.008021794 1.588097
 ## 3   65.5  61.7 66.22780 0.1423187 -0.7278004 0.008021794 1.589686
@@ -563,27 +672,24 @@ summary(model.2)</pre>
 ## 3 0.0008550854 -0.4598700
 ## 4 0.0048191674 -1.0917327
 ## 5 0.0080119350 -1.4076640
-## 6 0.0017244340  0.7006045</pre>
-
-<pre class = 'prettyprint lang-r'>describe(galton.data.1$.resid)</pre>
-
-<pre >##    vars   n mean   sd median trimmed  mad   min  max range skew kurtosis
+## 6 0.0017244340  0.7006045</code></pre>
+<pre class="r"><code>describe(galton.data.1$.resid)</code></pre>
+<pre><code>##    vars   n mean   sd median trimmed  mad   min  max range skew kurtosis
 ## X1    1 928    0 1.59  -0.15    0.02 1.52 -4.67 4.27  8.94 -0.1    -0.17
 ##      se
-## X1 0.05</pre>
-
-</article></slide><slide class=''><hgroup><h2>Omnibus test</h2></hgroup><article  id="omnibus-test">
-
-<p>\[ H_{0}: \rho_{XY}^2= 0 \] \[ H_{1}: \rho_{XY}^2 \neq 0 \]</p>
-
-<p>\[ F = \frac{MS_{regression}}{MS_{residial}} \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
-
-<p>\[ H_{0}: \beta_{XY}= 0 \] \[ H_{1}: \beta_{XY} \neq 0 \]</p>
-
-</article></slide><slide class=''><hgroup><h2>What does the regression coefficient test?</h2></hgroup><article  id="what-does-the-regression-coefficient-test">
-
+## X1 0.05</code></pre>
+</div>
+<div id="omnibus-test" class="section level2">
+<h2>Omnibus test</h2>
+<p><span class="math display">\[ H_{0}: \rho_{XY}^2= 0 \]</span> <span class="math display">\[ H_{1}: \rho_{XY}^2 \neq 0 \]</span></p>
+<p><span class="math display">\[ F = \frac{MS_{regression}}{MS_{residial}} \]</span></p>
+</div>
+<div id="regression-coefficient-1" class="section level2">
+<h2>Regression coefficient</h2>
+<p><span class="math display">\[ H_{0}: \beta_{XY}= 0 \]</span> <span class="math display">\[ H_{1}: \beta_{XY} \neq 0 \]</span></p>
+</div>
+<div id="what-does-the-regression-coefficient-test" class="section level2">
+<h2>What does the regression coefficient test?</h2>
 <ul>
 <li>Does X provide any predictive information?</li>
 <li>Does X provide any explanatory power regarding the variability of Y?</li>
@@ -591,60 +697,78 @@ summary(model.2)</pre>
 <li>Is the regression line flat?</li>
 <li>Are X and Y correlated?</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-2">
-
-<p>\[ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \] \[ t(n-2) = \frac{b_{yx}}{se_{b}} \] ** what is standardized equation?</p>
-
-</article></slide><slide class=''><hgroup><h2>Intercept</h2></hgroup><article  id="intercept">
-
+</div>
+<div id="regression-coefficient-2" class="section level2">
+<h2>Regression coefficient</h2>
+<p><span class="math display">\[ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \]</span> <span class="math display">\[ t(n-2) = \frac{b_{yx}}{se_{b}} \]</span> ** what is standardized equation?</p>
+</div>
+<div id="intercept" class="section level2">
+<h2>Intercept</h2>
 <ul>
 <li>same idea, more complex se calculation</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Confidence interval for coefficents</h2></hgroup><article  id="confidence-interval-for-coefficents">
-
+</div>
+<div id="confidence-interval-for-coefficents" class="section level2">
+<h2>Confidence interval for coefficents</h2>
 <ul>
-<li>same equation as we&#39;ve been working with</li>
+<li>same equation as we’ve been working with</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>Confidence Bands for regression line</h2></hgroup><article  id="confidence-bands-for-regression-line">
-
-<p><img src="Regression-3_files/figure-html/unnamed-chunk-24-1.png" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
-
+</div>
+<div id="confidence-bands-for-regression-line" class="section level2">
+<h2>Confidence Bands for regression line</h2>
+<p><img src="Regression-3_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+<div id="confidence-bands" class="section level2">
+<h2>Confidence Bands</h2>
 <ul>
 <li>Compare mean estimate for height of 70 based on regression vs binning</li>
 </ul>
-
-<p><img src="Regression-3_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands-1">
-
-<p>\[ \hat{Y}\pm t_{critical} * se_{residual}\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  \]</p>
-
-</article></slide><slide class=''><hgroup><h2>Prediction</h2></hgroup><article  id="prediction">
-
+<p><img src="Regression-3_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+</div>
+<div id="confidence-bands-1" class="section level2">
+<h2>Confidence Bands</h2>
+<p><span class="math display">\[ \hat{Y}\pm t_{critical} * se_{residual}\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  \]</span></p>
+</div>
+<div id="prediction" class="section level2">
+<h2>Prediction</h2>
 <ul>
 <li>More later when we start Bayesian modeling</li>
 <li>A new Y given x, rather than Ybar given x.</li>
 </ul>
+</div>
+<div id="coding-of-qualitative-variables" class="section level2">
+<h2>Coding of qualitative variables</h2>
+</div>
+<div id="dummy-coding" class="section level2">
+<h2>Dummy coding</h2>
+</div>
+<div id="treatment" class="section level2">
+<h2>Treatment</h2>
+</div>
+<div id="effects" class="section level2">
+<h2>Effects</h2>
+</div>
+<div id="sum-coding" class="section level2">
+<h2>Sum coding</h2>
+</div>
 
-</article></slide><slide class=''><hgroup><h2>Coding of qualitative variables</h2></hgroup><article  id="coding-of-qualitative-variables">
-
-</article></slide><slide class=''><hgroup><h2>Dummy coding</h2></hgroup><article  id="dummy-coding">
-
-</article></slide><slide class=''><hgroup><h2>Treatment</h2></hgroup><article  id="treatment">
-
-</article></slide><slide class=''><hgroup><h2>Effects</h2></hgroup><article  id="effects">
-
-</article></slide><slide class=''><hgroup><h2>Sum coding</h2></hgroup><article  id="sum-coding"></article></slide>
 
 
-  <slide class="backdrop"></slide>
 
-</slides>
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
@@ -653,20 +777,6 @@ summary(model.2)</pre>
     script.type = "text/javascript";
     script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
-
-<!-- map slide visiblity events into shiny -->
-<script>
-  (function() {
-    if (window.jQuery) {
-       window.jQuery(document).on('slideleave', function(e) {
-         window.jQuery(e.target).trigger('hidden');
-      });
-       window.jQuery(document).on('slideenter', function(e) {
-         window.jQuery(e.target).trigger('shown');
-      });
-    }
   })();
 </script>
 
