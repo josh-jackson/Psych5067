@@ -1,4 +1,4 @@
-lm---
+---
 title: "Regression"
 author: "Josh Jackson"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
@@ -364,11 +364,9 @@ $$ \hat{Y}\pm t_{critical} * se_{residual}\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2
 
 ## Coding of qualitative variables
 
-## Dummy coding
+- Dummy coding
+- Effects
 
-## Treatment 
-## Effects
-## Sum coding
 
 
 
