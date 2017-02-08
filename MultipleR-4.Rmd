@@ -77,11 +77,10 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 
 ## how to interpret partial regression cofficients? 
 - residual in simple regression can be thought of as a measure of Y that is left over after accounting for your DV
-
-- partial correlation can be created by:
-1. create measure of X1 independent of X2
-2. create measure of Y independent of X2
-3. correlate new measures
+- partial correlation can be created by:  
+    1. create measure of X1 independent of X2
+    2. create measure of Y independent of X2
+    3. correlate new measures
 
 ## interpretting multiple regression model
 $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$  
@@ -108,4 +107,139 @@ visreg2d(mr.model,"Support", "Anxiety", plot.type = "persp")
 
 
 
+## OLS
+- similar to before
+$$ \hat{z}_{Y} = b_{1}^*Z_{X1} + b_{2}^*Z_{X2}$$
+$$ minimize \sum (z_{Y}-\hat{z}_{Y})^2$$
+
+## standardized partial regression coefficient
+$$b_{1}^* = \frac{r_{Y1}-r_{Y2}r_{12}}{1-r_{12}^2}$$
+
+$$b_{2}^* = \frac{r_{Y2}-r_{Y1}r_{12}}{1-r_{12}^2}$$
+
+## Notice similarity with semi-partial correlation
+
+$$b_{1}^* = \frac{r_{Y1}-r_{Y2}r_{12}}{1-r_{12}^2}$$
+
+
+
+$$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
+
+
+## relationships among partial, semi- and b*  
+
+- three different ways to represent same effect  
+- all standardized  
+- if predictors are not correlated, sr and pr equal  
+    
+## Original metric
+
+$$b_{1} = b_{1}^*\frac{s_{Y}}{s_{X1}} $$
+
+$$b_{1}^* = b_{1}\frac{s_{X1}}{s_{Y}} $$
+
+## Intercept
+
+$$b_{0} = \bar{Y} - b_{1}\bar{X_{1}} - b_{2}\bar{X_{2}} $$
+
+## Multiple correlation R
+
+$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}} $$
+
+
+## Multiple correlation R
+
+- $\hat{Y}$ is a linear combination of Xs
+- $r_{Y\hat{Y}}$ = multiple correlation = R
+
+## Multiple correlation R
+
+$$ R = \sqrt{b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
+$$ R^2 = {b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
+
+## 
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-4.png" width="700" height="500"/>
+
 ##
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-5.png" width="700" height="500"/>
+
+## sum of squares decomposition
+
+$$  \frac{SS_{regression}}{SS_{Y}} = R^2 $$
+$$  {SS_{regression}} = R^2({SS_{Y})} $$
+
+
+
+$$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
+
+## significance tests
+
+- R2 (omnibus)  
+- Regression Coefficients  
+- Increments to R2  
+    
+## R-squared
+
+- Same as before  
+- Adding predictors into your model will increase R2 – regardless of whether or not the predictor is correlated with Y.    
+- Adjusted/Shrunken R2 takes into account the number of predictors in your model  
+    
+## Adjusted R-squared
+
+$$R_{A}^2 = 1 - (1 -R^2)\frac{n-1}{n-p-1} $$
+
+## Anova table
+
+```{r}
+anova(mr.model)
+```
+
+
+##  
+
+```{r}
+summary(mr.model)
+```
+
+
+## test of individual regression coefficients
+
+$$ H_{0}: \beta_{X}= 0 $$
+$$ H_{1}: \beta_{X} \neq 0 $$
+
+## test of individual regression coefficients
+
+$$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} $$
+
+$$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\frac {1}{1-R_{i.jkl...p}}}$$
+
+- As N increases... 
+- As variance explained increases... 
+
+## Tolerance
+$$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\frac {1}{1-R_{i.jkl...p}}}$$  
+- what cannot be explained in Xi by other predictors  
+- Large tolerance (little overlap) means standard error will be small.   
+- what does this mean for including a lot of variables in your model? 
+
+## what to include
+- match population model (theoretically)  
+- many variables will not bias parameter estimates but will increase degrees of freedom and standard errors, potentially
+
+## methods for entering variables
+- simultaneous
+- hierarchically 
+
+## simultaneous  
+- how do you interpert the regression coefficient
+- how do you interpret the fit of the model? 
+
+## heirarchical / model comparison  
+- When you want to see if the fit of one model is better than another  
+- Aka incremental variance
+    
+## heirarchical / model comparison  
+- Multiple models are calculated  
+- Each predictor (or set of predictors) is assessed in terms of what it adds (in terms of variance explained) at the time it is entered   
+- Order is dependent on a priori hypothesis  
+
