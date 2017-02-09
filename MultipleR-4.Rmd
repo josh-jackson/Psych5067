@@ -144,7 +144,7 @@ $$b_{0} = \bar{Y} - b_{1}\bar{X_{1}} - b_{2}\bar{X_{2}} $$
 
 ## Multiple correlation R
 
-$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}} $$
+$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2} $$
 
 
 ## Multiple correlation R
