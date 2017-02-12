@@ -235,6 +235,14 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 
 <p><img src="MultipleR-4_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
 
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+
+<pre class = 'prettyprint lang-r'>library(rgl)
+newdat &lt;- expand.grid(Support=seq(0,18,by=1),Anxiety=seq(0,15,by=1))
+newdat$pp &lt;- predict(mr.model,newdat=newdat)
+with(Multipleregression, plot3d (Support, Anxiety, Stress, size = 8, col=&quot;blue&quot;), add = T)
+with(newdat,surface3d(unique(Support),unique(Anxiety), pp, alpha=0.3,front = &quot;line&quot;, back = &quot;line&quot;))</pre>
+
 </article></slide><slide class=''><hgroup><h2>OLS</h2></hgroup><article  id="ols">
 
 <ul>
@@ -286,11 +294,11 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 
 <p>\[ R = \sqrt{b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} \] \[ R^2 = {b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} \]</p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
 
 <p><img src="R2-4.png" width="700" height="500"/></p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <p><img src="R2-5.png" width="700" height="500"/></p>
 
@@ -334,7 +342,7 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
 
 <pre class = 'prettyprint lang-r'>summary(mr.model)</pre>
 
@@ -411,7 +419,286 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 <li>Multiple models are calculated<br/></li>
 <li>Each predictor (or set of predictors) is assessed in terms of what it adds (in terms of variance explained) at the time it is entered<br/></li>
 <li>Order is dependent on a priori hypothesis</li>
-</ul></article></slide>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4">
+
+<p><img src="R2-6.png" width="700" height="500"/></p>
+
+</article></slide><slide class=''><hgroup><h2>partitioning the variance</h2></hgroup><article  id="partitioning-the-variance">
+
+<p>\[R_{Y.1234...p}^2 = r_{Y1}^2 + r_{Y(2.1)}^2 + r_{Y(3.21)}^2 + r_{Y(4.321)}^2 + ...   \]</p>
+
+<ul>
+<li>order matters!</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>R-square change</h2></hgroup><article  id="r-square-change">
+
+<ul>
+<li>distributed as an F \[ F(p.new, N - 1 - p.all) = \frac {R_{m.2}^2- R_{m.1}^2} {1-R_{m.2}^2} (\frac {N-1-p.all}{p.new}) \]</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Model comparisons</h2></hgroup><article  id="model-comparisons">
+
+<pre class = 'prettyprint lang-r'>m.1 &lt;- lm(Stress ~ Support, data = Multipleregression)
+m.2 &lt;- lm(Stress ~ Support + Anxiety, data = Multipleregression)
+anova(m.1, m.2)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Model 1: Stress ~ Support
+## Model 2: Stress ~ Support + Anxiety
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    116 298.72                                  
+## 2    115 265.41  1    33.314 14.435 0.0002336 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>model comparisons</h2></hgroup><article  id="model-comparisons-1">
+
+<pre class = 'prettyprint lang-r'>anova(m.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: Stress
+##            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Support     1 113.15 113.151  43.939 1.12e-09 ***
+## Residuals 116 298.72   2.575                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>model comparisons</h2></hgroup><article  id="model-comparisons-2">
+
+<pre class = 'prettyprint lang-r'>anova(m.2)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: Stress
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Support     1 113.151 113.151  49.028 1.807e-10 ***
+## Anxiety     1  33.314  33.314  14.435 0.0002336 ***
+## Residuals 115 265.407   2.308                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>model comparisons</h2></hgroup><article  id="model-comparisons-3">
+
+<pre >## 
+## Call:
+## lm(formula = Stress ~ Support + Anxiety, data = Multipleregression)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1958 -0.8994 -0.1370  0.9990  3.6995 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.31587    0.85596  -0.369 0.712792    
+## Support      0.40618    0.05115   7.941 1.49e-12 ***
+## Anxiety      0.25609    0.06740   3.799 0.000234 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.519 on 115 degrees of freedom
+## Multiple R-squared:  0.3556, Adjusted R-squared:  0.3444 
+## F-statistic: 31.73 on 2 and 115 DF,  p-value: 1.062e-11</pre>
+
+</article></slide><slide class=''><hgroup><h2>model comparisons</h2></hgroup><article  id="model-comparisons-4">
+
+<pre >## 
+## Call:
+## lm(formula = Stress ~ Support, data = Multipleregression)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.8215 -1.2145 -0.1796  1.0806  3.4326 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.56046    0.42189   6.069 1.66e-08 ***
+## Support      0.30006    0.04527   6.629 1.12e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.605 on 116 degrees of freedom
+## Multiple R-squared:  0.2747, Adjusted R-squared:  0.2685 
+## F-statistic: 43.94 on 1 and 116 DF,  p-value: 1.12e-09</pre>
+
+</article></slide><slide class=''><hgroup><h2>model comparisons</h2></hgroup><article  id="model-comparisons-5">
+
+<pre class = 'prettyprint lang-r'>m.0 &lt;- lm(Stress ~ 1, data = Multipleregression)
+m.1 &lt;- lm(Stress ~ Support, data = Multipleregression)
+anova(m.0, m.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Model 1: Stress ~ 1
+## Model 2: Stress ~ Support
+##   Res.Df    RSS Df Sum of Sq      F   Pr(&gt;F)    
+## 1    117 411.87                                 
+## 2    116 298.72  1    113.15 43.939 1.12e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>Group level multiple regression</h2></hgroup><article  id="group-level-multiple-regression">
+
+<ul>
+<li>i.e., ANOVA models<br/></li>
+<li>Need to put numbers to our categories</li>
+<li>Dummy code is default</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Group level multiple regression</h2></hgroup><article  id="group-level-multiple-regression-1">
+
+<pre class = 'prettyprint lang-r'>model.1 &lt;- lm(drugs ~ group, data = one.way ) 
+summary(model.1)</pre>
+
+<pre >## 
+## Call:
+## lm(formula = drugs ~ group, data = one.way)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.5015 -0.1524 -0.0613 -0.0613  4.0619 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  0.32159    0.08964   3.588 0.000402 ***
+## group1      -0.42402    0.10236  -4.142 4.73e-05 ***
+## group2      -0.33289    0.11991  -2.776 0.005923 ** 
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.6013 on 247 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.06498,    Adjusted R-squared:  0.05741 
+## F-statistic: 8.583 on 2 and 247 DF,  p-value: 0.0002491</pre>
+
+</article></slide><slide class=''><hgroup><h2>group means</h2></hgroup><article  id="group-means">
+
+<pre class = 'prettyprint lang-r'>library(dplyr)
+(one.way %&gt;% 
+    group_by(group) %&gt;% 
+    filter(!is.na(drugs)) %&gt;% 
+    summarise(mean(drugs)))</pre>
+
+<pre >## # A tibble: 3 × 2
+##    group `mean(drugs)`
+##   &lt;fctr&gt;         &lt;dbl&gt;
+## 1      0    0.32159423
+## 2      1   -0.10242087
+## 3      2   -0.01129146</pre>
+
+</article></slide><slide class=''><hgroup><h2>contrasts</h2></hgroup><article  id="contrasts">
+
+<pre class = 'prettyprint lang-r'>contrasts(one.way$group)</pre>
+
+<pre >##   1 2
+## 0 0 0
+## 1 1 0
+## 2 0 1</pre>
+
+<pre class = 'prettyprint lang-r'>contrasts(Multipleregression$group)</pre>
+
+<pre >##         Tx
+## Control  0
+## Tx       1</pre>
+
+</article></slide><slide class=''><hgroup><h2>contrasts</h2></hgroup><article  id="contrasts-1">
+
+<pre class = 'prettyprint lang-r'>contr.treatment(4)</pre>
+
+<pre >##   2 3 4
+## 1 0 0 0
+## 2 1 0 0
+## 3 0 1 0
+## 4 0 0 1</pre>
+
+<pre class = 'prettyprint lang-r'>contr.sum(4)</pre>
+
+<pre >##   [,1] [,2] [,3]
+## 1    1    0    0
+## 2    0    1    0
+## 3    0    0    1
+## 4   -1   -1   -1</pre>
+
+</article></slide><slide class=''><hgroup><h2>effects (sum) coding</h2></hgroup><article  id="effects-sum-coding">
+
+<pre class = 'prettyprint lang-r'>contrasts(one.way$group) &lt;- contr.sum(3)
+model.2 &lt;- lm(drugs ~ group, data = one.way ) 
+tidy(model.2)</pre>
+
+<pre >##          term    estimate  std.error statistic      p.value
+## 1 (Intercept)  0.06929397 0.04323336  1.602789 0.1102591875
+## 2      group1  0.25230027 0.06743556  3.741353 0.0002276286
+## 3      group2 -0.17171484 0.05180262 -3.314791 0.0010548126</pre>
+
+</article></slide><slide class=''><hgroup><h2>effects (sum) coding</h2></hgroup><article  id="effects-sum-coding-1">
+
+<ul>
+<li>note: intercept is the means of means</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>library(psych)
+describe(one.way$drugs)</pre>
+
+<pre >##    vars   n  mean   sd median trimmed mad   min  max range skew kurtosis
+## X1    1 250 -0.01 0.62  -0.16   -0.15   0 -0.18 4.38  4.56 5.11    26.82
+##      se
+## X1 0.04</pre>
+
+<pre class = 'prettyprint lang-r'>table(one.way$group)</pre>
+
+<pre >## 
+##   0   1   2 
+##  45 150  58</pre>
+
+<ul>
+<li>you may want to do &quot;weighted&quot; effect coding</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
+
+<pre class = 'prettyprint lang-r'>anova(model.2)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: drugs
+##            Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## group       2  6.207 3.10337  8.5826 0.0002491 ***
+## Residuals 247 89.312 0.36159                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+<ul>
+<li>note the df for SSregression/SSbetween</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>effects (sum) coding</h2></hgroup><article  id="effects-sum-coding-2">
+
+<pre class = 'prettyprint lang-r'># relevel() as a way to change which group is coded what, or: 
+contrasts(one.way$group) &lt;- contr.treatment(3, base = 2)
+model.3 &lt;- lm(drugs ~ group, data = one.way ) 
+tidy(model.3)</pre>
+
+<pre >##          term    estimate  std.error  statistic      p.value
+## 1 (Intercept) -0.10242087 0.04942837 -2.0721070 3.929334e-02
+## 2      group1  0.42401511 0.10236434  4.1422150 4.726216e-05
+## 3      group3  0.09112942 0.09373803  0.9721713 3.319164e-01</pre>
+
+<pre class = 'prettyprint lang-r'>contrasts(one.way$group) &lt;- contr.treatment(3, base = 3)
+model.4 &lt;- lm(drugs ~ group, data = one.way ) 
+tidy(model.4)</pre>
+
+<pre >##          term    estimate  std.error  statistic     p.value
+## 1 (Intercept) -0.01129146 0.07964706 -0.1417687 0.887378302
+## 2      group1  0.33288569 0.11991225  2.7760774 0.005923213
+## 3      group2 -0.09112942 0.09373803 -0.9721713 0.331916401</pre>
+
+</article></slide><slide class=''><hgroup><h2>Multicollinearity</h2></hgroup><article  id="multicollinearity">
+
+</article></slide><slide class=''><hgroup><h2>Supression</h2></hgroup><article  id="supression"></article></slide>
 
 
   <slide class="backdrop"></slide>

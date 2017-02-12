@@ -103,7 +103,18 @@ summary(mr.model)
 ```{r}
 library(visreg)
 visreg2d(mr.model,"Support", "Anxiety", plot.type = "persp")
+
 ```
+
+##
+```{r}
+library(rgl)
+newdat <- expand.grid(Support=seq(0,18,by=1),Anxiety=seq(0,15,by=1))
+newdat$pp <- predict(mr.model,newdat=newdat)
+with(Multipleregression, plot3d (Support, Anxiety, Stress, size = 8, col="blue"), add = T)
+with(newdat,surface3d(unique(Support),unique(Anxiety), pp, alpha=0.3,front = "line", back = "line"))
+```
+
 
 
 
@@ -242,4 +253,137 @@ $$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\f
 - Multiple models are calculated  
 - Each predictor (or set of predictors) is assessed in terms of what it adds (in terms of variance explained) at the time it is entered   
 - Order is dependent on a priori hypothesis  
+
+## 
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-6.png" width="700" height="500"/>
+
+## partitioning the variance
+$$R_{Y.1234...p}^2 = r_{Y1}^2 + r_{Y(2.1)}^2 + r_{Y(3.21)}^2 + r_{Y(4.321)}^2 + ...   $$
+
+- order matters! 
+
+## R-square change
+- distributed as an F
+$$ F(p.new, N - 1 - p.all) = \frac {R_{m.2}^2- R_{m.1}^2} {1-R_{m.2}^2} (\frac {N-1-p.all}{p.new}) $$
+
+
+## Model comparisons
+```{r}
+
+m.1 <- lm(Stress ~ Support, data = Multipleregression)
+m.2 <- lm(Stress ~ Support + Anxiety, data = Multipleregression)
+anova(m.1, m.2)
+
+```
+
+## model comparisons
+```{r}
+anova(m.1)
+```
+
+
+
+
+## model comparisons
+```{r}
+anova(m.2)
+```
+## model comparisons
+```{r, echo = FALSE}
+summary(m.2)
+```
+## model comparisons
+```{r, echo = FALSE}
+summary(m.1)
+```
+
+## model comparisons
+
+```{r}
+m.0 <- lm(Stress ~ 1, data = Multipleregression)
+m.1 <- lm(Stress ~ Support, data = Multipleregression)
+anova(m.0, m.1)
+```
+
+
+## Group level multiple regression
+- i.e., ANOVA models  
+- Need to put numbers to our categories
+- Dummy code is default
+
+```{r, echo = FALSE}
+one.way <- read.csv("~/Box Sync/5067 Regression Spring/anova.csv")
+one.way$group <- one.way$IV
+one.way$group <- as.factor(one.way$group)
+library (broom)
+```
+
+## Group level multiple regression
+
+
+```{r}
+model.1 <- lm(drugs ~ group, data = one.way ) 
+summary(model.1)
+```
+## group means
+```{r, message=FALSE}
+library(dplyr)
+(one.way %>% 
+    group_by(group) %>% 
+    filter(!is.na(drugs)) %>% 
+    summarise(mean(drugs)))
+```
+
+## contrasts
+
+
+```{r}
+contrasts(one.way$group)
+contrasts(Multipleregression$group)
+```
+
+## contrasts
+
+```{r}
+contr.treatment(4)
+contr.sum(4)
+```
+
+## effects (sum) coding
+```{r}
+contrasts(one.way$group) <- contr.sum(3)
+model.2 <- lm(drugs ~ group, data = one.way ) 
+tidy(model.2)
+```
+## effects (sum) coding
+- note: intercept is the means of means
+```{r}
+library(psych)
+describe(one.way$drugs)
+table(one.way$group)
+```
+- you may want to do "weighted" effect coding
+
+## 
+```{r}
+anova(model.2)
+```
+ 
+ - note the df for SSregression/SSbetween
+ 
+## effects (sum) coding
+
+```{r}
+# relevel() as a way to change which group is coded what, or: 
+contrasts(one.way$group) <- contr.treatment(3, base = 2)
+model.3 <- lm(drugs ~ group, data = one.way ) 
+tidy(model.3)
+contrasts(one.way$group) <- contr.treatment(3, base = 3)
+model.4 <- lm(drugs ~ group, data = one.way ) 
+tidy(model.4)
+```
+
+## Multicollinearity
+
+## Supression 
 
