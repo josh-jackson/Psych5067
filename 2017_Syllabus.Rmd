@@ -74,7 +74,7 @@ Note: take home projects should be treated like exams. No discussing of question
 | 3    | 1/31  | Univariate Regression                                      |                      |
 | -    | 2/2   | ANOVA and Categorical predictors                           |                      |
 | 4    | 2/7   | Partial Correlations                                       |                      |
-| -    | 2/9   | Multiple Regression                                        |                      |
+| -    | 2/9   | Multiple Regression                                        |  MR Cohen chapter    |
 | 5    | 2/14  | Multiple Regression                                        |                      |
 | -    | 2/16  | Multiple Regression                                        |                      |
 | 6    | 2/21  | **Exam 1**                                                 |                      |
