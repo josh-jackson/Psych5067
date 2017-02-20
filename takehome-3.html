@@ -11,7 +11,7 @@
 
 
 
-<title>Takehome-2 Regression</title>
+<title>takehome-3</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -238,23 +238,31 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Takehome-2 Regression</h1>
+<h1 class="title toc-ignore">takehome-3</h1>
 
 </div>
 
 
-<div id="due-220" class="section level1">
-<h1>Due: 2/20</h1>
+<div id="due-37" class="section level1">
+<h1>Due: 3/7</h1>
 <p><br> Turn in via email to: <a href="mailto:5067.u9ur91mgrfiruixi@u.box.com">5067.u9ur91mgrfiruixi@u.box.com</a> by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.<br />
 <br> All take home projects are <strong>INDEPENDENT</strong> projects; do not share code or answers.</p>
+<p>Please use the th.project.3 dataset to answer the questions below. These data were from a study where physical health was predicted by a happyness measure, socioeconomic status, number of close friends, and a 16 week mood intervention where here was a waitlist control group (0), a .</p>
 <ol style="list-style-type: decimal">
-<li><p>You are given data with two variables, X and Y. The mean of X is 3 with a SD .75. Y has a mean of 4 with a SD of .50. The correlation between the two is r = .3. “By hand”, calculate the regression equation. Interpret each term in equation.</p></li>
-<li><p>“By hand,” convert the equation in #1 into a standardized regression equation. Interpet each term.</p></li>
-<li><p>Using the Anxiety data, run a regression with Social Support (X) predicting Anxiety(Y). Then run a regression with Anxiety predicting Social Support. What is similar and different between these analyese?</p></li>
-<li><p>Graph the regression with Anxiety as the DV. Include confidence band and raw data points.</p></li>
-<li><p>For the regression of Social Support predicting Anxiety, correlate the fitted values with: a. residuals, b. Social Support, C., Anxiety. Explain the patterns you find.</p></li>
-<li><p>Using the anova function for the model output, calculate R squared “by hand”. Interpret.</p></li>
-<li><p>Using the group variable to predict Support, run a regression using 1) group “factor” labels, 2) transforming the factor scores into dummy codes with tx = 0, 3) dummy codes with control = 0 and 4) effect codes. Interpret each term and then compare and contrast results across models.</p></li>
+<li><p>Run a semi-partial and a partial correlation for health and friends, controlling for SES and happiness using simple regression analyses.</p></li>
+<li><p>Perform a multiple regression where Health is regressed on friends SES happiness. Interpret each coefficient.</p></li>
+<li><p>Graph the (2-d) relationship between health and happy as found in the above regression. Make sure the association controls for the remaining variables in the model.</p></li>
+<li><p>For the above regression, calculate variance explained and residual standard error using the anova table</p></li>
+<li>Include the group variable mood.group into the regression model from #2.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Interpret the new coefficients</li>
+<li>Is there a significant increase in variance explained compared to the initial regression in #2?</li>
+<li>Recode the group coefficients to -1,0 and 1. Rerun the model. Interpret each regression coefficient including the intercept.</li>
+</ol>
+<ol start="6" style="list-style-type: decimal">
+<li><p>Check each of the six assumptions discussed in class. Note: not every assumption may be directly examined. Describe how you <em>would</em> test the assumption.</p></li>
+<li><p>Examine possible outliers. Directly state what each plot tells you. Are there any cases that are suspicious? What is the impact on the analysis of these cases, if any?</p></li>
 </ol>
 </div>
 

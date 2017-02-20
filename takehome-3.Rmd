@@ -1,0 +1,33 @@
+---
+title: "takehome-3"
+output: html_document
+---
+
+# Due: 3/7  
+<br>
+Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+<br>
+All take home projects are **INDEPENDENT** projects; do not share code or answers.   
+
+Please use the th.project.3 dataset to answer the questions below. These data were from a study where physical health was predicted by a happyness measure, socioeconomic status, number of close friends, and a 16 week mood intervention where here was a waitlist control group (0), a . 
+
+1. Run a semi-partial and a partial correlation for health and friends, controlling for SES and happiness using simple regression analyses. 
+
+2. Perform a multiple regression where Health is regressed on friends SES happiness. Interpret each coefficient. 
+
+3. Graph the (2-d) relationship between health and happy as found in the above regression. Make sure the association controls for the remaining variables in the model. 
+
+4. For the above regression, calculate variance explained and residual standard error using the anova table
+
+5. Include the group variable mood.group into the regression model from #2. 
+  a) Interpret the new coefficients
+  b) Is there a significant increase in variance explained compared to the initial regression in #2? 
+  c) Recode the group coefficients to -1,0 and 1. Rerun the model. Interpret each regression coefficient   including the intercept.   
+
+6. Check each of the six assumptions discussed in class. Note: not every assumption may be directly examined. Describe how you *would* test the assumption. 
+
+7.	Examine possible outliers. Directly state what each plot tells you. Are there any cases that are suspicious?  What is the impact on the analysis of these cases, if any? 
+
+  
+  
+  

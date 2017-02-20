@@ -96,6 +96,8 @@ Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/regression/Mul
 ```{r}
 mr.model <- lm(Stress ~ Support + Anxiety, data = Multipleregression)
 summary(mr.model)
+library(psych)
+describe(Multipleregression$Stress)
 ```
 
 ## visualizing multiple regression
@@ -265,6 +267,7 @@ $$R_{Y.1234...p}^2 = r_{Y1}^2 + r_{Y(2.1)}^2 + r_{Y(3.21)}^2 + r_{Y(4.321)}^2 + 
 ## R-square change
 - distributed as an F
 $$ F(p.new, N - 1 - p.all) = \frac {R_{m.2}^2- R_{m.1}^2} {1-R_{m.2}^2} (\frac {N-1-p.all}{p.new}) $$
+- can also be written in terms of SSresiduals
 
 
 ## Model comparisons
@@ -273,8 +276,8 @@ $$ F(p.new, N - 1 - p.all) = \frac {R_{m.2}^2- R_{m.1}^2} {1-R_{m.2}^2} (\frac {
 m.1 <- lm(Stress ~ Support, data = Multipleregression)
 m.2 <- lm(Stress ~ Support + Anxiety, data = Multipleregression)
 anova(m.1, m.2)
-
 ```
+
 
 ## model comparisons
 ```{r}
@@ -283,11 +286,11 @@ anova(m.1)
 
 
 
-
 ## model comparisons
 ```{r}
 anova(m.2)
 ```
+
 ## model comparisons
 ```{r, echo = FALSE}
 summary(m.2)
