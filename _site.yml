@@ -29,4 +29,6 @@ navbar:
           href: Regression-3.html
         - text: "4. multiple regression"
           href: MultipleR-4.html
+        - text: "5. assumptions"
+          href: Assumptions-5.html
          

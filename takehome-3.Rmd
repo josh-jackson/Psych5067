@@ -9,7 +9,7 @@ Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a r
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers.   
 
-Please use the th.project.3 dataset to answer the questions below. These data were from a study where physical health was predicted by a happyness measure, socioeconomic status, number of close friends, and a 16 week mood intervention where here was a waitlist control group (0), a . 
+Please use the th.project.3 dataset to answer the questions below. These data were from a study where physical health was predicted by a happyness measure, socioeconomic status, number of close friends, and a 16 week mood intervention where here was a waitlist control group (0), a positive self affirmation intervention group (1) and a mediation group (2). 
 
 1. Run a semi-partial and a partial correlation for health and friends, controlling for SES and happiness using simple regression analyses. 
 
