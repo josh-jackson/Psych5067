@@ -97,6 +97,6 @@ Note: take home projects should be treated like exams. No discussing of question
 | -    | 4/20  | Bayesian Statistics                                        |                      |
 | 15   | 4/25  | Bayes Factrors                                             |                      |
 | -    | 4/27  | Bayesian regression                                        |                      |
-| -    | -     | **Final Exam**                                             |                      |
+| -    | 5/8     | **Final Exam** 10:30AM - 12:30PM                                            |                      |
 
 
