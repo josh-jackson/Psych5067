@@ -1,0 +1,343 @@
+---
+title: "Interactions"
+output: ioslides_presentation
+---
+
+
+## What are interactions?
+- When the effect of one predictor depends on the levels of another
+
+##Example
+- Y is a measure of health problems that we are predicting from measures of stress (X) and from social support (Z) 
+- Suppose the relationship between stress and health depends on the level of social support
+- This would be an interaction – the relationship between one predictor (stress) and the outcome (health) varies as a function of another predictor (social support).   
+
+
+## How can we visualize this association?
+
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/3d.png" width="750" height="550"/>
+
+
+## 
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
+
+```{r, echo = FALSE}
+library(readr)
+Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/regression/Multipleregression.csv")
+Multipleregression$Support.r <- (17.36 - Multipleregression$Support)/3
+mr.model <- lm(Stress ~ Support.r* Anxiety, data = Multipleregression)
+library(visreg)
+visreg2d(mr.model,"Support.r", "Anxiety", plot.type = "persp")
+
+```
+
+## How can we visualize this association?  
+
+- 2d?
+```{r, echo = FALSE}
+Multipleregression$Anxiety.c <- scale(Multipleregression$Anxiety, center = TRUE, scale = FALSE)
+Multipleregression$Support.c <- scale(Multipleregression$Support.r, center = TRUE, scale = FALSE)
+mr.model.c <- lm(Stress ~ Support.c* Anxiety.c, data = Multipleregression)
+```
+
+```{r, echo = FALSE, message=FALSE}
+library(pequod)
+int.model <- lmres(Stress ~ Support.c* Anxiety.c, data = Multipleregression)
+slope.1 <- simpleSlope(int.model, pred="Support.c", mod1="Anxiety.c")
+PlotSlope(slope.1)
+
+```
+
+## Goals for today
+- interpretation
+- centering
+- plotting
+
+## 
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
+
+- main effects and interaction effects
+- lower order terms and higher order term  
+<br>
+<br>
+- higher order/interaction terms are created through multiplication
+
+## moderator variables
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
+$\hat{Y} = b_{0} + b_{1}X$ at different levels of Z  
+<br>
+$\hat{Y} = b_{0} + b_{1}Z$ at different levels of X
+
+
+```{r, echo = FALSE}
+visreg2d(mr.model,"Support.r", "Anxiety", plot.type = "persp")
+
+```
+
+
+## interpretation
+
+- With an interaction term, the main effects are now interpreted as regression of Y on X when Z = 0. 
+
+- called conditional effects
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
+
+-  Need to get rid of the other X in the model, having z at zero is the only way to meaningfully interpert  
+
+-  0 is often meaningless in social science work  
+
+## centering
+
+- "de-mean" your variable to 0  
+- remember, a linear transformation does not change association  
+- only changes interpretation (i.e. average value) for some coefficients
+
+```{r, eval = FALSE}
+
+#dataset$X.c <- scale(dataset$X, center = TRUE, scale = FALSE)
+
+```
+
+## centering
+
+- without interactions, what changes if we center? 
+
+- with interactios, what changes if we center? 
+
+## interpret regression coeffificents
+
+1. simple linear regression
+2. dummy codes/effect codes
+3. multiple regression
+4. interactions (conditional effects)
+
+## plotting helps us interpret the association
+- we could plot 3d, but that works best when you have 2 variables
+- simpler to plot to 2d relationship
+- plot "simple slopes" at different values of moderator
+- typically a small, medium and large value
+- plus minus SD, clinicial cutoffs, meaningful divisions (degrees)
+
+## simple slopes with no interaction term
+- what is the equation for Y on X at differnt levels of Z? 
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z  $$
+
+$$ \hat{Y} = (b_{0} + b_{2}Z) + b_{1}X   $$
+
+$$ \hat{Y} = (1.2 + .3Z) + .6X   $$
+$\hat{Y} = 1.8 + .6X$ @ Z = 2        
+<br>
+$\hat{Y} = 1.2 + .6X$ @ Z = 0  
+<br>
+$\hat{Y} = .8 + .6X$ @ Z = -2
+
+## simple slopes with interaction term
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
+
+$$ \hat{Y} = (b_{0} + b_{2}Z) + (b_{1} + b_{3}Z)X $$
+
+## simple slopes with interaction term
+$$ \hat{Y} = 1.2 + .6X + .3Z + .15XZ $$
+$$ \hat{Y} = (b_{0} + b_{2}Z) + (b_{1} + b_{3}Z)X $$
+
+$$ \hat{Y} = (1.2 + .3Z) + (.6 + .15Z)X $$
+$\hat{Y} = .3 + .15X$ @ -3  
+<br>
+$\hat{Y} = 1.2 + .6X$ @ 0  
+<br>
+$\hat{Y} = 2.1 + 1.05X$ @ 3  
+
+## To interpret output, you need to look at graphs
+- a priori hypotheses not always correct
+- form of interaction meaningful in addition to whether there is an interaction
+- cannot easily tell by just looking at coefficients
+- simple slopes analyses can yeild additional hypothesis tests
+
+## errata 
+
+- covariates?   
+    + do you need to center these? 
+- standardizing variables
+    + must compute yourself!!! 
+    + reason is the interaction term is the cross product of standardized scores, not the standardized cross product  
+- group variables? 
+
+## nominal variables and interactions
+
+- How is GPA related to starting salary for Engineering, Business and Psych majors?
+
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  $$
+```{r}
+contr.treatment(3)
+##  psych = 1, business = 2 engineering = 3
+```
+- what does this graph look like? 
+
+## nominal variables and interactions
+
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA + b_{4}(D_{1} * GPA) + b_{5}(D_{2} * GPA)$$  
+
+- how do I interpret these terms? 
+- what would this graph look like? 
+
+## nominal variables and interactions
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA + b_{4}(D_{1} * GPA) + b_{5}(D_{2} * GPA)  $$
+
+- what are the simple regression equations for each group?
+<br>
+psych: $\hat{Y} = b_{0} +  b_{3}GPA$  
+business: $\hat{Y} = (b_{0} + b_{1}) + (b_{3} + b_{4})GPA$  
+engineering: $\hat{Y} = (b_{0} + b_{2}) + (b_{3} + b_{5})GPA$  
+
+## simple slopes tests
+- what if i wanted the simple slope of business?   
+- what if i wanted to test whether the slopes of buisness and engineering were different?   
+- what if I wanted to test the slope to the grand mean rather than to psych? what coefficients change (and what stay the same) in this case?
+
+## 2-way and higher order interactions
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}W + b_{4}XZ + b_{5}XW + b_{6}ZW + b_{7}XZW $$
+
+## 4 way? 
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}W + b_{4}Q + b_{5}XW + b_{6}ZW + b_{7}XZ + b_{8}QX$$
+$$+ b_{9}QZ + b_{10}QW + b_{11}XZQ + b_{12}XZW + b_{13}XWQ + b_{14}ZWQ + b_{15}XZWQ  $$
+
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/interactions pic.jpg" width="500" height="400"/>
+
+## if you must 3-way
+- easier to do with a nominal moderating variable  
+- e.g., old vs young, tx vs control
+- then you graph 2 2-way interactions to interpret
+
+## post hoc analyses
+
+- are the simple slopes different from 0? 
+- is a pair of simple slopes different from one another? 
+- what is the magnitude of the interaction? 
+
+## are the simple slopes different from 0? 
+Remember that the slope at any particular value is a combination of both b1 and b3 
+$$ \hat{Y} = (b_{0} + b_{2}Z) + (b_{1} + b_{3}Z)X $$
+$$ se_{b@z} = \sqrt{se_{b1}^2 + (2 * Z * cov_{b1b3})+ (Z^2 se_{b3}^2)}$$
+- covariance is for the coefficients
+```{r}
+library(broom)
+tidy(vcov(mr.model.c))
+
+```
+
+## are the simple slopes different from 0? 
+
+$$ \hat{Y} = (b_{0} + b_{2}Z) + (b_{1} + b_{3}Z)X $$
+$$ t = \frac{(b_{1} + b_{3}Z)}{se_{b@z}}$$
+df = n-p-1
+
+## Do the slopes of a pair of simple slopes differ from one another?
+
+- The interaction tests whether the slope 1 SD above differs from 1 SD below  
+- What about for categorical predictors?  
+
+## what is the magnitude of the interaction? 
+
+## errata mark II
+
+- non linear associations can masquerade as interactions
+- should test whether polynomial interactions serve as a more simplistic explanation
+
+## polynomial regression 
+- contain a series of higher order function for a single variable  
+<br>
+Linear $\hat{Y} = b_{0} + b_{1}X$  
+<br>
+Quadratic $\hat{Y} = b_{0} + b_{1}X + b_{2}X^2$    
+<br>
+Cubic $\hat{Y} = b_{0} + b_{1}X + b_{2}X^2 + b_{3}X^3$  
+
+
+## 
+
+```{r, echo = FALSE, warning= FALSE}
+library(ggplot2)
+mtcars2 <- read.csv("~/Box Sync/5067 Regression Spring/regression/mtcars2.csv")
+quad <- lm(mpg ~ hp + I(hp^2), data = mtcars2)
+prd <- data.frame(hp = seq(from = range(mtcars2$hp)[1], to = range(mtcars2$hp)[2], length.out = 100))
+err <- predict(quad, newdata = prd, se.fit = TRUE)
+
+prd$lci <- err$fit - 1.96 * err$se.fit
+prd$fit <- err$fit
+prd$uci <- err$fit + 1.96 * err$se.fit
+
+ggplot(prd, aes(x = hp, y = fit)) +
+  theme_bw() +
+  geom_line() +
+  geom_smooth(aes(ymin = lci, ymax = uci), stat = "identity") +
+  geom_point(data = mtcars2, aes(x = hp, y = mpg))
+```
+
+
+## 
+
+```{r}
+tidy(quad)
+```
+
+
+## when to fit?
+- theory
+- scatter plots
+- residual plot
+- safeguard
+
+## interpretation of coefficients
+- intercept is predicted value when x = 0
+- The b1 coefficient is the tangent to the curve when X=0.     + rate of change when x = 0  
+    + thus important to center
+
+```{r}
+mtcars2$hp.c <- scale(mtcars2$hp, center = TRUE, scale = FALSE)
+mtcars2$hp.c <- as.numeric(mtcars2$hp.c)
+quad.c <- lm(mpg ~ hp.c + I(hp.c^2), data = mtcars2)
+tidy(quad.c)
+```
+
+## 
+```{r, echo = FALSE, warning= FALSE}
+prd.c <- data.frame(hp.c = seq(from = range(mtcars2$hp.c)[1], to = range(mtcars2$hp.c)[2], length.out = 100))
+
+err.c <- predict(quad.c, prd.c, se.fit = TRUE)
+
+prd.c$lci <- err.c$fit - 1.96 * err$se.fit
+prd.c$fit <- err.c$fit
+prd.c$uci <- err.c$fit + 1.96 * err$se.fit
+
+ggplot(prd.c, aes(x = hp.c, y = fit)) +
+  theme_bw() +
+  geom_line() +
+  geom_smooth(aes(ymin = lci, ymax = uci), stat = "identity") +
+  geom_point(data = mtcars2, aes(x = hp.c, y = mpg))
+```
+
+
+## 
+- The b2 coefficient is the acceleration 
+- More specifically, 2*b2 is the acceleration – the rate of change in b1 for a 1-unit change in X   
+
+<br>
+b1+2*b2X = slope of tangent line at a particular value of X
+
+```{r}
+ -0.0898514747 + 2*0.0004208156*106.75
+```
+
+```{r}
+ -0.0898514747 + 2*0.0004208156*180
+```
+
+
+
