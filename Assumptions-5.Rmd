@@ -1,4 +1,4 @@
----
+A---
 title: "Assumptions and Diagnostics"
 output: ioslides_presentation
 ---

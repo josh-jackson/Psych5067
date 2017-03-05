@@ -1,0 +1,97 @@
+---
+title: "Assumptions"
+output: html_document
+---
+
+
+load data
+```{r}
+library(readr)
+a_data <- read.csv("~/Box Sync/5067 Regression Spring/regression/Part 1 data.csv")
+library(broom)
+model.1 <- lm(Anxiety ~ Stress + Support, a_data)
+a_data<- augment(model.1)
+a_data
+```
+
+Assumption 1: No measurement error in our independent variables
+
+
+
+
+Assumption 2: Correctly specified form
+
+```{r}
+library(ggplot2)
+
+ggplot(data = a_data, aes(x=.fitted, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+```
+
+
+
+Assumption 3: Correctly specified model
+
+
+
+
+
+Assumption 4: Homoscedasticity, i.e. constant variance of the errors
+
+```{r}
+ggplot(data = a_data, aes(x=.fitted, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+
+ggplot(data = a_data, aes(x=Stress, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+
+ggplot(data = a_data, aes(x=Support, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+```
+
+
+
+Assumption 5: Independence among the errors
+
+```{r}
+nrow(a_data)
+a_data$ID <- c(1:118)
+ggplot(data = a_data, aes(x=ID, y = .resid)) + geom_point()
+```
+
+
+Assumption 6: Normality of the errors
+```{r}
+ggplot(data = a_data, aes(x= .resid)) + geom_density() +   xlim(-10, 10)
+```
+
+
+
+```{r}
+library(car)
+qqPlot(model.1)
+```
+
+
+```{r}
+plot(model.1)
+```
+
+Outliers
+
+leverage, distance, and influence.
+
+Influence
+cooks d
+```{r}
+ggplot(a_data, aes(x = ID, y = .cooksd)) +
+geom_point() +
+geom_text(aes(label = rownames(a_data)), vjust = -1)
+```
+
+
+df beta
+```{r}
+
+a_data$dfbetastress <- dfbeta(model.1)[,"Stress"]
+
+ggplot(data = a_data, aes(x = ID, y = dfbetastress)) + geom_point() +
+geom_text(aes(label = rownames(a_data), vjust = -1))
+```
+
