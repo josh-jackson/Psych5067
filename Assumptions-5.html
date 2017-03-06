@@ -1,492 +1,316 @@
 <!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<html>
 <head>
+  <title>Assumptions and Diagnostics</title>
 
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-
-
-
-
-<title></title>
-
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
-}
-</script>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Assumptions and Diagnostics',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            ]
+    };
+  </script>
+
+  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
 
 
 </head>
 
-<body>
+<body style="opacity: 0">
 
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-</style>
+<slides>
 
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+          </hgroup>
+  </slide>
 
-<style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
+<slide class=''><hgroup><h2>BLUE</h2></hgroup><article  id="blue">
 
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-
-<div class="container-fluid main-container">
-
-<!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
-
-<!-- code folding -->
-
-
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">psych 5067: quant methods II </a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        <li>
-  <a href="index.html">Home</a>
-</li>
-<li>
-  <a href="2017_Syllabus.html">syllabus</a>
-</li>
-<li>
-  <a href="readings.html">readings</a>
-</li>
-<li>
-  <a href="data.html">data</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    take home projects
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="takehome-1.html">takehome-1</a>
-    </li>
-    <li>
-      <a href="takehome-2.html">takehome-2</a>
-    </li>
-    <li>
-      <a href="takehome-3.html">takehome-3</a>
-    </li>
-  </ul>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    lectures
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="Introduction-1.html">1. intro</a>
-    </li>
-    <li>
-      <a href="Correlations-2.html">2. correlations</a>
-    </li>
-    <li>
-      <a href="Regression-3.html">3. regression</a>
-    </li>
-    <li>
-      <a href="MultipleR-4.html">4. multiple regression</a>
-    </li>
-    <li>
-      <a href="Assumptions-5.html">5. assumptions</a>
-    </li>
-    <li>
-      <a href="interactions-6.html">6. interactions</a>
-    </li>
-  </ul>
-</li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
-
-<div class="fluid-row" id="header">
-
-
-
-
-</div>
-
-
-<p>A— title: “Assumptions and Diagnostics” output: ioslides_presentation —</p>
-<div id="blue" class="section level2">
-<h2>BLUE</h2>
 <ul>
-<li>Best linear unbiased estimate of beta<br />
-<br></li>
+<li>Best linear unbiased estimate of beta<br/><br></li>
 </ul>
-<ol style="list-style-type: decimal">
+
+<ol>
 <li>Unbiased</li>
 <li>Efficient (se minimum)</li>
 <li>Consistent (N decreases SE)</li>
 </ol>
-</div>
-<div id="assumptions" class="section level2">
-<h2>6 assumptions</h2>
-<ol style="list-style-type: decimal">
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions">
+
+<ol>
 <li>No measurement error</li>
 </ol>
+
 <ul>
 <li>Influence ability to control and predict</li>
 </ul>
-</div>
-<div id="assumptions-1" class="section level2">
-<h2>6 assumptions</h2>
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions-1">
+
 <p> 2. Correctly specified form</p>
-</div>
-<div id="assumptions-2" class="section level2">
-<h2>6 assumptions</h2>
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions-2">
+
 <p> 3. No omitted variables</p>
-</div>
-<div id="assumptions-3" class="section level2">
-<h2>6 assumptions</h2>
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions-3">
+
 <p> 4. Homoscedasticity - conditional variance of residuals across all levels of X is constant - Heteroscedasticity if violated</p>
-</div>
-<div id="assumptions-4" class="section level2">
-<h2>6 assumptions</h2>
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions-4">
+
 <p> 5. Independence among the residuals</p>
+
 <ul>
 <li>issues with group, family, longitudinal and nested designs</li>
 </ul>
-</div>
-<div id="assumptions-5" class="section level2">
-<h2>6 assumptions</h2>
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions-5">
+
 <p> 6. Normally distributed residuals</p>
-</div>
-<div id="what-happens-if-we-violate-assumptions" class="section level2">
-<h2>What happens if we violate assumptions?</h2>
-<ol style="list-style-type: decimal">
+
+</article></slide><slide class=''><hgroup><h2>What happens if we violate assumptions?</h2></hgroup><article  id="what-happens-if-we-violate-assumptions">
+
+<ol>
 <li>Biased regression coefficients</li>
 <li>Biased standard errors</li>
 </ol>
-</div>
-<div id="assumptions-6" class="section level2">
-<h2>6 assumptions</h2>
-<table>
-<thead>
+
+</article></slide><slide class=''><hgroup><h2>6 assumptions</h2></hgroup><article  id="assumptions-6">
+
+<table class = 'rmdtable'>
 <tr class="header">
-<th>Violated Regression Assumption</th>
-<th>Coefficients</th>
-<th>Standard Errors</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1. Measured without error</td>
-<td>Biased</td>
-<td>Biased</td>
-</tr>
-<tr class="even">
-<td>2. Correctly specified form</td>
-<td>Biased</td>
-<td>Biased</td>
+<th align="left">Violated Regression Assumption</th>
+<th align="left">Coefficients</th>
+<th align="left">Standard Errors</th>
 </tr>
 <tr class="odd">
-<td>3. Correctly specified model</td>
-<td>Biased</td>
-<td>Biased</td>
+<td align="left">1. Measured without error</td>
+<td align="left">Biased</td>
+<td align="left">Biased</td>
 </tr>
 <tr class="even">
-<td>4. Homoscedasticity</td>
-<td></td>
-<td>Biased</td>
+<td align="left">2. Correctly specified form</td>
+<td align="left">Biased</td>
+<td align="left">Biased</td>
 </tr>
 <tr class="odd">
-<td>5. Independent Errors</td>
-<td></td>
-<td>Biased</td>
+<td align="left">3. Correctly specified model</td>
+<td align="left">Biased</td>
+<td align="left">Biased</td>
 </tr>
 <tr class="even">
-<td>6. Normality of the Errors</td>
-<td></td>
-<td>Biased</td>
+<td align="left">4. Homoscedasticity</td>
+<td align="left"></td>
+<td align="left">Biased</td>
 </tr>
-</tbody>
+<tr class="odd">
+<td align="left">5. Independent Errors</td>
+<td align="left"></td>
+<td align="left">Biased</td>
+</tr>
+<tr class="even">
+<td align="left">6. Normality of the Errors</td>
+<td align="left"></td>
+<td align="left">Biased</td>
+</tr>
 </table>
-</div>
-<div id="how-do-we-detect-violations" class="section level2">
-<h2>How do we detect violations?</h2>
-<table>
-<thead>
+
+</article></slide><slide class=''><hgroup><h2>How do we detect violations?</h2></hgroup><article  id="how-do-we-detect-violations">
+
+<table class = 'rmdtable'>
 <tr class="header">
-<th>Assumption</th>
-<th>detect</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1. Measured without error</td>
-<td>Reliability</td>
-</tr>
-<tr class="even">
-<td>2. Correctly specified form</td>
-<td>Residuals against predicted</td>
+<th align="left">Assumption</th>
+<th align="left">detect</th>
 </tr>
 <tr class="odd">
-<td>3. Correctly specified model</td>
-<td>Theory</td>
+<td align="left">1. Measured without error</td>
+<td align="left">Reliability</td>
 </tr>
 <tr class="even">
-<td>4. Homoscedasticity</td>
-<td>Residuals against predicted</td>
+<td align="left">2. Correctly specified form</td>
+<td align="left">Residuals against predicted</td>
 </tr>
 <tr class="odd">
-<td>5. Independent Errors</td>
-<td>Design</td>
+<td align="left">3. Correctly specified model</td>
+<td align="left">Theory</td>
 </tr>
 <tr class="even">
-<td>6. Normality of the Errors</td>
-<td>q-q plot or distribution</td>
+<td align="left">4. Homoscedasticity</td>
+<td align="left">Residuals against predicted</td>
 </tr>
-</tbody>
+<tr class="odd">
+<td align="left">5. Independent Errors</td>
+<td align="left">Design</td>
+</tr>
+<tr class="even">
+<td align="left">6. Normality of the Errors</td>
+<td align="left">q-q plot or distribution</td>
+</tr>
 </table>
-</div>
-<div id="how-do-we-fix-violations" class="section level2">
-<h2>How do we fix violations?</h2>
-<table>
-<thead>
+
+</article></slide><slide class=''><hgroup><h2>How do we fix violations?</h2></hgroup><article  id="how-do-we-fix-violations">
+
+<table class = 'rmdtable'>
 <tr class="header">
-<th>Assumption</th>
-<th>Fix</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>1. Measured without error</td>
-<td>Factor scores, SEM, more data</td>
-</tr>
-<tr class="even">
-<td>2. Correctly specified form</td>
-<td>Different model</td>
+<th align="left">Assumption</th>
+<th align="left">Fix</th>
 </tr>
 <tr class="odd">
-<td>3. Correctly specified model</td>
-<td>¯<code>\_</code>(ツ)<code>_</code>/¯</td>
+<td align="left">1. Measured without error</td>
+<td align="left">Factor scores, SEM, more data</td>
 </tr>
 <tr class="even">
-<td>4. Homoscedasticity</td>
-<td>Bootstraps, WLS,transformations</td>
+<td align="left">2. Correctly specified form</td>
+<td align="left">Different model</td>
 </tr>
 <tr class="odd">
-<td>5. Independent Errors</td>
-<td>Use differ method</td>
+<td align="left">3. Correctly specified model</td>
+<td align="left">¯<code>\_</code>(ツ)<code>_</code>/¯</td>
 </tr>
 <tr class="even">
-<td>6. Normality of the Errors</td>
-<td>Additional IVs, differnt form</td>
+<td align="left">4. Homoscedasticity</td>
+<td align="left">Bootstraps, WLS,transformations</td>
 </tr>
-</tbody>
+<tr class="odd">
+<td align="left">5. Independent Errors</td>
+<td align="left">Use differ method</td>
+</tr>
+<tr class="even">
+<td align="left">6. Normality of the Errors</td>
+<td align="left">Additional IVs, differnt form</td>
+</tr>
 </table>
-</div>
-<div id="robustness" class="section level2">
-<h2>Robustness?</h2>
+
+</article></slide><slide class=''><hgroup><h2>Robustness?</h2></hgroup><article  id="robustness">
+
 <ul>
 <li>yeah, mostly</li>
 <li>especially with normally of errors</li>
 <li>note: we do not need to have normally distributed IVs or DVs</li>
 </ul>
-</div>
-<div id="data-screeing" class="section level2">
-<h2>Data screeing</h2>
+
+</article></slide><slide class=''><hgroup><h2>Data screeing</h2></hgroup><article  id="data-screeing">
+
 <ul>
-<li>Start with descriptive stats and plots<br />
-</li>
-<li>Look for outliers, missing cases, etc.<br />
-</li>
+<li>Start with descriptive stats and plots<br/></li>
+<li>Look for outliers, missing cases, etc.<br/></li>
 <li>Test assumptions (residual plots)</li>
 </ul>
-</div>
-<div id="why-screen-your-data" class="section level2">
-<h2>why screen your data?</h2>
-</div>
-<div id="outliers" class="section level2">
-<h2>Outliers</h2>
+
+</article></slide><slide class=''><hgroup><h2>why screen your data?</h2></hgroup><article  id="why-screen-your-data">
+
+</article></slide><slide class=''><hgroup><h2>Outliers</h2></hgroup><article  id="outliers">
+
 <ul>
 <li>Broadly defined as atypical or highly influential data point(s)</li>
-<li>Due to contamination (e.g. recording error) or accurate observation of a rare case</li>
-<li>Univariate vs. Multivariate</li>
+<li>Due to contamination (e.g. recording error) or accurate observation of a rare case</li>
+<li>Univariate vs. Multivariate</li>
 </ul>
-</div>
-<div id="outliers-1" class="section level2">
-<h2>Outliers</h2>
-<ol style="list-style-type: decimal">
+
+</article></slide><slide class=''><hgroup><h2>Outliers</h2></hgroup><article  id="outliers-1">
+
+<ol>
 <li>Leverage
+
 <ul>
-<li>How unusual is this case from the rest of the cases in terms of predictors?<br />
-</li>
+<li>How unusual is this case from the rest of the cases in terms of predictors?<br/></li>
 </ul></li>
 <li>Distance
+
 <ul>
-<li>How distant is the observed case from the predicted value?<br />
-</li>
+<li>How distant is the observed case from the predicted value?<br/></li>
 </ul></li>
 <li>Influence
+
 <ul>
 <li>How much the does regression coefficient change if case were removed?</li>
 </ul></li>
 </ol>
-</div>
-<div id="leverage" class="section level2">
-<h2>Leverage</h2>
+
+</article></slide><slide class=''><hgroup><h2>Leverage</h2></hgroup><article  id="leverage">
+
 <ul>
-<li>Tells us how far observed values for a case are from mean values on the set of IVs (centroid)<br />
-</li>
-<li>Not dependent on Y values<br />
-</li>
-<li>High leverage cases have greater potential to influence regression results<br />
-</li>
+<li>Tells us how far observed values for a case are from mean values on the set of IVs (centroid)<br/></li>
+<li>Not dependent on Y values<br/></li>
+<li>High leverage cases have greater potential to influence regression results<br/></li>
 <li>Mahalanobis Distance for multivariate stats</li>
 </ul>
-</div>
-<div id="distance" class="section level2">
-<h2>Distance</h2>
+
+</article></slide><slide class=''><hgroup><h2>Distance</h2></hgroup><article  id="distance">
+
 <ul>
-<li><p>Distance From Prediction- how far is observed value from predicted value (i.e. residuals)</p></li>
+<li><p>Distance From Prediction- how far is observed value from predicted value (i.e. residuals)</p></li>
 <li><p>deleted residuals takes into consideration what would happen if case were deleted</p></li>
 </ul>
-</div>
-<div id="influence" class="section level2">
-<h2>Influence</h2>
+
+</article></slide><slide class=''><hgroup><h2>Influence</h2></hgroup><article  id="influence">
+
 <ul>
 <li>How regression equation would change if extreme case were removed</li>
 <li>Influence = Leverage X Distance</li>
@@ -494,33 +318,18 @@ $(document).ready(function () {
 <li>Cooks D (same but different metric to DFFITS)</li>
 <li>DFBETAS (coefficient change without outlier)</li>
 </ul>
-</div>
-<div id="recommendations" class="section level2">
-<h2>recommendations</h2>
+
+</article></slide><slide class=''><hgroup><h2>recommendations</h2></hgroup><article  id="recommendations">
+
 <ul>
-<li>Analyze data with/without outliers and see how results change<br />
-</li>
+<li>Analyze data with/without outliers and see how results change<br/></li>
 <li>If you throw out cases you must believe it is not representative of population of interest or have appropriate explanation</li>
-</ul>
-</div>
+</ul></article></slide>
 
 
+  <slide class="backdrop"></slide>
 
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-</script>
+</slides>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
@@ -529,6 +338,20 @@ $(document).ready(function () {
     script.type = "text/javascript";
     script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
   })();
 </script>
 
