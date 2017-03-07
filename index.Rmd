@@ -3,6 +3,8 @@ title: "Updates and announcements:"
 output: html_document
 ---
   <br>
+
+- March 7th - Interactions Cohen reading posted
   
 - February 19th - Take home project #3 is posted. Due 3/7
 
