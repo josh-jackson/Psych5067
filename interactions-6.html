@@ -118,7 +118,7 @@
 <li>2d?</li>
 </ul>
 
-<p><img src="interactions-6_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Goals for today</h2></hgroup><article  id="goals-for-today">
 
@@ -142,7 +142,7 @@
 
 <p>\[ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ \] \(\hat{Y} = b_{0} + b_{1}X\) at different levels of Z<br/><br> \(\hat{Y} = b_{0} + b_{1}Z\) at different levels of X</p>
 
-<p><img src="interactions-6_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-5-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>interpretation</h2></hgroup><article  id="interpretation">
 
@@ -193,6 +193,10 @@
 <li>typically a small, medium and large value</li>
 <li>plus minus SD, clinicial cutoffs, meaningful divisions (degrees)</li>
 </ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-7-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>simple slopes with no interaction term</h2></hgroup><article  id="simple-slopes-with-no-interaction-term">
 
@@ -347,6 +351,68 @@ tidy(vcov(mr.model.c))</pre>
 
 </article></slide><slide class=''><hgroup><h2>what is the magnitude of the interaction?</h2></hgroup><article  id="what-is-the-magnitude-of-the-interaction">
 
+</article></slide><slide class=''><hgroup><h2>graphing</h2></hgroup><article  id="graphing">
+
+<ul>
+<li>predict and do by hand</li>
+<li>pequod</li>
+<li>sjPlot</li>
+<li>reghelper (in development), others..</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
+
+<pre class = 'prettyprint lang-r'>library(pequod)
+int.model &lt;- lmres(Stress ~ Support.c* Anxiety.c, data = Multipleregression)
+slope.1 &lt;- simpleSlope(int.model, pred=&quot;Support.c&quot;, mod1=&quot;Anxiety.c&quot;)
+PlotSlope(slope.1)</pre>
+
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-10-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4">
+
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.int(mr.model.c, 
+        type = &quot;eff&quot;,
+        mdrt.values = &quot;meansd&quot;,
+        swap.pred = TRUE)</pre>
+
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
+
+<pre class = 'prettyprint lang-r'>support.c.values &lt;- range(Multipleregression$Support.c)
+anxiety.c.values &lt;- c(-sd(Multipleregression$Anxiety.c), 0,
+sd(Multipleregression$Support.c))
+plot.data &lt;- expand.grid(Support.c = support.c.values, Anxiety.c = anxiety.c.values)
+plot.data</pre>
+
+<pre >##   Support.c Anxiety.c
+## 1 -2.869767 -2.487176
+## 2  2.902433 -2.487176
+## 3 -2.869767  0.000000
+## 4  2.902433  0.000000
+## 5 -2.869767  1.092455
+## 6  2.902433  1.092455</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-6">
+
+<pre class = 'prettyprint lang-r'>plot.data$Stress &lt;- predict(mr.model.c, newdata=plot.data) 
+plot.data$Anxiety.c &lt;- factor(plot.data$Anxiety.c, labels = c(&quot;-1SD&quot;, &quot;Mean&quot;, &quot;+1SD&quot;))
+plot.data</pre>
+
+<pre >##   Support.c Anxiety.c   Stress
+## 1 -2.869767      -1SD 8.270609
+## 2  2.902433      -1SD 0.426959
+## 3 -2.869767      Mean 8.001637
+## 4  2.902433      Mean 1.955738
+## 5 -2.869767      +1SD 7.883496
+## 6  2.902433      +1SD 2.627232</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
+
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+
 </article></slide><slide class=''><hgroup><h2>errata mark II</h2></hgroup><article  id="errata-mark-ii">
 
 <ul>
@@ -360,13 +426,14 @@ tidy(vcov(mr.model.c))</pre>
 <li>contain a series of higher order function for a single variable<br/><br> Linear \(\hat{Y} = b_{0} + b_{1}X\)<br/><br> Quadratic \(\hat{Y} = b_{0} + b_{1}X + b_{2}X^2\)<br/><br> Cubic \(\hat{Y} = b_{0} + b_{1}X + b_{2}X^2 + b_{3}X^3\)</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
 
-<p><img src="interactions-6_files/figure-html/unnamed-chunk-8-1.png" width="720" /></p>
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-15-1.png" width="720" /></p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-9">
 
-<pre class = 'prettyprint lang-r'>tidy(quad)</pre>
+<pre class = 'prettyprint lang-r'>library(broom)
+tidy(quad)</pre>
 
 <pre >##          term      estimate    std.error statistic      p.value
 ## 1 (Intercept) 40.4091172029 2.740759e+00 14.743766 5.234398e-15
@@ -403,11 +470,11 @@ tidy(quad.c)</pre>
 ## 2        hp.c -0.0898514747 9.516992e-03 -9.441163 2.393111e-10
 ## 3   I(hp.c^2)  0.0004208156 9.844453e-05  4.274647 1.889240e-04</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
 
-<p><img src="interactions-6_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
+<p><img src="interactions-6_files/figure-html/unnamed-chunk-18-1.png" width="720" /></p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
 
 <ul>
 <li>The b2 coefficient is the acceleration</li>

@@ -38,8 +38,15 @@ visreg2d(mr.model,"Support.r", "Anxiety", plot.type = "persp")
 ```{r, echo = FALSE}
 Multipleregression$Anxiety.c <- scale(Multipleregression$Anxiety, center = TRUE, scale = FALSE)
 Multipleregression$Support.c <- scale(Multipleregression$Support.r, center = TRUE, scale = FALSE)
+Multipleregression$Support.c <- as.numeric(Multipleregression$Support.c)
+Multipleregression$Anxiety.c <- as.numeric(Multipleregression$Anxiety.c)
+```
+
+```{r, echo = FALSE, message=FALSE}
+
 mr.model.c <- lm(Stress ~ Support.c* Anxiety.c, data = Multipleregression)
 ```
+
 
 ```{r, echo = FALSE, message=FALSE}
 library(pequod)
@@ -120,6 +127,22 @@ $$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
 - plot "simple slopes" at different values of moderator
 - typically a small, medium and large value
 - plus minus SD, clinicial cutoffs, meaningful divisions (degrees)
+
+## 
+
+```{r, echo =FALSE}
+set.seed(1)
+x1 <- runif(100, 0, 1)
+x2 <- sample(1:10, 100, TRUE)/10
+y <- 1 + 2 * x1 + 3 * x2 + 4 * x1 * x2 + rnorm(100)
+m <- lm(y ~ x1 * x2)
+m2 <- lm(y ~ x1 * factor(x2))
+nx <- seq(0, 1, length.out = 10)
+z <- outer(nx, nx, FUN = function(a, b) predict(m, data.frame(x1 = a, x2 = b)))
+persp(nx, nx, z, theta = 45, phi = 10, shade = 0.75, xlab = "x1", ylab = "x2", 
+    zlab = "y")
+```
+
 
 ## simple slopes with no interaction term
 - what is the equation for Y on X at differnt levels of Z? 
@@ -245,6 +268,63 @@ df = n-p-1
 
 ## what is the magnitude of the interaction? 
 
+
+## graphing
+
+- predict and do by hand
+- pequod
+- sjPlot
+- reghelper (in development), others.. 
+
+
+## 
+
+```{r}
+library(pequod)
+int.model <- lmres(Stress ~ Support.c* Anxiety.c, data = Multipleregression)
+slope.1 <- simpleSlope(int.model, pred="Support.c", mod1="Anxiety.c")
+PlotSlope(slope.1)
+```
+
+
+## 
+```{r}
+library(sjPlot)
+sjp.int(mr.model.c, 
+        type = "eff",
+        mdrt.values = "meansd",
+        swap.pred = TRUE)
+```
+
+
+## 
+```{r}
+support.c.values <- range(Multipleregression$Support.c)
+anxiety.c.values <- c(-sd(Multipleregression$Anxiety.c), 0,
+sd(Multipleregression$Support.c))
+plot.data <- expand.grid(Support.c = support.c.values, Anxiety.c = anxiety.c.values)
+plot.data
+```
+
+##  
+
+```{r}
+plot.data$Stress <- predict(mr.model.c, newdata=plot.data) 
+plot.data$Anxiety.c <- factor(plot.data$Anxiety.c, labels = c("-1SD", "Mean", "+1SD"))
+plot.data
+```
+
+## 
+
+```{r, echo = FALSE}
+library(ggplot2)
+ggplot(plot.data, aes(x=Support.c, y = Stress, color=Anxiety.c))+
+ggtitle("Impact of Support on Stress, moderated by Anxiety") + geom_line()+
+scale_x_continuous("Support Levels (centered)")+ scale_y_continuous("Stress Levels")+
+scale_color_discrete("Anxiety")+ theme_bw()
+```
+
+
 ## errata mark II
 
 - non linear associations can masquerade as interactions
@@ -284,6 +364,7 @@ ggplot(prd, aes(x = hp, y = fit)) +
 ## 
 
 ```{r}
+library(broom)
 tidy(quad)
 ```
 
