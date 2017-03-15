@@ -81,22 +81,22 @@ Note: take home projects should be treated like exams. No discussing of question
 | -    | 2/23  | Assumptions, model diagnostics                             |                      |
 | 7    | 2/28  | Assumptions, model diagnostics                             |                      |
 | -    | 3/2   | Moderation/interaction                                     |                      |
-| 8    | 3/7   | Polynomials                                                |                      |
-| -    | 3/9   | Logistic regression                                        |                      |
+| 8    | 3/7   | Moderation/interaction                                     |                      |
+| -    | 3/9   | Moderation/interaction                                     |                      |
 | 9    | 3/14  | **Spring Break!**                                          |                      |
 | -    | 3/16  | **Spring Break!**                                          |                      |
-| 10   | 3/21  | Categorical predictors redux                               |                      |
-| -    | 3/23  | Factorial ANOVA                                            |                      |
+| 10   | 3/21  | Polynomials                                                |                      |
+| -    | 3/23  | Logistic regression                                        |                      |
 | 11   | 3/28  | Factorial ANOVA                                            |                      |
-| -    | 3/30  | GLM & ANCOVA                                               |                      |
-| 12   | 4/4   | **Exam 2**                                                 |                      |
+| -    | 3/30  | Factorial ANOVA                                            |                      |
+| 12   | 4/4   | ANCOVA                                                     |                      |
 | -    | 4/6   | Repeated measures/HLM                                      |                      |
-| 13   | 4/11  | Repeated measures/HLM                                      |                      |
+| 13   | 4/11  | **Exam 2**                                                 |                      |
 | -    | 4/13  | Repeated measures/HLM                                      |                      |
 | 14   | 4/18  | Mediation                                                  |                      |
 | -    | 4/20  | Bayesian Statistics                                        |                      |
 | 15   | 4/25  | Bayes Factrors                                             |                      |
 | -    | 4/27  | Bayesian regression                                        |                      |
-| -    | 5/8     | **Final Exam** 10:30AM - 12:30PM                                            |                      |
+| -    | 5/8   | **Final Exam** 10:30AM - 12:30PM                           |                      |
 
 

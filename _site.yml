@@ -35,4 +35,8 @@ navbar:
           href: diagnostics.html
         - text: "6. interactions"
           href: interactions-6.html
+        - text: "7. logistic"
+          href: logistic-7.html
+        - text: "8. Factorial ANOVA"
+          href: anova-8.html
          

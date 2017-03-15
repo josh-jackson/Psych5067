@@ -1,0 +1,191 @@
+---
+title: "Logistic Regression"
+output: ioslides_presentation
+---
+
+
+## Logistic Regression
+
+Used when your DV is binary (0,1)  
+    - Clinical diagnosis   
+    - Disease prevalence    
+    - Experiences (Yes/No)    
+    
+## Assumption violations
+    
+Violates:      
+    - Correctly specified form  
+    - Homoscedasticity   
+    - Normality of the errors  
+    
+## 
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.1.png" width="750" height="550"/>
+
+##
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.2.png" width="750" height="550"/>
+
+##
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.3.png" width="750" height="550"/>
+
+## Need to think in terms of probabilities
+
+- If we use OLS, we violate assumptions and have predicted values that go outside 0 & 1   
+- How does the predicted probability of getting a 0 or a 1 relate to our predictors?       
+
+$$  \hat{p}_{i} \leftrightsquigarrow b_{0} + b_{1}X_{1} + b_{2}X_{2}... b_{3}X_{p} $$
+
+## Generalized linear models 
+
+- extend the general linear model framework    
+- need to use if the range of Y is restricted (e.g. binary, count) and/or the variance of Y depends on the mean  
+<br>
+
+- made up of two functions  
+1. Link Function - describes how the mean depends on the predictors $g(\mu) = \eta_{i}$
+
+2. Variance Function  - describes how the variance depends on the mean $var(Y)=\phi V(\mu)$
+
+## Error structure
+
+In  LMs, we assume that the errors $ε_{i}$ are independent and identically distributed such that
+<br>
+<br>
+$E[ε_{i}] = 0$ and $var[ε_{i}] = s^2$
+<br>
+<br>
+Typically we assume $ε_{i}\sim N(0,σ^2)$
+as a basis for inference, e.g. t-tests
+
+## Generalized linear model
+
+- need to accomplish two goals: 
+  1. specify a link function  
+  2. need to specify the error structure  
+  
+- luckily this  handled together
+
+## General Linear Model
+
+- GLM (aka regression as you know it) is a special case of Generalized Linear Models
+
+- Link function (describes how the mean depends on the predictors) is $g(\mu) = \mu$.
+
+- Variance Function (describes how the variance depends on the mean, related to a particular distribution) $\phi V(\mu) = 1*\sigma^2$
+
+- in other words, it assumes the gaussian normal distribution
+
+##  
+
+- In some situations an IV variable can be transformed to improve linearity and homogeneity of variance  
+- problems:  
+  - response variable has changed!  
+  - transformation must simulateneously improve linearity and homogeneity of variance  
+  - transformation may not be defined on the boundaries of the sample space
+
+## Link function for logistc
+
+- we need to map (0,1) to $(-\infty, \infty)$
+- Logistic regression uses the logistic function to link the predicted probabilities to the predictors   
+- Think of it as a transformation of Y-hats
+$$g(\mu) = logit(\mu) = log (\frac {\mu_{i}}{1-\mu_{i}})$$
+
+##
+$$ f(x) = \frac{1}{1+e^{-X}} $$
+
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.4.png" width="550" height="350"/>
+ 
+
+##
+$$ f(x) = \frac{1}{1+e^{-X}} $$
+$$ \hat{p} = \frac{1}{1+e^{-b_{0}+b_{1}X}} $$
+- The form of the logistic function is still is nonlinear (because probabilities can only range from 0 to 1)  
+- Solution is to convert probabilities into odds 
+## odds
+
+- Odds are defined as the probability of being a case divided by the probability of being a noncase
+- Not bound between 0 and 1 
+- Range from 0 to infinity
+- less than one is less than 50% probability
+$$odds = \frac {\hat{p}}{1-\hat{p}}$$
+
+$$ probability= \frac{\hat{odds}}{1+\hat{odds}} $$
+
+## linear probability model
+
+$$ f(x) = \frac{1}{1+e^{-X}} $$
+$$ \hat{p} = \frac{1}{1+e^{-b_{0}+b_{1}X}} $$
+
+$$odds = \frac {\hat{p}}{1-\hat{p}}=e^{-b_{0}+b_{1}X} $$
+$$ logit= Log(odds)=ln(\frac{\hat{p}}{1-\hat{p}}) = b_{0}+b_{1}X $$
+
+##
+$$ logit= Log(odds)=ln(\frac{\hat{p}}{1-\hat{p}}) = b_{0}+b_{1}X $$
+
+-Predicted scores are not dichotomous   
+-Instead of predicting probabilities directly, we are instead predicting the log of the odds.
+
+
+
+## other common link functions
+
+- logit, probit, log-log, poisson, square root...  
+- exponetial family of probability functions
+
+- note, just because you have a dichotomous outcome you don't have to run a logistic regression e.g., you can run a probit regression  
+
+## estimation  
+
+- Maximum likelihood 
+- OLS minimizes the errors, which also maximize R   
+- In logistic regression we are not so lucky  
+- Need to rely on Iterative procedure, ML Estimation
+- Asymptotic standard errors (approximations)  
+- Interpret test statistics as z’s, not t’s  
+- Wald test = chi square with 1 df = z2 when F(1, infinity)
+
+
+## GLM in R
+
+```{r, eval=FALSE}
+
+glm(formula, family = gaussian, data, weights, subset, na.action, start = NULL, etastart, mustart, offset, control = glm.control(...), model = TRUE,
+method = ”glm.fit”, x = FALSE, y = TRUE, contrasts = NULL, ...)
+```
+
+## Family Argument
+The family argument takes (the name of) a family function which specifies:  
+  1. the link function  
+  2. the variance function  
+  
+```{r, eval=FALSE}
+
+glm(y ~ X1+ X2 + X3 , family = binomial, data = dataset)
+
+  binomial(link = "logit")
+  gaussian(link = "identity")
+  Gamma(link = "inverse")
+  inverse.gaussian(link = "1/mu2")   poisson(link = "log")
+```
+
+## how to interpret
+- b1 is the predicted change in the logit for a 1-unit change in X, holding the other predictors constant 
+
+- For a one-unit change in X, holding other predictors constant, the odds that Y = 1 changes by $e^{b_{1}}$   
+
+- e.g,. $b_{1}$ = .4, $e^{.4}$ = 1.49 
+
+- for fitted values, need to use entire equation
+$$ \hat{Y} = e^{b_{0}+b_{1}X_{1}}$$
+
+- turn to probabilities by: odds/(1+odds)
+
+## example
+
+```{r}
+
+```
+
+
+
+
+

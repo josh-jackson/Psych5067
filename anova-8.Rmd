@@ -1,0 +1,4 @@
+---
+title: "factorial ANOVA"
+output: ioslides_presentation
+---
