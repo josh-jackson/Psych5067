@@ -80,7 +80,7 @@ Note: take home projects should be treated like exams. No discussing of question
 | 6    | 2/21  | **Exam 1**                                                 |                      |
 | -    | 2/23  | Assumptions, model diagnostics                             |                      |
 | 7    | 2/28  | Assumptions, model diagnostics                             |                      |
-| -    | 3/2   | Moderation/interaction                                     |                      |
+| -    | 3/2   | Moderation/interaction                                     | Interactions Cohen   |
 | 8    | 3/7   | Moderation/interaction                                     |                      |
 | -    | 3/9   | Moderation/interaction                                     |                      |
 | 9    | 3/14  | **Spring Break!**                                          |                      |
