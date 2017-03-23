@@ -161,11 +161,14 @@
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
 
 <ul>
-<li>In some situations an IV variable can be transformed to improve linearity and homogeneity of variance<br/></li>
-<li>problems:<br/></li>
+<li>In some situations (not when working with a dichotomous outcome) an IV variable can be transformed to improve linearity and homogeneity of variance<br/></li>
+<li>problems:
+
+<ul>
 <li>response variable has changed!<br/></li>
 <li>transformation must simulateneously improve linearity and homogeneity of variance<br/></li>
-<li>transformation may not be defined on the boundaries of the sample space</li>
+<li>transformation may not be defined by the boundaries of the sample space</li>
+</ul></li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Link function for logistc</h2></hgroup><article  id="link-function-for-logistc">
@@ -184,7 +187,9 @@
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
 
-<p>\[ f(x) = \frac{1}{1+e^{-X}} \] \[ \hat{p} = \frac{1}{1+e^{-b_{0}+b_{1}X}} \] - The form of the logistic function is still is nonlinear (because probabilities can only range from 0 to 1)<br/>- Solution is to convert probabilities into odds ## odds</p>
+<p>\[ f(x) = \frac{1}{1+e^{-X}} \] \[ \hat{p} = \frac{1}{1+e^{-b_{0}+b_{1}X}} \] - The form of the logistic function is still nonlinear (because probabilities can only range from 0 to 1)<br/>- Solution is to convert probabilities into odds</p>
+
+</article></slide><slide class=''><hgroup><h2>odds</h2></hgroup><article  id="odds">
 
 <ul>
 <li>Odds are defined as the probability of being a case divided by the probability of being a noncase</li>
@@ -224,13 +229,15 @@
 <li>Need to rely on Iterative procedure, ML Estimation</li>
 <li>Asymptotic standard errors (approximations)<br/></li>
 <li>Interpret test statistics as z’s, not t’s<br/></li>
-<li>Wald test = chi square with 1 df = z2 when F(1, infinity)</li>
+<li>Wald test = chi square with 1 df = z^2 when F(1, infinity)</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>GLM in R</h2></hgroup><article  id="glm-in-r">
 
-<pre class = 'prettyprint lang-r'>glm(formula, family = gaussian, data, weights, subset, na.action, start = NULL, etastart, mustart, offset, control = glm.control(...), model = TRUE,
-method = ”glm.fit”, x = FALSE, y = TRUE, contrasts = NULL, ...)</pre>
+<pre class = 'prettyprint lang-r'>glm(formula, family = gaussian, data, weights, subset,
+    na.action, start = NULL, etastart, mustart, offset, 
+    control = glm.control(...), model = TRUE,
+  method = ”glm.fit”, x = FALSE, y = TRUE, contrasts = NULL, ...)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Family Argument</h2></hgroup><article  id="family-argument">
 
@@ -253,7 +260,195 @@ method = ”glm.fit”, x = FALSE, y = TRUE, contrasts = NULL, ...)</pre>
 <li><p>turn to probabilities by: odds/(1+odds)</p></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>example</h2></hgroup><article  id="example"></article></slide>
+</article></slide><slide class=''><hgroup><h2>example</h2></hgroup><article  id="example">
+
+<pre class = 'prettyprint lang-r'># 0 = premature
+mortality</pre>
+
+<pre >## # A tibble: 300 × 3
+##    Intelligence_Self Intelligence_Mate premature.d
+##                &lt;int&gt;             &lt;int&gt;       &lt;dbl&gt;
+## 1                 22                19           1
+## 2                 22                18           1
+## 3                 21                21           1
+## 4                 22                17           1
+## 5                 19                18           1
+## 6                 19                20           0
+## 7                 16                18           1
+## 8                 15                11           0
+## 9                 16                21           1
+## 10                19                22           1
+## # ... with 290 more rows</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
+
+<pre class = 'prettyprint lang-r'>death.1 &lt;- lm(premature.d ~ Intelligence_Self , data = mortality)
+summary(death.1)</pre>
+
+<pre >## 
+## Call:
+## lm(formula = premature.d ~ Intelligence_Self, data = mortality)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.9030  0.1084  0.1538  0.1907  0.3355 
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       0.641769   0.098636   6.506 3.25e-10 ***
+## Intelligence_Self 0.011357   0.005807   1.956   0.0514 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.3745 on 298 degrees of freedom
+## Multiple R-squared:  0.01267,    Adjusted R-squared:  0.009362 
+## F-statistic: 3.826 on 1 and 298 DF,  p-value: 0.05141</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
+
+<pre class = 'prettyprint lang-r'>death.2 &lt;- glm(premature.d ~ Intelligence_Self , data = mortality)
+summary(death.2)</pre>
+
+<pre >## 
+## Call:
+## glm(formula = premature.d ~ Intelligence_Self, data = mortality)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -0.9030   0.1084   0.1538   0.1907   0.3355  
+## 
+## Coefficients:
+##                   Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       0.641769   0.098636   6.506 3.25e-10 ***
+## Intelligence_Self 0.011357   0.005807   1.956   0.0514 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for gaussian family taken to be 0.1402466)
+## 
+##     Null deviance: 42.330  on 299  degrees of freedom
+## Residual deviance: 41.793  on 298  degrees of freedom
+## AIC: 266.05
+## 
+## Number of Fisher Scoring iterations: 2</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-9">
+
+<pre class = 'prettyprint lang-r'>anova(death.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: premature.d
+##                    Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+## Intelligence_Self   1  0.537 0.53653  3.8256 0.05141 .
+## Residuals         298 41.793 0.14025                  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
+
+<pre class = 'prettyprint lang-r'>anova(death.2)</pre>
+
+<pre >## Analysis of Deviance Table
+## 
+## Model: gaussian, link: identity
+## 
+## Response: premature.d
+## 
+## Terms added sequentially (first to last)
+## 
+## 
+##                   Df Deviance Resid. Df Resid. Dev
+## NULL                                299     42.330
+## Intelligence_Self  1  0.53653       298     41.793</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
+
+<pre class = 'prettyprint lang-r'>death.3 &lt;- glm(premature.d ~ Intelligence_Self,
+               family = binomial, data = mortality)
+summary(death.3)</pre>
+
+<pre >## 
+## Call:
+## glm(formula = premature.d ~ Intelligence_Self, family = binomial, 
+##     data = mortality)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.1175   0.4923   0.5716   0.6438   0.9943  
+## 
+## Coefficients:
+##                   Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.28695    0.67490   0.425   0.6707  
+## Intelligence_Self  0.08012    0.04143   1.934   0.0532 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 273.53  on 299  degrees of freedom
+## Residual deviance: 269.75  on 298  degrees of freedom
+## AIC: 273.75
+## 
+## Number of Fisher Scoring iterations: 4</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
+
+<pre class = 'prettyprint lang-r'>exp(1)^.08012</pre>
+
+<pre >## [1] 1.083417</pre>
+
+<pre class = 'prettyprint lang-r'>#For every 1 unit increase in Intelligence 
+#the odds of living increase by 8%.
+
+#prob = 
+1.083417/(1+1.083417)</pre>
+
+<pre >## [1] 0.5200193</pre>
+
+<pre class = 'prettyprint lang-r'>exp(1)^(.08012*20 + 0.28695)</pre>
+
+<pre >## [1] 6.615067</pre>
+
+<pre class = 'prettyprint lang-r'>6.615067/ (1+6.615067)</pre>
+
+<pre >## [1] 0.8686814</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
+
+<pre class = 'prettyprint lang-r'>death.4 &lt;- glm(premature.d ~ Intelligence_Self,
+        family = binomial(link = &quot;probit&quot;), data = mortality)
+summary(death.4)</pre>
+
+<pre >## 
+## Call:
+## glm(formula = premature.d ~ Intelligence_Self, family = binomial(link = &quot;probit&quot;), 
+##     data = mortality)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.1265   0.4889   0.5723   0.6454   0.9750  
+## 
+## Coefficients:
+##                   Estimate Std. Error z value Pr(&gt;|z|)  
+## (Intercept)        0.21961    0.38376   0.572   0.5671  
+## Intelligence_Self  0.04513    0.02319   1.946   0.0516 .
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 273.53  on 299  degrees of freedom
+## Residual deviance: 269.72  on 298  degrees of freedom
+## AIC: 273.72
+## 
+## Number of Fisher Scoring iterations: 4</pre>
+
+</article></slide><slide class=''><hgroup><h2>count data</h2></hgroup><article  id="count-data">
+
+<pre class = 'prettyprint lang-r'>num.rejects &lt;- glm(rejections ~ Intelligence_SelF, 
+                   family=poisson, data = mortality)
+summary(num.rejects)</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

@@ -76,11 +76,11 @@ as a basis for inference, e.g. t-tests
 
 ##  
 
-- In some situations an IV variable can be transformed to improve linearity and homogeneity of variance  
+- In some situations (not when working with a dichotomous outcome) an IV variable can be transformed to improve linearity and homogeneity of variance  
 - problems:  
-  - response variable has changed!  
-  - transformation must simulateneously improve linearity and homogeneity of variance  
-  - transformation may not be defined on the boundaries of the sample space
+      + response variable has changed!  
+      + transformation must simulateneously improve linearity and homogeneity of variance   
+      + transformation may not be defined by the boundaries of the sample space
 
 ## Link function for logistc
 
@@ -98,8 +98,9 @@ $$ f(x) = \frac{1}{1+e^{-X}} $$
 ##
 $$ f(x) = \frac{1}{1+e^{-X}} $$
 $$ \hat{p} = \frac{1}{1+e^{-b_{0}+b_{1}X}} $$
-- The form of the logistic function is still is nonlinear (because probabilities can only range from 0 to 1)  
+- The form of the logistic function is still nonlinear (because probabilities can only range from 0 to 1)  
 - Solution is to convert probabilities into odds 
+
 ## odds
 
 - Odds are defined as the probability of being a case divided by the probability of being a noncase
@@ -141,15 +142,17 @@ $$ logit= Log(odds)=ln(\frac{\hat{p}}{1-\hat{p}}) = b_{0}+b_{1}X $$
 - Need to rely on Iterative procedure, ML Estimation
 - Asymptotic standard errors (approximations)  
 - Interpret test statistics as z’s, not t’s  
-- Wald test = chi square with 1 df = z2 when F(1, infinity)
+- Wald test = chi square with 1 df = z^2 when F(1, infinity)
 
 
 ## GLM in R
 
 ```{r, eval=FALSE}
 
-glm(formula, family = gaussian, data, weights, subset, na.action, start = NULL, etastart, mustart, offset, control = glm.control(...), model = TRUE,
-method = ”glm.fit”, x = FALSE, y = TRUE, contrasts = NULL, ...)
+glm(formula, family = gaussian, data, weights, subset,
+    na.action, start = NULL, etastart, mustart, offset, 
+    control = glm.control(...), model = TRUE,
+  method = ”glm.fit”, x = FALSE, y = TRUE, contrasts = NULL, ...)
 ```
 
 ## Family Argument
@@ -181,11 +184,99 @@ $$ \hat{Y} = e^{b_{0}+b_{1}X_{1}}$$
 
 ## example
 
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+library(readr)
+Personality_longevity <- read_csv("~/Box Sync/5067 Regression Spring/regression/Personality_longevity.csv")
+
+library(dplyr)
+mortality <- Personality_longevity %>% 
+  select (Time, Intelligence_Self, Intelligence_Mate) %>% 
+  mutate(premature.d = cut(Time, breaks=c(-Inf, 62, Inf),
+                     labels=c("premature","normal"))) %>% 
+  select(-Time)
+  
+mortality$premature.d <- dplyr::recode(mortality$premature.d, normal ="1", premature="0")
+  
+mortality$premature.d <- as.numeric(as.character(mortality$premature.d))
+  
+```
+
 ```{r}
+# 0 = premature
+mortality
+```
+
+## 
+
+```{r}
+
+death.1 <- lm(premature.d ~ Intelligence_Self , data = mortality)
+summary(death.1)
+```
+
+## 
+```{r}
+
+death.2 <- glm(premature.d ~ Intelligence_Self , data = mortality)
+summary(death.2)
+```
+
+##
+```{r}
+anova(death.1)
+```
+
+##
+```{r}
+anova(death.2)
+```
+
+##
+```{r}
+death.3 <- glm(premature.d ~ Intelligence_Self,
+               family = binomial, data = mortality)
+summary(death.3)
+```
+
+##
+```{r}
+exp(1)^.08012
+
+#For every 1 unit increase in Intelligence 
+#the odds of living increase by 8%.
+
+#prob = 
+1.083417/(1+1.083417)
+
+exp(1)^(.08012*20 + 0.28695)
+ 
+6.615067/ (1+6.615067)
 
 ```
 
 
+##
+```{r}
+death.4 <- glm(premature.d ~ Intelligence_Self,
+        family = binomial(link = "probit"), data = mortality)
+summary(death.4)
+```
 
+## count data
+
+```{r, eval =FALSE}
+num.rejects <- glm(rejections ~ Intelligence_SelF, 
+                   family=poisson, data = mortality)
+summary(num.rejects)
+```
+
+```{r, echo=FALSE}
+## dispersion parameter
+
+# - more/less variability than expected under the assumed distribution
+# - normal linear model based on gausian normal mean and sd are independent
+# - overdispersion leads to biases parameter estimates and standard errors
+# - can adjust for it
+```
 
 
