@@ -88,6 +88,490 @@
           </hgroup>
   </slide>
 
+<slide class=''><hgroup><h2>Last time</h2></hgroup><article  id="last-time">
+
+<ul>
+<li>review of ANOVA and intro to factorial ANVOA</li>
+<li>SSbetween into three (or more) components</li>
+<li>marginal versus cell means</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>factorial ANVOA</h2></hgroup><article  id="factorial-anvoa">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Factor</th>
+<th align="left">A</th>
+<th align="left">Marginal Means</th>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Tx</td>
+<td align="left">Control</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">neutral</td>
+<td align="left">7.6</td>
+<td align="left">5.0</td>
+<td align="left">6.33</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">sad</td>
+<td align="left">8.3</td>
+<td align="left">5.0</td>
+<td align="left">6.66</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">happy</td>
+<td align="left">7.3</td>
+<td align="left">8.0</td>
+<td align="left">7.66</td>
+</tr>
+<tr class="odd">
+<td align="left">______</td>
+<td align="left">_______</td>
+<td align="left">______</td>
+<td align="left">____________</td>
+<td align="left">______________________</td>
+</tr>
+<tr class="even">
+<td align="left">M.M</td>
+<td align="left"></td>
+<td align="left">7.77</td>
+<td align="left">6.0</td>
+<td align="left">6.88</td>
+</tr>
+</table>
+
+</article></slide><slide class=''><hgroup><h2>equation</h2></hgroup><article  id="equation">
+
+<ul>
+<li>similar to effect coding within regression</li>
+</ul>
+
+<p>\[ Y_{ijk} = \mu + \alpha_{j} + \beta_{k} + \alpha \beta_{jk}+\varepsilon_{ijk} \]</p>
+
+<p>\[ \alpha_{j} =  \mu_{j} -  \mu \]</p>
+
+</article></slide><slide class=''><hgroup><h2>interactions</h2></hgroup><article  id="interactions">
+
+<ul>
+<li>main effects are on the marginal means<br/></li>
+<li>interactions are about the cell means<br/></li>
+<li>what is not expected based on the main effects (marginal means)</li>
+<li>similar to contingency table tests of independence from last semester</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Interpretting interactions part 1</h2></hgroup><article  id="interpretting-interactions-part-1">
+
+<ul>
+<li>An interaction is present when the simple effects of one independent variable are not the same at all levels of the second independent variable.</li>
+<li>If there in an interaction, main effects are hard to interpret, much more so than with continuous interactions</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>what do interactions with nominal data look like?</h2></hgroup><article  id="what-do-interactions-with-nominal-data-look-like">
+
+<ul>
+<li>and can I &quot;see&quot; main effects too?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>sums of squares decomposition</h2></hgroup><article  id="sums-of-squares-decomposition">
+
+<ul>
+<li>ssbetween = SSa + SSb + SSab</li>
+<li>same as SSregression with multiple predictors</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+
+<pre class = 'prettyprint lang-r'>lm.1 &lt;- lm(Anxiety ~ Stress *Support, data=data)
+anova(lm.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: Anxiety
+##                 Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Stress           1   1.66   1.663  0.5702    0.4517    
+## Support          1 270.77 270.774 92.8535 &lt; 2.2e-16 ***
+## Stress:Support   1 118.89 118.890 40.7697 3.835e-09 ***
+## Residuals      114 332.44   2.916                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>how is this similar to a linear model?</h2></hgroup><article  id="how-is-this-similar-to-a-linear-model">
+
+<ul>
+<li><p>is this: \[ Y_{ijk} = \mu + \alpha_{j} + \beta_{k} + \alpha \beta_{jk}+\varepsilon_{ijk} \]</p></li>
+<li><p>this? \[ Y_{ijk} = b_{0} + b_{1}J + b_{2}K + b_{3}JK + \varepsilon_{ijk} \]</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Effect coding a factorial ANOVA</h2></hgroup><article  id="effect-coding-a-factorial-anova">
+
+<ul>
+<li>j-1 and k-1 variables for main effects<br/></li>
+<li>(j-1)(k-1) variables for interaction<br/><br> \(J_{ij}\) = 1 if in column j, -1 if in last column, 0 for all other columns<br/>\(K_{ik}\) = 1 if in row k, -1 if in last row, 0 for all other rows<br/>\(JK_{i}\) = pairwise product of each J with K variable</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>linear model equation</h2></hgroup><article  id="linear-model-equation">
+
+<p>\[ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} \]</p>
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Factor</th>
+<th align="left">A</th>
+<th align="left">Marginal Means</th>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Tx</td>
+<td align="left">Control</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">neutral</td>
+<td align="left">7.6</td>
+<td align="left">5.0</td>
+<td align="left">6.33</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">sad</td>
+<td align="left">8.3</td>
+<td align="left">5.0</td>
+<td align="left">6.66</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">happy</td>
+<td align="left">7.3</td>
+<td align="left">8.0</td>
+<td align="left">7.66</td>
+</tr>
+<tr class="odd">
+<td align="left">______</td>
+<td align="left">_______</td>
+<td align="left">______</td>
+<td align="left">____________</td>
+<td align="left">______________________</td>
+</tr>
+<tr class="even">
+<td align="left">M.M</td>
+<td align="left"></td>
+<td align="left">7.77</td>
+<td align="left">6.0</td>
+<td align="left">6.88</td>
+</tr>
+</table>
+
+</article></slide><slide class=''><hgroup><h2>coding</h2></hgroup><article  id="coding">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">row</th>
+<th align="left">column</th>
+<th align="left">J1</th>
+<th align="left">K1</th>
+<th align="left">K2</th>
+<th align="left">J1K1</th>
+<th align="left">J1K12</th>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">-1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">-1</td>
+<td align="left">0</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">2</td>
+<td align="left">-1</td>
+<td align="left">0</td>
+<td align="left">1</td>
+<td align="left">0</td>
+<td align="left">-1</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">1</td>
+<td align="left">1</td>
+<td align="left">-1</td>
+<td align="left">-1</td>
+<td align="left">-1</td>
+<td align="left">-1</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="left">2</td>
+<td align="left">-1</td>
+<td align="left">-1</td>
+<td align="left">-1</td>
+<td align="left">-1</td>
+<td align="left">1</td>
+</tr>
+</table>
+
+</article></slide><slide class=''><hgroup><h2>but where is this in our output if ANOVA is regression?</h2></hgroup><article  id="but-where-is-this-in-our-output-if-anova-is-regression">
+
+</article></slide><slide class=''><hgroup><h2>aov</h2></hgroup><article  id="aov">
+
+<pre class = 'prettyprint lang-r'>data$SupportLevel&lt;-cut(data$Support, breaks = c(0,5,10,18), labels = c(&quot;low&quot;,&quot;med&quot;,&quot;high&quot;))
+
+aov.1 &lt;- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+anova(aov.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: Anxiety
+##                     Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## group                1   5.37   5.369  1.0514    0.3074    
+## SupportLevel         2 137.72  68.861 13.4838 5.663e-06 ***
+## group:SupportLevel   2   8.69   4.347  0.8512    0.4296    
+## Residuals          112 571.98   5.107                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>lm anova</h2></hgroup><article  id="lm-anova">
+
+<pre class = 'prettyprint lang-r'>lm.2 &lt;- lm(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+anova(lm.2)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: Anxiety
+##                     Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## group                1   5.37   5.369  1.0514    0.3074    
+## SupportLevel         2 137.72  68.861 13.4838 5.663e-06 ***
+## group:SupportLevel   2   8.69   4.347  0.8512    0.4296    
+## Residuals          112 571.98   5.107                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=''><hgroup><h2>lm summary with nominal variables</h2></hgroup><article  id="lm-summary-with-nominal-variables">
+
+<pre >##                       term   estimate std.error statistic      p.value
+## 1              (Intercept)  9.1246900 0.7532869 12.113166 4.300971e-22
+## 2                  groupTx -1.5105433 1.5065739 -1.002635 3.181984e-01
+## 3          SupportLevelmed -0.9782492 0.8399211 -1.164692 2.466186e-01
+## 4         SupportLevelhigh -3.5815670 1.0383344 -3.449339 7.930209e-04
+## 5  groupTx:SupportLevelmed  1.8754245 1.6056224  1.168036 2.452727e-01
+## 6 groupTx:SupportLevelhigh  2.2204286 1.7194663  1.291348 1.992420e-01</pre>
+
+<p>\[ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2">
+
+<ul>
+<li>beyond noticing cell means look different we can do tests<br/></li>
+<li>~3 types</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-1">
+
+<p>&#39;1. Is the interaction significant? If not, this helps interpret our main effects. If it is, we can graph and interpret or also do additional tets.</p>
+
+<pre class = 'prettyprint lang-r'>aov.1 &lt;- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+aov.0 &lt;- aov(Anxiety ~ group + SupportLevel, data=data)
+
+anova(aov.0, aov.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Model 1: Anxiety ~ group + SupportLevel
+## Model 2: Anxiety ~ group + SupportLevel + group * SupportLevel
+##   Res.Df    RSS Df Sum of Sq      F Pr(&gt;F)
+## 1    114 580.68                           
+## 2    112 571.98  2    8.6946 0.8512 0.4296</pre>
+
+</article></slide><slide class=''><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-2">
+
+<p>&#39;2. regression coefficients</p>
+
+<p>\[ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-3">
+
+<p>&#39;3. Post hoc comparisons/simple main effects</p>
+
+<pre class = 'prettyprint lang-r'>TukeyHSD(aov.1)</pre>
+
+<pre >##   Tukey multiple comparisons of means
+##     95% family-wise confidence level
+## 
+## Fit: aov(formula = Anxiety ~ group + SupportLevel + group * SupportLevel, data = data)
+## 
+## $group
+##                 diff       lwr       upr     p adj
+## Tx-Control -0.427179 -1.252644 0.3982863 0.3074021
+## 
+## $SupportLevel
+##                diff       lwr        upr     p adj
+## med-low  -0.3527543 -2.035355  1.3298467 0.8724259
+## high-low -2.4652166 -4.237192 -0.6932408 0.0036321
+## high-med -2.1124623 -3.193595 -1.0313300 0.0000281
+## 
+## $`group:SupportLevel`
+##                                diff       lwr        upr     p adj
+## Tx:low-Control:low       -1.5105433 -5.879098  2.8580117 0.9161763
+## Control:med-Control:low  -0.9782492 -3.413737  1.4572381 0.8525525
+## Tx:med-Control:low       -0.6133680 -3.103828  1.8770916 0.9798772
+## Control:high-Control:low -3.5815670 -6.592386 -0.5707482 0.0100559
+## Tx:high-Control:low      -2.8716817 -5.372031 -0.3713328 0.0145676
+## Control:med-Tx:low        0.5322941 -3.401373  4.4659610 0.9987682
+## Tx:med-Tx:low             0.8971753 -3.070762  4.8651125 0.9862766
+## Control:high-Tx:low      -2.0710237 -6.384626  2.2425788 0.7316435
+## Tx:high-Tx:low           -1.3611384 -5.335290  2.6130133 0.9192628
+## Tx:med-Control:med        0.3648812 -1.245041  1.9748037 0.9861282
+## Control:high-Control:med -2.6033178 -4.938803 -0.2678325 0.0195879
+## Tx:high-Control:med      -1.8934325 -3.518611 -0.2682536 0.0125644
+## Control:high-Tx:med      -2.9681990 -5.360955 -0.5754428 0.0062447
+## Tx:high-Tx:med           -2.2583137 -3.964771 -0.5518563 0.0027702
+## Tx:high-Control:high      0.7098853 -1.693162  3.1129329 0.9558328</pre>
+
+</article></slide><slide class=''><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests">
+
+<ul>
+<li>Planned contrasts, a priori: Holm, Dunn-Bonnferoni, perhaps Tukey</li>
+<li>All pairwise comparisons (maybe a priori): Tukey</li>
+<li>Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at night</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-1">
+
+<pre class = 'prettyprint lang-r'>library(lsmeans)
+lsm.1&lt;- lsmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
+lsm.1</pre>
+
+<pre >##  group   SupportLevel   lsmean        SE  df lower.CL  upper.CL
+##  Control low          9.124690 0.7532869 112 7.632149 10.617231
+##  Tx      low          7.614147 1.3047312 112 5.028989 10.199304
+##  Control med          8.146441 0.3715188 112 7.410324  8.882558
+##  Tx      med          8.511322 0.4125922 112 7.693823  9.328821
+##  Control high         5.543123 0.7146307 112 4.127174  6.959072
+##  Tx      high         6.253008 0.4196456 112 5.421534  7.084482
+## 
+## Confidence level used: 0.95</pre>
+
+<pre class = 'prettyprint lang-r'># can be used to test numerous a prior and post hoc hypotheses</pre>
+
+</article></slide><slide class=''><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-2">
+
+<pre class = 'prettyprint lang-r'>contrast(lsm.1, method = &quot;pairwise&quot;)</pre>
+
+<pre >##  contrast                     estimate        SE  df t.ratio p.value
+##  Control,low - Tx,low        1.5105433 1.5065739 112   1.003  0.9162
+##  Control,low - Control,med   0.9782492 0.8399211 112   1.165  0.8526
+##  Control,low - Tx,med        0.6133680 0.8588792 112   0.714  0.9799
+##  Control,low - Control,high  3.5815670 1.0383344 112   3.449  0.0101
+##  Control,low - Tx,high       2.8716817 0.8622898 112   3.330  0.0146
+##  Tx,low - Control,med       -0.5322941 1.3565949 112  -0.392  0.9988
+##  Tx,low - Tx,med            -0.8971753 1.3684137 112  -0.656  0.9863
+##  Tx,low - Control,high       2.0710237 1.4876225 112   1.392  0.7316
+##  Tx,low - Tx,high            1.3611384 1.3705568 112   0.993  0.9193
+##  Control,med - Tx,med       -0.3648812 0.5552104 112  -0.657  0.9861
+##  Control,med - Control,high  2.6033178 0.8054336 112   3.232  0.0196
+##  Control,med - Tx,high       1.8934325 0.5604718 112   3.378  0.0126
+##  Tx,med - Control,high       2.9681990 0.8251845 112   3.597  0.0062
+##  Tx,med - Tx,high            2.2583137 0.5885022 112   3.837  0.0028
+##  Control,high - Tx,high     -0.7098853 0.8287337 112  -0.857  0.9558
+## 
+## P value adjustment: tukey method for comparing a family of 6 estimates</pre>
+
+</article></slide><slide class=''><hgroup><h2>different types of Sums of Squares</h2></hgroup><article  id="different-types-of-sums-of-squares">
+
+<ul>
+<li>3 types, 3 different hypotheses testing strategies<br/></li>
+<li>Type 1, hierarchical (what R does)<br/></li>
+<li>Type 3, simultaneous<br/></li>
+<li>Type 2, looks at higher- versus lower-order<br/><br><br/></li>
+<li>SSwithin and SSinteraction will be same, regardless</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Type 1: Hierarchical (what R does)</h2></hgroup><article  id="type-1-hierarchical-what-r-does">
+
+<ul>
+<li>Think of it as model comparisons<br/>A: anova(null, Factor A)<br/>B: anova(Factor A, FactorA+B)<br/>AB: anova(FactorA+B, FactorA+B+A*B)<br/></li>
+<li>SS is just like our partial correlation calculation for R2 when adding terms to hierarchical regression</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Type 3: Controls for all predictors</h2></hgroup><article  id="type-3-controls-for-all-predictors">
+
+<p>A: anova(Factor B+A<em>B, FactorA+B+A</em>B)<br/>B: anova(Factor A+A<em>B, FactorA+B+A</em>B)<br/>AB: anova(FactorA+B, FactorA+B+A*B)</p>
+
+<ul>
+<li>Most common, most recommended<br/></li>
+<li>Still strange, in that it tests higher order term without a lower order term in the model<br/></li>
+<li>Use Anova function from car package</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Type 2: Not popular</h2></hgroup><article  id="type-2-not-popular">
+
+<p>A: anova(Factor B, FactorA+B)<br/>B: anova(Factor A, FactorA+B)<br/>AB: anova(FactorA+B, FactorA+B+A*B)</p>
+
+<ul>
+<li>Need to use car::Anova function<br/></li>
+<li>Most interpretable, in my opinion.</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Effect sizes</h2></hgroup><article  id="effect-sizes">
+
+<ul>
+<li>Eta squared is like R squared for an effect SS effect / SS total<br/></li>
+<li>Partial eta squared (SS effect / (SS effect + SS resid))<br/></li>
+<li>the variance explained by a given variable of the variance remaining explained by other predictors<br/></li>
+<li>Partial will always be larger, but not interpretable with sig interaction</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<pre class = 'prettyprint lang-r'>library(lsr)
+etaSquared(aov.1)</pre>
+
+<pre >##                         eta.sq eta.sq.part
+## group              0.003305332 0.004165048
+## SupportLevel       0.190285765 0.194056573
+## group:SupportLevel 0.012012944 0.014973213</pre>
+
+</article></slide><slide class=''><hgroup><h2>Don&#39;t forget omega squared and cohen’s f</h2></hgroup><article  id="dont-forget-omega-squared-and-cohens-f">
+
+<ul>
+<li>Better than eta, adjusts for bias</li>
+<li>Omega Squared is always smaller than Eta Squared.<br/></li>
+<li>see: <a href='http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html' title=''>http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html</a><br/></li>
+<li>cohen&#39;s f is used in pwr</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>

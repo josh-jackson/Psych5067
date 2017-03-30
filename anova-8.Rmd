@@ -2,3 +2,248 @@
 title: "factorial ANOVA"
 output: ioslides_presentation
 ---
+
+
+## Last time
+- review of ANOVA and intro to factorial ANVOA
+- SSbetween into three (or more) components
+- marginal versus cell means
+
+## factorial ANVOA
+
+|      |       |Factor| A          | Marginal Means       |
+|------|-------|------|------------|----------------------|
+|      |       | Tx   |  Control   |                      |
+| B    |neutral|  7.6 |     5.0    |  6.33                |
+|      | sad   |  8.3 |     5.0    |  6.66                |
+|      | happy |  7.3 |     8.0    |  7.66                |
+|______|_______|______|____________|______________________|
+| M.M  |       | 7.77 |   6.0      | 6.88                 | 
+
+## equation
+
+- similar to effect coding within regression
+
+$$ Y_{ijk} = \mu + \alpha_{j} + \beta_{k} + \alpha \beta_{jk}+\varepsilon_{ijk} $$
+
+$$ \alpha_{j} =  \mu_{j} -  \mu $$
+
+## interactions 
+- main effects are on the marginal means  
+- interactions are about the cell means  
+- what is not expected based on the main effects (marginal means)
+- similar to contingency table tests of independence from last semester
+
+## Interpretting interactions part 1
+- An interaction is present when the simple effects of one independent variable are not the same at all levels of the second independent variable. 
+- If there in an interaction, main effects are hard to interpret, much more so than with continuous interactions 
+
+## what do interactions with nominal data look like? 
+- and can I "see" main effects too? 
+
+## sums of squares decomposition
+
+- ssbetween = SSa + SSb + SSab
+- same as SSregression with multiple predictors 
+
+## 
+
+```{r, echo=FALSE, message=FALSE}
+data <-read.csv(file = "Anxiety.data.csv")
+
+library(dplyr)
+# getting the group means 
+Group_means<- data %>% group_by(group) %>% 
+  summarise(meanAnxiety = mean(Anxiety), varStress = sd(Stress)^2,
+            meanStress = mean(Stress), meanSupport=mean(Support))
+# Calculating the grand mean by averaging the two group means together
+Anxiety_grandmean <- mean(Group_means$meanAnxiety)
+
+```
+
+
+```{r}
+lm.1 <- lm(Anxiety ~ Stress *Support, data=data)
+anova(lm.1)
+```
+
+
+
+
+## how is this similar to a linear model?
+- is this: 
+$$ Y_{ijk} = \mu + \alpha_{j} + \beta_{k} + \alpha \beta_{jk}+\varepsilon_{ijk} $$
+
+- this?
+$$ Y_{ijk} = b_{0} + b_{1}J + b_{2}K + b_{3}JK + \varepsilon_{ijk} $$
+
+## Effect coding a factorial ANOVA
+- j-1 and k-1 variables for main effects  
+- (j-1)(k-1) variables for interaction  
+<br>
+$J_{ij}$ = 1 if in column j, -1 if in last column, 0 for all other columns  
+$K_{ik}$ = 1 if in row k, -1 if in last row, 0 for all other rows  
+$JK_{i}$ = pairwise product of each J with K variable  
+
+
+## linear model equation
+
+$$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
+
+
+|      |       |Factor| A          | Marginal Means       |
+|------|-------|------|------------|----------------------|
+|      |       | Tx   |  Control   |                      |
+| B    |neutral|  7.6 |     5.0    |  6.33                |
+|      | sad   |  8.3 |     5.0    |  6.66                |
+|      | happy |  7.3 |     8.0    |  7.66                |
+|______|_______|______|____________|______________________|
+| M.M  |       | 7.77 |   6.0      | 6.88                 | 
+
+
+## coding
+
+| row  |column |  J1  | K1  |  K2 | J1K1 | J1K12 |
+|------|-------|------|-----|-----|------|-------|
+| 1    |  1    |  1   |  1  |  0  |  1   |   0   |
+| 1    |  2    | -1   |  1  |  0  | -1   |   0   |
+| 2    |  1    |  1   |  0  |  1  |  0   |   1   |
+| 2    |  2    | -1   |  0  |  1  |  0   |  -1   |
+| 3    |  1    |  1   | -1  | -1  | -1   |  -1   |
+| 3    |  2    | -1   | -1  | -1  | -1   |   1   | 
+
+
+## but where is this in our output if ANOVA is regression? 
+
+## aov 
+```{r}
+data$SupportLevel<-cut(data$Support, breaks = c(0,5,10,18), labels = c("low","med","high"))
+
+aov.1 <- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+anova(aov.1)
+```
+
+
+## lm anova
+
+```{r}
+lm.2 <- lm(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+anova(lm.2)
+```
+
+## lm summary with nominal variables
+```{r, echo=FALSE}
+library(broom)
+tidy(lm.2)
+```
+$$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
+
+## Interpretting interactions part 2
+- beyond noticing cell means look different we can do tests  
+- ~3 types  
+
+## Interpretting interactions part 2
+'1. Is the interaction significant? If not, this helps interpret our main effects. If it is, we can graph and interpret or also do additional tets.  
+
+```{r}
+aov.1 <- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+aov.0 <- aov(Anxiety ~ group + SupportLevel, data=data)
+
+anova(aov.0, aov.1)
+```
+
+## Interpretting interactions part 2
+
+'2. regression coefficients
+
+$$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
+
+## Interpretting interactions part 2
+
+'3. Post hoc comparisons/simple main effects
+
+```{r}
+TukeyHSD(aov.1)
+```
+
+## post hoc tests
+
+- Planned contrasts, a priori: Holm, Dunn-Bonnferoni, perhaps Tukey
+- All pairwise comparisons (maybe a priori): Tukey
+- Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at night
+
+## post hoc tests
+```{r, message = FALSE}
+library(lsmeans)
+lsm.1<- lsmeans(aov.1, c("group", "SupportLevel"))
+lsm.1
+# can be used to test numerous a prior and post hoc hypotheses
+```
+
+## post hoc tests
+
+```{r}
+contrast(lsm.1, method = "pairwise")
+
+```
+
+## different types of Sums of Squares
+- 3 types, 3 different hypotheses testing strategies   
+- Type 1, hierarchical (what R does)  
+- Type 3, simultaneous   
+- Type 2, looks at higher- versus lower-order  
+<br>  
+- SSwithin and SSinteraction will be same, regardless  
+
+
+## Type 1: Hierarchical (what R does) 
+- Think of it as model comparisons  
+A: anova(null, Factor A)  
+B: anova(Factor A, FactorA+B)  
+AB: anova(FactorA+B, FactorA+B+A*B)  
+- SS is just like our partial correlation calculation for R2 when adding terms to hierarchical regression  
+
+## Type 3: Controls for all predictors
+
+A: anova(Factor B+A*B, FactorA+B+A*B)  
+B: anova(Factor A+A*B, FactorA+B+A*B)  
+AB: anova(FactorA+B, FactorA+B+A*B)    
+
+- Most common, most recommended  
+- Still strange, in that it tests higher order term without a lower order term in the model  
+- Use Anova function from car package   
+
+
+
+## Type 2: Not popular
+A: anova(Factor B, FactorA+B)  
+B: anova(Factor A, FactorA+B)  
+AB: anova(FactorA+B, FactorA+B+A*B)  
+
+- Need to use car::Anova function  
+- Most interpretable, in my opinion.   
+
+
+
+## Effect sizes
+- Eta squared is like R squared for an effect SS effect / SS total    
+- Partial eta squared (SS effect / (SS effect + SS resid))  
+- the variance explained by a given variable of the variance remaining explained by other predictors  
+- Partial will always be larger, but not interpretable with sig interaction   
+
+
+##
+
+```{r}
+library(lsr)
+etaSquared(aov.1)
+```
+
+## Don't forget omega squared and cohen’s f
+
+- Better than eta, adjusts for bias
+- Omega Squared is always smaller than Eta Squared.  
+- see: http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html   
+- cohen's f is used in pwr  
+
+
