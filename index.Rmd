@@ -4,6 +4,8 @@ output: html_document
 ---
   <br>
   
+- April 3rd - Take home projet $5 posted. Due 4/14  
+
 - March 16th - Take home project #4 posted. Due 4/3 
   
 - March 15th - Syllabus Updated. *NOTE THAT EXAM 2 HAS BEEN PUSHED BACK*

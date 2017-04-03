@@ -571,7 +571,70 @@ etaSquared(aov.1)</pre>
 <li>Omega Squared is always smaller than Eta Squared.<br/></li>
 <li>see: <a href='http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html' title=''>http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html</a><br/></li>
 <li>cohen&#39;s f is used in pwr</li>
-</ul></article></slide>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>ANCOVA</h2></hgroup><article  id="ancova">
+
+<ul>
+<li>ANalysis of COVAriance</li>
+<li>aka regression with continuous and nominal variables</li>
+<li>given a special name because of historical reasons</li>
+<li>Typically, when someone says they are doing an ANCOVA they are focused on comparing group means adjusted for some covariate</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>ANCOVA</h2></hgroup><article  id="ancova-1">
+
+<p>\[ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  \] - how do you interpret each term? - what does this look like graphed? - Would b1 and b2 change if we ran a model without GPA?</p>
+
+</article></slide><slide class=''><hgroup><h2>2 advantages of ANCOVA</h2></hgroup><article  id="advantages-of-ancova">
+
+<ol>
+<li>Greater power</li>
+<li>Adjustment of/controlling for covariate</li>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>ANCOVA power advantages</h2></hgroup><article  id="ancova-power-advantages">
+
+<ul>
+<li>what is SS residual?</li>
+<li>how is it used to test your model?</li>
+<li>how can you decrease SS residual?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>ANCOVA power advantages</h2></hgroup><article  id="ancova-power-advantages-1">
+
+<ul>
+<li>power does not necessarily incrase if covariate is related to the predictor (e.g., group). Why?</li>
+<li>how do you find groups not related to the covariate?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Controlling for background covariates</h2></hgroup><article  id="controlling-for-background-covariates">
+
+<ul>
+<li>in experimental designs, power should be main focus</li>
+<li>in quasi-experimental designs, covariates should help &quot;equate&quot; groups</li>
+</ul>
+
+<p>\[ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  \]</p>
+
+<ul>
+<li>note: you are now making a different prediction for each individual, rather than having the same prediction for all group members</li>
+<li>likely also reduces SS residual</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Controlling for background covariates</h2></hgroup><article  id="controlling-for-background-covariates-1">
+
+<ul>
+<li>controlling for is not a panacea</li>
+<li>does not fix issues when random assigment is ineffective</li>
+<li>could create greater group difference, no difference or even reverse the difference</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Standard ANCOVA assumes no interactions; regression association is the same across groups</h2></hgroup><article  id="standard-ancova-assumes-no-interactions-regression-association-is-the-same-across-groups">
+
+<p>\[ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  \]</p>
+
+<p>\[ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA + b_{4}(D_{1} * GPA) + b_{5}(D_{2} * GPA)  \]</p></article></slide>
 
 
   <slide class="backdrop"></slide>

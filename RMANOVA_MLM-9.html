@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Repeated measures &amp; MLM</title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="generator" content="pandoc" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+
+  <base target="_blank">
+
+  <script type="text/javascript">
+    var SLIDE_CONFIG = {
+      // Slide settings
+      settings: {
+                title: 'Repeated measures &amp; MLM',
+                        useBuilds: true,
+        usePrettify: true,
+        enableSlideAreas: true,
+        enableTouch: true,
+                      },
+
+      // Author information
+      presenters: [
+            {
+        name:  'Josh Jackson' ,
+        company: '',
+        gplus: '',
+        twitter: '',
+        www: '',
+        github: ''
+      },
+            ]
+    };
+  </script>
+
+  <link href="site_libs/ioslides-13.5.1/fonts/fonts.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/default.css" rel="stylesheet" />
+  <link href="site_libs/ioslides-13.5.1/theme/css/phone.css" rel="stylesheet" />
+  <script src="site_libs/ioslides-13.5.1/js/modernizr.custom.45394.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/prettify.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-r.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/prettify/lang-yaml.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/hammer.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-controller.js"></script>
+  <script src="site_libs/ioslides-13.5.1/js/slide-deck.js"></script>
+
+  <style type="text/css">
+
+    b, strong {
+      font-weight: bold;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    slides > slide {
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    .auto-fadein {
+      -webkit-transition: opacity 0.6s ease-in;
+      -webkit-transition-delay: 0.4s;
+      -moz-transition: opacity 0.6s ease-in 0.4s;
+      -o-transition: opacity 0.6s ease-in 0.4s;
+      transition: opacity 0.6s ease-in 0.4s;
+      opacity: 0;
+    }
+
+  </style>
+
+
+</head>
+
+<body style="opacity: 0">
+
+<slides>
+
+  <slide class="title-slide segue nobackground">
+        <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">4/2/2017</p>
+          </hgroup>
+  </slide>
+
+<slide class=''><hgroup><h2>Expanding our toolkit</h2></hgroup><article  id="expanding-our-toolkit">
+
+<ul>
+<li>We might want to assess people more than once</li>
+<li>We might want to assess within groups/nested structures</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Outline</h2></hgroup><article  id="outline">
+
+<ul>
+<li>Repeated Measures ANOVA (RM ANOVA)</li>
+<li>&quot;Mixed&quot; models aka Multilevel models (MLM), hierarchical linear models (HLM), random-effects models, and more&#8230;</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Repeated measures ANOVA</h2></hgroup><article  id="repeated-measures-anova">
+
+<ul>
+<li>one-way RMANOVA (within subjects ANOVA)</li>
+<li>can also do a mixed designs (both between and within) sometimes refered to as split-plot</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>terminology aside</h2></hgroup><article  id="terminology-aside">
+
+<ul>
+<li>SS between-groups and SS within-groups</li>
+<li>between-subjects and within-subjects designs</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>why would we want to do this?</h2></hgroup><article  id="why-would-we-want-to-do-this">
+
+<ol>
+<li>our primary interest may be to study the change of an outcome over time, e.g., a learning effect.</li>
+<li>multiple outcomes for each subject allows each subject to be his or her own “control”. This allows us to remove subject-to-subject variation (i.e., individidual differences), and likely increasing power <br> <br></li>
+</ol>
+
+<ul>
+<li>When would we not want to do this?</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>one way RM ANOVA</h2></hgroup><article  id="one-way-rm-anova">
+
+<ul>
+<li>extension of the paired t-test<br/></li>
+<li>E.g.</li>
+<li>A measure before, during and after a intervention<br/></li>
+<li>A measure repeated across multiple conditions such as condition A, condition B, and condition C</li>
+<li>Three or more timepoints (seconds, years, grades)</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>SS decomposition</h2></hgroup><article  id="ss-decomposition">
+
+<ul>
+<li>Compared to between subjects, SS residual (within) can be split into 2 different components</li>
+<li>RM ANOVA has SS Treatment, SS subjects, and SS residual</li>
+<li>SS residual still is our measure of leftover error variance</li>
+<li>Smaller error term compared to between subjects</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>NEW Assumptions</h2></hgroup><article  id="new-assumptions">
+
+<p>The sphericity assumption (also known as the homogeneity of variance of differences assumption) assumes the variance of the differences between any two levels of a within subjects factor (e.g,. condition, time) is equivalent</p>
+
+<ul>
+<li><p>Greenhouse-Geisser Epsilon,  Huynh-Feldt Epsil,  Pillai’s Trace,  Wilk’s Lambda,  Hotelling’s Trace, and  Roy’s Largest Root</p></li>
+<li><p>adjusts df if violated</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests">
+
+<p>If the overall ANOVA yields a significant result one can test: + pair-wise comparisons + linear, quadratic trends</p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+
+<p>SS wine and SS subject are calculated with marginals.</p>
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">ID</th>
+<th align="left">wine #1</th>
+<th align="left">#2</th>
+<th align="left">#3</th>
+<th align="left">#4</th>
+<th align="left">Mean</th>
+</tr>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">2</td>
+<td align="left">5</td>
+<td align="left">3</td>
+<td align="left">3</td>
+<td align="left">3.25</td>
+</tr>
+<tr class="even">
+<td align="left">2</td>
+<td align="left">4</td>
+<td align="left">6</td>
+<td align="left">5</td>
+<td align="left">4</td>
+<td align="left">4.75</td>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left">5</td>
+<td align="left">7</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">5.25</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">3</td>
+<td align="left">4</td>
+<td align="left">3.5</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">7</td>
+<td align="left">6</td>
+<td align="left">5</td>
+<td align="left">6.0</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="left">2</td>
+<td align="left">5</td>
+<td align="left">4</td>
+<td align="left">3</td>
+<td align="left">3.5</td>
+</tr>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left">4</td>
+<td align="left">5</td>
+<td align="left">6</td>
+<td align="left">4</td>
+<td align="left">4.75</td>
+</tr>
+<tr class="even">
+<td align="left">mean</td>
+<td align="left">3.63</td>
+<td align="left">5.63</td>
+<td align="left">4.38</td>
+<td align="left">4.25</td>
+<td align="left"></td>
+</tr>
+</table>
+
+</article></slide><slide class=''><hgroup><h2>more complex RM designs</h2></hgroup><article  id="more-complex-rm-designs">
+
+<ul>
+<li>involve interactions</li>
+<li>involve between person (and/or more within person) variables</li>
+<li>involve multiple SS residual terms</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Interactions</h2></hgroup><article  id="interactions">
+
+<p>\[ Y_{ijk} = \mu + \eta_{j} + \alpha_{k} + \eta \alpha_{jk}+\varepsilon_{ijk} \]</p>
+
+<ul>
+<li>The interaction variance contributes to both subjects and A factor SSs</li>
+<li>Decreased power (interaction adds noise to error term)</li>
+<li>May increase sphericity</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Mixed designs</h2></hgroup><article  id="mixed-designs">
+
+<ul>
+<li>Between and within factor<br/><br></li>
+<li>Wine tasting by groups (sophomores, sommeliers, souses)<br/></li>
+<li>Are some wines rated better? (within)<br/></li>
+<li>Do groups rate wine differently (between)<br/></li>
+<li>Do sommeliers especially dislike merlot? (within- between subjects interaction)<br/></li>
+<li>Interactions are now interpretable</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Problems with RM ANOVA</h2></hgroup><article  id="problems-with-rm-anova">
+
+</article></slide><slide class=''><hgroup><h2>Nesting and heirarchy</h2></hgroup><article  id="nesting-and-heirarchy">
+
+<ul>
+<li>students within schools</li>
+<li>observations within people</li>
+<li>members witin family</li>
+<li>people within counties</li>
+<li>observations within people within classrooms within grades within schools within districts within counties within states <br></li>
+<li>ignoring this grouping leads to more unexplained variablity</li>
+<li>innacurate comparisons (e.g. simpson&#39;s paradox)</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example">
+
+<pre class = 'prettyprint lang-r'>library(tidyverse)</pre>
+
+<pre >## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: purrr</pre>
+
+<pre >## Conflicts with tidy packages ----------------------------------------------</pre>
+
+<pre >## %+%():    ggplot2, psych
+## alpha():  ggplot2, psych
+## filter(): dplyr, stats
+## lag():    dplyr, stats
+## recode(): dplyr, car
+## some():   purrr, car</pre>
+
+<pre class = 'prettyprint lang-r'>simp&lt;- frame_data(
+  ~ID, ~group,  ~test.score, ~study,
+1,1,5,1,
+2,1,7,3,
+3,2,4,1,
+4,2,6,4,
+5,3,3,3,
+6,3,5,5,
+7,4,2,4,
+8,4,4,6,
+9,5,1,5,
+10,5,3,7)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-2-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>could aggragate across group</h2></hgroup><article  id="could-aggragate-across-group">
+
+<pre class = 'prettyprint lang-r'>simp.1&lt;- frame_data(
+  ~ID, ~group,  ~test.score, ~study,
+  1,1,6,2,
+  2,2,5,3,
+  3,3,4,4,
+  4,4,3,5,
+  5,5,2,6)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-5-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>Aggregating is bad</h2></hgroup><article  id="aggregating-is-bad">
+
+<ul>
+<li>especially when it is easy to take into account</li>
+<li>Cons of aggregating:</li>
+<li>reduced power</li>
+<li>change the unit of analysis and thus change the meaning</li>
+<li>more difficult to make inferences</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Level 1 vs Level 2</h2></hgroup><article  id="level-1-vs-level-2">
+
+<ul>
+<li>Level 1 is the smallest unit of analysis<br/></li>
+<li><p>students, observations, family members</p></li>
+<li>Level 2 variables are constant for all level 1 variables that are “nested” in it<br/></li>
+<li><p>schools, counties, families, dyads</p></li>
+</ul></article></slide>
+
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!-- map slide visiblity events into shiny -->
+<script>
+  (function() {
+    if (window.jQuery) {
+       window.jQuery(document).on('slideleave', function(e) {
+         window.jQuery(e.target).trigger('hidden');
+      });
+       window.jQuery(document).on('slideenter', function(e) {
+         window.jQuery(e.target).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

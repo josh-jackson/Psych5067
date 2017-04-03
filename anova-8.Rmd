@@ -246,4 +246,51 @@ etaSquared(aov.1)
 - see: http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html   
 - cohen's f is used in pwr  
 
+## ANCOVA
+- ANalysis of COVAriance
+- aka regression with continuous and nominal variables
+- given a special name because of historical reasons
+- Typically, when someone says they are doing an ANCOVA they are focused on comparing group means adjusted for some covariate
+
+## ANCOVA
+
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  $$
+- how do you interpret each term?
+- what does this look like graphed? 
+- Would b1 and b2 change if we ran a model without GPA? 
+ 
+
+## 2 advantages of ANCOVA
+1. Greater power
+2. Adjustment of/controlling for covariate
+
+## ANCOVA power advantages
+- what is SS residual? 
+- how is it used to test your model? 
+- how can you decrease SS residual? 
+
+## ANCOVA power advantages
+- power does not necessarily incrase if covariate is related to the predictor (e.g., group). Why?
+- how do you find groups not related to the covariate?
+
+## Controlling for background covariates
+- in experimental designs, power should be main focus
+- in quasi-experimental designs, covariates should help "equate" groups
+
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  $$
+
+- note: you are now making a different prediction for each individual, rather than having the same prediction for all group members 
+- likely also reduces SS residual
+
+## Controlling for background covariates
+- controlling for is not a panacea
+- does not fix issues when random assigment is ineffective
+- could create greater group difference, no difference or even reverse the difference
+
+
+## Standard ANCOVA assumes no interactions; regression association is the same across groups
+
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  $$
+
+$$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA + b_{4}(D_{1} * GPA) + b_{5}(D_{2} * GPA)  $$
 
