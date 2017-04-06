@@ -43,4 +43,6 @@ navbar:
           href: logistic-7.html
         - text: "8. Factorial ANOVA"
           href: anova-8.html
+        - text: "9. RM & MLM"
+          href: RMANOVA_MLM-9.html
          

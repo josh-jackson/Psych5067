@@ -29,14 +29,6 @@
 
       // Author information
       presenters: [
-            {
-        name:  'Josh Jackson' ,
-        company: '',
-        gplus: '',
-        twitter: '',
-        www: '',
-        github: ''
-      },
             ]
     };
   </script>
@@ -93,7 +85,6 @@
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">4/2/2017</p>
           </hgroup>
   </slide>
 
@@ -133,44 +124,39 @@
 </ol>
 
 <ul>
-<li>When would we not want to do this?</li>
+<li>When would we <em>not</em> want to do this?</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>one way RM ANOVA</h2></hgroup><article  id="one-way-rm-anova">
 
 <ul>
 <li>extension of the paired t-test<br/></li>
-<li>E.g.</li>
+<li>E.g.
+
+<ul>
 <li>A measure before, during and after a intervention<br/></li>
 <li>A measure repeated across multiple conditions such as condition A, condition B, and condition C</li>
 <li>Three or more timepoints (seconds, years, grades)</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>traditional way (univariate) vs &quot;new&quot; way (multivariate)</h2></hgroup><article  id="traditional-way-univariate-vs-new-way-multivariate">
+
+<ul>
+<li>different ways to overcome violation of independence</li>
+<li>rabbit hole of complexity that is mostly not worth it&#8230;</li>
+<li>because there are newer and better methods</li>
+<li>nevertheless, let us persist</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>SS decomposition</h2></hgroup><article  id="ss-decomposition">
 
 <ul>
-<li>Compared to between subjects, SS residual (within) can be split into 2 different components</li>
-<li>RM ANOVA has SS Treatment, SS subjects, and SS residual</li>
-<li>SS residual still is our measure of leftover error variance</li>
-<li>Smaller error term compared to between subjects</li>
+<li>SS between: Deviation of subjects&#39; individual means (across treatments) from the grand mean.</li>
+<li>In the RMANOVA, this is largely uninteresting, as we can pretty much assume that ‘subjects differ’</li>
 </ul>
-
-</article></slide><slide class=''><hgroup><h2>NEW Assumptions</h2></hgroup><article  id="new-assumptions">
-
-<p>The sphericity assumption (also known as the homogeneity of variance of differences assumption) assumes the variance of the differences between any two levels of a within subjects factor (e.g,. condition, time) is equivalent</p>
-
-<ul>
-<li><p>Greenhouse-Geisser Epsilon,  Huynh-Feldt Epsil,  Pillai’s Trace,  Wilk’s Lambda,  Hotelling’s Trace, and  Roy’s Largest Root</p></li>
-<li><p>adjusts df if violated</p></li>
-</ul>
-
-</article></slide><slide class=''><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests">
-
-<p>If the overall ANOVA yields a significant result one can test: + pair-wise comparisons + linear, quadratic trends</p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
-
-<p>SS wine and SS subject are calculated with marginals.</p>
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -247,6 +233,37 @@
 </tr>
 </table>
 
+</article></slide><slide class=''><hgroup><h2>SS decomposition</h2></hgroup><article  id="ss-decomposition-1">
+
+<ul>
+<li>SS within: how subjects vary about their own mean</li>
+<li>Compared to between subjects ANOVA, SS residual (within) is split into 2 different components:</li>
+<li>SStreatment
+
+<ul>
+<li>As in between subjects ANOVA, comparison of treatment marignal means to grand mean</li>
+<li>now a part of the within subjects variation</li>
+</ul></li>
+<li>SS residual
+
+<ul>
+<li>Variability of individuals’ scores about their treatment mean</li>
+<li>SS residual still is our measure of leftover error variance</li>
+</ul></li>
+<li>Smaller error term compared to between subjects</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests">
+
+<ul>
+<li>If the overall ANOVA yields a significant result one can test:
+
+<ul>
+<li>pair-wise comparisons<br/></li>
+<li>linear, quadratic trends</li>
+</ul></li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>more complex RM designs</h2></hgroup><article  id="more-complex-rm-designs">
 
 <ul>
@@ -278,6 +295,30 @@
 
 </article></slide><slide class=''><hgroup><h2>Problems with RM ANOVA</h2></hgroup><article  id="problems-with-rm-anova">
 
+<p>The sphericity assumption (also known as the homogeneity of variance of differences assumption) assumes the variance of the differences between any two levels of a within subjects factor (e.g,. condition, time) is equivalent</p>
+
+<ul>
+<li><p>Greenhouse-Geisser Epsilon,  Huynh-Feldt Epsil,  Pillai’s Trace,  Wilk’s Lambda,  Hotelling’s Trace, and  Roy’s Largest Root</p></li>
+<li>adjusts df if violated</li>
+<li><p>but unlikely to find this with observational data</p></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Problems with RM ANOVA</h2></hgroup><article  id="problems-with-rm-anova-1">
+
+<ul>
+<li>complete data, no missing cases (unless you do RM MANOVA)</li>
+<li>spacing is same for all time points (and subjects)</li>
+<li>does not handle continuous data</li>
+<li>cannot do time varying covariates</li>
+<li>no individaul level trends</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>which is why you should use</h2></hgroup><article  id="which-is-why-you-should-use">
+
+<ul>
+<li>MLM, HLM, mixed models, mixed effects, random effects models, etc.</li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>Nesting and heirarchy</h2></hgroup><article  id="nesting-and-heirarchy">
 
 <ul>
@@ -292,22 +333,9 @@
 
 </article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example">
 
-<pre class = 'prettyprint lang-r'>library(tidyverse)</pre>
+<pre class = 'prettyprint lang-r'>library(tidyverse)
 
-<pre >## Loading tidyverse: tibble
-## Loading tidyverse: tidyr
-## Loading tidyverse: purrr</pre>
-
-<pre >## Conflicts with tidy packages ----------------------------------------------</pre>
-
-<pre >## %+%():    ggplot2, psych
-## alpha():  ggplot2, psych
-## filter(): dplyr, stats
-## lag():    dplyr, stats
-## recode(): dplyr, car
-## some():   purrr, car</pre>
-
-<pre class = 'prettyprint lang-r'>simp&lt;- frame_data(
+simp&lt;- frame_data(
   ~ID, ~group,  ~test.score, ~study,
 1,1,5,1,
 2,1,7,3,
@@ -334,7 +362,11 @@
   4,4,3,5,
   5,5,2,6)</pre>
 
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+
 <p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2>what about at the individual level?</h2></hgroup><article  id="what-about-at-the-individual-level">
 
 <p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-5-1.png" width="720" /></p>
 
@@ -342,19 +374,84 @@
 
 <ul>
 <li>especially when it is easy to take into account</li>
-<li>Cons of aggregating:</li>
-<li>reduced power</li>
-<li>change the unit of analysis and thus change the meaning</li>
+<li>Cons of aggregating:
+
+<ul>
+<li>reduced power<br/></li>
+<li>change the unit of analysis and thus change the meaning<br/></li>
 <li>more difficult to make inferences</li>
+</ul></li>
 </ul>
+
+</article></slide><slide class=''><hgroup><h2>fixed effects regression</h2></hgroup><article  id="fixed-effects-regression">
+
+<p>\[ \hat{Y}_{i} = b_{0} + b_{1}X_{1} + b_{2}X_{2} + b_{3}X_{3}+...\] - parameters are considered fixed, only one value<br/>- can be thought of as purposefully selected or existing values of a variable; can only generalize to particular values used</p>
+
+</article></slide><slide class=''><hgroup><h2>random effects</h2></hgroup><article  id="random-effects">
+
+<ul>
+<li>Can have random parameters that are not fixed, have many values</li>
+<li>2 ways to think about random
+
+<ul>
+<li>randomly selected from the population (e.g., stimuli are 3 random depression drugs)</li>
+<li>random as in they are sampled from some population and thus can vary<br/></li>
+</ul></li>
+<li>random effects means that your parameters are predicted and thus have error associated with them</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
+
+<ul>
+<li>Use fixed effects if
+
+<ul>
+<li>The groups are regarded as unique entities</li>
+<li>If group values are determined by researcher through design or manipulation</li>
+</ul></li>
+<li>Use random effects if
+
+<ul>
+<li>Groups regarded as a sample from a larger population</li>
+<li>Understand group differences</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4">
+
+<ul>
+<li>what does a random intercept mean?</li>
+</ul>
+
+<p>\[ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} \]</p>
+
+<p>\[ {\beta}_{0} = \gamma_{0} + u_{0j} \]</p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
+
+<ul>
+<li>what does a random intercept mean?</li>
+</ul>
+
+<p>\[ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} \]</p>
+
+<p>\[ {\beta}_{0j} = \gamma_{00} + u_{0j} \]</p>
+
+<p>\[ {Y}_{ij} = \gamma_{00} + u_{0j}  + \varepsilon_{ij} \]</p>
 
 </article></slide><slide class=''><hgroup><h2>Level 1 vs Level 2</h2></hgroup><article  id="level-1-vs-level-2">
 
 <ul>
-<li>Level 1 is the smallest unit of analysis<br/></li>
-<li><p>students, observations, family members</p></li>
-<li>Level 2 variables are constant for all level 1 variables that are “nested” in it<br/></li>
-<li><p>schools, counties, families, dyads</p></li>
+<li>Level 1 is the smallest unit of analysis
+
+<ul>
+<li>students, observations, family members</li>
+</ul></li>
+<li>Level 2 variables are constant for all level 1 variables that are “nested” in it
+
+<ul>
+<li>schools, counties, families, dyads</li>
+</ul></li>
 </ul></article></slide>
 
 
