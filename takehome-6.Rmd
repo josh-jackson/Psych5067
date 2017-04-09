@@ -1,0 +1,26 @@
+---
+title: "Factorial ANOVA take home"
+output: html_document
+---
+
+# Due: 4/24  
+<br>
+Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+<br>
+All take home projects are **INDEPENDENT** projects; do not share code or answers. 
+
+Data (project 6 data) come from experiment 1 in Maglio & Polman (2014) where they examined whether a person’s spatial orientation would affect perceived distance (Also see article). They conducted the experiment on a train. Half of the participants were headed eastbound whereas the other half were headed westbound. Participants were randomly assigned to indicate the subjective distance of one of the four subway stations.
+
+
+1. Run a factorial ANOVA using the study 1 dataset. Interpret the SSs and Fs. 
+
+2. What is the effect size associated with each of your terms? 
+
+3. Conduct post hoc tests that are appropriate. Interpret the one's you are most interested in.  
+
+4. Graph the results. Make sure you include error bars.
+
+5. Run a power analysis to determine sample size needed for the effect sizes found in #2. (note: pwr package is a nice one to use but be sure to use the glm/regression one as opposed to the one-way anova. Also, pay close attention to the effect size requested. Those more adventurous can perform simulations to calculate power)
+
+6. The power analysis in #5 does not give you the power for detecting differences between two cell means. Find the number of subjects needed for a effect size difference of .4 between two cell means.  
+

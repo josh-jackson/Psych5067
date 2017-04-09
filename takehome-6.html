@@ -11,7 +11,7 @@
 
 
 
-<title>Interactions take home</title>
+<title>Factorial ANOVA take home</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -265,28 +265,23 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Interactions take home</h1>
+<h1 class="title toc-ignore">Factorial ANOVA take home</h1>
 
 </div>
 
 
-<div id="due-43" class="section level1">
-<h1>Due: 4/3</h1>
+<div id="due-424" class="section level1">
+<h1>Due: 4/24</h1>
 <p><br> Turn in via email to: <a href="mailto:5067.u9ur91mgrfiruixi@u.box.com">5067.u9ur91mgrfiruixi@u.box.com</a> by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.<br />
 <br> All take home projects are <strong>INDEPENDENT</strong> projects; do not share code or answers.</p>
-<p>Using the dataset labeled th.project.4 answer the questions below. The dataset looks at happiness in college as a relationship to school success, friendship quality, SES and an intervention group (1= control, 2 = study skills training, 3 = social skills training). (Note that the variable names have spaces in them, which may make it tricky to work with. I suggest renaming the variables)</p>
+<p>Data (project 6 data) come from experiment 1 in Maglio &amp; Polman (2014) where they examined whether a person’s spatial orientation would affect perceived distance (Also see article). They conducted the experiment on a train. Half of the participants were headed eastbound whereas the other half were headed westbound. Participants were randomly assigned to indicate the subjective distance of one of the four subway stations.</p>
 <ol style="list-style-type: decimal">
-<li><p>Run a two-predictor regression predicting happiness by friendship and school success and the interaction between the two. What is your hypothesis for the interaction using the study variables? Describe in words what exactly the b1, b2 and b3 coefficients are telling us in this model.</p></li>
-<li><p>What is the mean and SD of your Y, X1, X2, and interaction variables that you used in your regression model?</p></li>
-<li><p>Compute 3 simple regression equations: The regression of Y on X at the mean of X2, at one standard deviation above the mean of X2 (X2hi) and at one standard deviation below the mean of X2 (X2low). Your choice of moderating variable depends on your hypothesis. Write out and interpret each of these simple slope equations.</p></li>
-<li><p>Graph the three simple slopes within a single plot.</p></li>
-<li><p>Are these simple slopes significantly different from 0?</p></li>
-<li><p>How much variance is explained by the interaction?</p></li>
-<li><p>Now run the interaction again, but instead of using the raw/unstandardized metric, use standardized variables. Compute simple slopes. Describe the differences between the models.</p></li>
-<li><p>Imagine you concerned at all with non-linear effects masquerading as an interaction? Test this concern.</p></li>
-<li><p>Run a new regression model, this time with the group variable interacting with friendship. Interpret each of the terms and provide a graph of the results.</p></li>
-<li><p>What are the estimated values for each of the groups in #9 controlling for friendship?</p></li>
-<li><p>Use a different coding scheme than the one you chose to use in #9. How did this change the results? Interpret each of the regression coefficients.</p></li>
+<li><p>Run a factorial ANOVA using the study 1 dataset. Interpret the SSs and Fs.</p></li>
+<li><p>What is the effect size associated with each of your terms?</p></li>
+<li><p>Conduct post hoc tests that are appropriate. Interpret the one’s you are most interested in.</p></li>
+<li><p>Graph the results. Make sure you include error bars.</p></li>
+<li><p>Run a power analysis to determine sample size needed for the effect sizes found in #2. (note: pwr package is a nice one to use but be sure to use the glm/regression one as opposed to the one-way anova. Also, pay close attention to the effect size requested. Those more adventurous can perform simulations to calculate power)</p></li>
+<li><p>The power analysis in #5 does not give you the power for detecting differences between two cell means. Find the number of subjects needed for a effect size difference of .4 between two cell means.</p></li>
 </ol>
 </div>
 

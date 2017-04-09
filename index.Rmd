@@ -4,7 +4,9 @@ output: html_document
 ---
   <br>
   
-- April 3rd - Take home projet $5 posted. Due 4/14  
+- April 9th - Factorial ANOVA take home #6 posted. Due 4/24
+
+- April 3rd - Take home projet #5 posted. Due 4/14  
 
 - March 16th - Take home project #4 posted. Due 4/3 
   
