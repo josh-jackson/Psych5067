@@ -33,7 +33,7 @@ output: ioslides_presentation
     + A measure repeated across multiple conditions such as condition A, condition B, and condition C
     + Three or more timepoints (seconds, years, grades)
   
-## traditional way (univariate) vs "new" way (multivariate)
+## traditional way (univariate) vs "new" way (multivariate MANOVA)
 
 - different ways to overcome violation of independence
 - rabbit hole of complexity that is mostly not worth it...
@@ -187,16 +187,34 @@ ggplot(simp, aes(x=study, y=test.score, group = group)) +
 ```
 
 ## Aggregating is bad
-- especially when it is easy to take into account
+- Especially when it is easy to take into account
 - Cons of aggregating:
     + reduced power  
     + change the unit of analysis and thus change the meaning  
     + more difficult to make inferences  
 
+## Examining the different levels is good
+
+- Extracurricular activity (EA) and time spent studying  
+
+- Between person H1: Do students who participate in EA 		                            			spend more time studying?   
+
+- Within person H2: When a student is participating in EA, do they spend more 			time studying (e.g., in-season vs. offseason)?   
+			        	
+- Notice that H1 and H2 are independent from one another!
+
 ## fixed effects regression
 $$ \hat{Y}_{i} = b_{0} + b_{1}X_{1} + b_{2}X_{2} + b_{3}X_{3}+...$$
 - parameters are considered fixed, only one value  
 - can be thought of as purposefully selected or existing values of a variable; can only generalize to particular values used
+
+## fixed effects regression
+- easy to see in ANOVA models
+
+$$ Y_{ij} = \mu + \alpha_{j}+e_{ij}$$
+- $\alpha$ is the fixed effect if group j
+- we don't randomly select treatments, paradigms are purposely created to test a particular manipulation
+- or are they? How many types of sad movies can you come up with? 
 
 ## random effects
 - Can have random parameters that are not fixed, have many values
@@ -222,20 +240,28 @@ $$ \hat{Y}_{i} = b_{0} + b_{1}X_{1} + b_{2}X_{2} + b_{3}X_{3}+...$$
   $$ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} $$
   
   
-  $$ {\beta}_{0} = \gamma_{0} + u_{0j} $$
+  $$ {\beta}_{0j} = \gamma_{00} + U_{0j} $$
   
-##
-- what does a random intercept mean?   
+## graphically what does this look like?  
 
+- different intercepts for each j unit, a random effects model.
+- repeated assessments of happiness taken daily for two weeks
+- think about this as per subject
+
+
+## putting it together  
 
   $$ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} $$
   
   
   
-  $$ {\beta}_{0j} = \gamma_{00} + u_{0j} $$  
   
-  $$ {Y}_{ij} = \gamma_{00} + u_{0j}  + \varepsilon_{ij} $$
+  $$ {\beta}_{0j} = \gamma_{00} + U_{0j}$$  
   
+  
+  
+  $$ {Y}_{ij} = \gamma_{00} + U_{0j}  + \varepsilon_{ij} $$
+  - two random terms, two types of variances
   
 ## Level 1 vs Level 2
 - Level 1 is the smallest unit of analysis  
@@ -244,5 +270,47 @@ $$ \hat{Y}_{i} = b_{0} + b_{1}X_{1} + b_{2}X_{2} + b_{3}X_{3}+...$$
 - Level 2 variables are constant for all level 1 variables that are “nested” in it  
     + schools, counties, families, dyads
   
-  
+## Random intercepts, fixed slopes
 
+Level 1:
+  $$ {Y}_{ij} = \beta_{0j}  + \beta_{1j}X_{1} + \varepsilon_{ij} $$
+  
+  
+ Level 2:  
+  $$ {\beta}_{0j} = \gamma_{00} + U_{0j}$$  
+  $$ {\beta}_{1j} = \gamma_{10} $$  
+  
+  
+Putting it together: 
+  $$ {Y}_{ij} = \gamma_{00} + \gamma_{10} (X_{1})+ U_{0j}  + \varepsilon_{ij} $$
+  
+## What does this look like graphically? 
+- think of as an individual regressoin for each person
+- because intercept are random, people can vary
+- because slopes are fixed, people have the same slope
+- two types of residuals: 
+    + represents how much variability there is in the intercepts from person to person 
+    + based on individual scores from their predicted score, much like around the regression line
+
+
+## Random intercepts, random slopes
+
+Level 1:
+  $$ {Y}_{ij} = \beta_{0j}  + \beta_{1j}(X_{1}) + \varepsilon_{ij} $$
+  
+  
+ Level 2:  
+  $$ {\beta}_{0j} = \gamma_{00} + U_{0j}$$  
+  $$ {\beta}_{1j} = \gamma_{10} + U_{1j} $$  
+  
+  
+Putting it together: 
+  $$ {Y}_{ij} = \gamma_{00} + \gamma_{10}(X_{1})+ U_{0j} + U_{1j} (X_{1})+ \varepsilon_{ij} $$
+  
+## adding covariates and predictors
+- can add covariates and predictors at level 1 and level 2
+  
+## Estimation
+
+- Maximum Likelihood
+- Bayesian Estimation

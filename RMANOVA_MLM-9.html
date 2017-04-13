@@ -140,7 +140,7 @@
 </ul></li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2>traditional way (univariate) vs &quot;new&quot; way (multivariate)</h2></hgroup><article  id="traditional-way-univariate-vs-new-way-multivariate">
+</article></slide><slide class=''><hgroup><h2>traditional way (univariate) vs &quot;new&quot; way (multivariate MANOVA)</h2></hgroup><article  id="traditional-way-univariate-vs-new-way-multivariate-manova">
 
 <ul>
 <li>different ways to overcome violation of independence</li>
@@ -373,7 +373,7 @@ simp&lt;- frame_data(
 </article></slide><slide class=''><hgroup><h2>Aggregating is bad</h2></hgroup><article  id="aggregating-is-bad">
 
 <ul>
-<li>especially when it is easy to take into account</li>
+<li>Especially when it is easy to take into account</li>
 <li>Cons of aggregating:
 
 <ul>
@@ -383,9 +383,26 @@ simp&lt;- frame_data(
 </ul></li>
 </ul>
 
+</article></slide><slide class=''><hgroup><h2>Examining the different levels is good</h2></hgroup><article  id="examining-the-different-levels-is-good">
+
+<ul>
+<li><p>Extracurricular activity (EA) and time spent studying</p></li>
+<li><p>Between person H1: Do students who participate in EA spend more time studying?</p></li>
+<li><p>Within person H2: When a student is participating in EA, do they spend more time studying (e.g., in-season vs. offseason)?</p></li>
+<li><p>Notice that H1 and H2 are independent from one another!</p></li>
+</ul>
+
 </article></slide><slide class=''><hgroup><h2>fixed effects regression</h2></hgroup><article  id="fixed-effects-regression">
 
 <p>\[ \hat{Y}_{i} = b_{0} + b_{1}X_{1} + b_{2}X_{2} + b_{3}X_{3}+...\] - parameters are considered fixed, only one value<br/>- can be thought of as purposefully selected or existing values of a variable; can only generalize to particular values used</p>
+
+</article></slide><slide class=''><hgroup><h2>fixed effects regression</h2></hgroup><article  id="fixed-effects-regression-1">
+
+<ul>
+<li>easy to see in ANOVA models</li>
+</ul>
+
+<p>\[ Y_{ij} = \mu + \alpha_{j}+e_{ij}\] - \(\alpha\) is the fixed effect if group j - we don&#39;t randomly select treatments, paradigms are purposely created to test a particular manipulation - or are they? How many types of sad movies can you come up with?</p>
 
 </article></slide><slide class=''><hgroup><h2>random effects</h2></hgroup><article  id="random-effects">
 
@@ -425,19 +442,23 @@ simp&lt;- frame_data(
 
 <p>\[ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} \]</p>
 
-<p>\[ {\beta}_{0} = \gamma_{0} + u_{0j} \]</p>
+<p>\[ {\beta}_{0j} = \gamma_{00} + U_{0j} \]</p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=''><hgroup><h2>graphically what does this look like?</h2></hgroup><article  id="graphically-what-does-this-look-like">
 
 <ul>
-<li>what does a random intercept mean?</li>
+<li>different intercepts for each j unit, a random effects model.</li>
+<li>repeated assessments of happiness taken daily for two weeks</li>
+<li>think about this as per subject</li>
 </ul>
+
+</article></slide><slide class=''><hgroup><h2>putting it together</h2></hgroup><article  id="putting-it-together">
 
 <p>\[ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} \]</p>
 
-<p>\[ {\beta}_{0j} = \gamma_{00} + u_{0j} \]</p>
+<p>\[ {\beta}_{0j} = \gamma_{00} + U_{0j}\]</p>
 
-<p>\[ {Y}_{ij} = \gamma_{00} + u_{0j}  + \varepsilon_{ij} \]</p>
+<p>\[ {Y}_{ij} = \gamma_{00} + U_{0j}  + \varepsilon_{ij} \] - two random terms, two types of variances</p>
 
 </article></slide><slide class=''><hgroup><h2>Level 1 vs Level 2</h2></hgroup><article  id="level-1-vs-level-2">
 
@@ -452,6 +473,49 @@ simp&lt;- frame_data(
 <ul>
 <li>schools, counties, families, dyads</li>
 </ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Random intercepts, fixed slopes</h2></hgroup><article  id="random-intercepts-fixed-slopes">
+
+<p>Level 1: \[ {Y}_{ij} = \beta_{0j}  + \beta_{1j}X_{1} + \varepsilon_{ij} \]</p>
+
+<p>Level 2:<br/>\[ {\beta}_{0j} = \gamma_{00} + U_{0j}\]<br/>\[ {\beta}_{1j} = \gamma_{10} \]</p>
+
+<p>Putting it together: \[ {Y}_{ij} = \gamma_{00} + \gamma_{10} (X_{1})+ U_{0j}  + \varepsilon_{ij} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>What does this look like graphically?</h2></hgroup><article  id="what-does-this-look-like-graphically">
+
+<ul>
+<li>think of as an individual regressoin for each person</li>
+<li>because intercept are random, people can vary</li>
+<li>because slopes are fixed, people have the same slope</li>
+<li>two types of residuals:
+
+<ul>
+<li>represents how much variability there is in the intercepts from person to person</li>
+<li>based on individual scores from their predicted score, much like around the regression line</li>
+</ul></li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Random intercepts, random slopes</h2></hgroup><article  id="random-intercepts-random-slopes">
+
+<p>Level 1: \[ {Y}_{ij} = \beta_{0j}  + \beta_{1j}(X_{1}) + \varepsilon_{ij} \]</p>
+
+<p>Level 2:<br/>\[ {\beta}_{0j} = \gamma_{00} + U_{0j}\]<br/>\[ {\beta}_{1j} = \gamma_{10} + U_{1j} \]</p>
+
+<p>Putting it together: \[ {Y}_{ij} = \gamma_{00} + \gamma_{10}(X_{1})+ U_{0j} + U_{1j} (X_{1})+ \varepsilon_{ij} \]</p>
+
+</article></slide><slide class=''><hgroup><h2>adding covariates and predictors</h2></hgroup><article  id="adding-covariates-and-predictors">
+
+<ul>
+<li>can add covariates and predictors at level 1 and level 2</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Estimation</h2></hgroup><article  id="estimation">
+
+<ul>
+<li>Maximum Likelihood</li>
+<li>Bayesian Estimation</li>
 </ul></article></slide>
 
 
