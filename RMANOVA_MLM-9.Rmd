@@ -231,7 +231,8 @@ $$ Y_{ij} = \mu + \alpha_{j}+e_{ij}$$
     
 - Use random effects if
     + Groups regarded as a sample from a larger population
-    + Understand group differences   
+    + Understand group differences
+    + Account for more 
     
 ##
 - what does a random intercept mean?   
@@ -314,3 +315,121 @@ Putting it together:
 
 - Maximum Likelihood
 - Bayesian Estimation
+
+## Data structure
+
+- long vs wide
+- use tidyr to convert
+
+## Unconditional model
+
+Level 1: 
+  $$ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} $$
+  
+Level 2:
+  $$ {\beta}_{0j} = \gamma_{00} + U_{0j}$$  
+  
+Combined:
+  $$ {Y}_{ij} = \gamma_{00} + U_{0j}  + \varepsilon_{ij} $$
+
+ICC: 
+
+$$\frac{U_{0j}}{U_{0j}+ \varepsilon_{ij}}$$
+
+- % variation between vs within group (person) variance
+
+
+
+## Example
+
+```{r, echo=FALSE, message=FALSE}
+alcohol1 <- read_csv("~/Box Sync/5067 Regression Spring/regression/alcohol1.txt")
+library(tidyverse)
+library(broom)
+alcohol1 <- as_tibble(alcohol1)
+```
+
+
+```{r}
+alcohol1
+```
+
+##
+```{r, message=FALSE, eval=FALSE}
+library(lme4)
+model.1 <- lmer(alcuse~ 1 + (1 | id), data = alcohol1)
+summary(model.1)
+```
+##
+```{r, message=FALSE, echo=FALSE}
+library(lme4)
+model.1 <- lmer(alcuse~ 1 + (1 | id), data = alcohol1)
+summary(model.1)
+```
+
+##
+```{r, eval=FALSE}
+alcohol1$time <- alcohol1$age -14 
+model.2 <- lmer(alcuse ~ time + (1| id), data = alcohol1)
+summary(model.2)
+```
+##
+```{r, echo=FALSE}
+alcohol1$time <- alcohol1$age -14 
+model.2 <- lmer(alcuse ~ time + (1 | id), data = alcohol1)
+summary(model.2)
+```
+
+
+
+## 
+
+```{r, eval=FALSE}
+model.3 <- lmer(alcuse ~ time + (1 + time| id), data = alcohol1)
+summary(model.3)
+
+## Fixed effects are outside of the parenthesis 
+## and the random effects are inside
+```
+
+##
+```{r, echo=FALSE}
+alcohol1$time <- alcohol1$age -14 
+model.3 <- lmer(alcuse ~ time + (1 + time| id), data = alcohol1)
+summary(model.3)
+```
+
+##
+```{r, message=FALSE, eval=FALSE}
+library(lmerTest)
+summary(model.3)
+
+```
+
+##
+```{r, message=FALSE, echo=FALSE}
+
+library(lmerTest)
+summary(model.3)
+
+```
+
+
+##
+```{r, message=FALSE, eval=FALSE}
+model.4 <- lmer(alcuse~ time + coa + coa*time + (time | id), data = alcohol1)
+summary(model.4)
+```
+
+##
+```{r, message=FALSE, echo=FALSE}
+model.4 <- lmer(alcuse~ time + coa + coa*time + (time | id), data = alcohol1)
+summary(model.4)
+```
+
+##
+
+```{r}
+tidy(model.4)
+```
+

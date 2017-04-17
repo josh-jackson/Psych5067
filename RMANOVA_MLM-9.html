@@ -431,6 +431,7 @@ simp&lt;- frame_data(
 <ul>
 <li>Groups regarded as a sample from a larger population</li>
 <li>Understand group differences</li>
+<li>Account for more</li>
 </ul></li>
 </ul>
 
@@ -516,7 +517,233 @@ simp&lt;- frame_data(
 <ul>
 <li>Maximum Likelihood</li>
 <li>Bayesian Estimation</li>
-</ul></article></slide>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Data structure</h2></hgroup><article  id="data-structure">
+
+<ul>
+<li>long vs wide</li>
+<li>use tidyr to convert</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Unconditional model</h2></hgroup><article  id="unconditional-model">
+
+<p>Level 1: \[ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} \]</p>
+
+<p>Level 2: \[ {\beta}_{0j} = \gamma_{00} + U_{0j}\]</p>
+
+<p>Combined: \[ {Y}_{ij} = \gamma_{00} + U_{0j}  + \varepsilon_{ij} \]</p>
+
+<p>ICC:</p>
+
+<p>\[\frac{U_{0j}}{U_{0j}+ \varepsilon_{ij}}\]</p>
+
+<ul>
+<li>% variation between vs within group (person) variance</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Example</h2></hgroup><article  id="example-1">
+
+<pre class = 'prettyprint lang-r'>alcohol1</pre>
+
+<pre >## # A tibble: 246 × 9
+##       id   age   coa  male age_14   alcuse      peer      cpeer  ccoa
+##    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;  &lt;int&gt;    &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt;
+## 1      1    14     1     0      0 1.732051 1.2649111  0.2469111 0.549
+## 2      1    15     1     0      1 2.000000 1.2649111  0.2469111 0.549
+## 3      1    16     1     0      2 2.000000 1.2649111  0.2469111 0.549
+## 4      2    14     1     1      0 0.000000 0.8944272 -0.1235728 0.549
+## 5      2    15     1     1      1 0.000000 0.8944272 -0.1235728 0.549
+## 6      2    16     1     1      2 1.000000 0.8944272 -0.1235728 0.549
+## 7      3    14     1     1      0 1.000000 0.8944272 -0.1235728 0.549
+## 8      3    15     1     1      1 2.000000 0.8944272 -0.1235728 0.549
+## 9      3    16     1     1      2 3.316625 0.8944272 -0.1235728 0.549
+## 10     4    14     1     1      0 0.000000 1.7888544  0.7708544 0.549
+## # ... with 236 more rows</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
+
+<pre class = 'prettyprint lang-r'>library(lme4)
+model.1 &lt;- lmer(alcuse~ 1 + (1 | id), data = alcohol1)
+summary(model.1)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-6">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: alcuse ~ 1 + (1 | id)
+##    Data: alcohol1
+## 
+## REML criterion at convergence: 673
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.8892 -0.3079 -0.3029  0.6111  2.8562 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  id       (Intercept) 0.5731   0.7571  
+##  Residual             0.5617   0.7495  
+## Number of obs: 246, groups:  id, 82
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   0.9220     0.0963   9.574</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
+
+<pre class = 'prettyprint lang-r'>alcohol1$time &lt;- alcohol1$age -14 
+model.2 &lt;- lmer(alcuse ~ time + (1| id), data = alcohol1)
+summary(model.2)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: alcuse ~ time + (1 | id)
+##    Data: alcohol1
+## 
+## REML criterion at convergence: 654.1
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.19816 -0.66940  0.03001  0.44728  2.66167 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  id       (Intercept) 0.5966   0.7724  
+##  Residual             0.4915   0.7011  
+## Number of obs: 246, groups:  id, 82
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  0.65130    0.11077   5.880
+## time         0.27065    0.05474   4.944
+## 
+## Correlation of Fixed Effects:
+##      (Intr)
+## time -0.494</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-9">
+
+<pre class = 'prettyprint lang-r'>model.3 &lt;- lmer(alcuse ~ time + (1 + time| id), data = alcohol1)
+summary(model.3)
+
+## Fixed effects are outside of the parenthesis 
+## and the random effects are inside</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: alcuse ~ time + (1 + time | id)
+##    Data: alcohol1
+## 
+## REML criterion at convergence: 643.2
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.48287 -0.37933 -0.07858  0.38876  2.49284 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev. Corr 
+##  id       (Intercept) 0.6355   0.7972        
+##           time        0.1552   0.3939   -0.23
+##  Residual             0.3373   0.5808        
+## Number of obs: 246, groups:  id, 82
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  0.65130    0.10573   6.160
+## time         0.27065    0.06284   4.307
+## 
+## Correlation of Fixed Effects:
+##      (Intr)
+## time -0.441</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
+
+<pre class = 'prettyprint lang-r'>library(lmerTest)
+summary(model.3)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: alcuse ~ time + (1 + time | id)
+##    Data: alcohol1
+## 
+## REML criterion at convergence: 643.2
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.48287 -0.37933 -0.07858  0.38876  2.49284 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev. Corr 
+##  id       (Intercept) 0.6355   0.7972        
+##           time        0.1552   0.3939   -0.23
+##  Residual             0.3373   0.5808        
+## Number of obs: 246, groups:  id, 82
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  0.65130    0.10573   6.160
+## time         0.27065    0.06284   4.307
+## 
+## Correlation of Fixed Effects:
+##      (Intr)
+## time -0.441</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
+
+<pre class = 'prettyprint lang-r'>model.4 &lt;- lmer(alcuse~ time + coa + coa*time + (time | id), data = alcohol1)
+summary(model.4)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
+
+<pre >## Linear mixed model fit by REML t-tests use Satterthwaite approximations
+##   to degrees of freedom [lmerMod]
+## Formula: alcuse ~ time + coa + coa * time + (time | id)
+##    Data: alcohol1
+## 
+## REML criterion at convergence: 631.9
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.5522 -0.3827 -0.1063  0.3585  2.3708 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev. Corr 
+##  id       (Intercept) 0.5068   0.7119        
+##           time        0.1586   0.3982   -0.23
+##  Residual             0.3373   0.5808        
+## Number of obs: 246, groups:  id, 82
+## 
+## Fixed effects:
+##             Estimate Std. Error       df t value Pr(&gt;|t|)    
+## (Intercept)  0.31595    0.13232 80.00000   2.388 0.019307 *  
+## time         0.29296    0.08527 80.00000   3.435 0.000941 ***
+## coa          0.74321    0.19698 80.00000   3.773 0.000308 ***
+## time:coa    -0.04943    0.12695 80.00000  -0.389 0.698034    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##          (Intr) time   coa   
+## time     -0.460              
+## coa      -0.672  0.309       
+## time:coa  0.309 -0.672 -0.460</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
+
+<pre class = 'prettyprint lang-r'>tidy(model.4)</pre>
+
+<pre >##                      term    estimate  std.error  statistic    group
+## 1             (Intercept)  0.31595172 0.13231891  2.3878047    fixed
+## 2                    time  0.29295517 0.08527403  3.4354557    fixed
+## 3                     coa  0.74321203 0.19698266  3.7729821    fixed
+## 4                time:coa -0.04942994 0.12694713 -0.3893742    fixed
+## 5       sd_(Intercept).id  0.71189636         NA         NA       id
+## 6              sd_time.id  0.39821932         NA         NA       id
+## 7 cor_(Intercept).time.id -0.22943387         NA         NA       id
+## 8 sd_Observation.Residual  0.58076865         NA         NA Residual</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
