@@ -591,11 +591,38 @@ summary(model.1)</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
 
+<pre class = 'prettyprint lang-r'>library(reghelper)</pre>
+
+<pre >## 
+## Attaching package: &#39;reghelper&#39;</pre>
+
+<pre >## The following object is masked from &#39;package:psych&#39;:
+## 
+##     ICC</pre>
+
+<pre >## The following object is masked from &#39;package:base&#39;:
+## 
+##     beta</pre>
+
+<pre class = 'prettyprint lang-r'>ICC(model.1)</pre>
+
+<pre >## [1] 0.5050172</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
+
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.lmer(model.1, facet.grid = FALSE, 
+          sort = &quot;sort.all&quot;)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-9">
+
 <pre class = 'prettyprint lang-r'>alcohol1$time &lt;- alcohol1$age -14 
 model.2 &lt;- lmer(alcuse ~ time + (1| id), data = alcohol1)
 summary(model.2)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
 
 <pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: alcuse ~ time + (1 | id)
@@ -622,7 +649,15 @@ summary(model.2)</pre>
 ##      (Intr)
 ## time -0.494</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-9">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
+
+<pre class = 'prettyprint lang-r'>sjp.lmer(model.2, type=&quot;fe&quot;)</pre>
+
+<pre >## Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
 
 <pre class = 'prettyprint lang-r'>model.3 &lt;- lmer(alcuse ~ time + (1 + time| id), data = alcohol1)
 summary(model.3)
@@ -630,7 +665,7 @@ summary(model.3)
 ## Fixed effects are outside of the parenthesis 
 ## and the random effects are inside</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
 
 <pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: alcuse ~ time + (1 + time | id)
@@ -658,45 +693,39 @@ summary(model.3)
 ##      (Intr)
 ## time -0.441</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
 
 <pre class = 'prettyprint lang-r'>library(lmerTest)
 summary(model.3)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
 
-<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
-## Formula: alcuse ~ time + (1 + time | id)
-##    Data: alcohol1
-## 
-## REML criterion at convergence: 643.2
-## 
-## Scaled residuals: 
-##      Min       1Q   Median       3Q      Max 
-## -2.48287 -0.37933 -0.07858  0.38876  2.49284 
-## 
-## Random effects:
-##  Groups   Name        Variance Std.Dev. Corr 
-##  id       (Intercept) 0.6355   0.7972        
-##           time        0.1552   0.3939   -0.23
-##  Residual             0.3373   0.5808        
-## Number of obs: 246, groups:  id, 82
-## 
-## Fixed effects:
-##             Estimate Std. Error t value
-## (Intercept)  0.65130    0.10573   6.160
-## time         0.27065    0.06284   4.307
-## 
-## Correlation of Fixed Effects:
-##      (Intr)
-## time -0.441</pre>
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.lmer(model.3, 
+          sort = &quot;sort.all&quot;)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
+<pre >## Sorting each group of random intercept (&#39;sort.all&#39;) is not possible when &#39;facet.grid = TRUE&#39;.
+## Sorting each group of random intercept (&#39;sort.all&#39;) is not possible when &#39;facet.grid = TRUE&#39;.</pre>
+
+<pre >## Plotting random effects...</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-18-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-16">
+
+<pre class = 'prettyprint lang-r'>ggplot(alcohol1,
+   aes(x = time, y = alcuse, group = id)) + stat_smooth(method = &quot;lm&quot;, se = FALSE)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-19-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-17">
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-18">
 
 <pre class = 'prettyprint lang-r'>model.4 &lt;- lmer(alcuse~ time + coa + coa*time + (time | id), data = alcohol1)
 summary(model.4)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-19">
 
 <pre >## Linear mixed model fit by REML t-tests use Satterthwaite approximations
 ##   to degrees of freedom [lmerMod]
@@ -731,7 +760,7 @@ summary(model.4)</pre>
 ## coa      -0.672  0.309       
 ## time:coa  0.309 -0.672 -0.460</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-20">
 
 <pre class = 'prettyprint lang-r'>tidy(model.4)</pre>
 
@@ -743,7 +772,57 @@ summary(model.4)</pre>
 ## 5       sd_(Intercept).id  0.71189636         NA         NA       id
 ## 6              sd_time.id  0.39821932         NA         NA       id
 ## 7 cor_(Intercept).time.id -0.22943387         NA         NA       id
-## 8 sd_Observation.Residual  0.58076865         NA         NA Residual</pre></article></slide>
+## 8 sd_Observation.Residual  0.58076865         NA         NA Residual</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-21">
+
+<pre class = 'prettyprint lang-r'>example &lt;- sleepstudy %&gt;%
+  mutate(A = ifelse(Days &lt; 5, -1, 1)) %&gt;%
+  select(Subject, A, Reaction)
+example$A &lt;- as.factor(example$A)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-22">
+
+<pre class = 'prettyprint lang-r'>ex.1 &lt;- lmer(Reaction ~ A + (1|Subject), data = example)
+summary(ex.1)</pre>
+
+<pre >## Linear mixed model fit by REML t-tests use Satterthwaite approximations
+##   to degrees of freedom [lmerMod]
+## Formula: Reaction ~ A + (1 | Subject)
+##    Data: example
+## 
+## REML criterion at convergence: 1813.8
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.5154 -0.6952  0.0217  0.6144  3.5380 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Subject  (Intercept) 1358     36.85   
+##  Residual             1163     34.11   
+## Number of obs: 180, groups:  Subject, 18
+## 
+## Fixed effects:
+##             Estimate Std. Error      df t value Pr(&gt;|t|)    
+## (Intercept)  271.630      9.400  19.780   28.90   &lt;2e-16 ***
+## A1            53.755      5.085 161.010   10.57   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Correlation of Fixed Effects:
+##    (Intr)
+## A1 -0.270</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-23">
+
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.lmer(ex.1, facet.grid = FALSE,
+          sort = &quot;sort.all&quot;)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-27-1.png" width="720" /></p></article></slide>
 
 
   <slide class="backdrop"></slide>

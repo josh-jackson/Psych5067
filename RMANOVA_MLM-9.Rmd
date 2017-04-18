@@ -368,19 +368,35 @@ summary(model.1)
 ```
 
 ##
+```{r}
+library(reghelper)
+ICC(model.1)
+```
+
+## 
+```{r, message = FALSE}
+library(sjPlot)
+sjp.lmer(model.1, facet.grid = FALSE, 
+          sort = "sort.all")
+```
+
+
+
+
+
+##
 ```{r, eval=FALSE}
 alcohol1$time <- alcohol1$age -14 
 model.2 <- lmer(alcuse ~ time + (1| id), data = alcohol1)
 summary(model.2)
 ```
+
+
 ##
-```{r, echo=FALSE}
-alcohol1$time <- alcohol1$age -14 
-model.2 <- lmer(alcuse ~ time + (1 | id), data = alcohol1)
-summary(model.2)
+
+```{r}
+sjp.lmer(model.2, type="fe")
 ```
-
-
 
 ## 
 
@@ -406,13 +422,27 @@ summary(model.3)
 
 ```
 
+## 
+```{r}
+library(sjPlot)
+sjp.lmer(model.3, facet.grid = FALSE,
+          sort = "sort.all")
+```
+
+##
+```{r}
+ggplot(alcohol1,
+   aes(x = time, y = alcuse, group = id)) + stat_smooth(method = "lm", se = FALSE)
+```
+
+
+
 ##
 ```{r, message=FALSE, echo=FALSE}
 
 library(lmerTest)
-summary(model.3)
-
 ```
+
 
 
 ##
@@ -433,3 +463,31 @@ summary(model.4)
 tidy(model.4)
 ```
 
+## 
+```{r}
+example <- sleepstudy %>%
+  mutate(A = ifelse(Days < 5, -1, 1)) %>%
+  select(Subject, A, Reaction)
+example$A <- as.factor(example$A)
+```
+
+```{r, echo = FALSE}
+base_plot <- ggplot(example, aes(x = A, y = Reaction)) +
+  stat_summary(aes(fill = factor(A)), fun.y = mean, geom = "bar", color = "black") 
+base_plot
+```
+
+##
+
+```{r}
+ex.1 <- lmer(Reaction ~ A + (1|Subject), data = example)
+summary(ex.1)
+```
+
+
+## 
+```{r}
+library(sjPlot)
+sjp.lmer(ex.1, facet.grid = FALSE,
+          sort = "sort.all")
+```
