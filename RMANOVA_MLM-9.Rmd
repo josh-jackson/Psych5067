@@ -369,6 +369,7 @@ summary(model.1)
 ```
 
 ##
+<<<<<<< HEAD
 ```{r, message=FALSE}
 library(reghelper)
 ICC(model.1)
@@ -381,6 +382,19 @@ sjp.lmer(model.1, facet.grid = FALSE,
           sort = "sort.all")
 ```
 
+=======
+```{r}
+library(reghelper)
+ICC(model.1)
+```
+
+## 
+```{r, message = FALSE}
+library(sjPlot)
+sjp.lmer(model.1, facet.grid = FALSE, 
+          sort = "sort.all")
+```
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 
 
@@ -394,6 +408,15 @@ summary(model.2)
 ```
 
 
+<<<<<<< HEAD
+=======
+##
+
+```{r}
+sjp.lmer(model.2, type="fe")
+```
+
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 ## 
 
 ```{r, eval=FALSE}

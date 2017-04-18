@@ -591,8 +591,26 @@ summary(model.1)</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
 
+<<<<<<< HEAD
 <pre class = 'prettyprint lang-r'>library(reghelper)
 ICC(model.1)</pre>
+
+<pre >## [1] 0.5050172</pre>
+=======
+<pre class = 'prettyprint lang-r'>library(reghelper)</pre>
+
+<pre >## 
+## Attaching package: &#39;reghelper&#39;</pre>
+
+<pre >## The following object is masked from &#39;package:psych&#39;:
+## 
+##     ICC</pre>
+
+<pre >## The following object is masked from &#39;package:base&#39;:
+## 
+##     beta</pre>
+
+<pre class = 'prettyprint lang-r'>ICC(model.1)</pre>
 
 <pre >## [1] 0.5050172</pre>
 
@@ -609,6 +627,29 @@ sjp.lmer(model.1, facet.grid = FALSE,
 <pre class = 'prettyprint lang-r'>alcohol1$time &lt;- alcohol1$age -14 
 model.2 &lt;- lmer(alcuse ~ time + (1| id), data = alcohol1)
 summary(model.2)</pre>
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
+
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.lmer(model.1, facet.grid = FALSE, 
+          sort = &quot;sort.all&quot;)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
+
+<pre class = 'prettyprint lang-r'>sjp.lmer(model.2, type=&quot;fe&quot;)</pre>
+
+<pre >## Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
+
+<pre class = 'prettyprint lang-r'>alcohol1$time &lt;- alcohol1$age -14 
+model.2 &lt;- lmer(alcuse ~ time + (1| id), data = alcohol1)
+summary(model.2)</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
 
@@ -618,7 +659,11 @@ summary(model.3)
 ## Fixed effects are outside of the parenthesis 
 ## and the random effects are inside</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: alcuse ~ time + (1 + time | id)
@@ -646,11 +691,16 @@ summary(model.3)
 ##      (Intr)
 ## time -0.441</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>library(lmerTest)
 summary(model.3)</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
 
 <pre class = 'prettyprint lang-r'>library(sjPlot)
@@ -660,20 +710,48 @@ sjp.lmer(model.3, facet.grid = FALSE,
 <p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-16-1.png" width="720" /><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-16-2.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
+
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.lmer(model.3, 
+          sort = &quot;sort.all&quot;)</pre>
+
+<pre >## Sorting each group of random intercept (&#39;sort.all&#39;) is not possible when &#39;facet.grid = TRUE&#39;.
+## Sorting each group of random intercept (&#39;sort.all&#39;) is not possible when &#39;facet.grid = TRUE&#39;.</pre>
+
+<pre >## Plotting random effects...</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-18-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-16">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>ggplot(alcohol1,
    aes(x = time, y = alcuse, group = id)) + stat_smooth(method = &quot;lm&quot;, se = FALSE)</pre>
 
+<<<<<<< HEAD
 <p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-17-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-16">
+=======
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-19-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-17">
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-18">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>model.4 &lt;- lmer(alcuse~ time + coa + coa*time + (time | id), data = alcohol1)
 summary(model.4)</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-17">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-19">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre >## Linear mixed model fit by REML t-tests use Satterthwaite approximations
 ##   to degrees of freedom [lmerMod]
@@ -708,7 +786,11 @@ summary(model.4)</pre>
 ## coa      -0.672  0.309       
 ## time:coa  0.309 -0.672 -0.460</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-18">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-20">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>tidy(model.4)</pre>
 
@@ -722,16 +804,26 @@ summary(model.4)</pre>
 ## 7 cor_(Intercept).time.id -0.22943387         NA         NA       id
 ## 8 sd_Observation.Residual  0.58076865         NA         NA Residual</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-19">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-21">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>example &lt;- sleepstudy %&gt;%
   mutate(A = ifelse(Days &lt; 5, -1, 1)) %&gt;%
   select(Subject, A, Reaction)
 example$A &lt;- as.factor(example$A)</pre>
 
+<<<<<<< HEAD
 <p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-23-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-20">
+=======
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-22">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>ex.1 &lt;- lmer(Reaction ~ A + (1|Subject), data = example)
 summary(ex.1)</pre>
@@ -764,13 +856,21 @@ summary(ex.1)</pre>
 ##    (Intr)
 ## A1 -0.270</pre>
 
+<<<<<<< HEAD
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-21">
+=======
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-23">
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>library(sjPlot)
 sjp.lmer(ex.1, facet.grid = FALSE,
           sort = &quot;sort.all&quot;)</pre>
 
+<<<<<<< HEAD
 <p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p></article></slide>
+=======
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-27-1.png" width="720" /></p></article></slide>
+>>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 
   <slide class="backdrop"></slide>
