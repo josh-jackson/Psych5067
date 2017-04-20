@@ -591,26 +591,8 @@ summary(model.1)</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
 
-<<<<<<< HEAD
 <pre class = 'prettyprint lang-r'>library(reghelper)
 ICC(model.1)</pre>
-
-<pre >## [1] 0.5050172</pre>
-=======
-<pre class = 'prettyprint lang-r'>library(reghelper)</pre>
-
-<pre >## 
-## Attaching package: &#39;reghelper&#39;</pre>
-
-<pre >## The following object is masked from &#39;package:psych&#39;:
-## 
-##     ICC</pre>
-
-<pre >## The following object is masked from &#39;package:base&#39;:
-## 
-##     beta</pre>
-
-<pre class = 'prettyprint lang-r'>ICC(model.1)</pre>
 
 <pre >## [1] 0.5050172</pre>
 
@@ -624,34 +606,43 @@ sjp.lmer(model.1, facet.grid = FALSE,
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-9">
 
-<pre class = 'prettyprint lang-r'>alcohol1$time &lt;- alcohol1$age -14 
-model.2 &lt;- lmer(alcuse ~ time + (1| id), data = alcohol1)
+<pre class = 'prettyprint lang-r'>model.2 &lt;- lmer(alcuse ~ time + (1 | id), data = alcohol1)
 summary(model.2)</pre>
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
 
-<pre class = 'prettyprint lang-r'>library(sjPlot)
-sjp.lmer(model.1, facet.grid = FALSE, 
-          sort = &quot;sort.all&quot;)</pre>
-
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: alcuse ~ time + (1 | id)
+##    Data: alcohol1
+## 
+## REML criterion at convergence: 654.1
+## 
+## Scaled residuals: 
+##      Min       1Q   Median       3Q      Max 
+## -2.19816 -0.66940  0.03001  0.44728  2.66167 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  id       (Intercept) 0.5966   0.7724  
+##  Residual             0.4915   0.7011  
+## Number of obs: 246, groups:  id, 82
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  0.65130    0.11077   5.880
+## time         0.27065    0.05474   4.944
+## 
+## Correlation of Fixed Effects:
+##      (Intr)
+## time -0.494</pre>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
 
 <pre class = 'prettyprint lang-r'>sjp.lmer(model.2, type=&quot;fe&quot;)</pre>
 
-<pre >## Computing p-values via Kenward-Roger approximation. Use `p.kr = FALSE` if computation takes too long.</pre>
-
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-15-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
-
-<pre class = 'prettyprint lang-r'>alcohol1$time &lt;- alcohol1$age -14 
-model.2 &lt;- lmer(alcuse ~ time + (1| id), data = alcohol1)
-summary(model.2)</pre>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-10">
 
 <pre class = 'prettyprint lang-r'>model.3 &lt;- lmer(alcuse ~ time + (1 + time| id), data = alcohol1)
 summary(model.3)
@@ -659,11 +650,7 @@ summary(model.3)
 ## Fixed effects are outside of the parenthesis 
 ## and the random effects are inside</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-11">
-=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: alcuse ~ time + (1 + time | id)
@@ -691,70 +678,38 @@ summary(model.3)
 ##      (Intr)
 ## time -0.441</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-12">
-=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>library(lmerTest)
 summary(model.3)</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-13">
-
-<pre class = 'prettyprint lang-r'>library(sjPlot)
-sjp.lmer(model.3, facet.grid = FALSE,
-          sort = &quot;sort.all&quot;)</pre>
-
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-16-1.png" width="720" /><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-16-2.png" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-14">
-=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
 
-<pre class = 'prettyprint lang-r'>library(sjPlot)
-sjp.lmer(model.3, 
-          sort = &quot;sort.all&quot;)</pre>
-
-<pre >## Sorting each group of random intercept (&#39;sort.all&#39;) is not possible when &#39;facet.grid = TRUE&#39;.
-## Sorting each group of random intercept (&#39;sort.all&#39;) is not possible when &#39;facet.grid = TRUE&#39;.</pre>
+<pre class = 'prettyprint lang-r'>sjp.lmer(model.3)</pre>
 
 <pre >## Plotting random effects...</pre>
 
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-18-1.png" width="720" /></p>
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-19-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-16">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>ggplot(alcohol1,
    aes(x = time, y = alcuse, group = id)) + stat_smooth(method = &quot;lm&quot;, se = FALSE)</pre>
 
-<<<<<<< HEAD
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-17-1.png" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-15">
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-16">
-=======
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-19-1.png" width="720" /></p>
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-20-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-17">
 
+<pre class = 'prettyprint lang-r'>library(lmerTest)</pre>
+
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-18">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>model.4 &lt;- lmer(alcuse~ time + coa + coa*time + (time | id), data = alcohol1)
 summary(model.4)</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-17">
-=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-19">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
-<pre >## Linear mixed model fit by REML t-tests use Satterthwaite approximations
-##   to degrees of freedom [lmerMod]
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: alcuse ~ time + coa + coa * time + (time | id)
 ##    Data: alcohol1
 ## 
@@ -772,13 +727,11 @@ summary(model.4)</pre>
 ## Number of obs: 246, groups:  id, 82
 ## 
 ## Fixed effects:
-##             Estimate Std. Error       df t value Pr(&gt;|t|)    
-## (Intercept)  0.31595    0.13232 80.00000   2.388 0.019307 *  
-## time         0.29296    0.08527 80.00000   3.435 0.000941 ***
-## coa          0.74321    0.19698 80.00000   3.773 0.000308 ***
-## time:coa    -0.04943    0.12695 80.00000  -0.389 0.698034    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+##             Estimate Std. Error t value
+## (Intercept)  0.31595    0.13232   2.388
+## time         0.29296    0.08527   3.435
+## coa          0.74321    0.19698   3.773
+## time:coa    -0.04943    0.12695  -0.389
 ## 
 ## Correlation of Fixed Effects:
 ##          (Intr) time   coa   
@@ -786,11 +739,7 @@ summary(model.4)</pre>
 ## coa      -0.672  0.309       
 ## time:coa  0.309 -0.672 -0.460</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-18">
-=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-20">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
 <pre class = 'prettyprint lang-r'>tidy(model.4)</pre>
 
@@ -804,32 +753,247 @@ summary(model.4)</pre>
 ## 7 cor_(Intercept).time.id -0.22943387         NA         NA       id
 ## 8 sd_Observation.Residual  0.58076865         NA         NA Residual</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-19">
-=======
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-21">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
-<pre class = 'prettyprint lang-r'>example &lt;- sleepstudy %&gt;%
-  mutate(A = ifelse(Days &lt; 5, -1, 1)) %&gt;%
-  select(Subject, A, Reaction)
-example$A &lt;- as.factor(example$A)</pre>
-
-<<<<<<< HEAD
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-23-1.png" width="720" /></p>
-
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-20">
-=======
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
+<p>what does this look like for group effects?</p>
 
 </article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-22">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
 
-<pre class = 'prettyprint lang-r'>ex.1 &lt;- lmer(Reaction ~ A + (1|Subject), data = example)
+<pre class = 'prettyprint lang-r'>example</pre>
+
+<pre >##     Subject  A Reaction
+## 1       308 -1 249.5600
+## 2       308 -1 258.7047
+## 3       308 -1 250.8006
+## 4       308 -1 321.4398
+## 5       308 -1 356.8519
+## 6       308  1 414.6901
+## 7       308  1 382.2038
+## 8       308  1 290.1486
+## 9       308  1 430.5853
+## 10      308  1 466.3535
+## 11      309 -1 222.7339
+## 12      309 -1 205.2658
+## 13      309 -1 202.9778
+## 14      309 -1 204.7070
+## 15      309 -1 207.7161
+## 16      309  1 215.9618
+## 17      309  1 213.6303
+## 18      309  1 217.7272
+## 19      309  1 224.2957
+## 20      309  1 237.3142
+## 21      310 -1 199.0539
+## 22      310 -1 194.3322
+## 23      310 -1 234.3200
+## 24      310 -1 232.8416
+## 25      310 -1 229.3074
+## 26      310  1 220.4579
+## 27      310  1 235.4208
+## 28      310  1 255.7511
+## 29      310  1 261.0125
+## 30      310  1 247.5153
+## 31      330 -1 321.5426
+## 32      330 -1 300.4002
+## 33      330 -1 283.8565
+## 34      330 -1 285.1330
+## 35      330 -1 285.7973
+## 36      330  1 297.5855
+## 37      330  1 280.2396
+## 38      330  1 318.2613
+## 39      330  1 305.3495
+## 40      330  1 354.0487
+## 41      331 -1 287.6079
+## 42      331 -1 285.0000
+## 43      331 -1 301.8206
+## 44      331 -1 320.1153
+## 45      331 -1 316.2773
+## 46      331  1 293.3187
+## 47      331  1 290.0750
+## 48      331  1 334.8177
+## 49      331  1 293.7469
+## 50      331  1 371.5811
+## 51      332 -1 234.8606
+## 52      332 -1 242.8118
+## 53      332 -1 272.9613
+## 54      332 -1 309.7688
+## 55      332 -1 317.4629
+## 56      332  1 309.9976
+## 57      332  1 454.1619
+## 58      332  1 346.8311
+## 59      332  1 330.3003
+## 60      332  1 253.8644
+## 61      333 -1 283.8424
+## 62      333 -1 289.5550
+## 63      333 -1 276.7693
+## 64      333 -1 299.8097
+## 65      333 -1 297.1710
+## 66      333  1 338.1665
+## 67      333  1 332.0265
+## 68      333  1 348.8399
+## 69      333  1 333.3600
+## 70      333  1 362.0428
+## 71      334 -1 265.4731
+## 72      334 -1 276.2012
+## 73      334 -1 243.3647
+## 74      334 -1 254.6723
+## 75      334 -1 279.0244
+## 76      334  1 284.1912
+## 77      334  1 305.5248
+## 78      334  1 331.5229
+## 79      334  1 335.7469
+## 80      334  1 377.2990
+## 81      335 -1 241.6083
+## 82      335 -1 273.9472
+## 83      335 -1 254.4907
+## 84      335 -1 270.8021
+## 85      335 -1 251.4519
+## 86      335  1 254.6362
+## 87      335  1 245.4523
+## 88      335  1 235.3110
+## 89      335  1 235.7541
+## 90      335  1 237.2466
+## 91      337 -1 312.3666
+## 92      337 -1 313.8058
+## 93      337 -1 291.6112
+## 94      337 -1 346.1222
+## 95      337 -1 365.7324
+## 96      337  1 391.8385
+## 97      337  1 404.2601
+## 98      337  1 416.6923
+## 99      337  1 455.8643
+## 100     337  1 458.9167
+## 101     349 -1 236.1032
+## 102     349 -1 230.3167
+## 103     349 -1 238.9256
+## 104     349 -1 254.9220
+## 105     349 -1 250.7103
+## 106     349  1 269.7744
+## 107     349  1 281.5648
+## 108     349  1 308.1020
+## 109     349  1 336.2806
+## 110     349  1 351.6451
+## 111     350 -1 256.2968
+## 112     350 -1 243.4543
+## 113     350 -1 256.2046
+## 114     350 -1 255.5271
+## 115     350 -1 268.9165
+## 116     350  1 329.7247
+## 117     350  1 379.4445
+## 118     350  1 362.9184
+## 119     350  1 394.4872
+## 120     350  1 389.0527
+## 121     351 -1 250.5265
+## 122     351 -1 300.0576
+## 123     351 -1 269.8939
+## 124     351 -1 280.5891
+## 125     351 -1 271.8274
+## 126     351  1 304.6336
+## 127     351  1 287.7466
+## 128     351  1 266.5955
+## 129     351  1 321.5418
+## 130     351  1 347.5655
+## 131     352 -1 221.6771
+## 132     352 -1 298.1939
+## 133     352 -1 326.8785
+## 134     352 -1 346.8555
+## 135     352 -1 348.7402
+## 136     352  1 352.8287
+## 137     352  1 354.4266
+## 138     352  1 360.4326
+## 139     352  1 375.6406
+## 140     352  1 388.5417
+## 141     369 -1 271.9235
+## 142     369 -1 268.4369
+## 143     369 -1 257.2424
+## 144     369 -1 277.6566
+## 145     369 -1 314.8222
+## 146     369  1 317.2135
+## 147     369  1 298.1353
+## 148     369  1 348.1229
+## 149     369  1 340.2800
+## 150     369  1 366.5131
+## 151     370 -1 225.2640
+## 152     370 -1 234.5235
+## 153     370 -1 238.9008
+## 154     370 -1 240.4730
+## 155     370 -1 267.5373
+## 156     370  1 344.1937
+## 157     370  1 281.1481
+## 158     370  1 347.5855
+## 159     370  1 365.1630
+## 160     370  1 372.2288
+## 161     371 -1 269.8804
+## 162     371 -1 272.4428
+## 163     371 -1 277.8989
+## 164     371 -1 281.7895
+## 165     371 -1 279.1705
+## 166     371  1 284.5120
+## 167     371  1 259.2658
+## 168     371  1 304.6306
+## 169     371  1 350.7807
+## 170     371  1 369.4692
+## 171     372 -1 269.4117
+## 172     372 -1 273.4740
+## 173     372 -1 297.5968
+## 174     372 -1 310.6316
+## 175     372 -1 287.1726
+## 176     372  1 329.6076
+## 177     372  1 334.4818
+## 178     372  1 343.2199
+## 179     372  1 369.1417
+## 180     372  1 364.1236</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-27-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-23">
+
+<pre class = 'prettyprint lang-r'>ex.1 &lt;- lmer(Reaction ~ 1 + (1|Subject), data = example)
 summary(ex.1)</pre>
 
-<pre >## Linear mixed model fit by REML t-tests use Satterthwaite approximations
-##   to degrees of freedom [lmerMod]
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-24">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: Reaction ~ 1 + (1 | Subject)
+##    Data: example
+## 
+## REML criterion at convergence: 1904.3
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -2.4983 -0.5501 -0.1476  0.5123  3.3446 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev.
+##  Subject  (Intercept) 1278     35.75   
+##  Residual             1959     44.26   
+## Number of obs: 180, groups:  Subject, 18
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)   298.51       9.05   32.98</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-25">
+
+<pre class = 'prettyprint lang-r'>library(sjPlot)
+sjp.lmer(ex.1, facet.grid = FALSE,
+          sort = &quot;sort.all&quot;)</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-30-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-26">
+
+<pre class = 'prettyprint lang-r'>reghelper::ICC(ex.1)</pre>
+
+<pre >## [1] 0.3948896</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-27">
+
+<pre class = 'prettyprint lang-r'>ex.2 &lt;- lmer(Reaction ~ A + (1|Subject), data = example)
+summary(ex.2)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-28">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: Reaction ~ A + (1 | Subject)
 ##    Data: example
 ## 
@@ -846,31 +1010,87 @@ summary(ex.1)</pre>
 ## Number of obs: 180, groups:  Subject, 18
 ## 
 ## Fixed effects:
-##             Estimate Std. Error      df t value Pr(&gt;|t|)    
-## (Intercept)  271.630      9.400  19.780   28.90   &lt;2e-16 ***
-## A1            53.755      5.085 161.010   10.57   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+##             Estimate Std. Error t value
+## (Intercept)  271.630      9.400   28.90
+## A1            53.755      5.085   10.57
 ## 
 ## Correlation of Fixed Effects:
 ##    (Intr)
 ## A1 -0.270</pre>
 
-<<<<<<< HEAD
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-21">
-=======
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-23">
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-29">
 
-<pre class = 'prettyprint lang-r'>library(sjPlot)
-sjp.lmer(ex.1, facet.grid = FALSE,
-          sort = &quot;sort.all&quot;)</pre>
+<p>how can you think of this graphically?</p>
 
-<<<<<<< HEAD
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p></article></slide>
-=======
-<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-27-1.png" width="720" /></p></article></slide>
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-30">
+
+<pre class = 'prettyprint lang-r'>ex.3 &lt;- lmer(Reaction ~ A + (A|Subject), data = example)
+summary(ex.3)</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-31">
+
+<pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: Reaction ~ A + (A | Subject)
+##    Data: example
+## 
+## REML criterion at convergence: 1787.3
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.3007 -0.5091 -0.0314  0.4551  3.8663 
+## 
+## Random effects:
+##  Groups   Name        Variance Std.Dev. Corr
+##  Subject  (Intercept) 749.1    27.37        
+##           A1          975.3    31.23    0.46
+##  Residual             905.9    30.10        
+## Number of obs: 180, groups:  Subject, 18
+## 
+## Fixed effects:
+##             Estimate Std. Error t value
+## (Intercept)  271.630      7.189   37.78
+## A1            53.755      8.621    6.24
+## 
+## Correlation of Fixed Effects:
+##    (Intr)
+## A1 0.188</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-32">
+
+<pre class = 'prettyprint lang-r'>ranef(ex.3)</pre>
+
+<pre >## $Subject
+##     (Intercept)         A1
+## 308  21.7017693  42.407727
+## 309 -55.2429138 -44.640515
+## 310 -45.8929881 -33.269807
+## 330  11.6395169 -19.842088
+## 331  16.6578842 -18.864320
+## 332   4.6913134   7.716570
+## 333  13.5915312   4.514793
+## 334  -4.4328944   4.341514
+## 335 -22.2291063 -51.989519
+## 337  49.5023089  45.908933
+## 349 -20.2346493   1.492818
+## 350  -1.3749587  38.017575
+## 351  -1.6480955 -14.837968
+## 352  28.9500122  12.620995
+## 369   5.2872776   3.261775
+## 370 -15.1367314  24.262257
+## 371   0.7332725  -9.958518
+## 372  13.4374511   8.857780</pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-33">
+
+<pre class = 'prettyprint lang-r'>sjp.lmer(ex.3)</pre>
+
+<pre >## Plotting random effects...</pre>
+
+<p><img src="RMANOVA_MLM-9_files/figure-html/unnamed-chunk-37-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-34">
+
+<p>how can you think of this graphically?</p></article></slide>
 
 
   <slide class="backdrop"></slide>

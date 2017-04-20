@@ -180,6 +180,8 @@ simp.1<- frame_data(
 ## what about at the individual level? 
 
 ```{r, echo=FALSE}
+library(knitr)
+
 ggplot(simp, aes(x=study, y=test.score, group = group)) +
     geom_point() +   
     geom_smooth(method=lm,  
@@ -344,8 +346,10 @@ $$\frac{U_{0j}}{U_{0j}+ \varepsilon_{ij}}$$
 
 ```{r, echo=FALSE, message=FALSE}
 alcohol1 <- read_csv("~/Box Sync/5067 Regression Spring/regression/alcohol1.txt")
+
 library(tidyverse)
 library(broom)
+
 alcohol1 <- as_tibble(alcohol1)
 ```
 
@@ -369,7 +373,7 @@ summary(model.1)
 ```
 
 ##
-<<<<<<< HEAD
+
 ```{r, message=FALSE}
 library(reghelper)
 ICC(model.1)
@@ -382,41 +386,39 @@ sjp.lmer(model.1, facet.grid = FALSE,
           sort = "sort.all")
 ```
 
-=======
-```{r}
-library(reghelper)
-ICC(model.1)
-```
-
-## 
-```{r, message = FALSE}
-library(sjPlot)
-sjp.lmer(model.1, facet.grid = FALSE, 
-          sort = "sort.all")
-```
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
-
-
-
-
 
 ##
+```{r, echo=FALSE}
+alcohol1 <- alcohol1 %>% 
+  mutate(time = age-14) 
+
+```
+
+
 ```{r, eval=FALSE}
-alcohol1$time <- alcohol1$age -14 
-model.2 <- lmer(alcuse ~ time + (1| id), data = alcohol1)
+
+model.2 <- lmer(alcuse ~ time + (1 | id), data = alcohol1)
 summary(model.2)
 ```
 
 
-<<<<<<< HEAD
-=======
 ##
+```{r, echo=FALSE}
 
-```{r}
-sjp.lmer(model.2, type="fe")
+model.2 <- lmer(alcuse ~ time + (1 | id), data = alcohol1)
+summary(model.2)
 ```
 
->>>>>>> 780f7577a252270721a2bdb46a39555798d4bcf9
+
+##
+
+```{r, message=FALSE}
+
+sjp.lmer(model.2, type="fe")
+
+```
+
+
 ## 
 
 ```{r, eval=FALSE}
@@ -443,9 +445,7 @@ summary(model.3)
 
 ## 
 ```{r}
-library(sjPlot)
-sjp.lmer(model.3, facet.grid = FALSE,
-          sort = "sort.all")
+sjp.lmer(model.3)
 ```
 
 ##
@@ -457,7 +457,7 @@ ggplot(alcohol1,
 
 
 ##
-```{r, message=FALSE, echo=FALSE}
+```{r, message=FALSE, eval=FALSE}
 
 library(lmerTest)
 ```
@@ -483,12 +483,22 @@ tidy(model.4)
 ```
 
 ## 
-```{r}
+```{r, echo=FALSE}
 example <- sleepstudy %>%
   mutate(A = ifelse(Days < 5, -1, 1)) %>%
   select(Subject, A, Reaction)
 example$A <- as.factor(example$A)
+
 ```
+
+
+what does this look like for group effects? 
+
+##
+```{r}
+example
+```
+
 
 ```{r, echo = FALSE}
 base_plot <- ggplot(example, aes(x = A, y = Reaction)) +
@@ -496,13 +506,21 @@ base_plot <- ggplot(example, aes(x = A, y = Reaction)) +
 base_plot
 ```
 
+
+
 ##
 
-```{r}
-ex.1 <- lmer(Reaction ~ A + (1|Subject), data = example)
+```{r, eval=FALSE}
+ex.1 <- lmer(Reaction ~ 1 + (1|Subject), data = example)
 summary(ex.1)
 ```
 
+##
+
+```{r, echo=FALSE}
+ex.1 <- lmer(Reaction ~ 1 + (1|Subject), data = example)
+summary(ex.1)
+```
 
 ## 
 ```{r}
@@ -510,3 +528,54 @@ library(sjPlot)
 sjp.lmer(ex.1, facet.grid = FALSE,
           sort = "sort.all")
 ```
+
+
+##
+```{r}
+reghelper::ICC(ex.1)
+```
+
+##
+
+```{r, eval=FALSE}
+ex.2 <- lmer(Reaction ~ A + (1|Subject), data = example)
+summary(ex.2)
+```
+
+
+##
+
+```{r, echo=FALSE}
+ex.2 <- lmer(Reaction ~ A + (1|Subject), data = example)
+summary(ex.2)
+```
+
+## 
+how can you think of this graphically? 
+
+##
+
+```{r, eval=FALSE}
+ex.3 <- lmer(Reaction ~ A + (A|Subject), data = example)
+summary(ex.3)
+```
+
+##
+
+```{r, echo=FALSE}
+ex.3 <- lmer(Reaction ~ A + (A|Subject), data = example)
+summary(ex.3)
+```
+
+##
+```{r}
+ranef(ex.3)
+```
+
+##
+```{r}
+sjp.lmer(ex.3)
+```
+
+## 
+how can you think of this graphically?
