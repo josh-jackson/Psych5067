@@ -35,26 +35,94 @@ $$ p(A∣B)=\frac{p(B∣A) p(A)}{p(B)} $$
 
 ## How should we assess evidence?
 - If uncertainty is represented by probability, then can use Bayes' theorem:    
-$$ p(θ∣data) \propto {p(data∣θ)p(θ)}$$
+$$ p(θ∣data) \propto \frac{p(y\mid\theta)}{p(y)} \times p(\theta)$$
 - Beliefs after (posterior) is proportional to likelihood * prior
 <br>
 - prior: how sure we were that θ was true, before we observed the data D    
 - likelihood: the probability that you would have observed the data, if that hypothesis were true.  (kind of like a sampling distribution)  
+- p(y) is average likelihood, a scaling paramter. Usually intergral. 
 
 ## Binomial example ##
 
+- get 15 heads in 20 flips. Is this coin biased? 
 $$ p(k|θ) = \binom{n}{k}θ^{k}(1-θ)^{n-k} $$
-
-$$
-p(θ) = \left\{
-        \begin{array}{ll}
-            1, & 0\leq θ\leq1 \\
-            0, & otherwise
-        \end{array}
-    \right.
-$$
-
+- should our belief about θ change? 
+- what is our prior? 
 $$ θ \sim U(0,1) $$ 
+
+##
+
+```{r echo=FALSE}
+Y = 15
+N = 20
+```
+
+```{r echo=FALSE, warning=FALSE}
+
+priorcol=rgb(1,0,0,.7)
+postcol=rgb(0,0,1,.7)
+likecol = rgb(0,1,0,.7)
+
+a = 2
+b = 2
+
+xx = seq(0,1,len=100)
+
+priory = dbeta(xx,a,b)
+likey = dbinom(Y,N,xx)
+
+likeFunc <- function(theta,Y,N,alp,bet)
+  dbinom(Y,N,theta) * dbeta(theta,alp,bet)
+
+avgLike = integrate(likeFunc,0,1,Y=Y,N=N,alp=a,bet=b)[[1]]
+
+par(mfrow=c(1,2),las=1)
+
+plot(xx,priory,col=priorcol,ty='l',xlab=expression(theta),ylab="Prior density",yaxt='n',axes=FALSE,lwd=2)
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+axis(1)
+
+plot(xx,likey/avgLike,col=likecol,ty='l', ylab="Likelihood (relative to average)",xlab=expression(theta),axes=FALSE,lwd=2)
+abline(h=1,col=likecol,lty=2)
+axis(1)
+axis(2)
+
+optFunc = function(theta,Y,N,alp,bet,avgLike) dbinom(Y,N,theta)-avgLike
+
+lowerRoot = uniroot(optFunc, lower=0, upper=Y/N,Y=Y,N=N,alp=a,bet=b,avgLike=avgLike)$root
+
+upperRoot = uniroot(optFunc, lower=Y/N, upper=1,Y=Y,N=N,alp=a,bet=b,avgLike=avgLike)$root
+
+abline(v=c(lowerRoot,upperRoot),col="gray")
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+
+```
+
+##
+
+```{r echo=FALSE, warning=FALSE}
+
+posty = dbeta(xx,Y+a,N-Y+b)
+
+par(mfrow=c(1,2),las=1)
+
+plot(xx,likey/avgLike,col=likecol,ty='l', ylab="Likelihood (relative to average)",xlab=expression(theta),axes=FALSE,lwd=2)
+abline(h=1,col=likecol,lty=2)
+abline(v=c(lowerRoot,upperRoot),col="gray")
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+axis(1)
+axis(2)
+
+plot(xx,posty,col=postcol,ty='l',ylab="Prior/Posterior density",xlab=expression(theta),axes=FALSE,lwd=2)
+lines(xx,priory,col=priorcol,lwd=2)
+abline(v=c(lowerRoot,upperRoot),col="gray")
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+axis(1)
+```
 
 ## what does this look like in practice? 
 - a difficulty in all of these is to compute the posterior distribution  
@@ -124,9 +192,13 @@ library(shinystan)
 launch_shiny(b1) 
 ```
 
+##
+
 ```{r}
 pp_check(b1, re_formula = NA, type = "dens_overlay")
 ```
+
+##
 
 ```{r}
 pp_check(b1, type = "scatter_avg", nsamples = 100)

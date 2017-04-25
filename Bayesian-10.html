@@ -130,26 +130,28 @@
 </article></slide><slide class=''><hgroup><h2>How should we assess evidence?</h2></hgroup><article  id="how-should-we-assess-evidence">
 
 <ul>
-<li>If uncertainty is represented by probability, then can use Bayes&#39; theorem:<br/>\[ p(θ∣data) \propto {p(data∣θ)p(θ)}\]</li>
+<li>If uncertainty is represented by probability, then can use Bayes&#39; theorem:<br/>\[ p(θ∣data) \propto \frac{p(y\mid\theta)}{p(y)} \times p(\theta)\]</li>
 <li>Beliefs after (posterior) is proportional to likelihood * prior <br></li>
 <li>prior: how sure we were that θ was true, before we observed the data D<br/></li>
-<li>likelihood: the probability that you would have observed the data, if that hypothesis were true. (kind of like a sampling distribution)</li>
+<li>likelihood: the probability that you would have observed the data, if that hypothesis were true. (kind of like a sampling distribution)<br/></li>
+<li>p(y) is average likelihood, a scaling paramter. Usually intergral.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Binomial example</h2></hgroup><article  id="binomial-example">
 
-<p>\[ p(k|θ) = \binom{n}{k}θ^{k}(1-θ)^{n-k} \]</p>
+<ul>
+<li>get 15 heads in 20 flips. Is this coin biased? \[ p(k|θ) = \binom{n}{k}θ^{k}(1-θ)^{n-k} \]</li>
+<li>should our belief about θ change?</li>
+<li>what is our prior? \[ θ \sim U(0,1) \]</li>
+</ul>
 
-<p>\[
-p(θ) = \left\{
-        \begin{array}{ll}
-            1, &amp; 0\leq θ\leq1 \\
-            0, &amp; otherwise
-        \end{array}
-    \right.
-\]</p>
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
 
-<p>\[ θ \sim U(0,1) \]</p>
+<p><img src="Bayesian-10_files/figure-html/unnamed-chunk-2-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<p><img src="Bayesian-10_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>what does this look like in practice?</h2></hgroup><article  id="what-does-this-look-like-in-practice">
 
@@ -196,14 +198,14 @@ p(θ) = \left\{
 <li>get (average) predicted values and credible ranges around those values. See if actual data make sense given these predicted values</li>
 </ul>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <pre class = 'prettyprint lang-r'>library (brms)
 options (mc.cores=parallel::detectCores ()) # Run on multiple cores
 
 b1 &lt;- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-1">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
 
 <pre >##  Family: gaussian(identity) 
 ## Formula: alcuse ~ peer 
@@ -225,7 +227,7 @@ b1 &lt;- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)</pre>
 ## is a crude measure of effective sample size, and Rhat is the potential 
 ## scale reduction factor on split chains (at convergence, Rhat = 1).</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4">
 
 <pre class = 'prettyprint lang-r'>lm.1 &lt;- lm(alcuse ~ peer, data = alcohol1)
 summary(lm.1)</pre>
@@ -249,26 +251,30 @@ summary(lm.1)</pre>
 ## Multiple R-squared:  0.1723, Adjusted R-squared:  0.1689 
 ## F-statistic: 50.78 on 1 and 244 DF,  p-value: 1.162e-11</pre>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-3">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-5">
 
 <pre class = 'prettyprint lang-r'>plot(b1)</pre>
 
-<p><img src="Bayesian_files/figure-html/unnamed-chunk-5-1.png" width="720" /></p>
+<p><img src="Bayesian-10_files/figure-html/unnamed-chunk-8-1.png" width="720" /></p>
 
-</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-4">
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-6">
 
 <pre class = 'prettyprint lang-r'>library(shinystan)
 launch_shiny(b1) </pre>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-7">
 
 <pre class = 'prettyprint lang-r'>pp_check(b1, re_formula = NA, type = &quot;dens_overlay&quot;)</pre>
 
 <pre >## Using 10 posterior samples for ppc type &#39;dens_overlay&#39; by default.</pre>
 
-<p><img src="Bayesian_files/figure-html/unnamed-chunk-7-1.png" width="720" /></p>
+<p><img src="Bayesian-10_files/figure-html/unnamed-chunk-10-1.png" width="720" /></p>
+
+</article></slide><slide class=''><hgroup><h2></h2></hgroup><article  id="section-8">
 
 <pre class = 'prettyprint lang-r'>pp_check(b1, type = &quot;scatter_avg&quot;, nsamples = 100)</pre>
 
-<p><img src="Bayesian_files/figure-html/unnamed-chunk-8-1.png" width="720" /></p>
+<p><img src="Bayesian-10_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
 
 </article></slide><slide class=''><hgroup><h2>Bayes Factor</h2></hgroup><article  id="bayes-factor"></article></slide>
 
