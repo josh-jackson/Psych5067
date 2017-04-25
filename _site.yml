@@ -47,4 +47,6 @@ navbar:
           href: anova-8.html
         - text: "9. RM & MLM"
           href: RMANOVA_MLM-9.html
+        - text: "10. Bayesian"
+          href: Bayesian-10.html
          
