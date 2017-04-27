@@ -11,7 +11,7 @@
 
 
 
-<title>Takehome-2 Regression</title>
+<title>MLM takehome-7</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -271,23 +271,36 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Takehome-2 Regression</h1>
+<h1 class="title toc-ignore">MLM takehome-7</h1>
 
 </div>
 
 
-<div id="due-220" class="section level1">
-<h1>Due: 2/20</h1>
+<div id="due-58" class="section level1">
+<h1>Due: 5/8</h1>
 <p><br> Turn in via email to: <a href="mailto:5067.u9ur91mgrfiruixi@u.box.com">5067.u9ur91mgrfiruixi@u.box.com</a> by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.<br />
 <br> All take home projects are <strong>INDEPENDENT</strong> projects; do not share code or answers.</p>
+<p><br> Use MLM data found on the data page. These data come from a longitudinal study of negative and positive affect at four different waves across four years. Each are measured on a scale from 1-5. Additionally there are two categorical variables: gender (females = 0) and mood intervention (watch bambi 100x = 1, waitlist control = 0). Using the data answer the following questions.</p>
 <ol style="list-style-type: decimal">
-<li><p>You are given data with two variables, X and Y. The mean of X is 3 with a SD .75. Y has a mean of 4 with a SD of .50. The correlation between the two is r = .3. “By hand”, calculate the regression equation. Interpret each term in equation.</p></li>
-<li><p>“By hand,” convert the equation in #1 into a standardized regression equation. Interpet each term.</p></li>
-<li><p>Using the Anxiety data, run a regression with Social Support (X) predicting Anxiety(Y). Then run a regression with Anxiety predicting Social Support. What is similar and different between these analyese?</p></li>
-<li><p>Graph the regression with Anxiety as the DV. Include confidence band and raw data points.</p></li>
-<li><p>For the regression of Social Support predicting Anxiety, correlate the fitted values with: a. residuals, b. Social Support, C., Anxiety. Explain the patterns you find.</p></li>
-<li><p>Using the anova function for the model output, calculate R squared “by hand”. Interpret.</p></li>
-<li><p>Using the group variable to predict Support, run a regression using 1) group “factor” labels, 2) transforming the factor scores into dummy codes with tx = 0, 3) dummy codes with control = 0 and 4) effect codes. Interpret each term and then compare and contrast results across models.</p></li>
+<li>The data is currently in wide format. For multi-level models we need it in a long format where each wave of observation is in a single row. Use tidyr to convert from wide to long for the positve affect repeated measure. For simplicity you can delete the negative affect measures and the group measure as we will not be using them.</li>
+</ol>
+<p>Give we didn’t cover this in class, I will give you most of the answer on how to complete #1. In addition to the gather command from tidyr, you will need to create a wave or time variable for each repeated assessment. I used the seperate function to take the variable name and used that to create a time variable. Your overall code should look something like this:</p>
+<pre class="r"><code>mlm_data_long &lt;- mlm_data %&gt;%
+gather( you need to figure this part out) %&gt;% 
+separate(time, c(&#39;omit&#39;, &#39;wave&#39; ), sep=&quot;T&quot;) %&gt;% 
+  select(-omit)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>What is the correlation across waves? (This is a good sanity check to make sure you have your data together correctly. Note: be careful about what dataset you use to run this correlation)</p></li>
+<li><p>Run the unconditional MLM model ie a random intercept only model. What is your ICC for this model? What does this ICC mean?</p></li>
+<li><p>Introduce a time/wave predictor. Does positive affect change with time? Interpret your results. Did you need to do anything to the variables to make the parameters more interpretable?</p></li>
+<li><p>Introduce a random slope component. Using the ANOVA function, does this model fit better than a non-random slope you fit in #4?</p></li>
+<li><p>Use gender to predict your random intercept and random slope.</p></li>
+<li><p>BONUS QUESTION WITH POINTS EQUIVALENT TO 5% on your overall takehome grade. I.e., if you have a 90% on your takehomes you will now have a 95%. Given that takehomes are worth 40% of your final grade this is equivalent to 2% of your final grade! Does not hurt your grade if you do not do this problem.</p></li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Using ggplot (no packages), produce a plot that has all individaul slopes/trajectories. AKA a spaghetti plot. In addition to all individaul trajectories provide a line for the overall AVERAGE trajectory.</p></li>
+<li><p>plot the predicted curves for the two gender groups</p></li>
+<li><p>run a repeated measures ANOVA. Compare and contrast the results you got for 1-6 with the repeated measure ANOVA results.</p></li>
 </ol>
 </div>
 
