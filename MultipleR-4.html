@@ -228,20 +228,8 @@ summary(mr.model)</pre>
 ## Multiple R-squared:  0.3556, Adjusted R-squared:  0.3444 
 ## F-statistic: 31.73 on 2 and 115 DF,  p-value: 1.062e-11</pre>
 
-<pre class = 'prettyprint lang-r'>library(psych)</pre>
-
-<pre >## 
-## Attaching package: &#39;psych&#39;</pre>
-
-<pre >## The following object is masked from &#39;package:car&#39;:
-## 
-##     logit</pre>
-
-<pre >## The following objects are masked from &#39;package:ggplot2&#39;:
-## 
-##     %+%, alpha</pre>
-
-<pre class = 'prettyprint lang-r'>describe(Multipleregression$Stress)</pre>
+<pre class = 'prettyprint lang-r'>library(psych)
+describe(Multipleregression$Stress)</pre>
 
 <pre >##    vars   n mean   sd median trimmed  mad  min   max range skew kurtosis
 ## X1    1 118 5.18 1.88   5.27    5.17 1.65 0.62 10.32  9.71 0.08     0.22

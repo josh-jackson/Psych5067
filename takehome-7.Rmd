@@ -1,0 +1,42 @@
+---
+title: "MLM takehome-7"
+output: html_document
+---
+
+# Due: 5/8  
+<br>
+Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+<br>
+All take home projects are **INDEPENDENT** projects; do not share code or answers. 
+
+<br>
+Use MLM data found on the data page. These data come from a longitudinal study of negative and positive affect at four different waves across four years. Each are measured on a scale from 1-5. Additionally there are two categorical variables: gender (females = 0) and mood intervention (watch bambi 100x = 1, waitlist control = 0). Using the data answer the following questions. 
+
+1. The data is currently in wide format. For multi-level models we need it in a long format where each wave of observation is in a single row. Use tidyr to convert from wide to long for the positve affect repeated measure. For simplicity you can delete the negative affect measures and the group measure as we will not be using them. 
+
+Give we didn't cover this in class, I will give you most of the answer on how to complete #1. In addition to the gather command from tidyr, you will need to create a wave or time variable for each repeated assessment. I used the seperate function to take the variable name and used that to create a time variable. Your overall code should look something like this: 
+
+```{r, eval=FALSE}
+mlm_data_long <- mlm_data %>%
+gather( you need to figure this part out) %>% 
+separate(time, c('omit', 'wave' ), sep="T") %>% 
+  select(-omit)
+```
+
+2. What is the correlation across waves? (This is a good sanity check to make sure you have your data together correctly. Note: be careful about what dataset you use to run this correlation)
+
+3. Run the unconditional MLM model ie a random intercept only model. What is your ICC for this model? What does this ICC mean? 
+
+4. Introduce a time/wave predictor. Does positive affect change with time? Interpret your results. Did you need to do anything to the variables to make the parameters more interpretable? 
+
+5. Introduce a random slope component. Using the ANOVA function, does this model fit better than a non-random slope you fit in #4? 
+
+6. Use gender to predict your random intercept and random slope. 
+
+7. BONUS QUESTION WITH POINTS EQUIVALENT TO 5% on your overall takehome grade. I.e., if you have a 90% on your takehomes you will now have a 95%. Given that takehomes are worth 40% of your final grade this is equivalent to 2% of your final grade! Does not hurt your grade if you do not do this problem. 
+
+a) Using ggplot (no packages), produce a plot that has all individaul slopes/trajectories. AKA a spaghetti plot. In addition to all individaul trajectories provide a line for the overall AVERAGE trajectory. 
+
+b) plot the predicted curves for the two gender groups
+
+c) run a repeated measures ANOVA. Compare and contrast the results you got for 1-6 with the repeated measure ANOVA results. 
