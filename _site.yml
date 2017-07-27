@@ -51,4 +51,6 @@ navbar:
           href: RMANOVA_MLM-9.html
         - text: "10. Bayesian"
           href: Bayesian-10.html
+        - text: "Iagg"
+          href: Iagg.html
          
