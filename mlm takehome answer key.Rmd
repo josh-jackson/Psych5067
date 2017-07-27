@@ -60,5 +60,6 @@ summary(model.3)
 ```{r}
 model.4 <- lmer(PA ~ wave*gender + ( wave | ID), data = mlm_data_long)
 summary(model.4)
+anova(model.4)
 ```
 
