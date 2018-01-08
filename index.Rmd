@@ -6,5 +6,5 @@ output: html_document
 
   <br>
 
-- January - website is live! 
+- January 8th - website is live! Take a peak at the syllabus. First two lectures are updated (1. intro and 2. glm), the rest are works in progress. 
 

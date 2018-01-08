@@ -6,7 +6,7 @@ output: ioslides_presentation
 ## Models
 
 - Thus far you have used t-tests and ANOVA to test basic questions about the world. 
-- These types of test can be thought of as a model of the "way the world works"
+- These types of tests can be thought of as a model for how you think "the world works"
 - Our DV (hereforth Y) is what we are trying to understand
 - We hypothesize it has some relationship with your IV(s) (hereforth Xs)  
 
@@ -30,10 +30,10 @@ a.1 <- aov(y ~ x, data=d)
 
 ## General linear model
 
-- What we are trying to understand is due to how we think the world works  
 - This model (equation) can be very simple as in a treatment/control experiment  
 - It can be very complex in terms of trying to understand something like academic achievment  
-- The majority of our models fall under the umbrella of a general(ized) linear model 
+- The majority of our models fall under the umbrella of a general(ized) linear model
+- All models imply our theory about how the data are generated (ie how the world works)
 
 
 ## Regression Equation
@@ -50,9 +50,9 @@ $$Y = X\beta + U$$
 - Y/DV/Outcome/Response/Criterion
 - X/IV/Predictor/Explanatory variable
 - Regression coeffiecent (weight)/b/b*/$\beta$
-- Intercept bo/$\beta_{0}$
+- Intercept bo/ $\beta_{0}$
 - Error/Residuals $e$
-- Predictions$\hat{Y}$
+- Predictions  $\hat{Y}$
 
 
 ## Example
@@ -216,6 +216,7 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 - Common to use for ANOVA models b/c ANOVA models are usually specified this way
 
 ## Effect coding
+Consists of -1, 1s (And zeros for more than 2 groups)
 
 1. The intercept is the "grand mean" or "mean of means" if unbalanced
 2. The regression coefficient represens the group "effect" ie the difference from the grand mean
@@ -260,7 +261,7 @@ $\hat{Y}_{i}$ = 2.6506410 + -0.4811057*$X_{i}$
 
 ## Predictions
 - We want our predictions to be close to our actual data (Y)
-- The difference between the actual data and our our prediction($ Y_{i}  - \hat{Y}_{i} = e $) is the residual, how far we are "off"
+- The difference between the actual data and our our prediction ($Y_{i}  - \hat{Y}_{i} = e$) is the residual, how far we are "off"
 
 
 ## lm objects
@@ -302,7 +303,7 @@ $$ \hat{Y}_{i} = b_{0} + b_{1}X_{i}  $$
 $$ Y_{i} = b_{0} + b_{1}X_{i} +e_{i}  $$
 $$ Y_{i}  - \hat{Y}_{i} = e $$
 
-- can you plug in numbers and calculate subject 3's predicted and residual scores without using lm object data? 
+- can you plug in numbers and calculate subject 3's predicted and residual scores without explicitly asking for lm object residuals and fitted values? 
 
 ## residuals
 ```{r, echo=FALSE, warnings=FALSE, message=FALSE, include = FALSE}
@@ -378,7 +379,7 @@ $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 ## What can we do with this? 
 
 - Last semester you did omnibus F tests
-- What hypothesis does the omnibus F test, generally? 
+- What hypothesis does the omnibus F test test, generally? 
 
 $$ s_{y}^2 = s_{regression}^2 + s_{residual}^2 $$
 
@@ -413,3 +414,9 @@ tidy(anova(mod.1))
 tidy(anova(mod.1.eff))
 ```
 
+## summary
+
+- We are using linear models to do the exact same tests as t tests and ANOVAs
+- It is the exact same because t-tests and ANOVAs are part of the general linear model
+- Looking at these tests through the perspective of a linear model provides us with all the information you got from last semester - and more! 
+- Plus it provides a more systematic way at 1) building and testing your theoretical model and 2) comparing between alternative theoretical models

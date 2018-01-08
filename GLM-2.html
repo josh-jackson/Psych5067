@@ -92,7 +92,7 @@
 
 <ul>
 <li>Thus far you have used t-tests and ANOVA to test basic questions about the world.</li>
-<li>These types of test can be thought of as a model of the &quot;way the world works&quot;</li>
+<li>These types of tests can be thought of as a model for how you think &quot;the world works&quot;</li>
 <li>Our DV (hereforth Y) is what we are trying to understand</li>
 <li><p>We hypothesize it has some relationship with your IV(s) (hereforth Xs)</p></li>
 <li><p>Y = X</p></li>
@@ -113,10 +113,10 @@
 </article></slide><slide class=""><hgroup><h2>General linear model</h2></hgroup><article  id="general-linear-model">
 
 <ul>
-<li>What we are trying to understand is due to how we think the world works<br/></li>
 <li>This model (equation) can be very simple as in a treatment/control experiment<br/></li>
 <li>It can be very complex in terms of trying to understand something like academic achievment<br/></li>
 <li>The majority of our models fall under the umbrella of a general(ized) linear model</li>
+<li>All models imply our theory about how the data are generated (ie how the world works)</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Regression Equation</h2></hgroup><article  id="regression-equation">
@@ -135,9 +135,9 @@
 <li>Y/DV/Outcome/Response/Criterion</li>
 <li>X/IV/Predictor/Explanatory variable</li>
 <li>Regression coeffiecent (weight)/b/b*/\(\beta\)</li>
-<li>Intercept bo/\(\beta_{0}\)</li>
+<li>Intercept bo/ \(\beta_{0}\)</li>
 <li>Error/Residuals \(e\)</li>
-<li>Predictions\(\hat{Y}\)</li>
+<li>Predictions \(\hat{Y}\)</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  id="example">
@@ -1470,6 +1470,8 @@ tidy(mod.1.eff)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Effect coding</h2></hgroup><article  id="effect-coding-3">
 
+<p>Consists of -1, 1s (And zeros for more than 2 groups)</p>
+
 <ol>
 <li>The intercept is the &quot;grand mean&quot; or &quot;mean of means&quot; if unbalanced</li>
 <li>The regression coefficient represens the group &quot;effect&quot; ie the difference from the grand mean</li>
@@ -1525,7 +1527,7 @@ tidy(mod.1.eff)</pre>
 
 <ul>
 <li>We want our predictions to be close to our actual data (Y)</li>
-<li>The difference between the actual data and our our prediction($ Y_{i} - _{i} = e $) is the residual, how far we are &quot;off&quot;</li>
+<li>The difference between the actual data and our our prediction (\(Y_{i} - \hat{Y}_{i} = e\)) is the residual, how far we are &quot;off&quot;</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>lm objects</h2></hgroup><article  id="lm-objects">
@@ -2022,7 +2024,7 @@ summary(mod.1)$sigma      # se of the model</pre>
 <p>\[ Y_{i} = b_{0} + b_{1}X_{i} +e_{i}  \] \[ Y_{i}  - \hat{Y}_{i} = e \]</p>
 
 <ul>
-<li>can you plug in numbers and calculate subject 3&#39;s predicted and residual scores without using lm object data?</li>
+<li>can you plug in numbers and calculate subject 3&#39;s predicted and residual scores without explicitly asking for lm object residuals and fitted values?</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>residuals</h2></hgroup><article  id="residuals">
@@ -2120,7 +2122,7 @@ head(fit.1.data)</pre>
 
 <ul>
 <li>Last semester you did omnibus F tests</li>
-<li>What hypothesis does the omnibus F test, generally?</li>
+<li>What hypothesis does the omnibus F test test, generally?</li>
 </ul>
 
 <p>\[ s_{y}^2 = s_{regression}^2 + s_{residual}^2 \]</p>
@@ -2159,7 +2161,16 @@ etaSquared(mod.1)</pre>
 
 <pre >##        term  df    sumsq     meansq statistic      p.value
 ## 1 tx.effect   1  14.7999 14.7998987  24.39768 1.380929e-06
-## 2 Residuals 268 162.5717  0.6066108        NA           NA</pre></article></slide>
+## 2 Residuals 268 162.5717  0.6066108        NA           NA</pre>
+
+</article></slide><slide class=""><hgroup><h2>summary</h2></hgroup><article  id="summary">
+
+<ul>
+<li>We are using linear models to do the exact same tests as t tests and ANOVAs</li>
+<li>It is the exact same because t-tests and ANOVAs are part of the general linear model</li>
+<li>Looking at these tests through the perspective of a linear model provides us with all the information you got from last semester - and more!</li>
+<li>Plus it provides a more systematic way at 1) building and testing your theoretical model and 2) comparing between alternative theoretical models</li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
