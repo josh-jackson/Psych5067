@@ -1,0 +1,211 @@
+---
+title: "Bayesian"
+output: ioslides_presentation
+---
+
+## ESP Example 
+
+
+## ESP Example 
+
+- Doesn't this just seem wrong? 
+
+## Prior beliefs are important
+
+- cannot be integrated easily within frequentistic statistics
+
+## The effect of observations
+
+- For a rational person, the role of data in statistics is evidentiary    
+<br>
+- Beliefs after observation = Total evidence observed + Beliefs before observation  
+- That is, we combine observational evidence with beliefs to obtain new beliefs: rational learning
+
+## Some definitions 
+- Suppose we have beliefs about a parameter θ (a population mean, a variance, a probability...)  
+- We represent uncertainty with probability distributions   
+- The uncertainty we have about θ is denoted p(θ)  
+- Can express ideas like: P(35<θ<100), E(θ), etc...  
+- Condition on data: Uncertainty in θ after seeing data x is p(θ∣x)
+
+## Using probability theory to change beliefs
+- The central inferential principle in Bayesian statistics is Bayes' theorem  
+$$ p(A∣B)=\frac{p(B∣A) p(A)}{p(B)} $$ 
+- what is the definition of a p-value? 
+
+## How should we assess evidence?
+- If uncertainty is represented by probability, then can use Bayes' theorem:    
+$$ p(θ∣data) \propto \frac{p(y\mid\theta)}{p(y)} \times p(\theta)$$
+- Beliefs after (posterior) is proportional to likelihood * prior
+<br>
+- prior: how sure we were that θ was true, before we observed the data D    
+- likelihood: the probability that you would have observed the data, if that hypothesis were true.  (kind of like a sampling distribution)  
+- p(y) is average likelihood, a scaling paramter. Usually intergral. 
+
+## Binomial example ##
+
+- get 15 heads in 20 flips. Is this coin biased? 
+$$ p(k|θ) = \binom{n}{k}θ^{k}(1-θ)^{n-k} $$
+- should our belief about θ change? 
+- what is our prior? 
+$$ θ \sim U(0,1) $$ 
+
+##
+
+```{r echo=FALSE}
+Y = 15
+N = 20
+```
+
+```{r echo=FALSE, warning=FALSE}
+
+priorcol=rgb(1,0,0,.7)
+postcol=rgb(0,0,1,.7)
+likecol = rgb(0,1,0,.7)
+
+a = 2
+b = 2
+
+xx = seq(0,1,len=100)
+
+priory = dbeta(xx,a,b)
+likey = dbinom(Y,N,xx)
+
+likeFunc <- function(theta,Y,N,alp,bet)
+  dbinom(Y,N,theta) * dbeta(theta,alp,bet)
+
+avgLike = integrate(likeFunc,0,1,Y=Y,N=N,alp=a,bet=b)[[1]]
+
+par(mfrow=c(1,2),las=1)
+
+plot(xx,priory,col=priorcol,ty='l',xlab=expression(theta),ylab="Prior density",yaxt='n',axes=FALSE,lwd=2)
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+axis(1)
+
+plot(xx,likey/avgLike,col=likecol,ty='l', ylab="Likelihood (relative to average)",xlab=expression(theta),axes=FALSE,lwd=2)
+abline(h=1,col=likecol,lty=2)
+axis(1)
+axis(2)
+
+optFunc = function(theta,Y,N,alp,bet,avgLike) dbinom(Y,N,theta)-avgLike
+
+lowerRoot = uniroot(optFunc, lower=0, upper=Y/N,Y=Y,N=N,alp=a,bet=b,avgLike=avgLike)$root
+
+upperRoot = uniroot(optFunc, lower=Y/N, upper=1,Y=Y,N=N,alp=a,bet=b,avgLike=avgLike)$root
+
+abline(v=c(lowerRoot,upperRoot),col="gray")
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+
+```
+
+##
+
+```{r echo=FALSE, warning=FALSE}
+
+posty = dbeta(xx,Y+a,N-Y+b)
+
+par(mfrow=c(1,2),las=1)
+
+plot(xx,likey/avgLike,col=likecol,ty='l', ylab="Likelihood (relative to average)",xlab=expression(theta),axes=FALSE,lwd=2)
+abline(h=1,col=likecol,lty=2)
+abline(v=c(lowerRoot,upperRoot),col="gray")
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+axis(1)
+axis(2)
+
+plot(xx,posty,col=postcol,ty='l',ylab="Prior/Posterior density",xlab=expression(theta),axes=FALSE,lwd=2)
+lines(xx,priory,col=priorcol,lwd=2)
+abline(v=c(lowerRoot,upperRoot),col="gray")
+abline(h=0,col="black")
+abline(v=c(0,1),col="black")
+axis(1)
+```
+
+## what does this look like in practice? 
+- a difficulty in all of these is to compute the posterior distribution  
+- what you are doing is multiplying a probability distribution by a probability distribution (sometimes many of them)...and you get a distribution in return  
+<br>
+1. computationally difficult  
+2. hard to summarize  
+
+## what does this look like in practice?
+- Step 1, come up with a descriptive model of the data
+$$ \hat{y}=\beta_{0}+\beta_{1}X_{1}$$
+- i.e. what we have been doing all semester
+- Step 2, describe the variation, sigma, 
+$$ y \sim norm(\hat{y},\sigma) $$
+
+## what does this look like in practice? 
+- Step 3, describe a prior distribution on the parameters  
+- Could be non-informative, weak, or moderately informative depending on prior knowledge  
+
+## what does this look like in practice?  
+- Step 4, interpret posterior distribution  
+- Posterior indicates credible values of the parameters $\beta_{0}, \beta_{1}, \sigma$ consistent with the data  
+- distribution of parameter values, not data  
+- can look at range of regression lines 'consistent with the data' as opposed to a single best estimate  
+
+## what does this look like in practice? 
+- Step 5, do a posterior prediction check  
+- Many ways to do this, most typical is to plot predicted data against actual data  
+- Do so by taking potential $\beta_{0}, \beta_{1}, \sigma$ values (frequency depending on posterior distribution) and randomly generate X values  
+- get (average) predicted values and credible ranges around those values. See if actual data make sense given these predicted values  
+
+
+
+## 
+```{r, echo=FALSE}
+alcohol1 <- read.csv("alcohol1.txt")
+```
+
+```{r, message=FALSE}
+library (brms)
+options (mc.cores=parallel::detectCores ()) # Run on multiple cores
+
+b1 <- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)
+```
+
+##
+```{r, echo=FALSE}
+summary(b1)
+```
+
+
+##
+
+```{r}
+lm.1 <- lm(alcuse ~ peer, data = alcohol1)
+summary(lm.1)
+```
+
+##
+```{r}
+plot(b1)
+```
+
+##
+```{r, eval=FALSE}
+library(shinystan)
+launch_shiny(b1) 
+```
+
+##
+
+```{r}
+pp_check(b1, re_formula = NA, type = "dens_overlay")
+```
+
+##
+
+```{r}
+pp_check(b1, type = "scatter_avg", nsamples = 100)
+
+```
+
+
+## Bayes Factor
+
+

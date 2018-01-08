@@ -1,14 +1,11 @@
 ---
 title: "Introduction"
-author: "Josh Jackson"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output:
-  ioslides_presentation: default
+output: ioslides_presentation
 ---
 
 ## Goals for semester
 
-- Analyze and interpret  general(ized) linear models
+- Analyze and interpret general(ized) linear models
 
 - Be able to graph your data
 
@@ -21,6 +18,8 @@ output:
 
 - [LSR](https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/)
 
+- [Example data from class (and Rmd and all other materials)](https://github.com/josh-jackson/Psych5067) if you dont want to use class webpage. 
+
 ## Important information
 
 - Most important information is on the slides
@@ -29,61 +28,63 @@ output:
 
 - Important equations will be presented via slides
 
+## two types of people
+
+- This class is going too slow vs going too fast
+
+- If too fast: ASK QUESTIONS AND COME AND VISIT ME. Also spend lots of time outside of class, learning takes time. 
+
+- If too slow: ASK QUESTIONS AND COME AND VISIT ME. There are lots of interesting extensions. I have readings. 
+
 ##Goals for today
 - Review of last semester
 
 ## What should you already know? 
-- R
 
-- visualizing data 
+## pragmatics
 
-- scale of measurement 
+- R, RStudio 
+- Rmarkdown/LaTeX
+- Reproducible reports: Rmd/LaTeX -> html/pdf 
 
-- sampling distributions
-
-- p-values and NHST
-
-- effect sizes and confidence intervals
-
-- power
+- Keep organized: R Projects 
+- Keeping track/sharing: osf, github 
+- Keep it interesting: shiny apps
+- Keep it simple and readable: tidyverse (strongly recommended)
+- Keep it visual: ggplot
 
 ## visualizing data
 
-- histograms, density plots, bar graphs
+- histograms, probability mass function
 
-- ggplot2
+- density plot, probability density function, cumulative density function
 
-- wow graphs and interpretable scales
-
-## R, Rstudio, rmarkdown, knitr
-
-- Reproducible reports: Rmd -> html/pdf 
-
-- See also: projects, github, osf, shiny 
+- bar, box, violin... 1. Avoid wow graphs, 2. use interpretable scales, 3. label 4. always provide a dispersion estimate and 5. if possible include raw data and/or the distribution (as dispersion only can hide oddities)
 
 ## scales of measurement
 
-- nominal, ordinal, interval ratio
+- nominal, ordinal, interval, ratio
 
-- quantitative (continuous) vs qualitative (categorical)
+- quantitative (continuous) vs qualitative (categorical/discrete)
 
-## Sampling distributions
-- binomial, poisson, negative binomial 
+- how you measure your variables determine your analytic tool options
 
-- normal, t 
+## Theoretical probability and sampling distributions
+- binomial, poisson, negative binomial, normal (Gaussian), t, F, chi-square...
 
-- F, chi-square
+- population distribution -> sample distribution -> sampling distrinbution
 
-- standard error
+- standard error is the standard deviation of the sampling distribution
 
-## p-values 
-- Definition
+## p-values, NHST and standard opperating procedures 
 
-- Relationship to NHST
+- Definition. p(D|Ho), not p(Ho|D) 
 
-- Family wise error
+- Type 1 & 2 errors, power, family wise error
 
-- Issues with 
+- Issues with NHST
+
+- Questionable research practices (QRPs)
 
 ## effect size and CIs
 - There is imprecision in all that you do
@@ -94,10 +95,13 @@ output:
 
 - How does the CI relate to the sample and sampling distribution? 
 
+- meta-analytic thinking
+
 ## Last thoughts
 - Any questions? 
 
-- Looking forward: Relationships, measurement and correlations
+- Looking forward: This semeter's themes are Relationships and Models
+
 
 
 

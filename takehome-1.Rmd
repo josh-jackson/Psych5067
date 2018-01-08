@@ -3,9 +3,9 @@ title: "Takehome 1 Correlations"
 output: html_document
 ---
 
-# Due: 2/8  
+# Due: X/X 
 <br>
-Turn in via email to: 5067.u9ur91mgrfiruixi@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+Turn in via email to: XXXX by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers.   
 <br>

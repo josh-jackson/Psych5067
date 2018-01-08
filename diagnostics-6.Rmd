@@ -1,0 +1,219 @@
+---
+title: "Assumptions"
+output: ioslides_presentation
+---
+
+
+## BLUE
+- Best linear unbiased estimate of beta  
+<br> 
+1. Unbiased
+2. Efficient (se minimum)
+3. Consistent (N decreases SE)
+
+## 6 assumptions
+1. No measurement error
+- Influence ability to control and predict
+
+
+## 6 assumptions
+\ 2. Correctly specified form
+
+## 6 assumptions
+\ 3. No omitted variables
+
+## 6 assumptions
+\ 4. Homoscedasticity - conditional variance of residuals across all levels of X is constant
+- Heteroscedasticity if violated
+
+## 6 assumptions
+\ 5. Independence among the residuals
+
+- issues with group, family, longitudinal and nested designs
+
+## 6 assumptions
+\ 6. Normally distributed residuals
+
+## What happens if we violate assumptions?
+1. Biased regression coefficients
+2. Biased standard errors
+
+## 6 assumptions
+
+|Violated Regression Assumption |	Coefficients |	Standard Errors|
+|-------------------------------|--------------|-----------------|
+|1. Measured without error     	|	 Biased 		 |	  Biased       |
+|2. Correctly specified form 		|	 Biased 		 |	  Biased       |
+|3. Correctly specified model		|	 Biased			 |	  Biased       | 
+|4. Homoscedasticity 						|				       |    Biased       |
+|5. Independent Errors 				 	|				       |    Biased       |
+|6. Normality of the Errors 		|							 |    Biased       |
+
+
+## How do we detect violations? 
+|       Assumption              |       	detect                    |
+|-------------------------------|--------------------------------|
+|1. Measured without error	    |	  Reliability                  |
+|2. Correctly specified form 		|	  Residuals against predicted  |
+|3. Correctly specified model		|	  Theory                       | 
+|4. Homoscedasticity 						|		Residuals against predicted  |
+|5. Independent Errors 				 	|		Design                       |
+|6. Normality of the Errors     |   q-q plot or distribution     |
+
+## How do we fix violations? 
+
+|       Assumption              |       	Fix                      |
+|-------------------------------|----------------------------------|
+|1. Measured without error	    |	Factor scores, SEM, more data    |
+|2. Correctly specified form 		|	Different model                  |
+|3. Correctly specified model		|	 ¯`\_`(ツ)`_`/¯                  |
+|4. Homoscedasticity 						|	Bootstraps, WLS,transformations  |
+|5. Independent Errors 				 	| Use differ method                |
+|6. Normality of the Errors     | Additional IVs, differnt form    |
+
+## Robustness? 
+
+- yeah, mostly
+- especially with normally of errors
+- note: we do not need to have normally distributed IVs or DVs
+
+## Data screeing
+
+- Start with descriptive stats and plots   
+- Look for outliers, missing cases, etc.  
+- Test assumptions (residual plots)  
+
+## why screen your data? 
+
+## Outliers
+- Broadly defined as atypical or highly influential data point(s) 
+- Due to contamination (e.g. recording error) or accurate observation of a rare case 
+- Univariate vs. Multivariate 
+
+## Outliers
+
+1. Leverage   
+    + How unusual is this case from the rest of the cases in terms of predictors?  
+2. Distance   
+    + How distant is the observed case from the predicted value?   
+3. Influence   
+    + How much the does regression coefficient change if case were removed? 
+    
+## Leverage
+
+- Tells us how far observed values for a case are from mean values on the set of IVs (centroid)   
+- Not dependent on Y values  
+- High leverage cases have greater potential to influence regression results  
+- Mahalanobis Distance for multivariate stats 
+
+## Distance
+
+- Distance From Prediction- how far is observed value from predicted value (i.e. residuals)   
+
+- deleted residuals takes into consideration what would happen if case were deleted 
+
+## Influence
+- How regression equation would change if extreme case were removed 
+- Influence = Leverage X Distance 
+- DFFITS (difference in fit standardized)
+- Cooks D (same but different metric to DFFITS)
+- DFBETAS (coefficient change without outlier)
+
+## recommendations
+- Analyze data with/without outliers and see how results change   
+- If you throw out cases you must believe it is not representative of population of interest or have appropriate explanation 
+
+
+
+
+load data
+```{r}
+library(readr)
+a_data <- read.csv("Part 1 data.csv")
+library(broom)
+model.1 <- lm(Anxiety ~ Stress + Support, a_data)
+a_data<- augment(model.1)
+a_data
+```
+
+Assumption 1: No measurement error in our independent variables
+
+
+
+
+Assumption 2: Correctly specified form
+
+```{r}
+library(ggplot2)
+
+ggplot(data = a_data, aes(x=.fitted, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+```
+
+
+
+Assumption 3: Correctly specified model
+
+
+
+
+
+Assumption 4: Homoscedasticity, i.e. constant variance of the errors
+
+```{r}
+ggplot(data = a_data, aes(x=.fitted, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+
+ggplot(data = a_data, aes(x=Stress, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+
+ggplot(data = a_data, aes(x=Support, y=.resid)) + geom_point() + geom_smooth(method='lm', se = FALSE)
+```
+
+
+
+Assumption 5: Independence among the errors
+
+```{r}
+nrow(a_data)
+a_data$ID <- c(1:118)
+ggplot(data = a_data, aes(x=ID, y = .resid)) + geom_point()
+```
+
+
+Assumption 6: Normality of the errors
+```{r}
+ggplot(data = a_data, aes(x= .resid)) + geom_density() +   xlim(-10, 10)
+```
+
+
+
+```{r}
+library(car)
+qqPlot(model.1)
+```
+
+
+```{r}
+plot(model.1)
+```
+
+Outliers
+
+leverage, distance, and influence.
+
+Influence
+cooks d
+```{r}
+ggplot(a_data, aes(x = ID, y = .cooksd)) +
+geom_point() +
+geom_text(aes(label = rownames(a_data)), vjust = -1)
+```
+
+
+df beta
+```{r}
+
+a_data$dfbetastress <- dfbeta(model.1)[,"Stress"]
+
+ggplot(data = a_data, aes(x = ID, y = dfbetastress)) + geom_point() +
+geom_text(aes(label = rownames(a_data), vjust = -1))
+```
+

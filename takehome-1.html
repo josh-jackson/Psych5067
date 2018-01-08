@@ -20,8 +20,8 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -30,10 +30,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -171,7 +173,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">psych 5067: quant methods II </a>
+      <a class="navbar-brand" href="index.html">psych 5067: quant methods II</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -179,7 +181,7 @@ $(document).ready(function () {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="2017_Syllabus.html">syllabus</a>
+  <a href="2018_Syllabus.html">syllabus</a>
 </li>
 <li>
   <a href="readings.html">readings</a>
@@ -228,37 +230,37 @@ $(document).ready(function () {
       <a href="Introduction-1.html">1. intro</a>
     </li>
     <li>
-      <a href="Correlations-2.html">2. correlations</a>
+      <a href="GLM-2.html">2. glm</a>
     </li>
     <li>
-      <a href="Regression-3.html">3. regression</a>
+      <a href="correlations-3.html">3. correlation</a>
     </li>
     <li>
-      <a href="MultipleR-4.html">4. multiple regression</a>
+      <a href="regresssion-4.html">4. regression</a>
     </li>
     <li>
-      <a href="Assumptions-5.html">5. assumptions</a>
+      <a href="multregression-5.html">5. multiple regression</a>
     </li>
     <li>
-      <a href="diagnostics.html">5a. diagnostics</a>
+      <a href="diagnostics-6.html">6. diagnostics</a>
     </li>
     <li>
-      <a href="interactions-6.html">6. interactions</a>
+      <a href="interactions-7.html">7. interactions</a>
     </li>
     <li>
-      <a href="logistic-7.html">7. logistic</a>
+      <a href="anova-8.html">8. factorial ANOVA</a>
     </li>
     <li>
-      <a href="anova-8.html">8. Factorial ANOVA</a>
+      <a href="logistic-9.html">9. logistic</a>
     </li>
     <li>
-      <a href="RMANOVA_MLM-9.html">9. RM &amp; MLM</a>
+      <a href="fit-10.html">10. fit</a>
     </li>
     <li>
-      <a href="Bayesian-10.html">10. Bayesian</a>
+      <a href="RMANOVA_MLM-11.html">11. mlm</a>
     </li>
     <li>
-      <a href="Iagg.html">Iagg</a>
+      <a href="Bayesian-12.html">12. Bayesian</a>
     </li>
   </ul>
 </li>
@@ -279,9 +281,9 @@ $(document).ready(function () {
 </div>
 
 
-<div id="due-28" class="section level1">
-<h1>Due: 2/8</h1>
-<p><br> Turn in via email to: <a href="mailto:5067.u9ur91mgrfiruixi@u.box.com">5067.u9ur91mgrfiruixi@u.box.com</a> by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.<br />
+<div id="due-xx" class="section level1">
+<h1>Due: X/X</h1>
+<p><br> Turn in via email to: XXXX by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.<br />
 <br> All take home projects are <strong>INDEPENDENT</strong> projects; do not share code or answers.<br />
 <br> Note: “by hand” means using the formulas to calculate the answers. This is contrasted with the simpler way of using built in R functions. It is recommended to use R functions if the method of choice is not explicitly stated. <br> <br></p>
 <div id="please-answer-the-questions-below.-show-all-your-code-and-results.-you-will-need-to-use-the-dawtry-et-al.-2015-psychological-science-article-and-the-accompanying-dataset-found-on-the-data-page-to-answer-questions-3---11." class="section level4">

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Correlations</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">psych 5067: quant methods II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="2018_Syllabus.html">syllabus</a>
+</li>
+<li>
+  <a href="readings.html">readings</a>
+</li>
+<li>
+  <a href="data.html">data</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    take home projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="takehome-1.html">takehome-1</a>
+    </li>
+    <li>
+      <a href="takehome-2.html">takehome-2</a>
+    </li>
+    <li>
+      <a href="takehome-3.html">takehome-3</a>
+    </li>
+    <li>
+      <a href="takehome-4.html">takehome-4</a>
+    </li>
+    <li>
+      <a href="takehome-5.html">takehome-5</a>
+    </li>
+    <li>
+      <a href="takehome-6.html">takehome-6</a>
+    </li>
+    <li>
+      <a href="takehome-7.html">takehome-7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction-1.html">1. intro</a>
+    </li>
+    <li>
+      <a href="GLM-2.html">2. glm</a>
+    </li>
+    <li>
+      <a href="correlations-3.html">3. correlation</a>
+    </li>
+    <li>
+      <a href="regresssion-4.html">4. regression</a>
+    </li>
+    <li>
+      <a href="multregression-5.html">5. multiple regression</a>
+    </li>
+    <li>
+      <a href="diagnostics-6.html">6. diagnostics</a>
+    </li>
+    <li>
+      <a href="interactions-7.html">7. interactions</a>
+    </li>
+    <li>
+      <a href="anova-8.html">8. factorial ANOVA</a>
+    </li>
+    <li>
+      <a href="logistic-9.html">9. logistic</a>
+    </li>
+    <li>
+      <a href="fit-10.html">10. fit</a>
+    </li>
+    <li>
+      <a href="RMANOVA_MLM-11.html">11. mlm</a>
+    </li>
+    <li>
+      <a href="Bayesian-12.html">12. Bayesian</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Correlations</h1>
+
+</div>
+
+
+<div id="relationships" class="section level2">
+<h2>Relationships</h2>
+<ul>
+<li><p>What is the relationship between IV and DV?</p></li>
+<li>Measuring relationships depend on type of measurement</li>
+<li><p>E.g. chi-square for categorical</p></li>
+</ul>
+</div>
+<div id="modeling-relationships" class="section level2">
+<h2>Modeling relationships</h2>
+<pre class="r"><code>t.test(y ~ x, data)</code></pre>
+<ul>
+<li>This semester we will examine this relationship through GLM that takes the form for y = x + e</li>
+<li>What analysis you use will depend on how you measure your IV (X) and your DV (Y)</li>
+</ul>
+</div>
+<div id="modeling-relationships-1" class="section level2">
+<h2>Modeling relationships</h2>
+<ul>
+<li>You have primarily been working wtih categorical IVs (t-test, ANOVA, chi-square)</li>
+<li>How do we look at continous IVs and DVs?</li>
+</ul>
+</div>
+<div id="dispersion" class="section level2">
+<h2>Dispersion</h2>
+<p>Variation (sum of squares) <span class="math display">\[ SS = {\sum{(x-\bar{x})^2}} \]</span> <span class="math display">\[ SS = {\sum{(x-\mu)^2}} \]</span></p>
+</div>
+<div id="dispersion-1" class="section level2">
+<h2>Dispersion</h2>
+<p>Variance <span class="math display">\[ s^{2} = {\frac{\sum{(x-\bar{x})^2}}{N-1}} \]</span> <span class="math display">\[ \sigma^{2} = {\frac{\sum{(x-\mu)^2}}{N}} \]</span></p>
+</div>
+<div id="dispersion-2" class="section level2">
+<h2>Dispersion</h2>
+<p>Standard Deviation <span class="math display">\[ s = \sqrt{\frac{\sum{(x-\bar{x})^2}}{N-1}} \]</span> <span class="math display">\[ \sigma = \sqrt{\frac{\sum{(x-\mu)^2}}{N}} \]</span></p>
+</div>
+<div id="formula-standard-error-of-the-mean" class="section level2">
+<h2>formula standard error of the mean?</h2>
+</div>
+<div id="associations" class="section level2">
+<h2>Associations</h2>
+<p>Covariation (cross products) <span class="math display">\[ SS = {\sum{{(x-\bar{x})(y-\bar{y})}}} \]</span> <span class="math display">\[ SS = {\sum{{(x-\mu_{x})(y-\mu_{y})}}} \]</span></p>
+</div>
+<div id="associations-1" class="section level2">
+<h2>Associations</h2>
+<p>Covariance <span class="math display">\[ cov_{xy}^{2} = {\frac{\sum{(x-\bar{x})(y-\bar{y})}}{N-1}} \]</span> <span class="math display">\[ \sigma_{xy}^{2} = {\frac{\sum{(x-\mu_{x})(y-\mu_{y})}}{N}} \]</span></p>
+<blockquote>
+<ul>
+<li>Covariance matrix is basis for many analyses</li>
+<li>What are some issues that may arise when comparing covariances?</li>
+</ul>
+</blockquote>
+</div>
+<div id="associations-2" class="section level2">
+<h2>Associations</h2>
+<p>Correlations <span class="math display">\[ r_{xy} = {\frac{\sum({z_{x}z_{y})}}{N}} \]</span></p>
+<p><span class="math display">\[ \rho_{xy} = {\frac{cov(X,Y)}{\sigma_{x}\sigma_{y}}} \]</span></p>
+<p>Many other formulas exist for specific types of data, these were more helpful when we computed everything by hand (more on this later)</p>
+</div>
+<div id="associations-3" class="section level2">
+<h2>Associations</h2>
+<p>Correlations</p>
+<ul>
+<li>How much two variables are linearly related</li>
+<li>-1 to 1</li>
+<li>Invariant to changes in mean or scaling</li>
+<li>Most common (and basic) effect size measure</li>
+</ul>
+</div>
+<div id="associations-4" class="section level2">
+<h2>Associations</h2>
+<p>Correlations <img src="correlations-3_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="correlations" class="section level2">
+<h2>Correlations</h2>
+<div id="hypothesis-testing" class="section level3">
+<h3>Hypothesis testing</h3>
+<p><span class="math display">\[ H_{0}: \rho_{xy} = 0 \]</span> <span class="math display">\[ H_{A}: \rho_{xy} \neq 0 \]</span></p>
+<blockquote>
+<ul>
+<li>Assumes:</li>
+<li>Observations are independent</li>
+<li>Symmetric bivariate distribution (joint probability distribution)</li>
+</ul>
+</blockquote>
+<hr />
+<p><img src="correlations-3_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+</div>
+<div id="correlations-1" class="section level2">
+<h2>Correlations</h2>
+<div id="hypothesis-testing-1" class="section level3">
+<h3>Hypothesis testing</h3>
+<p><span class="math display">\[ H_{0}: \rho_{xy} = 0 \]</span> <span class="math display">\[ H_{A}: \rho_{xy} \neq 0 \]</span></p>
+<p>Test statistic</p>
+<p><span class="math display">\[  t = {\frac{r}{SE_{r}}} \]</span> <span class="math display">\[  t = {\frac{r}{\sqrt{\frac{1-r^{2}}{N-2}}}} \]</span></p>
+<p>df = N-2</p>
+</div>
+</div>
+<div id="effect-size" class="section level2">
+<h2>Effect size</h2>
+<blockquote>
+<ul>
+<li>The strength of relationship between two variables</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Ω2, η2, cohen’s d, cohen’s f, hedges g, R2 , Risk-ratio, etc</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Significance is a function of effect size and sample size</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Statistical significance ≠ practical significance</li>
+</ul>
+</blockquote>
+</div>
+<div id="effect-size-1" class="section level2">
+<h2>Effect size</h2>
+<div id="how-big-is-practical" class="section level3">
+<h3>How big is practical?</h3>
+<blockquote>
+<ul>
+<li>Cohen (.1, .3., .5)</li>
+<li>Meyer &amp; Hemphill .3 is average</li>
+<li>Rosenthaul</li>
+<li><table>
+<thead>
+<tr class="header">
+<th>Drug TX?</th>
+<th>Alive</th>
+<th>Dead</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Treatment</td>
+<td>65</td>
+<td>35</td>
+</tr>
+<tr class="even">
+<td>No Tx</td>
+<td>35</td>
+<td>65</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>Variance explained (more later)</li>
+</ul>
+</blockquote>
+</div>
+</div>
+<div id="what-is-the-size-of-the-correlation" class="section level2">
+<h2>What is the size of the correlation?</h2>
+<ul>
+<li>Chemotherapy and breast cancer survival?<br />
+</li>
+<li>Batting ability and hit success on a single at bat?<br />
+</li>
+<li>Antihistamine use and reduced sneezing/runny nose?<br />
+</li>
+<li>Combat exposure and PTSD?<br />
+</li>
+<li>Ibuprofen on pain reduction?<br />
+</li>
+<li>Gender and weight?<br />
+</li>
+<li>Therapy and well being?<br />
+</li>
+<li>Observer ratings of attractiveness?<br />
+</li>
+<li>Gender and arm strength?<br />
+</li>
+<li>Nearness to equator and daily temperature for U.S.?</li>
+</ul>
+</div>
+<div id="what-is-the-size-of-the-correlation-1" class="section level2">
+<h2>What is the size of the correlation?</h2>
+<ul>
+<li>Chemotherapy and breast cancer survival? (.03)<br />
+</li>
+<li>Batting ability and hit success on a single at bat? (.06)<br />
+</li>
+<li>Antihistamine use and reduced sneezing/runny nose? (.11)<br />
+</li>
+<li>Combat exposure and PTSD? (.11)<br />
+</li>
+<li>Ibuprofen on pain reduction? (.14)<br />
+</li>
+<li>Gender and weight? (.26)<br />
+</li>
+<li>Therapy and well being? (.32)<br />
+</li>
+<li>Observer ratings of attractiveness? (.39)<br />
+</li>
+<li>Gender and arm strength? (.55)<br />
+</li>
+<li>Nearness to equator and daily temperature for U.S.? (.60)</li>
+</ul>
+</div>
+<div id="questions-to-ask-yourself" class="section level2">
+<h2>Questions to ask yourself:</h2>
+<p>What is your N?<br />
+What is the typical effect size in the field?<br />
+Study design?<br />
+What is your DV?<br />
+Importance (reaction time vs cancer)?<br />
+Same method as IV (method variance)?</p>
+</div>
+<div id="power-calculations" class="section level2">
+<h2>Power calculations</h2>
+<pre class="r"><code>library(pwr)
+pwr.r.test(n = , r = .1, sig.level = .05 , power = .8)</code></pre>
+<pre><code>## 
+##      approximate correlation power calculation (arctangh transformation) 
+## 
+##               n = 781.7516
+##               r = 0.1
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided</code></pre>
+<pre class="r"><code>pwr.r.test(n = , r = .3, sig.level = .05 , power = .8)</code></pre>
+<pre><code>## 
+##      approximate correlation power calculation (arctangh transformation) 
+## 
+##               n = 84.07364
+##               r = 0.3
+##       sig.level = 0.05
+##           power = 0.8
+##     alternative = two.sided</code></pre>
+</div>
+<div id="power-calculations-1" class="section level2">
+<h2>Power calculations</h2>
+<ul>
+<li>But what is your confidence?</li>
+<li>N = 84 gives you CI[.09, 48]</li>
+<li>Schönbrodt &amp; Perugini (2013) suggest correlations stabilize at 250+ regardless of effect</li>
+<li>CI[.19, .39]</li>
+</ul>
+</div>
+<div id="fishers-r-to-z-transformation" class="section level2">
+<h2>Fisher’s r to z’ transformation</h2>
+<ul>
+<li>If we want to make calculations based on <span class="math inline">\(\rho \neq 0\)</span> then we will run into a skewed sampling distribution</li>
+</ul>
+<p><img src="correlations-3_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="fishers-r-to-z-transformation-1" class="section level2">
+<h2>Fisher’s r to z’ transformation</h2>
+<ul>
+<li>Skewed sampling distribution will rear its head when:
+<ul>
+<li><span class="math inline">\(H_{0}: \rho \neq 0\)</span></li>
+<li>Calculating confidence intervals</li>
+<li>Testing two correlations against one another</li>
+</ul></li>
+<li>r to z’:</li>
+</ul>
+<p><span class="math display">\[ z^{&#39;} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} \]</span></p>
+</div>
+<div id="fishers-r-to-z-transformation-2" class="section level2">
+<h2>Fisher’s r to z’ transformation</h2>
+<p><img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/fisher.png" width="600" height="500"/></p>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<p>Steps for computing confidence interval 1. Transform r into z’<br />
+2. Compute CI as you normally would using z’<br />
+3. revert back to r</p>
+<p><span class="math display">\[ r = {\frac{e^{2z&#39;}-1}{e^{2z&#39;}+1}} \]</span></p>
+</div>
+<div id="how-to-do-in-r" class="section level2">
+<h2>How to do in R</h2>
+<pre class="r"><code>library(psych)
+fisherz(r)
+fisherz2r(z)</code></pre>
+</div>
+<div id="two-independent-groups-test" class="section level2">
+<h2>Two independent groups test</h2>
+<p>-Does the correlation in group 1 differ from the correlation in group 2? <span class="math display">\[ H_{A}: \rho_{1} = \rho_{2} \]</span> <span class="math display">\[ H_{A}: \rho_{1} \neq \rho_{2} \]</span> -Normally distributed <span class="math display">\[ Z = {\frac{z&#39;_{1}-z&#39;_{2}}{se_{z1-z2}}} \]</span></p>
+</div>
+<div id="two-independent-groups-test-1" class="section level2">
+<h2>Two independent groups test</h2>
+<ul>
+<li>different standard error compared to 1 sample test <span class="math display">\[ Z = {\frac{z&#39;_{1}-z&#39;_{2}}{se_{z1-z2}}} \]</span> <span class="math display">\[ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1}{n_{2}-3}}}} \]</span></li>
+</ul>
+</div>
+<div id="other-correlation-tests" class="section level2">
+<h2>Other correlation tests:</h2>
+<ol style="list-style-type: decimal">
+<li>Set of correltions</li>
+<li>Dependent correlations (i.e., within same group)<br />
+These are more easily tested via Structural Equation Modeling (SEM)</li>
+<li>Intra Class Correlation (ICC)</li>
+</ol>
+</div>
+<div id="factors-that-influence-r-and-most-other-test-statistics" class="section level2">
+<h2>Factors that influence r (and most other test statistics)</h2>
+<ol style="list-style-type: decimal">
+<li>Restriction of range (GRE scores and success)</li>
+<li>Very skewed distributions (smoking and health)</li>
+<li>Non-linear associations</li>
+<li>Measurement overlap (modality and content)</li>
+<li>Reliability</li>
+</ol>
+</div>
+<div id="reliability" class="section level2">
+<h2>Reliability</h2>
+<ul>
+<li>All measurement includes error</li>
+<li>Score = true score + measurement error (CTT version)</li>
+<li>Reliability assesses the consistency of measurement</li>
+</ul>
+</div>
+<div id="reliability-1" class="section level2">
+<h2>Reliability</h2>
+<ul>
+<li>All measurement includes error</li>
+<li>Score = true score + measurement error (CTT version)</li>
+<li>Reliability assesses the consistency of measurement</li>
+</ul>
+<p>Which would you rather have?<br />
+- 1 item final exam versus 30 item?<br />
+- assessment via trained clinician vs tarot cards?<br />
+- fMRI during minor earthquake vs no earthquake?</p>
+</div>
+<div id="reliability-2" class="section level2">
+<h2>Reliability</h2>
+<ul>
+<li>Cannot correlate error (randomness) with something</li>
+<li>Because we do not measure our variables perfectly we get lower correlations compared to true correlations</li>
+<li>If we want to have a valid measure it better be a reliable measure</li>
+</ul>
+</div>
+<div id="reliability-3" class="section level2">
+<h2>Reliability</h2>
+<ul>
+<li>think of reliability as a correlation with a measure and itself in a different world, at a different time, or a different but equal version</li>
+</ul>
+<p><span class="math display">\[ r_{XX} \]</span></p>
+</div>
+<div id="reliability-4" class="section level2">
+<h2>Reliability</h2>
+<ul>
+<li>true score variance divided by observed variance</li>
+<li>how do you assess theoretical variance i.e., true score variance?</li>
+</ul>
+<p><span class="math display">\[ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} \]</span> <span class="math display">\[ r_{XY} = .6 {\sqrt {(.70) (.70)}} \]</span></p>
+</div>
+<div id="reliability-5" class="section level2">
+<h2>Reliability</h2>
+<p><span class="math display">\[ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX} r_{YY}}}}} \]</span></p>
+<p><span class="math display">\[ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} \]</span></p>
+</div>
+<div id="most-common-ways-to-assess" class="section level2">
+<h2>Most common ways to assess</h2>
+<ul>
+<li>cronbachs alpha</li>
+</ul>
+<pre class="r"><code>library (psych)
+alpha(measure)
+## Gives average split half correlation
+## Can tell you if you are assessing a single construct</code></pre>
+<ul>
+<li>test - retest reliability</li>
+<li>Kappa or ICC</li>
+</ul>
+</div>
+<div id="reliability-6" class="section level2">
+<h2>Reliability</h2>
+<ul>
+<li>if you are going to measure something do it well</li>
+<li>applies to ALL IVs and DVs, and all designs</li>
+<li>remember this when interpretting other’s research</li>
+</ul>
+</div>
+<div id="types-of-correlations" class="section level2">
+<h2>Types of correlations</h2>
+</div>
+<div id="types-of-correlations-1" class="section level2">
+<h2>Types of correlations</h2>
+<ol style="list-style-type: decimal">
+<li>Point Biserial
+<ul>
+<li>continuous and dichtomous</li>
+</ul></li>
+<li>Phi coefficient
+<ul>
+<li>both dichotomous</li>
+</ul></li>
+<li>Spearman rank order
+<ul>
+<li>ranked data (nonparametric)</li>
+</ul></li>
+<li>Biserial (assumes dichotomous is continous)</li>
+<li>Tetrachoric (assumes dichotomous is continous)
+<ul>
+<li>both dichotomous</li>
+</ul></li>
+<li>Polychoric (assumes continous)
+<ul>
+<li>ordinal</li>
+</ul></li>
+</ol>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

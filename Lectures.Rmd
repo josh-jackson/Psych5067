@@ -1,6 +1,0 @@
----
-title: "Lectures"
-output: html_document
----
-
-Click to follow along

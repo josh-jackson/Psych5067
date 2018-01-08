@@ -1,12 +1,12 @@
-name: "5067"
+name: "5067 spring 2018"
 output_dir: "."
 navbar:
-  title: "psych 5067: quant methods II "
+  title: "psych 5067: quant methods II"
   left:
     - text: "Home"
       href: index.html
     - text: "syllabus"
-      href:  2017_Syllabus.html
+      href:  2018_Syllabus.html
     - text: "readings"
       href: readings.html
     - text: "data"
@@ -31,26 +31,25 @@ navbar:
       menu: 
         - text: "1. intro"
           href: Introduction-1.html
-        - text: "2. correlations"
-          href: Correlations-2.html
-        - text: "3. regression"
-          href: Regression-3.html
-        - text: "4. multiple regression"
-          href: MultipleR-4.html
-        - text: "5. assumptions"
-          href: Assumptions-5.html
-        - text: "5a. diagnostics"
-          href: diagnostics.html
-        - text: "6. interactions"
-          href: interactions-6.html
-        - text: "7. logistic"
-          href: logistic-7.html
-        - text: "8. Factorial ANOVA"
+        - text: "2. glm"
+          href: GLM-2.html
+        - text: "3. correlation"
+          href: correlations-3.html
+        - text: "4. regression"
+          href: regresssion-4.html
+        - text: "5. multiple regression" 
+          href: multregression-5.html
+        - text: "6. diagnostics"
+          href: diagnostics-6.html
+        - text: "7. interactions"
+          href: interactions-7.html
+        - text: "8. factorial ANOVA"
           href: anova-8.html
-        - text: "9. RM & MLM"
-          href: RMANOVA_MLM-9.html
-        - text: "10. Bayesian"
-          href: Bayesian-10.html
-        - text: "Iagg"
-          href: Iagg.html
-         
+        - text: "9. logistic"
+          href: logistic-9.html
+        - text: "10. fit"
+          href: fit-10.html
+        - text: "11. mlm"
+          href: RMANOVA_MLM-11.html
+        - text: "12. Bayesian"
+          href: Bayesian-12.html

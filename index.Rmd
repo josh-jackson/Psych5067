@@ -1,35 +1,10 @@
 ---
-title: "Updates and announcements:"
+title: "Updates and announcements"
 output: html_document
 ---
+
+
   <br>
-- April 26th - Takehome project #7 is posted. Due 5/8
 
-- April 9th - Factorial ANOVA take home #6 posted. Due 4/24
-
-- April 3rd - Take home project #5 posted. Due 4/14  
-
-- March 16th - Take home project #4 posted. Due 4/3 
-  
-- March 15th - Syllabus Updated. *NOTE THAT EXAM 2 HAS BEEN PUSHED BACK*
-
-- March 7th - Interactions Cohen reading posted
-  
-- February 19th - Take home project #3 is posted. Due 3/7
-
-- February 15th - Multiple regression Cohen chapter added  
-
-- February 6th - Take home project #2 is posted. Due 2/20
-
-- February 2nd - Question #8 on first take home exam is clarified. Also, for #1, some were having trouble finding the standard error equation. It is equation 4.15 in the Revelle reading. Email if you have any further questions. 
-
-- January 21st - First take home project is posted. Due 2/8. See projects page for more instructions. 
-
-- January 20th - Debbie will host a dplyr tutorial on Monday (1/23) from 5:30-6:30 PM, rm 215 A.
-
-- January 17th - First day of class!     
-    
-- January 7th - take a look at the syllabus and make sure you have R and Rstudio ready to go on the first day of class 
-
-- January 6th - website is live! 
+- January - website is live! 
 
