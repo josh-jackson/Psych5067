@@ -3,3 +3,11 @@ RevoUtils
 psych
 ggplot2
 pwr
+dplyr
+bindrcpp
+broom
+estimability
+lsmeans
+lsr
+Rcpp
+brms

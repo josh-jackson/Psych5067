@@ -10,7 +10,7 @@ output: ioslides_presentation
 - Our DV (hereforth Y) is what we are trying to understand
 - We hypothesize it has some relationship with your IV(s) (hereforth Xs)  
 
-- Y = X
+- Y = X + E
 
 ## See this in our R code
 

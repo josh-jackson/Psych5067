@@ -4,18 +4,17 @@ author:
 date: Spring 2018
 output:
   html_document: default
-  pdf_document: default
 ---
 <br>  
 
 ####People#### 
 **Instructor**: Joshua Jackson  
-**Office**: 315B  
+**Office**: Room #315B  
 **Office hours**: 10-11 Wednesday and by appointment  
 
-**TA**: Shelly Cooper
-**Office**: Room #105
-**Office hours**: Office Hours: 12-1pm Tuesday and by appointment
+**TA**: Shelly Cooper  
+**Office**: Room #105  
+**Office hours**: 12-1pm Tuesday and by appointment  
   
 <br>  
 
@@ -95,8 +94,8 @@ Note that dates and readings are tentative. Topics will likely shift; all change
 | -    | 3/29  | Logistic regression/GLM                                    |                      |
 | 12   | 4/3   | Over/underfitting and validation                           |                      |
 | -    | 4/5   | Over/underfitting and validation                           |   McElrath chapter   |
-| 13   | 4/10  | Repeated measures/HLM                                      |   Hoffman BRM        |
-| -    | 4/12  | Repeated measures/HLM                                      |                      |
+| 13   | 4/10  | Repeated measures/MLM                                      |   Hoffman BRM        |
+| -    | 4/12  | Repeated measures/MLM                                      |                      |
 | 14   | 4/17  | **Exam 2**                                                 |                      |
 | -    | 4/19  | Bayesian statistics                                        |   Kruschke PBR       |
 | 15   | 4/24  | Bayesian regression                                        |                      |

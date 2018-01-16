@@ -1,28 +1,15 @@
 ---
-title: "Regression"
-output:
-  ioslides_presentation: default
+title: "regression"
+output: ioslides_presentation
 ---
+
 
 ## What is a regression equation? 
 Functional relationship, ideally like a physical law
 
 Uncovered through measurement
 
-## Scatter Plot with best fit line
-```{r,echo=FALSE, message=FALSE, cache=TRUE}
-library(psych)
-library(ggplot2)
-galton.data <- galton
-```
 
-```{r, echo=FALSE, cache=TRUE}
-ggplot(galton.data, aes(x=parent, y=child)) +
-    geom_point() +    
-    geom_smooth(method=lm,   # Add linear regression line
-                se=FALSE) +     # Don't add shaded confidence region
-    labs(x = "parent height", y = "child height")
-```
 
 
 ## Expected value of Y given X
@@ -84,6 +71,12 @@ $$ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) $$
 
 
 ## Example
+```{r,echo=FALSE, message=FALSE, cache=TRUE}
+library(psych)
+library(ggplot2)
+galton.data <- galton
+```
+
 ```{r}
 fit.1 <- lm(parent ~ child, data = galton.data)
 summary(fit.1)

@@ -1,45 +1,56 @@
 ---
-title: "Correlations"
-ioslides_presentation: default
+title: "correlations"
+output: ioslides_presentation
 ---
+
 
 ## Relationships
 
 - What is the relationship between IV and DV?
 
-  * Measuring relationships depend on type of measurement
-  * E.g. chi-square for categorical
-  
-## Modeling relationships
-
-```{r, eval=FALSE}
-t.test(y ~ x, data)
-```
-- This semester we will examine this relationship through GLM that takes the form for y = x + e
-- What analysis you use will depend on how you measure your IV (X) and your DV (Y)
-
-## Modeling relationships
+-  Measuring relationships depend on type of measurement
 
 - You have primarily been working wtih categorical IVs (t-test, ANOVA, chi-square)
-- How do we look at continous IVs and DVs? 
 
-## Dispersion
+
+## Scatter Plot with best fit line
+```{r,echo=FALSE, message=FALSE, cache=TRUE}
+library(psych)
+library(ggplot2)
+galton.data <- galton
+```
+
+```{r, echo=FALSE, cache=TRUE}
+ggplot(galton.data, aes(x=parent, y=child)) +
+    geom_point() +    
+    geom_smooth(method=lm,   # Add linear regression line
+                se=FALSE) +     # Don't add shaded confidence region
+    labs(x = "parent height", y = "child height")
+```
+
+
+## Review of Dispersion
 
 Variation (sum of squares)
 $$ SS = {\sum{(x-\bar{x})^2}} $$
 $$ SS = {\sum{(x-\mu)^2}} $$
 
-## Dispersion
+## Review of Dispersion
 Variance
 $$ s^{2} = {\frac{\sum{(x-\bar{x})^2}}{N-1}} $$
 $$ \sigma^{2} = {\frac{\sum{(x-\mu)^2}}{N}} $$
 
-## Dispersion
+## Review of Dispersion
 Standard Deviation
 $$ s = \sqrt{\frac{\sum{(x-\bar{x})^2}}{N-1}} $$
 $$ \sigma = \sqrt{\frac{\sum{(x-\mu)^2}}{N}} $$
 
 ## formula standard error of the mean? 
+
+## Associations
+
+- ie relationships
+- to look at continuous variable assocaitions we need to think in terms of how variables relate to one another
 
 ## Associations
 Covariation (cross products)
@@ -72,12 +83,7 @@ Correlations
 - -1 to 1 
 - Invariant to changes in mean or scaling
 - Most common (and basic) effect size measure
-
-```{r,echo=FALSE, message=FALSE, cache=TRUE}
-library(psych)
-library(ggplot2)
-galton.data <- galton
-```
+- Will use to build our regression model
 
 ## Associations
 Correlations
@@ -172,7 +178,7 @@ df = N-2
 ###How big is practical?
 
 >- Cohen (.1, .3., .5)
->- Meyer & Hemphill .3 is average
+>- Meyer & Hemphill .3 is average 
 >- Rosenthaul
 >-
 Drug TX?  | Alive |  Dead
@@ -223,8 +229,8 @@ pwr.r.test(n = , r = .3, sig.level = .05 , power = .8)
 
 ##Power calculations
 - But what is your confidence? 
-- N = 84 gives you CI[.09, 48]
-- Schönbrodt & Perugini (2013) suggest correlations stabilize at 250+ regardless of effect
+- N = 84 gives you CI[.09, .48]
+- Schönbrodt & Perugini (2013) suggest correlations 'stabilize' at 250+ regardless of effect size
 - CI[.19, .39]
 
 ## Fisher’s r to z’ transformation
@@ -256,10 +262,10 @@ $$ z^{'} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} $$
 
 ## Fisher’s r to z’ transformation
 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/fisher.png" width="600" height="500"/>
+<img src="fisher.png" width="600" height="500"/>
 
-##
-Steps for computing confidence interval
+##  Steps for computing confidence interval
+
 1. Transform r into z'  
 2. Compute CI as you normally would using z'  
 3. revert back to r  
@@ -284,13 +290,15 @@ $$ Z = {\frac{z'_{1}-z'_{2}}{se_{z1-z2}}} $$
 - different standard error compared to 1 sample test
 $$ Z = {\frac{z'_{1}-z'_{2}}{se_{z1-z2}}} $$
 $$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1}{n_{2}-3}}}} $$
-
+- but probably best to do this test in another framework (e.g., interaction, SEM)
 
 ## Other correlation tests:
 1. Set of correltions
 2. Dependent correlations (i.e., within same group)  
   These are more easily tested via Structural Equation Modeling (SEM)
 3. Intra Class Correlation (ICC)
+
+- Again, best to do these tests in another framework (e.g., interaction, SEM)
   
 ## Factors that influence r (and most other test statistics)
 1. Restriction of range (GRE scores and success)
@@ -360,6 +368,9 @@ alpha(measure)
 - remember this when interpretting other's research
 
 ##Types of correlations
+- Many ways to get at relationship between two variables
+- Statistically the different types are almost exactly the same
+- Exist for historical reasons
 
 
 ##Types of correlations
