@@ -219,7 +219,7 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 Consists of -1, 1s (And zeros for more than 2 groups)
 
 1. The intercept is the "grand mean" or "mean of means" if unbalanced
-2. The regression coefficient represens the group "effect" ie the difference from the grand mean
+2. The regression coefficient represens the group "effect" ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
 
 - Common to use for ANOVA models b/c ANOVA models are usually specified this way
 

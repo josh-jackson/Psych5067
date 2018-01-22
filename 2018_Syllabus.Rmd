@@ -26,7 +26,7 @@ This course will provide a detailed overview of multiple regression as a data-an
 
 #### Class textbook#### 
 
-- Learning Statistics with R by Daniel Navarro <https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/>
+- Learning Statistics with R by Daniel Navarro <http://www.compcogscisydney.com/learning-statistics-with-r.html>
 
 *Recommended text (not required)*
 
@@ -68,38 +68,38 @@ Note: take home projects should be treated like exams. No discussing of question
 
 Note that dates and readings are tentative. Topics will likely shift; all changes will be updated on the homepage, not necessarily in the syllabus. 
 
-| Week | Date  |  Topic                                                     | Additional Readings             |
--------|-------|------------------------------------------------------------|----------------------|
-| 1    | 1/16  | Introduction and recap                                     |Cumming's new stat, if needed|
-| -    | 1/18  | GLM and Categorical predictors                             |                      |
-| 2    | 1/23  | Correlation                                                | Correlation Revelle  |
-| -    | 1/25  | Univariate Regression                                      |                      |
-| 3    | 1/30  | Univariate Regression                                      |                      |
-| -    | 2/1   | Partial Correlations                                       |                      |
-| 4    | 2/6   | Multiple Regression                                        |                      |
-| -    | 2/8   | Multiple Regression                                        |   MR Cohen chapter   |
-| 5    | 2/13  | Multiple Regression                                        |                      |
-| -    | 2/15  | Assumptions, model diagnostics                             |                      |
-| 6    | 2/20  | **Exam 1**                                                 |                      |
-| -    | 2/22  | Assumptions, model diagnostics                             |                      |
-| 7    | 2/27  | Moderation/interaction                                     |   Aiken  Chapter     |
-| -    | 3/1   | Class Canceled                                             |                      |
-| 8    | 3/6   | Moderation/interaction                                     |                      |
-| -    | 3/8   | Polynomials                                                |   Myers chapter      |
-| 9    | 3/13  | **Spring Break!**                                          |                      |
-| -    | 3/15  | **Spring Break!**                                          |                      |
-| 10   | 3/20  | Factorial ANOVA                                            |                      |
-| -    | 3/22  | Factorial ANOVA                                            |                      |
-| 11   | 3/27  |Cont and cat predictors (ANCOVA)                            |                      |
-| -    | 3/29  | Logistic regression/GLM                                    |                      |
-| 12   | 4/3   | Over/underfitting and validation                           |                      |
-| -    | 4/5   | Over/underfitting and validation                           |   McElrath chapter   |
-| 13   | 4/10  | Repeated measures/MLM                                      |   Hoffman BRM        |
-| -    | 4/12  | Repeated measures/MLM                                      |                      |
+| Week | Date  |  Topic                                 |LSR readings       | Additional Readings  |
+-------|-------|----------------------------------------|--------------------|----------------------|
+| 1    | 1/16  | Introduction and recap                 |                   |Cumming's new stat, if needed|
+| -    | 1/18  | GLM and Categorical predictors         |                    |                      |
+| 2    | 1/23  | Correlation                            |                    | Correlation Revelle  |
+| -    | 1/25  | Univariate Regression                  | Chapter 15                 |                      |
+| 3    | 1/30  | Univariate Regression                  |                    |                      |
+| -    | 2/1   | Partial Correlations                   |                  |  MR Cohen chapter     |
+| 4    | 2/6   | Multiple Regression                    |                  |                      |
+| -    | 2/8   | Multiple Regression                    |                  |      |
+| 5    | 2/13  | Multiple Regression                    |                  |                      |
+| -    | 2/15  | Assumptions, model diagnostics         |                  |                      |
+| 6    | 2/20  | **Exam 1**                             |                    |                      |
+| -    | 2/22  | Assumptions, model diagnostics         |                    |                      |
+| 7    | 2/27  | Moderation/interaction                 |                    |   Aiken  Chapter     |
+| -    | 3/1   | Class Canceled                         |                    |                      |
+| 8    | 3/6   | Moderation/interaction                 |                    |                      |
+| -    | 3/8   | Polynomials                           |                     |   Myers chapter      |
+| 9    | 3/13  | **Spring Break!**                    |                      |                      |
+| -    | 3/15  | **Spring Break!**                     |                     |                      |
+| 10   | 3/20  | Factorial ANOVA                       |  Chapter 16                   |          |
+| -    | 3/22  | Factorial ANOVA                      |                      |                      |
+| 11   | 3/27  |Cont and cat predictors (ANCOVA)      |                      |                      |
+| -    | 3/29  | Logistic regression/GLM              |                     | Cohen Chapter       |
+| 12   | 4/3   | Over/underfitting and validation     |                      |                      |
+| -    | 4/5   | Over/underfitting and validation     |                      |   McElrath chapter   |
+| 13   | 4/10  | Repeated measures/MLM                |                      |   Hoffman BRM        |
+| -    | 4/12  | Repeated measures/MLM                |                      |                      |
 | 14   | 4/17  | **Exam 2**                                                 |                      |
-| -    | 4/19  | Bayesian statistics                                        |   Kruschke PBR       |
-| 15   | 4/24  | Bayesian regression                                        |                      |
-| -    | 4/26  | Bayesian MLM                                               |                      |
-| -    | 5/?   | **Final Exam** TBA                                         |                      |
+| -    | 4/19  | Bayesian statistics                  | Chapter 17            |   Kruschke PBR       |
+| 15   | 4/24  | Bayesian regression                  |                      |                      |
+| -    | 4/26  | Bayesian MLM                         |                      |                      |
+| -    | 5/?   | **Final Exam** TBA                   |                      |                      |
 
 
