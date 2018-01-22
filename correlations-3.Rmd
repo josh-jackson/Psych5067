@@ -45,12 +45,12 @@ Standard Deviation
 $$ s = \sqrt{\frac{\sum{(x-\bar{x})^2}}{N-1}} $$
 $$ \sigma = \sqrt{\frac{\sum{(x-\mu)^2}}{N}} $$
 
-## formula standard error of the mean? 
+## formula for standard error of the mean? 
 
 ## Associations
 
 - ie relationships
-- to look at continuous variable assocaitions we need to think in terms of how variables relate to one another
+- to look at continuous variable associations we need to think in terms of how variables relate to one another
 
 ## Associations
 Covariation (cross products)
