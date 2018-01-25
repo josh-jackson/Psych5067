@@ -7,6 +7,9 @@ output: html_document
  <br>
 
 
+
+- January 24th - Regression lecture is up! Also check this post out about power: https://approachingblog.wordpress.com/2018/01/24/powering-your-interaction-2/
+
 - January 22nd - Lecture for correlation is now up as is the reading (Revelle). For the reading pay special attention to sections (4.4.1 - 4.4.3.3 and 4.5 - 4.6.1.1)  
 <br>
 

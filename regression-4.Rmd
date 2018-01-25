@@ -1,41 +1,22 @@
 ---
 title: "regression"
 output: ioslides_presentation
----
-
-
-## What is a regression equation? 
-Functional relationship, ideally like a physical law
-
-Uncovered through measurement
-
-
+---  
 
 
 ## Expected value of Y given X
 - E(Y|X)
 - The regression of Y (DV) on X (IV) corresponds to the line that gives the mean value of Y corresponding to each possible value of X
+- "Our best guess" regardless of whether our model includes categories or continuous
 
-- "Our best guess"
-
-## What is our best guess if we...
-- Didn't collect any data? 
-- No correlation? 
-- Positive association?
-- Negative association?
 
 ## Regression Equation
 
 $$ Y = b_{0} + b_{1}X +e  $$
 $$ \hat{Y} = b_{0} + b_{1}X  $$
-$$ \mu_{Y} = \beta_{0} + \beta_{1}X + \epsilon   $$
 
-## Regression terms
-- Y/DV/Outcome/Response/Criterion
-- X/IV/Predictor/Explanatory variable
-- Regression coeffiecent (weight)/b/b*/$\beta$
-- Intercept bo/$\beta_{0}$
-- Error/Residuals
+
+
 
 ## OLS
 - Ordinary Least Squares (OLS) estimation
@@ -46,16 +27,17 @@ $$ min\sum(Y_{i}-\hat{Y})^{2} $$
 - Other estimation procedures possible (and necessary in some cases)
 
 ## Regression coefficient
-$$ b_{yx} = \frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} $$
+$$ b_{1} = \frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} $$
 
 ## Interpretation
-The slope equals the estimated change in Y for a 1-unit change in X
+- The regression coefficient (slope) equals the estimated change in Y for a 1-unit change in X  
+- For nominal variables using dummy coding (0 and 1s) the regression coefficient equals the difference in means between the two groups 
 
 ## Standardized regression
 - Regression using z-scores for Y and X
 - Correlation equals standardized regression coefficent
-$$ b_{yx} = r_{xy} \frac{s_{y}}{s_{x}} $$
-$$ r_{xy} = b_{yx} \frac{s_{x}}{s_{y}} $$
+$$ b_{1} = r_{xy} \frac{s_{y}}{s_{x}} $$
+$$ r_{xy} = b_{1} \frac{s_{x}}{s_{y}} $$
 $$ \beta_{yx} = b_{yx}^{*} = r_{xy} $$  
 
 ## Standardized regression equation
@@ -68,6 +50,7 @@ $$ Y = b_{1}^{*}X + e  $$
 $$ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) $$
 - if standardized, intercept drops out  
 - otherwise, intercept is where regression line crosses the y-axis at X = 0
+- Also, notice that when X = $\bar{X}$ the regression line  goes through  $\bar{Y}$
 
 
 ## Example
@@ -82,42 +65,25 @@ fit.1 <- lm(parent ~ child, data = galton.data)
 summary(fit.1)
 ```
 
+
+## 
+
+```{r, echo=FALSE, cache=TRUE}
+ggplot(galton.data, aes(x=child, y=parent)) +
+    geom_point() +    
+    geom_smooth(method=lm)
+```
+
 ## ANOVA table
 ```{r}
 anova(fit.1)
 ```
 
 
-## lm objects
 
-```{r, eval=FALSE}
-coefficients(fit.1)       # coefficients
-residuals(fit.1)          # residuals
-fitted.values(fit.1)      # fitted values
-summary(fit.1)$r.squared  # R-sq for the model
-summary(fit.1)$sigma      # se of the model
-```
+## Exploring the lm object
 
-## lm objects
-The way R handles model objects is a little cumbersome as they are not data frames. You can see your output and maybe do some basic descriptives but you wont be able to do advanced manipulation 
-```{r}
-head(resid(fit.1))
-```
-
-## lm objects 
-
-If you want to use your model results/objects later on you (hint, we will) you need to turn them into an easier to use form
-
-```{r}
-# broom package (found in the tidyverse package)
-library(broom)
-fit.1.data <- tidy(fit.1) #tidy turns the summary into a dataframe 
-fit.1.data
-```
-
-## lm objects
-augment ammends the original dataset with all the lm objects. The names of the objects are different than a normal lm object, namely they have a "."" infront of the name
-```{r}
+```{r, warning=FALSE}
 library(broom)
 galton.data.1 <- augment(fit.1, galton.data)
 head(galton.data.1)
@@ -126,29 +92,43 @@ head(galton.data.1)
 
 ## fitted values, Y-hats
 ```{r}
-library(psych)
-
-describe(galton.data.1$.fitted)      
-```
-```{r}
-describe(galton.data.1$parent)
+psych::describe(galton.data.1$.fitted)      
 ```
 
-##  Correlation
-
 ```{r}
-cor.test(galton.data.1$parent, galton.data.1$.fitted)
+psych::describe(galton.data.1$parent)
 ```
 
 
 ##residuals
+$$ \epsilon \sim N(0,\sigma) $$ 
 
 ```{r}
-head(galton.data.1$.resid)
-describe(galton.data.1$.resid)
-describe(galton.data.1$parent)
+psych::describe(galton.data.1$.resid)
+psych::describe(galton.data.1$parent)
 ```
 - variation that is left over in Y, after accounting for X
+
+##residuals not assocaited with X
+```{r, cache=TRUE}
+ggplot(galton.data.1, aes(x=.resid, y=child)) +
+    geom_point() +    
+    geom_smooth(method=lm)
+```
+
+## and yhat
+```{r, cache=TRUE}
+ggplot(galton.data.1, aes(x=.resid, y=.fitted)) +
+    geom_point() +    
+    geom_smooth(method=lm)
+```
+
+## r(fitted and X) = 1
+```{r, cache=TRUE}
+ggplot(galton.data.1, aes(x=.fitted, y=child)) +
+    geom_point() +    
+    geom_smooth(method=lm)
+```
 
 ## Statistical Inference
 - The way the world is = our model + error
@@ -162,28 +142,9 @@ $$ \hat{Y} = \bar{Y} $$
 ## Partitioning variance in Y
 - To the extent that we can generate different predicted values of Y based on the values of the predictors, we are doing well in our prediction
 
-## Partitioning variance in Y into 3 components
-$$ Y = \hat{Y} + e$$
-$$ Y = \hat{Y} + (Y - \hat{Y}) $$
-$$ Y - \bar{Y} = (\hat{Y} -\bar{Y}) + (Y - \hat{Y}) $$
-$$ (Y - \bar{Y})^2 = [(\hat{Y} -\bar{Y}) + (Y - \hat{Y})]^2 $$
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
-
-## Partitioning the variation in Y
 $$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
 
 - SS total = SS regression + SS residual (or error)
-
-## Partitioning the variation for ANOVA
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
-- SS total = SS between + SS within
-
-## Similarity with ANOVA\
-
-## Partitioning variation in Y
-$$ \sum (Y - \bar{Y})^2 = \sum (\hat{Y} -\bar{Y})^2 + \sum(Y - \hat{Y})^2 $$
-$$ s_{y}^2 = s_{regression}^2 + s_{residual}^2 $$
-$$ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  $$
 
 
 ## Coefficient of Determination
@@ -191,11 +152,11 @@ $$ 1 = \frac{s_{regression}^2}{s_{y}^2} + \frac{s_{residual}^2}{s_{y}^2}  $$
 $$ \frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2 $$
 
 
+
 ## Example
 ```{r}
 
-summary(fit.1)
-
+summary(fit.1)$r.squared
 ```
 
 ##Example
@@ -224,39 +185,108 @@ $$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
 - measure of discrepancy between the data and the model
 - the MSE is the variance around the fitted regression line
 
-## MSE and residual standard error
-
-MSE = 2.52
+## residual standard error
+MSE = 2.52 
 ```{r, echo=FALSE}
 summary(fit.1)
 ```
 
 
-## residual standard error (sigma)
-
-```{r}
-describe(galton.data$parent)
-```
-
-## residual standard error (sigma)
+## residual standard error/deviation 
 
 - aka standard deviation of the residual
 - aka standard error of the estimate
 
+$$ \hat{\sigma} $$
+
 - Interpreted in original units (cf R2)
 - Standard deviation of Y not accounted by model
-- MSE is related to sigma, sqrt[(SSE)/df(error)] = sigma 
-- (note df might be off slightly because of unbiasing)
 
 
-## residual standard error (sigma)
+## residual standard error/deviation (sigma)
+
 
 ```{r}
-head(galton.data.1)
-describe(galton.data.1$.resid)
+summary(fit.1)$sigma 
+psych::describe(galton.data.1$.resid)
+```
+
+
+## residual standard error/deviation (sigma)
+
+```{r}
+summary(fit.1)$sigma 
+psych::describe(galton.data$parent)
+```
+
+## Why do we care? Let's simulate to find out
+
+```{r}
+x.1 <- rnorm(1000, 0, 1)
+e.1 <- rnorm(1000, 0, 1)
+y.1 <- .5 + .55 * x.1 + e.1
+d.1 <- data.frame(x.1,y.1)
+m.1 <- lm(y.1 ~ x.1, data = d.1)
+```
+##
+
+```{r}
+summary(m.1)
 
 ```
 
+##
+
+```{r, echo=FALSE, warning=FALSE}
+library(ggplot2)
+ggplot(d.1, aes(x = x.1,y =  y.1)) +
+    geom_point() +    
+    geom_smooth(method = lm) +
+   scale_x_continuous(limits = c(-3, 3))  +
+  scale_y_continuous(limits = c(-6, 6))
+```
+
+##
+
+```{r}
+x.2 <- rnorm(1000, 0, 1)
+e.2 <- rnorm(1000, 0, 2)
+y.2 <- .5 + .55 * x.2 + e.2
+d.2 <- data.frame(x.2,y.2)
+m.2 <- lm(y.2 ~ x.2, data = d.2)
+```
+
+##
+```{r}
+summary(m.2)
+
+```
+
+##
+```{r,echo=FALSE, warning=FALSE}
+ggplot(d.1, aes(x=x.2, y=y.2)) +
+    geom_point() +    
+    geom_smooth(method=lm) +
+  scale_x_continuous(limits = c(-3, 3))  +
+  scale_y_continuous(limits = c(-6, 6))
+```
+
+## r2 and residual standard deviation
+- two sides of same coin
+- one in original units, the other standardized 
+- R2 can be tricky because the numerator and denominator can be changed in different ways. 
+- For example if variance in Y is changed but with the same model and residual standard error R2 could decline or increase
+
+
+## standard errors for b
+- represent our uncertainty (noise) in our estimate of the regression coefficient 
+- different from residual standard error/deviation (but proportional to). 
+- much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be "possible" if we ran the study again
+- (see equation later)
+
+
+
+## Inferential tests
 ## Omnibus test
 
 $$ H_{0}: \rho_{XY}^2= 0 $$
@@ -283,16 +313,18 @@ $$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
 
 ## Intercept
 
-- same idea, more complex se calculation
+- same idea, more complex se calculation as the calculation depends on how far the X value (here zero) is away from the mean of X
+- farther from the mean, less information, thus more uncertainty 
+- We will come back and see this equation later
 
 ## Confidence interval for coefficents
 
 - same equation as we've been working with
+- estimate plus minus 1.96*se
 
 ## Confidence Bands for regression line
 ```{r, echo=FALSE, message=FALSE}
-library(ggplot2)
-ggplot(galton.data, aes(x=parent, y=child)) +
+ggplot(galton.data, aes(x=child, y=parent)) +
     geom_smooth(method=lm,   # Add linear regression line
                 se=TRUE) +     # Don't add shaded confidence region
     labs(x = "parent height", y = "child height")
@@ -302,8 +334,7 @@ ggplot(galton.data, aes(x=parent, y=child)) +
 - Compare mean estimate for height of 70 based on regression vs binning
 
 ```{r, echo=FALSE}
-library(ggplot2)
-ggplot(galton.data, aes(x=parent, y=child)) +
+ggplot(galton.data, aes(x=child, y=parent)) +
       geom_point() +   
   geom_smooth(method=lm,   # Add linear regression line
                 se=TRUE) 
@@ -311,23 +342,35 @@ ggplot(galton.data, aes(x=parent, y=child)) +
 
 ## Confidence Bands
 
-$$ \hat{Y}\pm t_{critical} * se_{residual}\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  $$
+$$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{\frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  $$
 
 
 ## Prediction
+- very similar to confidence bands around regressions line
+- differences is that is predicting and individual i's score, not the Y hat for a particular level of X.(A new Yi given X, rather than Ybar given x)
+- Because there is greater variation in predicting an individual value rather than a collection of individual values (ie the mean) the prediction band is greater
+- Combines unknown variability in 1) the estimated mean (as reflected in se of b) 2) peoples scores around  mean (residual standard error) 
+
+$$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  $$
+
+##
 
 ```{r}
-
+temp_var <- predict(fit.1, interval="prediction")
+new_df <- cbind(galton.data, temp_var)
+pred <- ggplot(new_df, aes(x=child, y=parent))+
+       geom_point() +   
+  geom_smooth(method=lm,se=TRUE) +
+ geom_ribbon(aes(ymin = lwr, ymax = upr), 
+               fill = "blue", alpha = 0.1)
+pred
 ```
 
+
+
 - More later when we start Bayesian modeling
-- A new Y given x, rather than Ybar given x. 
+ 
 
-
-## Coding of qualitative variables
-
-- Dummy coding
-- Effects
 
 
 
