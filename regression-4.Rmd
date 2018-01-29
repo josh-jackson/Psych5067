@@ -355,7 +355,7 @@ $$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X
 
 ##
 
-```{r}
+```{r, warning=FALSE}
 temp_var <- predict(fit.1, interval="prediction")
 new_df <- cbind(galton.data, temp_var)
 pred <- ggplot(new_df, aes(x=child, y=parent))+
@@ -363,13 +363,15 @@ pred <- ggplot(new_df, aes(x=child, y=parent))+
   geom_smooth(method=lm,se=TRUE) +
  geom_ribbon(aes(ymin = lwr, ymax = upr), 
                fill = "blue", alpha = 0.1)
+```
+
+
+##
+```{r}
 pred
 ```
 
 
-
-- More later when we start Bayesian modeling
- 
 
 
 

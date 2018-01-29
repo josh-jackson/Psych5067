@@ -6,7 +6,7 @@ output: html_document
 
  <br>
 
-
+- January 28th - Take Home project #1 is posted. You will need the Dawtry et al article and accompanying data found in the data tab on the website. 
 
 - January 24th - Regression lecture is up! Also check this post out about power: https://approachingblog.wordpress.com/2018/01/24/powering-your-interaction-2/
 
