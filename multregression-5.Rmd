@@ -29,10 +29,10 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
 
 ## GPA = SES + Peer relationships
 -Can be thought of as overlapping Venn diagrams
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-1.png" width="500" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-1.png" width="700" height="500"/>
 
 ## redundent vs non-redundent information 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2.png" width="800" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2.png" width="700" height="500"/>
 
 ## types of correlations
 - pearson ignores all outside variables
@@ -42,7 +42,7 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
     + the extent to which the part of X1 that is independent of x2 correlates with all of Y
     
 ## semi-partial
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-2.png" width="500" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-2.png"width="700" height="500"/>
 
 ## semi-partial
 $$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
@@ -53,7 +53,7 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 - the extent to which the part of X1  that is independent of X2  is correlated with the part of Y that is also independent of X2 
 
 ## partial correlation
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-3.png" width="500" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-3.png" width="500" height="500"/>
 
 ## partial correlation
 $$ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} $$
@@ -67,12 +67,6 @@ $$ pr^2 = \frac{R_{Y.12}^2 - r_{Y2}^2}{1-r_{Y2}^2} $$
 $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 
 
-
-## when to use what? 
- - semi-partial is best suited to show incremental variance (more practical)
- - partial is more effective to rule out third variable 
-(theoretical)
-- partial will be larger
 
 ## same t-test for semi-, partial and partial regression coefficient
 
@@ -90,9 +84,8 @@ $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
 - predicted change in y for a 1 unit change in x, holding all other predictors constant  
 
 ## example
-```{r, echo = FALSE}
-
-Multipleregression <- read.csv("Multipleregression.csv")
+```{r, echo = FALSE, message=FALSE}
+Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Multipleregression.csv")
 ```
 
 ```{r}
@@ -162,12 +155,14 @@ $$ R = \sqrt{b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
 $$ R^2 = {b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
 
 ## 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-4.png" width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-4.png" width="700" height="500"/>
 
 ##
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-5.png" width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-5.png" width="700" height="500"/>
 
 ## sum of squares decomposition
+
+same as before
 
 $$  \frac{SS_{regression}}{SS_{Y}} = R^2 $$
 $$  {SS_{regression}} = R^2({SS_{Y})} $$
@@ -247,8 +242,9 @@ $$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\f
 - Each predictor (or set of predictors) is assessed in terms of what it adds (in terms of variance explained) at the time it is entered   
 - Order is dependent on a priori hypothesis  
 
-## 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/R2-6.png" width="700" height="500"/>
+
+##   
+<img src="/Users/jackson/Box Sync/5067 Regression Spring/5067 spring 18/R2-6.png" width="700" height="500"/>
 
 ## partitioning the variance
 $$R_{Y.1234...p}^2 = r_{Y1}^2 + r_{Y(2.1)}^2 + r_{Y(3.21)}^2 + r_{Y(4.321)}^2 + ...   $$
@@ -301,11 +297,6 @@ anova(m.0, m.1)
 
 
 
-## overfitting
-
-
-## regularization
-
 
 
 
@@ -317,7 +308,7 @@ anova(m.0, m.1)
 - Dummy code is default
 
 ```{r, echo = FALSE}
-one.way <- read.csv("anova.csv")
+one.way <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/anova.csv")
 one.way$group <- one.way$IV
 one.way$group <- as.factor(one.way$group)
 library (broom)
@@ -344,6 +335,7 @@ library(dplyr)
 
 ```{r}
 contrasts(one.way$group)
+Multipleregression$group <- as.factor(Multipleregression$group)
 contrasts(Multipleregression$group)
 ```
 

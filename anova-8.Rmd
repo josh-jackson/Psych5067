@@ -49,7 +49,7 @@ $$ \alpha_{j} =  \mu_{j} -  \mu $$
 ## 
 
 ```{r, echo=FALSE, message=FALSE}
-data <-read.csv(file = "Anxiety.data.csv")
+data <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Anxiety.data.csv")
 
 library(dplyr)
 # getting the group means 

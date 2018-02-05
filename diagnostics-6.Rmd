@@ -129,7 +129,7 @@ output: ioslides_presentation
 load data
 ```{r}
 library(readr)
-a_data <- read.csv("Part 1 data.csv")
+a_data <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Part 1 data.csv")
 library(broom)
 model.1 <- lm(Anxiety ~ Stress + Support, a_data)
 a_data<- augment(model.1)
