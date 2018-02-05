@@ -2,9 +2,9 @@ base
 RevoUtils
 psych
 ggplot2
+broom
 dplyr
 bindrcpp
-broom
 estimability
 lsmeans
 lsr

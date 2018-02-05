@@ -146,7 +146,18 @@
 </article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  id="example">
 
 <pre class = 'prettyprint lang-r'>fit.1 &lt;- lm(parent ~ child, data = galton.data)
-summary(fit.1)</pre>
+anova(fit.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: parent
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## child       1  623.26  623.26  246.84 &lt; 2.2e-16 ***
+## Residuals 926 2338.10    2.52                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+<pre class = 'prettyprint lang-r'>summary(fit.1)</pre>
 
 <pre >## 
 ## Call:
@@ -166,6 +177,14 @@ summary(fit.1)</pre>
 ## Residual standard error: 1.589 on 926 degrees of freedom
 ## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
 ## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
+
+<pre class = 'prettyprint lang-r'>library(psych)
+describe(galton.data$parent)</pre>
+
+<pre >##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
+## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
+##      se
+## X1 0.06</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 

@@ -62,7 +62,10 @@ galton.data <- galton
 
 ```{r}
 fit.1 <- lm(parent ~ child, data = galton.data)
+anova(fit.1)
 summary(fit.1)
+library(psych)
+describe(galton.data$parent)
 ```
 
 
