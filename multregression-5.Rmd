@@ -29,10 +29,17 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
 
 ## GPA = SES + Peer relationships
 -Can be thought of as overlapping Venn diagrams
+<<<<<<< HEAD
 <img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-1.png" width="700" height="500"/>
 
 ## redundent vs non-redundent information 
 <img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2.png" width="700" height="500"/>
+=======
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-1.png">
+
+## redundent vs non-redundent information 
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2.png">
+>>>>>>> fa5ec85838d9fefd9292839b0f66309e197f8441
 
 ## types of correlations
 - pearson ignores all outside variables
@@ -42,7 +49,11 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
     + the extent to which the part of X1 that is independent of x2 correlates with all of Y
     
 ## semi-partial
+<<<<<<< HEAD
 <img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-2.png"width="700" height="500"/>
+=======
+<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-2.png">
+>>>>>>> fa5ec85838d9fefd9292839b0f66309e197f8441
 
 ## semi-partial
 $$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
