@@ -24,12 +24,10 @@ $$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
 
 ```{r, echo = FALSE}
 library(readr)
-<<<<<<< HEAD
 Multipleregression  <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Multipleregression.csv")
-=======
-Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Multipleregression.csv")
->>>>>>> fa5ec85838d9fefd9292839b0f66309e197f8441
+
 Multipleregression$Support.r <- (17.36 - Multipleregression$Support)/3
+
 mr.model <- lm(Stress ~ Support.r* Anxiety, data = Multipleregression)
 library(visreg)
 visreg2d(mr.model,"Support.r", "Anxiety", plot.type = "persp")

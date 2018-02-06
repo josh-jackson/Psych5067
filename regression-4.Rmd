@@ -74,7 +74,7 @@ describe(galton.data$parent)
 ```{r, echo=FALSE, cache=TRUE}
 ggplot(galton.data, aes(x=child, y=parent)) +
     geom_point() +    
-    geom_smooth(method=lm)
+    geom_smooth(method=loess, formula = y ~ x)
 ```
 
 ## ANOVA table
