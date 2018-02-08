@@ -36,11 +36,6 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
 <img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2.png" width="700" height="500"/>
 
 
-
-## redundent vs non-redundent information 
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2.png">
-
-
 ## types of correlations
 - pearson ignores all outside variables
 
@@ -54,7 +49,7 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
 
 
 ## semi-partial
-$$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
+$$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{12} }{\sqrt{1-r_{12}^2}} $$
 $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 
 ## types of correlations
@@ -65,7 +60,7 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 <img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-3.png" width="500" height="500"/>
 
 ## partial correlation
-$$ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} $$
+$$ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} $$
 
 $$ sr = r_{y(1.2)} = \frac{r_{Y1}-r_{Y2}r_{Y12} }{\sqrt{1-r_{12}^2}} $$
 
@@ -76,8 +71,6 @@ $$ pr^2 = \frac{R_{Y.12}^2 - r_{Y2}^2}{1-r_{Y2}^2} $$
 $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 
 
-
-## same t-test for semi-, partial and partial regression coefficient
 
 ## how to interpret partial regression cofficients? 
 - residual in simple regression can be thought of as a measure of Y that is left over after accounting for your DV
