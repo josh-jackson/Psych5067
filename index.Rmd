@@ -4,7 +4,9 @@ output: html_document
 ---
 
 
- <br>
+ <br>  
+     
+- Feb 12th - Take home project #3 is posted. This will be the final take home before exam #1.      
    
 - Feb 3rd - Take Home project #2 is posted. Also Multiple regression lecture is updated.
 
