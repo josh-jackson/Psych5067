@@ -5,6 +5,8 @@ output: html_document
 
 
  <br>  
+ 
+- Feb 18th - Syllabus updated to reflect Exam #1 will be on 2/22
      
 - Feb 12th - Take home project #3 is posted. This will be the final take home before exam #1.      
    
