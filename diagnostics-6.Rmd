@@ -102,7 +102,7 @@ ggplot(data = a_data, aes(x=.fitted, y=.resid)) +
 
 
 
-## Assumption 4: Homoscedasticity, i.e. constant variance of the errors
+## Assumption 4: Homoscedasticity
 
 ```{r, echo = FALSE}
 ggplot(data = a_data, aes(x=.fitted, y=.resid)) + geom_point() + 
@@ -116,7 +116,6 @@ ggplot(data = a_data, aes(x=.fitted, y=.resid)) + geom_point() +
 ## Assumption 5: Independence among the errors
 
 ```{r, echo = FALSE}
-nrow(a_data)
 a_data$ID <- c(1:118)
 ggplot(data = a_data, aes(x=ID, y = .resid)) + geom_point() +  geom_hline(yintercept = 0) 
 
