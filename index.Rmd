@@ -6,6 +6,10 @@ output: html_document
 
  <br>  
  
+ - March 13 - Take home # 4 is posted  
+ 
+ - March 6th - Interaction lecture is posted  
+ 
  - Feb 26th - Read this: https://www.buzzfeed.com/stephaniemlee/brian-wansink-cornell-p-hacking 
   Also, the diagnostics lecture is posted
  
