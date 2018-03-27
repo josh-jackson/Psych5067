@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>factorial ANOVA</title>
+  <title>Factorial ANOVA</title>
 
   <meta charset="utf-8">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -20,7 +20,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'factorial ANOVA',
+                title: 'Factorial ANOVA',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -88,15 +88,15 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>Last time</h2></hgroup><article  id="last-time">
+<slide class=""><hgroup><h2>factorial ANOVA</h2></hgroup><article  id="factorial-anova">
 
 <ul>
-<li>review of ANOVA and intro to factorial ANVOA</li>
-<li>SSbetween into three (or more) components</li>
-<li>marginal versus cell means</li>
+<li>Between subjects (vs within) is where everyone is assigned to 1 group</li>
+<li>2-way = 2 IVs, 3-way = 3 IVs, etc</li>
+<li>Advantages include: 1) efficiency 2) generalizability 3) interactions</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>factorial ANVOA</h2></hgroup><article  id="factorial-anvoa">
+</article></slide><slide class=""><hgroup><h2>factorial ANOVA</h2></hgroup><article  id="factorial-anova-1">
 
 <table class = 'rmdtable'>
 <tr class="header">
@@ -150,6 +150,72 @@
 </tr>
 </table>
 
+</article></slide><slide class=""><hgroup><h2>SS decomposition</h2></hgroup><article  id="ss-decomposition">
+
+<ul>
+<li>SStotal = SSbetween + SSwithin<br/></li>
+<li>SSbetween into three (or more) components (A,B,AxB)</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Marginal vs cell means</h2></hgroup><article  id="marginal-vs-cell-means">
+
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="left"></th>
+<th align="left">Factor</th>
+<th align="left">A</th>
+<th align="left">Marginal Means</th>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Tx</td>
+<td align="left">Control</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="left">neutral</td>
+<td align="left">7.6</td>
+<td align="left">5.0</td>
+<td align="left">6.33</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">sad</td>
+<td align="left">8.3</td>
+<td align="left">5.0</td>
+<td align="left">6.66</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">happy</td>
+<td align="left">7.3</td>
+<td align="left">8.0</td>
+<td align="left">7.66</td>
+</tr>
+<tr class="odd">
+<td align="left">______</td>
+<td align="left">_______</td>
+<td align="left">______</td>
+<td align="left">____________</td>
+<td align="left">______________________</td>
+</tr>
+<tr class="even">
+<td align="left">M.M</td>
+<td align="left"></td>
+<td align="left">7.77</td>
+<td align="left">6.0</td>
+<td align="left">6.88</td>
+</tr>
+</table>
+
+<ul>
+<li>marginal for main effects<br/></li>
+<li>cell means for interaction</li>
+</ul>
+
 </article></slide><slide class=""><hgroup><h2>equation</h2></hgroup><article  id="equation">
 
 <ul>
@@ -181,29 +247,6 @@
 <ul>
 <li>and can I &quot;see&quot; main effects too?</li>
 </ul>
-
-</article></slide><slide class=""><hgroup><h2>sums of squares decomposition</h2></hgroup><article  id="sums-of-squares-decomposition">
-
-<ul>
-<li>ssbetween = SSa + SSb + SSab</li>
-<li>same as SSregression with multiple predictors</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
-
-<pre class = 'prettyprint lang-r'>lm.1 &lt;- lm(Anxiety ~ Stress *Support, data=data)
-anova(lm.1)</pre>
-
-<pre >## Analysis of Variance Table
-## 
-## Response: Anxiety
-##                 Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## Stress           1   1.66   1.663  0.5702    0.4517    
-## Support          1 270.77 270.774 92.8535 &lt; 2.2e-16 ***
-## Stress:Support   1 118.89 118.890 40.7697 3.835e-09 ***
-## Residuals      114 332.44   2.916                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 
 </article></slide><slide class=""><hgroup><h2>how is this similar to a linear model?</h2></hgroup><article  id="how-is-this-similar-to-a-linear-model">
 
@@ -345,28 +388,158 @@ anova(lm.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2>but where is this in our output if ANOVA is regression?</h2></hgroup><article  id="but-where-is-this-in-our-output-if-anova-is-regression">
 
-</article></slide><slide class=""><hgroup><h2>aov</h2></hgroup><article  id="aov">
+</article></slide><slide class=""><hgroup><h2>example</h2></hgroup><article  id="example">
 
-<pre class = 'prettyprint lang-r'>data$SupportLevel&lt;-cut(data$Support, breaks = c(0,5,10,18), labels = c(&quot;low&quot;,&quot;med&quot;,&quot;high&quot;))
+<pre class = 'prettyprint lang-r'>data</pre>
 
-aov.1 &lt;- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
-anova(aov.1)</pre>
+<pre >##      id  Anxiety   Stress   group SupportLevel
+## 1     2 10.18520  3.19813      Tx          med
+## 2     4  5.58873  7.00840 Control          med
+## 3     6  6.58500  6.17400      Tx         high
+## 4    19  8.95430  8.69884      Tx         high
+## 5    40  7.59910  5.26707 Control          med
+## 6    45  8.15600  5.12485      Tx          med
+## 7    51  9.08020  6.85380      Tx          med
+## 8    54  3.41339  1.77080 Control          low
+## 9    86  8.65810  3.75282      Tx          med
+## 10   92  4.84619  5.44990      Tx         high
+## 11  103  5.74215  5.62860      Tx         high
+## 12  109  6.30689  0.87730 Control          low
+## 13  128 10.62630  6.73299      Tx          med
+## 14  129  6.74786  4.43970 Control          med
+## 15  137 11.20270  5.92424      Tx          med
+## 16  140  4.22281  6.19710 Control         high
+## 17  146  4.02796  7.32090      Tx         high
+## 18  148 11.52380  6.02653 Control          med
+## 19  149  3.06053 10.32460      Tx         high
+## 20  150  6.74862  3.77070      Tx         high
+## 21  154  3.48494  5.73500      Tx         high
+## 22  159 11.69430  5.49516 Control          med
+## 23  172  7.51840  3.69930 Control          med
+## 24  177  8.22450  4.58931      Tx         high
+## 25  199  7.23860  4.85550      Tx         high
+## 26  218  7.34928  1.98710 Control          med
+## 27  233  5.75941  5.07930      Tx          med
+## 28  236  7.00715  6.37110 Control         high
+## 29  241 12.38370  6.06967      Tx          med
+## 30  242  8.35940  4.85614 Control          med
+## 31  245  8.96980  4.22895      Tx         high
+## 32  248  1.42272  6.21800      Tx         high
+## 33  250  5.92340  2.73780 Control          med
+## 34  264  8.93240  5.91872      Tx         high
+## 35  277  3.30110  4.61770 Control          med
+## 36  278  6.56458  2.36060 Control          med
+## 37  281  6.94696  6.28690      Tx         high
+## 38  283  9.50410  7.63132 Control          med
+## 39  293  3.72717  4.07220      Tx          med
+## 40  296 10.42930  5.18795 Control          med
+## 41  306  8.92290  4.84015      Tx         high
+## 42  308  9.76150  6.09571 Control          med
+## 43  311  8.40130  3.79769      Tx          med
+## 44  317  8.87070  6.40170 Control          med
+## 45  321 12.46200  6.93395 Control          low
+## 46  327  5.91552  3.76590 Control          low
+## 47  328  1.43546 10.26690      Tx         high
+## 48  344  9.91500  5.86156 Control          med
+## 49  346  7.55243  7.85160      Tx          med
+## 50  366 10.98990  2.41348 Control          med
+## 51  373  8.00460  4.77413      Tx          med
+## 52  386  8.70800  4.72610 Control          med
+## 53  389  6.64578  4.71560      Tx         high
+## 54  401  8.26250  5.94780 Control          med
+## 55  422  6.83593  4.24490      Tx         high
+## 56  427  7.85910  7.06578 Control          med
+## 57  429 10.05930  5.73959      Tx          med
+## 58  450  7.96930  5.22234 Control          med
+## 59  453  7.71770  4.45613      Tx          med
+## 60  472 10.79840  4.93474 Control          low
+## 61  498  6.30535  1.19090      Tx          low
+## 62  500  3.03299  5.74880 Control         high
+## 63  503  9.37370  5.39401      Tx          low
+## 64  509  9.82540  6.77647 Control          med
+## 65  543  5.96415  7.64280      Tx         high
+## 66  548  9.77050  6.34933 Control          med
+## 67  563  5.91696  5.80840      Tx         high
+## 68  572  8.64300  2.51234 Control          med
+## 69  581  7.83910  4.92870      Tx          med
+## 70  585  6.96872  4.90600 Control         high
+## 71  589  6.14228  4.75350      Tx          med
+## 72  602  9.96160  2.33024 Control          low
+## 73  613  6.07524  6.26700      Tx         high
+## 74  620  5.81347  2.38410      Tx          med
+## 75  628  5.86049  4.85550      Tx         high
+## 76  636  3.69099  6.31990      Tx         high
+## 77  638 10.23080  2.06760      Tx          med
+## 78  642 14.64280  5.92291 Control          low
+## 79  650  5.38190  2.94320 Control          med
+## 80  674  8.03270  3.87622 Control          med
+## 81  682  5.55689  5.98730      Tx         high
+## 82  693  6.15461  6.28450      Tx          med
+## 83  699  6.32920  2.92210 Control          med
+## 84  705  3.58692  4.14990 Control          med
+## 85  720  6.96691  9.27720      Tx         high
+## 86  724 10.48390  6.65055 Control          med
+## 87  730  8.52930  9.39876      Tx         high
+## 88  744  6.56244  5.83090 Control          med
+## 89  748  9.04010  5.27865      Tx          med
+## 90  750  7.93810  2.18252 Control         high
+## 91  754  8.60400  4.66802      Tx          med
+## 92  763  7.14036  3.79440 Control         high
+## 93  774  8.70630  7.09303      Tx         high
+## 94  792  4.36330  3.38110 Control          med
+## 95  809  9.99220  5.59351      Tx          med
+## 96  811  7.97650  5.58365 Control          med
+## 97  814  9.54210  2.99499      Tx          med
+## 98  842 11.48600  6.69221 Control          med
+## 99  843  8.98960  7.23388      Tx          med
+## 100 858  7.50061  3.35810 Control          low
+## 101 866  5.48820  5.16900      Tx          med
+## 102 883  7.61550  4.06621 Control          med
+## 103 886  6.81157  7.22480      Tx         high
+## 104 889  7.88520  3.78065 Control          med
+## 105 895  8.23370  6.18172      Tx         high
+## 106 903 10.11080  5.49338 Control          med
+## 107 904  9.63430  5.04774      Tx          med
+## 108 914  8.92570  5.66546 Control          med
+## 109 924  8.48850  2.29235      Tx          med
+## 110 927  7.04304  6.91290 Control         high
+## 111 937  7.16339  0.61620      Tx          low
+## 112 944  0.69848  9.16670 Control         high
+## 113 969  7.78460  3.69495      Tx          med
+## 114 978 11.12100  3.65619 Control          low
+## 115 981  6.95909  5.39230      Tx          med
+## 116 982  5.08169  6.79640 Control         high
+## 117 984 13.12260  7.08190      Tx          med
+## 118 986  6.29789  3.07360 Control         high</pre>
 
-<pre >## Analysis of Variance Table
-## 
-## Response: Anxiety
-##                     Df Sum Sq Mean Sq F value    Pr(&gt;F)    
-## group                1   5.37   5.369  1.0514    0.3074    
-## SupportLevel         2 137.72  68.861 13.4838 5.663e-06 ***
-## group:SupportLevel   2   8.69   4.347  0.8512    0.4296    
-## Residuals          112 571.98   5.107                      
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
+
+<pre class = 'prettyprint lang-r'>data %&gt;% 
+  select(group, SupportLevel) %&gt;% 
+  table()</pre>
+
+<pre >##          SupportLevel
+## group     low med high
+##   Control   9  37   10
+##   Tx        3  30   29</pre>
+
+</article></slide><slide class=""><hgroup><h2>aov function</h2></hgroup><article  id="aov-function">
+
+<pre class = 'prettyprint lang-r'>aov.1 &lt;- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+summary(aov.1)</pre>
+
+<pre >##                     Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## group                1    5.4    5.37   1.051    0.307    
+## SupportLevel         2  137.7   68.86  13.484 5.66e-06 ***
+## group:SupportLevel   2    8.7    4.35   0.851    0.430    
+## Residuals          112  572.0    5.11                     
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 
 </article></slide><slide class=""><hgroup><h2>lm anova</h2></hgroup><article  id="lm-anova">
 
-<pre class = 'prettyprint lang-r'>lm.2 &lt;- lm(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
-anova(lm.2)</pre>
+<pre class = 'prettyprint lang-r'>lm.1 &lt;- lm(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+anova(lm.1)</pre>
 
 <pre >## Analysis of Variance Table
 ## 
@@ -391,14 +564,33 @@ anova(lm.2)</pre>
 
 <p>\[ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} \]</p>
 
-</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2">
+</article></slide><slide class=""><hgroup><h2>But what contrasts did R use?</h2></hgroup><article  id="but-what-contrasts-did-r-use">
+
+<pre class = 'prettyprint lang-r'>contrasts(data$group)</pre>
+
+<pre >##         Tx
+## Control  0
+## Tx       1</pre>
+
+<pre class = 'prettyprint lang-r'>contrasts(data$SupportLevel)</pre>
+
+<pre >##      med high
+## low    0    0
+## med    1    0
+## high   0    1</pre>
 
 <ul>
-<li>beyond noticing cell means look different we can do tests<br/></li>
+<li>we will see why this doesn&#39;t matter soon</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Interpretting interactions</h2></hgroup><article  id="interpretting-interactions">
+
+<ul>
+<li>beyond noticing whether cell means look different we can do formal tests<br/></li>
 <li>~3 types</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-1">
+</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2">
 
 <p>&#39;1. Is the interaction significant? If not, this helps interpret our main effects. If it is, we can graph and interpret or also do additional tets.</p>
 
@@ -415,13 +607,13 @@ anova(aov.0, aov.1)</pre>
 ## 1    114 580.68                           
 ## 2    112 571.98  2    8.6946 0.8512 0.4296</pre>
 
-</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-2">
+</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-1">
 
 <p>&#39;2. regression coefficients</p>
 
-<p>\[ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} \]</p>
+<p>\[ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} \] - remember, this is likely done with default dummy</p>
 
-</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-3">
+</article></slide><slide class=""><hgroup><h2>Interpretting interactions part 2</h2></hgroup><article  id="interpretting-interactions-part-2-2">
 
 <p>&#39;3. Post hoc comparisons/simple main effects</p>
 
@@ -468,11 +660,16 @@ anova(aov.0, aov.1)</pre>
 <li>Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at night</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-1">
+</article></slide><slide class=""><hgroup><h2>estimated means</h2></hgroup><article  id="estimated-means">
 
 <pre class = 'prettyprint lang-r'>library(lsmeans)
 lsm.1&lt;- lsmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
-lsm.1</pre>
+# can be used to test numerous a prior and post hoc hypotheses
+# especially important for graphing</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<pre class = 'prettyprint lang-r'>lsm.1</pre>
 
 <pre >##  group   SupportLevel   lsmean        SE  df lower.CL  upper.CL
 ##  Control low          9.124690 0.7532869 112 7.632149 10.617231
@@ -484,11 +681,22 @@ lsm.1</pre>
 ## 
 ## Confidence level used: 0.95</pre>
 
-<pre class = 'prettyprint lang-r'># can be used to test numerous a prior and post hoc hypotheses</pre>
+</article></slide><slide class=""><hgroup><h2>also marginal means</h2></hgroup><article  id="also-marginal-means">
 
-</article></slide><slide class=""><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-2">
+<pre class = 'prettyprint lang-r'>lsmeans(aov.1, specs = &quot;group&quot;)</pre>
 
-<pre class = 'prettyprint lang-r'>contrast(lsm.1, method = &quot;pairwise&quot;)</pre>
+<pre >## NOTE: Results may be misleading due to involvement in interactions</pre>
+
+<pre >##  group     lsmean        SE  df lower.CL upper.CL
+##  Control 7.604751 0.3675995 112 6.876400 8.333103
+##  Tx      7.459492 0.4771045 112 6.514171 8.404814
+## 
+## Results are averaged over the levels of: SupportLevel 
+## Confidence level used: 0.95</pre>
+
+</article></slide><slide class=""><hgroup><h2>lsmeans can also do tukey (and other adjustments)</h2></hgroup><article  id="lsmeans-can-also-do-tukey-and-other-adjustments">
+
+<pre class = 'prettyprint lang-r'>pairs(lsm.1, adjust = &quot;tukey&quot;)</pre>
 
 <pre >##  contrast                     estimate        SE  df t.ratio p.value
 ##  Control,low - Tx,low        1.5105433 1.5065739 112   1.003  0.9162
@@ -508,6 +716,28 @@ lsm.1</pre>
 ##  Control,high - Tx,high     -0.7098853 0.8287337 112  -0.857  0.9558
 ## 
 ## P value adjustment: tukey method for comparing a family of 6 estimates</pre>
+
+<pre class = 'prettyprint lang-r'># try &quot;holm&quot; and &quot;bon&quot;</pre>
+
+</article></slide><slide class=""><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-1">
+
+<pre class = 'prettyprint lang-r'># equivalent to pairs function above
+#contrast(lsm.1, method = &quot;pairwise&quot;)
+contrast(lsm.1, method = &quot;eff&quot;)</pre>
+
+<pre >##  contrast               estimate        SE  df t.ratio p.value
+##  Control,low effect   1.59256821 0.6848238 112   2.326  0.0437
+##  Tx,low effect        0.08202487 1.1070555 112   0.074  0.9411
+##  Control,med effect   0.61431902 0.4274424 112   1.437  0.1841
+##  Tx,med effect        0.97920021 0.4518603 112   2.167  0.0485
+##  Control,high effect -1.98899879 0.6566234 112  -3.029  0.0179
+##  Tx,high effect      -1.27911352 0.4561701 112  -2.804  0.0179
+## 
+## P value adjustment: fdr method for 6 tests</pre>
+
+</article></slide><slide class=""><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-2">
+
+<pre class = 'prettyprint lang-r'>library(multcomp)</pre>
 
 </article></slide><slide class=""><hgroup><h2>different types of Sums of Squares</h2></hgroup><article  id="different-types-of-sums-of-squares">
 
@@ -554,7 +784,7 @@ lsm.1</pre>
 <li>Partial will always be larger, but not interpretable with sig interaction</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <pre class = 'prettyprint lang-r'>library(lsr)
 etaSquared(aov.1)</pre>

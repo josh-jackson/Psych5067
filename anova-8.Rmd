@@ -1,15 +1,15 @@
 ---
-title: "factorial ANOVA"
+title: "Factorial ANOVA"
 output: ioslides_presentation
----
+---  
 
 
-## Last time
-- review of ANOVA and intro to factorial ANVOA
-- SSbetween into three (or more) components
-- marginal versus cell means
+## factorial ANOVA
+- Between subjects (vs within) is where everyone is assigned to 1 group
+- 2-way = 2 IVs, 3-way = 3 IVs, etc
+- Advantages include: 1) efficiency 2) generalizability 3) interactions
 
-## factorial ANVOA
+## factorial ANOVA
 
 |      |       |Factor| A          | Marginal Means       |
 |------|-------|------|------------|----------------------|
@@ -19,6 +19,23 @@ output: ioslides_presentation
 |      | happy |  7.3 |     8.0    |  7.66                |
 |______|_______|______|____________|______________________|
 | M.M  |       | 7.77 |   6.0      | 6.88                 | 
+
+## SS decomposition
+- SStotal = SSbetween + SSwithin  
+- SSbetween into three (or more) components (A,B,AxB)  
+
+
+## Marginal vs cell means
+|      |       |Factor| A          | Marginal Means       |
+|------|-------|------|------------|----------------------|
+|      |       | Tx   |  Control   |                      |
+| B    |neutral|  7.6 |     5.0    |  6.33                |
+|      | sad   |  8.3 |     5.0    |  6.66                |
+|      | happy |  7.3 |     8.0    |  7.66                |
+|______|_______|______|____________|______________________|
+| M.M  |       | 7.77 |   6.0      | 6.88                 | 
+- marginal for main effects  
+- cell means for interaction  
 
 ## equation
 
@@ -40,34 +57,6 @@ $$ \alpha_{j} =  \mu_{j} -  \mu $$
 
 ## what do interactions with nominal data look like? 
 - and can I "see" main effects too? 
-
-## sums of squares decomposition
-
-- ssbetween = SSa + SSb + SSab
-- same as SSregression with multiple predictors 
-
-## 
-
-```{r, echo=FALSE, message=FALSE}
-data <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Anxiety.data.csv")
-
-library(dplyr)
-# getting the group means 
-Group_means<- data %>% group_by(group) %>% 
-  summarise(meanAnxiety = mean(Anxiety), varStress = sd(Stress)^2,
-            meanStress = mean(Stress), meanSupport=mean(Support))
-# Calculating the grand mean by averaging the two group means together
-Anxiety_grandmean <- mean(Group_means$meanAnxiety)
-
-```
-
-
-```{r}
-lm.1 <- lm(Anxiety ~ Stress *Support, data=data)
-anova(lm.1)
-```
-
-
 
 
 ## how is this similar to a linear model?
@@ -115,31 +104,68 @@ $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varep
 
 ## but where is this in our output if ANOVA is regression? 
 
-## aov 
-```{r}
+
+## example
+
+```{r, echo=FALSE, message=FALSE}
+data <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Anxiety.data.csv")
+
+library(dplyr)
+# getting the group means 
+Group_means<- data %>% group_by(group) %>% 
+  summarise(meanAnxiety = mean(Anxiety), varStress = sd(Stress)^2,
+            meanStress = mean(Stress), meanSupport=mean(Support))
+# Calculating the grand mean by averaging the two group means together
+Anxiety_grandmean <- mean(Group_means$meanAnxiety)
 data$SupportLevel<-cut(data$Support, breaks = c(0,5,10,18), labels = c("low","med","high"))
 
+data <- data %>% 
+  dplyr::select(-Support) 
+```
+
+```{r}
+data
+```
+
+##
+```{r}
+data %>% 
+  select(group, SupportLevel) %>% 
+  table()
+```
+
+## aov function
+```{r}
 aov.1 <- aov(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
-anova(aov.1)
+summary(aov.1)
 ```
 
 
 ## lm anova
 
 ```{r}
-lm.2 <- lm(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
-anova(lm.2)
+lm.1 <- lm(Anxiety ~ group + SupportLevel + group*SupportLevel, data=data)
+anova(lm.1)
 ```
 
 ## lm summary with nominal variables
 ```{r, echo=FALSE}
 library(broom)
-tidy(lm.2)
+tidy(lm.1)
 ```
+
 $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
 
-## Interpretting interactions part 2
-- beyond noticing cell means look different we can do tests  
+## But what contrasts did R use? 
+
+```{r}
+contrasts(data$group)
+contrasts(data$SupportLevel)
+```
+- we will see why this doesn't matter soon
+
+## Interpretting interactions 
+- beyond noticing whether cell means look different we can do formal tests  
 - ~3 types  
 
 ## Interpretting interactions part 2
@@ -157,6 +183,7 @@ anova(aov.0, aov.1)
 '2. regression coefficients
 
 $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
+- remember, this is likely done with default dummy
 
 ## Interpretting interactions part 2
 
@@ -172,20 +199,48 @@ TukeyHSD(aov.1)
 - All pairwise comparisons (maybe a priori): Tukey
 - Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at night
 
-## post hoc tests
+## estimated means
 ```{r, message = FALSE}
 library(lsmeans)
 lsm.1<- lsmeans(aov.1, c("group", "SupportLevel"))
-lsm.1
 # can be used to test numerous a prior and post hoc hypotheses
+# especially important for graphing
+```
+##
+```{r}
+lsm.1
+```
+
+
+
+## also marginal means
+
+```{r}
+lsmeans(aov.1, specs = "group")
+```
+
+## lsmeans can also do tukey (and other adjustments)
+
+```{r}
+pairs(lsm.1, adjust = "tukey")
+# try "holm" and "bon"
 ```
 
 ## post hoc tests
 
 ```{r}
-contrast(lsm.1, method = "pairwise")
-
+# equivalent to pairs function above
+#contrast(lsm.1, method = "pairwise")
+contrast(lsm.1, method = "eff")
 ```
+
+
+## post hoc tests
+
+```{r, eval=FALSE}
+library(multcomp)
+```
+
 
 ## different types of Sums of Squares
 - 3 types, 3 different hypotheses testing strategies   
