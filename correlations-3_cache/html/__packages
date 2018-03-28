@@ -11,3 +11,6 @@ lsmeans
 lsr
 Rcpp
 brms
+emmeans
+car
+phia

@@ -37,6 +37,9 @@ output: ioslides_presentation
 - marginal for main effects  
 - cell means for interaction  
 
+## what do interactions with nominal data look like? 
+- and can I "see" main effects too? 
+
 ## equation
 
 - similar to effect coding within regression
@@ -52,11 +55,8 @@ $$ \alpha_{j} =  \mu_{j} -  \mu $$
 - similar to contingency table tests of independence from last semester
 
 ## Interpretting interactions part 1
-- An interaction is present when the simple effects of one independent variable are not the same at all levels of the second independent variable. 
+- An interaction is present when the simple effects (akin to simple main effect - more below) of one independent variable are not the same at all levels of the second independent variable. 
 - If there in an interaction, main effects are hard to interpret, much more so than with continuous interactions 
-
-## what do interactions with nominal data look like? 
-- and can I "see" main effects too? 
 
 
 ## how is this similar to a linear model?
@@ -183,41 +183,62 @@ anova(aov.0, aov.1)
 '2. regression coefficients
 
 $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
-- remember, this is likely done with default dummy
+- Remember, this is likely done with default dummy 
+- Typically not used as you are likely interested in more than just a few comparisons
 
 ## Interpretting interactions part 2
 
-'3. Post hoc comparisons/simple main effects
+'3. Planned contrasts/Post hoc comparisons/simple main effects
+ 
+ - All of these fall under the rubric of 'contrasts'  
+ - The most basic o these is Tukey honestly significant difference
+ 
+## 
 
 ```{r}
 TukeyHSD(aov.1)
 ```
 
 ## post hoc tests
+- Mainly adjust error rates for multiple comparisons  
 
 - Planned contrasts, a priori: Holm, Dunn-Bonnferoni, perhaps Tukey
 - All pairwise comparisons (maybe a priori): Tukey
 - Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at night
 
-## estimated means
+## 
 ```{r, message = FALSE}
-library(lsmeans)
-lsm.1<- lsmeans(aov.1, c("group", "SupportLevel"))
+# library(lsmeans) outdated, but code still works
+library(emmeans) ## new and shiny
+lsm.1<- emmeans(aov.1, c("group", "SupportLevel"))
 # can be used to test numerous a prior and post hoc hypotheses
-# especially important for graphing
+# estimated means especially important for graphing
+# see more here: 
+#https://cran.r-project.org/web/packages/emmeans/vignettes/basics.html
 ```
+
+## Quick plot
+```{r}
+emmip(aov.1, group ~ SupportLevel)
+```
+
 ##
 ```{r}
 lsm.1
 ```
 
-
-
-## also marginal means
+## 
 
 ```{r}
-lsmeans(aov.1, specs = "group")
+emmeans(lsm.1, specs = "group")
 ```
+
+
+##
+```{r}
+emmeans(aov.1, pairwise ~ group)
+```
+
 
 ## lsmeans can also do tukey (and other adjustments)
 
@@ -234,13 +255,34 @@ pairs(lsm.1, adjust = "tukey")
 contrast(lsm.1, method = "eff")
 ```
 
-
-## post hoc tests
-
-```{r, eval=FALSE}
-library(multcomp)
+## simple main effects
+```{r}
+joint_tests(aov.1, by = "SupportLevel")
 ```
 
+
+## more post hoc tests
+
+```{r, eval=FALSE}
+#library(multcomp)
+# multcomp::glht(aov.1)
+
+# Nice package that allows you to do many of the same functions as 
+# lsmeans but it has one major downside: MASS is loaded and 
+# thus masks dplyr::select
+```
+
+
+##
+```{r, message=FALSE}
+library(phia)
+testInteractions(aov.1, pairwise="SupportLevel")
+```
+
+##
+```{r}
+testInteractions(aov.1, pairwise="group")
+```
 
 ## different types of Sums of Squares
 - 3 types, 3 different hypotheses testing strategies   
@@ -249,6 +291,7 @@ library(multcomp)
 - Type 2, looks at higher- versus lower-order  
 <br>  
 - SSwithin and SSinteraction will be same, regardless  
+- All about how we want to interpret main effects (which we often don't)
 
 
 ## Type 1: Hierarchical (what R does) 
@@ -348,4 +391,27 @@ $$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  $$
 $$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA  $$
 
 $$ \hat{Y} = b_{0} + b_{1}D_{1} + b_{2}D_{2} + b_{3}GPA + b_{4}(D_{1} * GPA) + b_{5}(D_{2} * GPA)  $$
+
+##
+```{r}
+aov.2 <- aov(Anxiety ~ group + SupportLevel + group*SupportLevel + Stress, data=data)
+summary(aov.2)
+```
+
+
+##
+```{r}
+summary(aov.1)
+```
+
+##
+```{r}
+lsm.2<- emmeans(aov.2, c("group", "SupportLevel"))
+lsm.2
+```
+
+##
+```{r}
+lsm.1
+```
 
