@@ -210,7 +210,7 @@ TukeyHSD(aov.1)
 ```{r, message = FALSE}
 # library(lsmeans) outdated, but code still works
 library(emmeans) ## new and shiny
-lsm.1<- emmeans(aov.1, c("group", "SupportLevel"))
+em.1<- emmeans(aov.1, c("group", "SupportLevel"))
 # can be used to test numerous a prior and post hoc hypotheses
 # estimated means especially important for graphing
 # see more here: 
@@ -224,13 +224,13 @@ emmip(aov.1, group ~ SupportLevel)
 
 ##
 ```{r}
-lsm.1
+em.1
 ```
 
 ## 
 
 ```{r}
-emmeans(lsm.1, specs = "group")
+emmeans(em.1, specs = "group")
 ```
 
 
@@ -240,10 +240,10 @@ emmeans(aov.1, pairwise ~ group)
 ```
 
 
-## lsmeans can also do tukey (and other adjustments)
+## emmeans can also do tukey (and other adjustments)
 
 ```{r}
-pairs(lsm.1, adjust = "tukey")
+pairs(em.1, adjust = "tukey")
 # try "holm" and "bon"
 ```
 
@@ -251,8 +251,8 @@ pairs(lsm.1, adjust = "tukey")
 
 ```{r}
 # equivalent to pairs function above
-#contrast(lsm.1, method = "pairwise")
-contrast(lsm.1, method = "eff")
+#contrast(em.1, method = "pairwise")
+contrast(em.1, method = "eff")
 ```
 
 ## simple main effects
@@ -406,12 +406,12 @@ summary(aov.1)
 
 ##
 ```{r}
-lsm.2<- emmeans(aov.2, c("group", "SupportLevel"))
-lsm.2
+em.2<- emmeans(aov.2, c("group", "SupportLevel"))
+em.2
 ```
 
 ##
 ```{r}
-lsm.1
+em.1
 ```
 

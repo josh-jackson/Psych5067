@@ -5,6 +5,7 @@ output: html_document
 # Due: 3/23  
 <br>
 Turn in via email to: Takehom.krrrtmtti39wm685@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers.   
 

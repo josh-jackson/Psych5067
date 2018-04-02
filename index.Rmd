@@ -4,7 +4,10 @@ output: html_document
 ---
 
 
- <br>    
+ <br>     
+   
+ - April 1st - Take home #5 is posted
+ 
  - March 28th - ANOVA readings posted  
    
  - March 26th - Factorial ANOVA slides are posted    

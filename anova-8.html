@@ -672,7 +672,7 @@ anova(aov.0, aov.1)</pre>
 
 <pre class = 'prettyprint lang-r'># library(lsmeans) outdated, but code still works
 library(emmeans) ## new and shiny
-lsm.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
+em.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 # can be used to test numerous a prior and post hoc hypotheses
 # estimated means especially important for graphing
 # see more here: 
@@ -686,7 +686,7 @@ lsm.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
-<pre class = 'prettyprint lang-r'>lsm.1</pre>
+<pre class = 'prettyprint lang-r'>em.1</pre>
 
 <pre >##  group   SupportLevel   emmean        SE  df lower.CL  upper.CL
 ##  Control low          9.124690 0.7532869 112 7.632149 10.617231
@@ -700,7 +700,7 @@ lsm.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
-<pre class = 'prettyprint lang-r'>emmeans(lsm.1, specs = &quot;group&quot;)</pre>
+<pre class = 'prettyprint lang-r'>emmeans(em.1, specs = &quot;group&quot;)</pre>
 
 <pre >## NOTE: Results may be misleading due to involvement in interactions</pre>
 
@@ -731,9 +731,9 @@ lsm.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 ## 
 ## Results are averaged over the levels of: SupportLevel</pre>
 
-</article></slide><slide class=""><hgroup><h2>lsmeans can also do tukey (and other adjustments)</h2></hgroup><article  id="lsmeans-can-also-do-tukey-and-other-adjustments">
+</article></slide><slide class=""><hgroup><h2>emmeans can also do tukey (and other adjustments)</h2></hgroup><article  id="emmeans-can-also-do-tukey-and-other-adjustments">
 
-<pre class = 'prettyprint lang-r'>pairs(lsm.1, adjust = &quot;tukey&quot;)</pre>
+<pre class = 'prettyprint lang-r'>pairs(em.1, adjust = &quot;tukey&quot;)</pre>
 
 <pre >##  contrast                     estimate        SE  df t.ratio p.value
 ##  Control,low - Tx,low        1.5105433 1.5065739 112   1.003  0.9162
@@ -759,8 +759,8 @@ lsm.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 </article></slide><slide class=""><hgroup><h2>post hoc tests</h2></hgroup><article  id="post-hoc-tests-1">
 
 <pre class = 'prettyprint lang-r'># equivalent to pairs function above
-#contrast(lsm.1, method = &quot;pairwise&quot;)
-contrast(lsm.1, method = &quot;eff&quot;)</pre>
+#contrast(em.1, method = &quot;pairwise&quot;)
+contrast(em.1, method = &quot;eff&quot;)</pre>
 
 <pre >##  contrast               estimate        SE  df t.ratio p.value
 ##  Control,low effect   1.59256821 0.6848238 112   2.326  0.0437
@@ -978,8 +978,8 @@ summary(aov.2)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
-<pre class = 'prettyprint lang-r'>lsm.2&lt;- emmeans(aov.2, c(&quot;group&quot;, &quot;SupportLevel&quot;))
-lsm.2</pre>
+<pre class = 'prettyprint lang-r'>em.2&lt;- emmeans(aov.2, c(&quot;group&quot;, &quot;SupportLevel&quot;))
+em.2</pre>
 
 <pre >##  group   SupportLevel   emmean        SE  df lower.CL  upper.CL
 ##  Control low          9.395306 0.7710288 111 7.867461 10.923151
@@ -993,7 +993,7 @@ lsm.2</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
 
-<pre class = 'prettyprint lang-r'>lsm.1</pre>
+<pre class = 'prettyprint lang-r'>em.1</pre>
 
 <pre >##  group   SupportLevel   emmean        SE  df lower.CL  upper.CL
 ##  Control low          9.124690 0.7532869 112 7.632149 10.617231
