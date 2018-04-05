@@ -48,6 +48,19 @@ $$ Y_{ijk} = \mu + \alpha_{j} + \beta_{k} + \alpha \beta_{jk}+\varepsilon_{ijk} 
 
 $$ \alpha_{j} =  \mu_{j} -  \mu $$
 
+
+```{r}
+library(tidyverse)
+tribble(
+  ~x, ~y,  ~z,
+  "a", 2,  3.6,
+  "b", 1,  8.5
+)
+
+
+```
+
+
 ## interactions 
 - main effects are on the marginal means  
 - interactions are about the cell means  

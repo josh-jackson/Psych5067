@@ -2,3 +2,36 @@
 title: "fit"
 output: ioslides_presentation
 ---
+
+## Prediction
+- Our inferences are about populations
+- Want to generalize to other samples
+
+## Prediction
+```{r, eval = FALSE}
+pred.1 <- predict()
+```
+
+
+## When do we have a good model? 
+- Does it include all relevent variables (remember our assumption)?
+- Balance between parsimony and completeness
+
+- "Building" models up or "pruning" models down
+
+
+
+## Overfitting
+- We don't always want the best model fit  
+
+- This is because the model will be tuned to our particular random sample, but not other random samples
+
+- we are "fitting the noise"  
+
+- This would lead to poorer prediction of new samples. 
+
+- Not only does the extra terms not help, they actually hurt! 
+
+## Overfitting within a model
+
+

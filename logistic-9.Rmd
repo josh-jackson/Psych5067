@@ -19,13 +19,13 @@ Violates:
     - Normality of the errors  
     
 ## 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.1.png" width="750" height="550"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.1.png" width="750" height="550"/>
 
 ##
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.2.png" width="750" height="550"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.2.png" width="750" height="550"/>
 
 ##
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.3.png" width="750" height="550"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.3.png" width="750" height="550"/>
 
 ## Need to think in terms of probabilities
 
@@ -92,7 +92,7 @@ $$g(\mu) = logit(\mu) = log (\frac {\mu_{i}}{1-\mu_{i}})$$
 ##
 $$ f(x) = \frac{1}{1+e^{-X}} $$
 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/regression/Log.4.png" width="550" height="350"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.4.png" width="550" height="350"/>
  
 
 ##

@@ -14,3 +14,8 @@ brms
 emmeans
 car
 phia
+tidyverse
+tibble
+tidyr
+readr
+purrr

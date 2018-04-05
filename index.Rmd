@@ -6,6 +6,8 @@ output: html_document
 
  <br>     
    
+ -  April 5th - Logistic/Generalized linear model slies are posted
+ 
  - April 1st - Take home #5 is posted
  
  - March 28th - ANOVA readings posted  
