@@ -3,22 +3,33 @@ title: "fit"
 output: ioslides_presentation
 ---
 
+## How to build a regression model
+
+- What variables to include, what to leave out, etc. 
+
+- 3 standard approaches: 1. Use theory 2. Let the data decide 3. Compare models
+
 ## Prediction
 - Our inferences are about populations
 - Want to generalize to other samples
 
+- three standard goals of regression: 
+    1. Explain
+    2. Predict
+    3. Estimate
+
 ## Prediction
 ```{r, eval = FALSE}
-pred.1 <- predict()
+pred.1 <- predict(model.1)
 ```
 
 
 ## When do we have a good model? 
+- Look at fit, but fit is relative to our question at hand
 - Does it include all relevent variables (remember our assumption)?
 - Balance between parsimony and completeness
 
 - "Building" models up or "pruning" models down
-
 
 
 ## Overfitting
@@ -26,12 +37,144 @@ pred.1 <- predict()
 
 - This is because the model will be tuned to our particular random sample, but not other random samples
 
-- we are "fitting the noise"  
+- We are "fitting the noise"
+
+- Not only does the extra terms not help, they actually hurt!
 
 - This would lead to poorer prediction of new samples. 
 
-- Not only does the extra terms not help, they actually hurt! 
+- Our goal is to identify the true population model, not just increase fit
 
-## Overfitting within a model
+## Example
+
+## Overfitting 
+
+- Even if we have a set number of predictors we are going to use we tend ot overfit
+
+$$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
+
+$$ \hat{Y} = .6 + .9X + .4Z + -.24XZ $$
+- because we use the specifics (which include sampling error) of that sample to estimate our coefficients
+
+## Relationship to p-hacking
+
+- Making your model work ie finding the set of covariates that make a p-value fall under .05 will lead to over fitting. 
+- This means that prediction will be even worse than the typical under powered experiment 
+
+
+
+## Cross validation
+- Compare different models in their prediction in and out of sample (a test sample)
+- Identify the model with the lowest test set error (MSE)
+- Not always possible to find a large enough test sample
+
+## k-fold validation
+- Samples are randomly partitioned into sets (called folds) of roughly equal size
+- model is "trained" on k-1 folds, and then validated with the remaining fold
+- k is usually 5-10
+- E.g., k = 10, 90% of data is used to train, 10% to predict and validate.
+- Average MSE across all of the validation folds, choose model with lowest average MSE
+
+## leave one out (LOO) validation 
+- like k-fold but but k = sample size, N. 
+- Run model with kth datapoint omitted. 
+- Observe the average MSE or residual standard error (sigma)
+- compare the average MSE among competing models
+
+## 
+```{r}
+library(caret)
+# we will use the iris dataset (included in base)
+iris
+```
+
+##
+
+```{r}
+# define training control
+train_control <- trainControl(method="cv", number=10, savePredictions = TRUE)
+
+# train the model
+model.iris <- train(Sepal.Length~., data=iris, trControl=train_control)
+```
+
+##
+
+```{r}
+print(model.iris)
+```
+
+## 
+```{r}
+plot(model.iris)
+```
+
+##
+- Package is very flexible and will be used for more methods below  
+
+- Use tuneGrid function to test specific parameters or models (this example was using default options that may not be useful) 
+
+
+## Regularization
+
+- "penalizing" our model estimates to prevent overfitting
+- lasso regression is most common (ridge regression too)
+- find coefficients that compromise between (a) minimizing the SS
+and (b) minimizing sum of abs value of coefficients
+- Tends to "shrink"" coefficients to zero
+- Shrinkage/penalization is based on lambda
+
+##
+```{r}
+library(glmnet)
+    fit.ols <- lm(Sepal.Length~Sepal.Width+Petal.Length+Petal.Width, data=iris)
+    y <- iris$Sepal.Length
+    x <- iris %>% dplyr::select(Sepal.Width, Petal.Length,Petal.Width) %>% data.matrix()
+    lambdas <- 10^seq(-4, 1, by = .5)
+    fit.lasso <-glmnet(x = x, y = y,  lambda = lambdas) 
+```
+
+
+##
+
+```{r}
+library(broom)
+
+tidy(summary(fit.ols))
+```
+
+##
+```{r}
+plot(fit.lasso)
+```
+
+
+## Regularization
+- Bayesian modeling
+
+## model comparison
+- Key to all of these approaches is the utilization of multiple models and comparing them in some mannner
+- we have done that thus far with our anova function, which compares model's MSE using a F-test
+- There are other tests that compare models while also taking into account cross-validation and regularization techniques
+
+## Information criteria
+- Likelihood: The likelihood of a particular value of a parameter is the probability of obtaining the observed data if the parameter had that value. It measures how well the data supports that particular value
+- The maximum likelihood estimate of a parameter is the value of the parameter for which the probability of obtaining the observed data if the highest
+- For "nested" models we can compare likelihoods (via log likelihoods) with a chi-square difference test (see this with MLM soon)   
+- We can also use likelihoods for non-nested models to compare the best "fit" between models  
+
+## AIC  
+- Asymptotically equivalent to cross validation and loo  
+- AIC = −2 log L + 2p, where L is the maximum likelihood of the data using the model, and p is the number of parameters in the model.  
+- The first part is a measure of prediction error, the second a penalization
+- Lower the AIC the better  
+- Similar for BIC and WAIC
+
+
+
+
+
+
+
 
 

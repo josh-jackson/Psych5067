@@ -116,7 +116,7 @@ $$ probability= \frac{\hat{odds}}{1+\hat{odds}} $$
 $$ f(x) = \frac{1}{1+e^{-X}} $$
 $$ \hat{p} = \frac{1}{1+e^{-b_{0}+b_{1}X}} $$
 
-$$odds = \frac {\hat{p}}{1-\hat{p}}=e^{-b_{0}+b_{1}X} $$
+$$odds = \frac {\hat{p}}{1-\hat{p}}=e^{b_{0}+b_{1}X} $$
 $$ logit= Log(odds)=ln(\frac{\hat{p}}{1-\hat{p}}) = b_{0}+b_{1}X $$
 
 ##

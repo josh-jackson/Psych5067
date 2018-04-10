@@ -24,3 +24,9 @@ sjPlot
 forcats
 emmeans
 phia
+lattice
+caret
+randomForest
+Matrix
+foreach
+glmnet

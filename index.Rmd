@@ -5,7 +5,9 @@ output: html_document
 
 
  <br>     
-   
+     
+ - April 10th -  Fit slides are posted  
+ 
  -  April 5th - Logistic/Generalized linear model slies are posted
  
  - April 1st - Take home #5 is posted

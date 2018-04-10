@@ -18,6 +18,8 @@ Use the mtcars dataset that is a part of R to answer the questions below
 
 3. What is the predicted probability for 180hp engine and 3000 weight?
 
-4. Graph the relationship between horse power and transmission type (to do so you create predicted probabilities across the range of Xs; itnerplot and sjplot also can plot this).
+4. Graph the relationship between horse power and transmission type (to do so you create predicted probabilities across the range of Xs).
 
 5. run the same regression you ran in #2 but this time run a probit regression. How does this change the interpretation of your parameters? Is this analysis appropriate? 
+
+Extra credit: re-run all of these these using the BRMS package
