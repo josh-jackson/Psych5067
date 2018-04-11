@@ -4,7 +4,9 @@ output: html_document
 ---
 
 
- <br>     
+ <br> 
+   
+ - April 11th - Take home #6 is posted. Also, logistic chapter is updated.      
      
  - April 10th -  Fit slides are posted  
  

@@ -3,14 +3,14 @@ title: "glm/logistic take home"
 output: html_document
 ---
 
-# Due: x/x
+# Due: 4/19
 <br>
-Turn in via email to: xxxx by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
+Turn in via email to: Takehom.krrrtmtti39wm685@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file and include your name as part of the document front/top-matter.  
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers. 
 
 
-Use the mtcars dataset that is a part of R to answer the questions below
+Use the mtcars dataset that is a part of base R to answer the questions below
 
 1. Using the glm function, run a multiple regression with 3 predictors and a DV. Then run the same function using the lm function. What are the similarities, what are the differences between these two approaches? 
 
