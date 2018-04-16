@@ -96,8 +96,8 @@ Note that dates and readings are tentative. Topics will likely shift; all change
 | -    | 4/5   |  Logistic regression/GLM     |                   |     |Cohen Logistic Chapter 
 | 13   | 4/10  | Over/underfitting and validation              |      Yarkoni Westfall     |    |
 | -    | 4/12  | Repeated measures/MLM               |   Hoffman BRM                     |                      |
-| 14   | 4/17  | **Exam 2**                                                 |                      |
-| -    | 4/19  | Repeated measures/MLM                  |             |          |
+| 14   | 4/17  | Repeated measures/MLM                                                 |                      |
+| -    | 4/19  | **Exam 2**                 |             |          |
 | 15   | 4/24  | Bayesian statistics                  |  Chapter 17                    | Kruschke PBR                     |
 | -    | 4/26  | Bayesian regression                        |                      |                      |
 | -    | 5/?   | **Final Exam** TBA                   |                      |                      |

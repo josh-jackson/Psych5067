@@ -1,11 +1,15 @@
 ---
 title: "Updates and announcements"
 output: html_document
----
-
+---  
+  
 
  <br> 
+ 
+ - April  16th - MLM slides are up
    
+ - April 12th - Friendly reminder that exam 2 is pushed back to Thursday 4/19
+ 
  - April 11th - Take home #6 is posted. Also, logistic chapter is updated.      
      
  - April 10th -  Fit slides are posted  

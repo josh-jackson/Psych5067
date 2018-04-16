@@ -1,13 +1,15 @@
 ---
-title: "Repeated measures & MLM"
+title: "MLM"
 output: ioslides_presentation
----
+---  
+
+
 ## Expanding our toolkit
 - We might want to assess people more than once 
 - We might want to assess within groups/nested structures 
 
 ## Outline
-- Repeated Measures ANOVA (RM ANOVA)
+- Conceptual Repeated Measures ANOVA (RM ANOVA)
 - "Mixed" models aka Multilevel models (MLM), hierarchical linear models (HLM), random-effects models, and more...
 
 ## Repeated measures ANOVA
@@ -21,7 +23,7 @@ output: ioslides_presentation
 ## why would we want to do this? 
 
 1. our primary interest may be to study the change of an outcome over time, e.g., a learning effect. 
-2. multiple outcomes for each subject allows each subject to be his or her own “control”. This allows us to remove subject-to-subject variation (i.e., individidual differences), and likely increasing power 
+2. multiple outcomes for each subject allows each subject to be his or her own “control”. This allows us to remove subject-to-subject variation (i.e., individidual differences),  likely increasing power 
 <br>
 <br>
 - When would we *not* want to do this? 
@@ -33,12 +35,6 @@ output: ioslides_presentation
     + A measure repeated across multiple conditions such as condition A, condition B, and condition C
     + Three or more timepoints (seconds, years, grades)
   
-## traditional way (univariate) vs "new" way (multivariate MANOVA)
-
-- different ways to overcome violation of independence
-- rabbit hole of complexity that is mostly not worth it...
-- because there are newer and better methods
-- nevertheless, let us persist 
   
 ## SS decomposition
 - SS between: Deviation of subjects' individual means (across treatments) from the grand mean.
@@ -77,14 +73,7 @@ output: ioslides_presentation
 - involve interactions
 - involve between person (and/or more within person) variables
 - involve multiple SS residual terms
-
-## Interactions
-
-$$ Y_{ijk} = \mu + \eta_{j} + \alpha_{k} + \eta \alpha_{jk}+\varepsilon_{ijk} $$
-
-- The interaction variance contributes to both subjects and A factor SSs
-- Decreased power (interaction adds noise to error term)
-- May increase sphericity
+- logic of testing is the same though
 
 ## Mixed designs
 
@@ -99,25 +88,19 @@ $$ Y_{ijk} = \mu + \eta_{j} + \alpha_{k} + \eta \alpha_{jk}+\varepsilon_{ijk} $$
 ## Problems with RM ANOVA
 The sphericity assumption (also known as the homogeneity of variance of differences assumption) assumes the variance of the  differences between any two levels of a within subjects factor (e.g,. condition, time) is equivalent
 
-- Greenhouse-Geisser Epsilon,
- Huynh-Feldt Epsil,
- Pillai’s Trace,
- Wilk’s Lambda,
- Hotelling’s Trace, and
- Roy’s Largest Root
-
-- adjusts df if violated
-- but unlikely to find this with observational data
+- Can adjust df if violated using: Greenhouse-Geisser Epsilon, Huynh-Feldt Epsil, Pillai’s Trace, Wilk’s Lambda, Hotelling’s Trace, or Roy’s Largest Root
 
 ## Problems with RM ANOVA
 - complete data, no missing cases (unless you do RM MANOVA)
 - spacing is same for all time points (and subjects)
-- does not handle continuous data 
+- does not handle continuous predictors 
 - cannot do time varying covariates
 - no individaul level trends
 
 ## which is why you should use
 - MLM, HLM, mixed models, mixed effects, random effects models, etc. 
+
+- If you make assumptions and restrictions to this model you can re-create the RM ANOVA
 
 ## Nesting and heirarchy
 - students within schools
@@ -201,7 +184,7 @@ ggplot(simp, aes(x=study, y=test.score, group = group)) +
 
 - Between person H1: Do students who participate in EA 		                            			spend more time studying?   
 
-- Within person H2: When a student is participating in EA, do they spend more 			time studying (e.g., in-season vs. offseason)?   
+- Within person H2: When a student is participating in EA, do they spend more	time studying (e.g., in-season vs. offseason)?   
 			        	
 - Notice that H1 and H2 are independent from one another!
 
@@ -210,14 +193,7 @@ $$ \hat{Y}_{i} = b_{0} + b_{1}X_{1} + b_{2}X_{2} + b_{3}X_{3}+...$$
 - parameters are considered fixed, only one value  
 - can be thought of as purposefully selected or existing values of a variable; can only generalize to particular values used
 
-## fixed effects regression
-- easy to see in ANOVA models
-
-$$ Y_{ij} = \mu + \alpha_{j}+e_{ij}$$
-- $\alpha$ is the fixed effect if group j
-- we don't randomly select treatments, paradigms are purposely created to test a particular manipulation
-- or are they? How many types of sad movies can you come up with? 
-
+ 
 ## random effects
 - Can have random parameters that are not fixed, have many values
 - 2 ways to think about random  
@@ -225,53 +201,46 @@ $$ Y_{ij} = \mu + \alpha_{j}+e_{ij}$$
     + random as in they are sampled from some population and thus can vary  
 -  random effects means that your parameters are predicted and thus have error associated with them
   
-
-##
-- Use fixed effects if
-    + The groups are regarded as unique entities
-    + If group values are determined by researcher through design or manipulation
-    
-- Use random effects if
-    + Groups regarded as a sample from a larger population
-    + Understand group differences
-    + Account for more 
     
 ##
 - what does a random intercept mean?   
 
-
+- Simple model only predicting by an intercept
+- Lets say we have 10 reaction time trials (i) per person (j)
   $$ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} $$
   
-  
+- We can model that everyone does not have the same average by looking at deviations around that average $\gamma_{00}$ for each j person
   $$ {\beta}_{0j} = \gamma_{00} + U_{0j} $$
-  
-## graphically what does this look like?  
+- There are now two sources of error within and between
+- Contrast with if we averaged over people $ {Y}_{j} = \beta_{0}  +\varepsilon_{j}$ 
 
-- different intercepts for each j unit, a random effects model.
-- repeated assessments of happiness taken daily for two weeks
-- think about this as per subject
 
 
 ## putting it together  
 
+Level 1:
   $$ {Y}_{ij} = \beta_{0j}  +\varepsilon_{ij} $$
   
+
+  
+  Level 2:
+  $$ {\beta}_{0j} = \gamma_{00} + U_{0j}$$ 
   
   
   
-  $$ {\beta}_{0j} = \gamma_{00} + U_{0j}$$  
-  
-  
-  
+ Combined: 
   $$ {Y}_{ij} = \gamma_{00} + U_{0j}  + \varepsilon_{ij} $$
-  - two random terms, two types of variances
+  
+  
   
 ## Level 1 vs Level 2
 - Level 1 is the smallest unit of analysis  
-    + students, observations, family members
+    + students, observations, trials, family members
 
 - Level 2 variables are constant for all level 1 variables that are “nested” in it  
-    + schools, counties, families, dyads
+    + people, schools, counties, families, dyads
+    
+- Can have more than 2 levels
   
 ## Random intercepts, fixed slopes
 
@@ -440,7 +409,7 @@ summary(model.3)
 ```{r, message=FALSE, eval=FALSE}
 library(lmerTest)
 summary(model.3)
-
+#gives you p-values, if you really want it
 ```
 
 ## 
@@ -454,13 +423,6 @@ ggplot(alcohol1,
    aes(x = time, y = alcuse, group = id)) + stat_smooth(method = "lm", se = FALSE)
 ```
 
-
-
-##
-```{r, message=FALSE, eval=FALSE}
-
-library(lmerTest)
-```
 
 
 
@@ -489,6 +451,13 @@ example <- sleepstudy %>%
   select(Subject, A, Reaction)
 example$A <- as.factor(example$A)
 
+example_summary <- example %>%
+  group_by(A) %>% 
+    summarise(mean_Rx = mean(Reaction),  # calculates the mean of each group
+            sd_Rx = sd(Reaction), # calculates the standard deviation of each group
+            n_Rx = n(),  # calculates the sample size per group
+            se_Rx = sd(Reaction)/sqrt(n())) # calculates the standard error of each group
+
 ```
 
 
@@ -501,9 +470,11 @@ example
 
 
 ```{r, echo = FALSE}
-base_plot <- ggplot(example, aes(x = A, y = Reaction)) +
-  stat_summary(aes(fill = factor(A)), fun.y = mean, geom = "bar", color = "black") 
-base_plot
+
+p<- ggplot(example_summary, aes(x=A, y=mean_Rx)) + 
+  geom_bar(stat="identity") +
+  geom_errorbar(aes(ymin=mean_Rx-2*se_Rx, ymax=mean_Rx+2*se_Rx), width=.3,    position=position_dodge(.9)) 
+p
 ```
 
 
@@ -577,5 +548,5 @@ ranef(ex.3)
 sjp.lmer(ex.3)
 ```
 
-## 
+##  
 how can you think of this graphically?
