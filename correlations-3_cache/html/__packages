@@ -19,3 +19,6 @@ tibble
 tidyr
 readr
 purrr
+stringr
+forcats
+carData

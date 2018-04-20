@@ -30,3 +30,5 @@ randomForest
 Matrix
 foreach
 glmnet
+stringr
+carData

@@ -127,6 +127,7 @@ and (b) minimizing sum of abs value of coefficients
 ##
 ```{r}
 library(glmnet)
+library(dplyr)
     fit.ols <- lm(Sepal.Length~Sepal.Width+Petal.Length+Petal.Width, data=iris)
     y <- iris$Sepal.Length
     x <- iris %>% dplyr::select(Sepal.Width, Petal.Length,Petal.Width) %>% data.matrix()
