@@ -5,6 +5,8 @@ output: html_document
   
 
  <br> 
+  
+ - April 27th -  Take home #7 is posted    
  
  - April  16th - MLM slides are up
    
