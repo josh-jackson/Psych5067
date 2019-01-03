@@ -32,12 +32,13 @@ output: ioslides_presentation
 
 - This class is going too slow vs going too fast
 
-- If too fast: ASK QUESTIONS AND COME AND VISIT ME. Also spend lots of time outside of class, learning takes time. 
+- If too fast: ASK QUESTIONS AND COME AND VISIT ME. Also spend lots of time outside of class, learning takes time.
 
 - If too slow: ASK QUESTIONS AND COME AND VISIT ME. There are lots of interesting extensions. I have readings. 
 
 ##Goals for today
 - Review of last semester
+- Overview of this semester
 
 ## What should you already know? 
 
@@ -48,10 +49,10 @@ output: ioslides_presentation
 - Reproducible reports: Rmd/LaTeX -> html/pdf 
 
 - Keep organized: R Projects 
-- Keeping track/sharing: osf, github 
-- Keep it interesting: shiny apps
-- Keep it simple and readable: tidyverse (strongly recommended)
 - Keep it visual: ggplot
+- Keeping track/sharing: osf, github (recommended)
+- Keep it simple and readable: dplyr & tidyverse (strongly recommended)
+- Keep it interesting: shiny apps (recommended for advanced users)
 
 ## visualizing data
 
@@ -61,16 +62,17 @@ output: ioslides_presentation
 
 - bar, box, violin... 1. Avoid wow graphs, 2. use interpretable scales, 3. label 4. always provide a dispersion estimate and 5. if possible include raw data and/or the distribution (as dispersion only can hide oddities)
 
-## scales of measurement
 
-- nominal, ordinal, interval, ratio
-
-- quantitative (continuous) vs qualitative (categorical/discrete)
+## Theoretical probability distributions 
 
 - how you measure your variables determine your analytic tool options
 
-## Theoretical probability and sampling distributions
+- Data generating process defines appropriate analyses 
+
 - binomial, poisson, negative binomial, normal (Gaussian), t, F, chi-square...
+
+
+## many distributions
 
 - population distribution -> sample distribution -> sampling distrinbution
 
@@ -78,7 +80,7 @@ output: ioslides_presentation
 
 ## p-values, NHST and standard opperating procedures 
 
-- Definition. p(D|Ho), not p(Ho|D) 
+- p(D|Ho), not p(Ho|D) 
 
 - Type 1 & 2 errors, power, family wise error
 
@@ -96,6 +98,12 @@ output: ioslides_presentation
 - How does the CI relate to the sample and sampling distribution? 
 
 - meta-analytic thinking
+
+## How to suceed (in class)
+
+- Go through slides, work through code
+- Apply concepts to your own work
+- Devote time
 
 ## Last thoughts
 - Any questions? 

@@ -4,10 +4,10 @@ output: ioslides_presentation
 ---  
 
 
-## Expected value of Y given X
+## We want to make eduated guesses
 - E(Y|X)
 - The regression of Y (DV) on X (IV) corresponds to the line that gives the mean value of Y corresponding to each possible value of X
-- "Our best guess" regardless of whether our model includes categories or continuous
+- "Our best guess" regardless of whether our model includes categories or continuous predictor variables
 
 
 ## Regression Equation
@@ -132,6 +132,14 @@ ggplot(galton.data.1, aes(x=.fitted, y=child)) +
     geom_point() +    
     geom_smooth(method=lm)
 ```
+
+## Formal Description
+
+$$ Y_{ij} \sim \mathcal{N}(\mu,\,\sigma)\  $$
+In english: Our DV for individual i is distributed normally with a mean of mu 
+and a standard deviation of sigma
+
+- sigma describes the spread of data around our prediction line (how close data points are to line/how small our residuals are)
 
 ## Statistical Inference
 - The way the world is = our model + error
@@ -296,6 +304,10 @@ $$ H_{0}: \rho_{XY}^2= 0 $$
 $$ H_{1}: \rho_{XY}^2 \neq 0 $$
 
 $$ F = \frac{MS_{regression}}{MS_{residial}} $$
+
+## model comparison
+
+ADD!!!!
 
 ## Regression coefficient
 

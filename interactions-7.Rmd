@@ -3,6 +3,10 @@ title: "Interactions"
 output: ioslides_presentation
 ---
 
+##
+
+check out jtools package to look at interactions and AMPPS paper on visualizing interactions **
+
 
 ## What are interactions?
 - When the effect of one predictor depends on the levels of another
@@ -15,7 +19,7 @@ output: ioslides_presentation
 
 ## How can we visualize this association?
 
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/3d.png" width="750" height="550"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring_2019/3d.png" width="750" height="550"/>
 
 
 ## 
@@ -24,7 +28,7 @@ $$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
 
 ```{r, echo = FALSE}
 library(readr)
-Multipleregression  <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Multipleregression.csv")
+Multipleregression  <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/Multipleregression.csv")
 
 Multipleregression$Support.r <- (17.36 - Multipleregression$Support)/3
 
@@ -290,7 +294,7 @@ PlotSlope(slope.1)
 
 
 ## 
-```{r}
+```{r, eval = FALSE}
 library(sjPlot)
 sjp.int(mr.model.c, 
         type = "eff",
@@ -333,6 +337,11 @@ scale_color_discrete("Anxiety")+ theme_bw()
 - should test whether polynomial interactions serve as a more simplistic explanation
 
 ## polynomial regression 
+- Linear lines often make bad predictions
+- Some relationships are not linear (weight and height across lifespan)
+- Sort of poor to model non linear data but useful to know
+
+## polynomial regression 
 - contain a series of higher order function for a single variable  
 <br>
 Linear $\hat{Y} = b_{0} + b_{1}X$  
@@ -346,7 +355,7 @@ Cubic $\hat{Y} = b_{0} + b_{1}X + b_{2}X^2 + b_{3}X^3$
 
 ```{r, echo = FALSE, warning= FALSE}
 library(ggplot2)
-mtcars2 <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/mtcars2.csv")
+mtcars2 <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/mtcars2.csv")
 quad <- lm(mpg ~ hp + I(hp^2), data = mtcars2)
 prd <- data.frame(hp = seq(from = range(mtcars2$hp)[1], to = range(mtcars2$hp)[2], length.out = 100))
 err <- predict(quad, newdata = prd, se.fit = TRUE)

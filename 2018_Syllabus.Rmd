@@ -12,10 +12,10 @@ output:
 **Office**: Room #315B  
 **Office hours**: 10-11 Wednesday and by appointment  
 
-**TA**: Shelly Cooper  
-**Office**: Room #105  
-**Office hours**: 12-1pm Tuesday and by appointment  
-  
+**TA**: Zöe Hawks  
+**Office**: Room #
+**Office hours**: 
+
 <br>  
 
 #### Course Descrition#### 
@@ -70,7 +70,7 @@ Note that dates and readings are tentative. Topics will likely shift; all change
 
 | Week | Date  |  Topic                                 |LSR readings       | Additional Readings  |
 -------|-------|----------------------------------------|--------------------|----------------------|
-| 1    | 1/16  | Introduction and recap                 |                   |Cumming's new stat, if needed|
+| 1    | 1/16  | Recap and GLM intro                 |                   |Cumming's new stat, if needed|
 | -    | 1/18  | GLM and Categorical predictors         |                    |                      |
 | 2    | 1/23  | Correlation                            |                    | Correlation Revelle  |
 | -    | 1/25  | Correlation                  |                  |                      |

@@ -164,7 +164,7 @@ alcohol1 <- read.csv("alcohol1.txt")
 ```
 
 ```{r, message=FALSE}
-library (brms)
+library(brms)
 options (mc.cores=parallel::detectCores ()) # Run on multiple cores
 
 b1 <- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)

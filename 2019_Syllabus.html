@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="" />
+
+
+<title>Quantitative Methods II, Psych 5067</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">psych 5067: quant methods II</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="2019_Syllabus.html">syllabus</a>
+</li>
+<li>
+  <a href="readings.html">readings</a>
+</li>
+<li>
+  <a href="data.html">data</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    take home projects
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="takehome-1.html">takehome-1</a>
+    </li>
+    <li>
+      <a href="takehome-2.html">takehome-2</a>
+    </li>
+    <li>
+      <a href="takehome-3.html">takehome-3</a>
+    </li>
+    <li>
+      <a href="takehome-4.html">takehome-4</a>
+    </li>
+    <li>
+      <a href="takehome-5.html">takehome-5</a>
+    </li>
+    <li>
+      <a href="takehome-6.html">takehome-6</a>
+    </li>
+    <li>
+      <a href="takehome-7.html">takehome-7</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    lectures
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Introduction-1.html">1. intro</a>
+    </li>
+    <li>
+      <a href="GLM-2.html">2. glm</a>
+    </li>
+    <li>
+      <a href="correlations-3.html">3. correlation</a>
+    </li>
+    <li>
+      <a href="regression-4.html">4. regression</a>
+    </li>
+    <li>
+      <a href="multregression-5.html">5. multiple regression</a>
+    </li>
+    <li>
+      <a href="diagnostics-6.html">6. diagnostics</a>
+    </li>
+    <li>
+      <a href="interactions-7.html">7. interactions</a>
+    </li>
+    <li>
+      <a href="anova-8.html">8. factorial ANOVA</a>
+    </li>
+    <li>
+      <a href="logistic-9.html">9. logistic</a>
+    </li>
+    <li>
+      <a href="fit-10.html">10. fit</a>
+    </li>
+    <li>
+      <a href="RMANOVA_MLM-11.html">11. mlm</a>
+    </li>
+    <li>
+      <a href="Bayesian-12.html">12. Bayesian</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Quantitative Methods II, Psych 5067</h1>
+<h4 class="date"><em>Spring 2019</em></h4>
+
+</div>
+
+
+<p><br></p>
+<p>####People#### <strong>Instructor</strong>: Joshua Jackson<br />
+<strong>Office</strong>: Room #315B<br />
+<strong>Office hours</strong>: 10-11 Wednesday and by appointment</p>
+<p><strong>TA</strong>: Zöe Hawks<br />
+<strong>Office</strong>: Room #303D <strong>Office hours</strong>: T/TH: 8:30-9:30</p>
+<p><br></p>
+<div id="course-descrition" class="section level4">
+<h4>Course Descrition</h4>
+<p>This course will provide a detailed overview of multiple regression as a data-analytic method. The course provides a conceptual background of the central ideas and applications along with the necessary applied skills to carry out analyses of continunous and categorical data. The analytic approaches are thus applicable to experimental research in which factors are manipulated and to observational research. Goals are threefold: (1) learn how to look at and think about data – to check for problems in regression models, errors in computer outputs, identify missuses of regression, (2) be able to examine the relationship among regression models, theoretical models, and your data, and (3) construct regression equations to examine specific hypotheses and interpret resulting models and regression coefficients.</p>
+<p><br></p>
+</div>
+<div id="class-textbook" class="section level4">
+<h4>Class textbook</h4>
+<ul>
+<li>Learning Statistics with R by Daniel Navarro <a href="http://www.compcogscisydney.com/learning-statistics-with-r.html" class="uri">http://www.compcogscisydney.com/learning-statistics-with-r.html</a></li>
+</ul>
+<p><em>Recommended text (not required)</em></p>
+<p>-Aiken, L. S., &amp; West, S. G. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: Sage Publications.</p>
+<p>-Cohen, J., Cohen, P., West, S. G., &amp; Aiken, L. A. (2003). Applied multiple regression/correlation analysis for the behavioral sciences (3rd edition). Hillsdale, NJ: Lawrence Erlbaum Associates.</p>
+<p>-Cumming, G. (2013). Understanding the new statistics: Effect sizes, confidence intervals, and meta-analysis. Routledge.</p>
+<p>-Myers, J.L., Well, A. D., &amp; Lorch, R. F. (2010). Research Design &amp; Statistical Analysis (3rd Ed.), New York, NY: Routledge.</p>
+<p>-McElreath, R. (2016). Statistical Rethinking: A Bayesian Course with Examples in R. CRC Press.</p>
+<p><br></p>
+</div>
+<div id="grading" class="section level4">
+<h4>Grading</h4>
+<p>The class consists of 2 in class tests, a cumulative final exam, 7 “take home” projects, and one oral “exam”. The 2 in class exams make up 40% of your grade (20% each). The final exam will account for 20%. The 7 take home projects fulfills 35% of your final grade (5% each) while the oral exam will make up the remaining 5%.</p>
+<p>Typically, grades are “curved,” but not curved to a predefined distribution. The curve will always be in a manner that will help people, not hurt.</p>
+<p>Due dates for exams and other project details will be listed on the announcements/home page. Expect exact dates to change throughout the semester so be sure to check the site frequently.</p>
+<p>Note: take home projects should be treated like exams. No discussing of questions or sharing code. Any duplicate code will result in zero points for that section.</p>
+<p><strong>Grades</strong>:<br />
+100% - A+<br />
+99-92 - A<br />
+90-91 - A-<br />
+89 - B+<br />
+88-81 - B<br />
+80 - B-<br />
+79-70 - C<br />
+69-60 - D<br />
+&lt;60 - F</p>
+<p><br></p>
+</div>
+<div id="schedule" class="section level4">
+<h4>Schedule</h4>
+<p>Note that dates and readings are tentative. Topics will likely shift; all changes will be updated on the homepage, not necessarily in the syllabus.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Date</th>
+<th>Topic</th>
+<th>LSR readings</th>
+<th>Additional Readings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>1/15</td>
+<td>Recap and GLM intro</td>
+<td></td>
+<td>Cumming’s new stat, if needed</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>1/17</td>
+<td>GLM and Categorical predictors</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>1/22</td>
+<td>Correlation</td>
+<td></td>
+<td>Correlation Revelle</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>1/24</td>
+<td>Correlation</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>1/29</td>
+<td>Univariate Regression</td>
+<td>Chapter 15</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>1/31</td>
+<td>Univariate Regression</td>
+<td></td>
+<td>MR Cohen chapter</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>2/5</td>
+<td>Partial Correlations</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/7</td>
+<td>Class Canceled</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>2/12</td>
+<td>Multiple Regression</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/14</td>
+<td>Multiple Regression</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td>2/19</td>
+<td>Multiple Regression</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/21</td>
+<td>Multiple Regression</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>2/26</td>
+<td><strong>Exam 1</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>2/28</td>
+<td>Assumptions, model diagnostics</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td>3/5</td>
+<td>Assumptions, model diagnostics</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/7</td>
+<td>Moderation/interaction</td>
+<td></td>
+<td>Aiken Chapter</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>3/12</td>
+<td><strong>Spring Break!</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/14</td>
+<td><strong>Spring Break!</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>3/19</td>
+<td>Moderation/interaction</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/21</td>
+<td>Polynomials</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>3/26</td>
+<td>Factorial ANOVA</td>
+<td>Chapter 16</td>
+<td>Myers chapter</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>3/28</td>
+<td>Factorial ANOVA</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>12</td>
+<td>4/2</td>
+<td>Cont and cat predictors (ANCOVA)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/4</td>
+<td>Logistic regression/GLM</td>
+<td></td>
+<td>Cohen Logistic Chapter</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>4/9</td>
+<td>Over/underfitting and validation</td>
+<td></td>
+<td>Yarkoni Westfall</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/11</td>
+<td>Repeated measures/MLM</td>
+<td></td>
+<td>Hoffman BRM</td>
+</tr>
+<tr class="odd">
+<td>14</td>
+<td>4/16</td>
+<td>Repeated measures/MLM</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/18</td>
+<td><strong>Exam 2</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>4/23</td>
+<td>Bayesian statistics</td>
+<td>Chapter 17</td>
+<td>Kruschke PBR</td>
+</tr>
+<tr class="even">
+<td>-</td>
+<td>4/25</td>
+<td>Bayesian regression</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>-</td>
+<td>5/?</td>
+<td><strong>Final Exam</strong> TBA</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

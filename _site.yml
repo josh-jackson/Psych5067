@@ -1,4 +1,4 @@
-name: 5067 spring 2018
+name: 5067 spring 2019
 output_dir: "."
 navbar:
   title: 'psych 5067: quant methods II'
@@ -6,7 +6,7 @@ navbar:
   - text: Home
     href: index.html
   - text: syllabus
-    href: 2018_Syllabus.html
+    href: 2019_Syllabus.html
   - text: readings
     href: readings.html
   - text: data

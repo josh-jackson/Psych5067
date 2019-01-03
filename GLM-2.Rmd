@@ -18,13 +18,13 @@ Independent samples t-test
 ```{r, eval=FALSE}
 
 t.1 <- t.test(y ~ x, data = d) 
-# y is cont and x is a categoriocal (dichotomous) factor
+# y is cont and x is a categoriocal/nominal (dichotomous) factor
 ```
 
 One-way ANOVA
 ```{r, eval = FALSE}
 a.1 <- aov(y ~ x, data=d)
-# y is cont and x is a categoriocal factor
+# y is cont and x is a categoriocal/nominal factor
 
 ```
 
@@ -42,9 +42,6 @@ $$ Y = b_{0} + b_{1}X +e  $$
 
 $$ \hat{Y} = b_{0} + b_{1}X  $$
 
-$$ \mu_{Y} = \beta_{0} + \beta_{1}X + \epsilon   $$
-
-$$Y = X\beta + U$$
 
 ## Regression terms
 - Y/DV/Outcome/Response/Criterion
@@ -54,12 +51,17 @@ $$Y = X\beta + U$$
 - Error/Residuals $e$
 - Predictions  $\hat{Y}$
 
+## Regression models
+
+- These models are a way to convey the relationship between two (or more) variables
+- We can use these to get information we may be interested in (e.g. means)
+
 
 ## Example
 ```{r, echo = FALSE, messages = FALSE}
 library(tidyverse)
 library(readr)
-example.data <- read_csv("~/Box Sync/5067 Regression Spring/5067 spring 18/example.data.csv")
+example.data <- read_csv("~/Box Sync/5067 Regression Spring/Spring_2019/example.data.csv")
 
 ```
 
@@ -67,6 +69,7 @@ example.data <- read_csv("~/Box Sync/5067 Regression Spring/5067 spring 18/examp
 ```{r}
 example.data
 ```
+
 ##
 
 ```{r, warning=FALSE}
@@ -90,16 +93,32 @@ summary(a.1)
 
 ## example
 
-```{r}
+```{r, eval = FALSE}
 mod.1 <- lm(traffic.risk ~ tx, data = example.data)
 summary(mod.1)
 ```
 
 ## example
+
+```{r, echo = FALSE}
+mod.1 <- lm(traffic.risk ~ tx, data = example.data)
+summary(mod.1)
+```
+
+
+## example cont
 ```{r}
 mod.1 <- lm(traffic.risk ~ tx, data = example.data)
 anova(mod.1)
 ```
+
+## example summary
+Same p-values for each test; same SS; same test!
+<br>
+- t-test gives you a t & df (output may give you group mean and SD)
+- ANOVA gives you an F
+- linear model (regression) gives you an equation
+
 
 ## ANOVA as regression
 
@@ -127,10 +146,38 @@ example.data %>%
   summarise(mean(traffic.risk, na.rm=TRUE))
 ```
 
+##
+```{r, warning=FALSE}
+ggplot(example.data) +
+  aes(x = as.factor(tx), y = traffic.risk) +
+  geom_violin() + geom_boxplot()
+```
+
+
+##
+```{r, echo=FALSE, cache=TRUE}
+library(ggplot2)
+ggplot(example.data, aes(x=tx, y=traffic.risk)) +
+    geom_point() +    
+    geom_smooth(method=lm,   # Add linear regression line
+                se=FALSE)    # Don't add shaded confidence region
+    
+```
+
+## Means and estimates  
+
+- our test is a test about means (do groups differ?)
+- our estimates convey information about the means
+<br>
+- How do the means relate to our estimates within the regression equation? 
 
 
 ## ANOVA as regression
+- Nominal/categorical variables do not have any inherant numbers associated with them
+- Need to assign them numbers
+- What numbers you assign will impact the equation  
 
+## ANOVA as regression
 $$ Y_i = b_{0} + b_{1}X_i + e_i  $$
 
 ```{r, echo =FALSE}
@@ -213,7 +260,7 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 1. The intercept is the "grand mean" or "mean of means" if unbalanced
 2. The regression coefficient represents the group "effect" ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
 
-- Common to use for ANOVA models b/c ANOVA models are usually specified this way
+- Common to use for Factorial ANOVA models 
 
 ## Effect coding
 Consists of -1, 1s (And zeros for more than 2 groups)
@@ -221,7 +268,7 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 1. The intercept is the "grand mean" or "mean of means" if unbalanced
 2. The regression coefficient represens the group "effect" ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
 
-- Common to use for ANOVA models b/c ANOVA models are usually specified this way
+- Common to use for Factorial ANOVA models 
 
 - How do you calculate the predicted value of each group? 
 
@@ -243,7 +290,7 @@ Thought Qs:
 
 ## Intermission
 
-![](~/Box Sync/5067 Regression Spring/5067 spring 18/intermission.gif)
+![](~/Box Sync/5067 Regression Spring/Spring 19/intermission.gif)
 
 
 ## Statistical Inference
@@ -259,12 +306,15 @@ Thought Qs:
 
 $\hat{Y}_{i}$ = 2.6506410 + -0.4811057*$X_{i}$
 
+- You have already done this with dummy codes above
+
 ## Predictions
-- We want our predictions to be close to our actual data (Y)
-- The difference between the actual data and our our prediction ($Y_{i}  - \hat{Y}_{i} = e$) is the residual, how far we are "off"
+- We want our predictions to be close to our actual data for each person ($Y_{i}$)
+- The difference between the actual data and our our prediction ($Y_{i}  - \hat{Y}_{i} = e$) is the residual, how far we are "off". This tells us how good our fit is. 
+- You can have the same estimates but completely different fit. 
 
 
-## lm objects
+## easy to examine with lm objects
 
 ```{r, eval=FALSE}
 coefficients(mod.1)       # coefficients
@@ -336,7 +386,7 @@ head(fit.1.data)
 ```
 
 ## pop quiz, hotshot, part deux 
-- how many different types of predicted values will we have? residuals? 
+- how many different predicted values will we have? residuals? 
 
 
 ## Statistical Inference
@@ -345,12 +395,10 @@ head(fit.1.data)
 - What is our best guess (ie prediction) if we didn't collect any data? 
 
 $$ \hat{Y} = \bar{Y} $$
-- E(Y|X)
+- Regression can be thought of as: E(Y|X)
 
 ## Statistical Inference
 - To the extent that we can generate different predicted values of Y based on the values of the predictors, our model is doing well
-
-- E(Y|X)
 
 - Said differently, the closer our model is to the "actual" data generating model, our guesses (Y-hats) will be closer to our actual data (Ys)  
 
@@ -420,3 +468,4 @@ tidy(anova(mod.1.eff))
 - It is the exact same because t-tests and ANOVAs are part of the general linear model
 - Looking at these tests through the perspective of a linear model provides us with all the information you got from last semester - and more! 
 - Plus it provides a more systematic way at 1) building and testing your theoretical model and 2) comparing between alternative theoretical models
+- You can get 1) estimates and 2) fit statistics from the model. Both are important. 

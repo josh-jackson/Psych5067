@@ -30,10 +30,10 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
 ## GPA = SES + Peer relationships
 -Can be thought of as overlapping Venn diagrams
 
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-1.png" width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2-1.png" width="700" height="500"/>
 
 ## redundent vs non-redundent information 
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2.png" width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2.png" width="700" height="500"/>
 
 
 ## types of correlations
@@ -45,7 +45,7 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
     
 ## semi-partial
 
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-2.png"width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2-2.png"width="700" height="500"/>
 
 
 ## semi-partial
@@ -57,7 +57,7 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 - the extent to which the part of X1  that is independent of X2  is correlated with the part of Y that is also independent of X2 
 
 ## partial correlation
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-3.png" width="500" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2-3.png" width="500" height="500"/>
 
 ## partial correlation
 $$ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} $$
@@ -70,9 +70,12 @@ $$ pr^2 = \frac{R_{Y.12}^2 - r_{Y2}^2}{1-r_{Y2}^2} $$
 
 $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 
+## multiple regression model
+
+$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
 
 
-## how to interpret partial regression cofficients? 
+## how to interpret multiple regression cofficients? 
 - residual in simple regression can be thought of as a measure of Y that is left over after accounting for your DV
 - partial correlation can be created by:  
     1. create measure of X1 independent of X2
@@ -82,12 +85,12 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 ## interpretting multiple regression model
 $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$  
 - intercept is when all predictors = 0  
-- regression coefficients are partial regression coefficients  
-- predicted change in y for a 1 unit change in x, holding all other predictors constant  
+- regression coefficients are "partial" regression coefficients  
+- predicted change in y for a 1 unit change in x, *holding all other predictors constant*  
 
 ## example
 ```{r, echo = FALSE, message=FALSE}
-Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/Multipleregression.csv")
+Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/Multipleregression.csv")
 ```
 
 ```{r}
@@ -141,6 +144,13 @@ $$b_{1}^* = b_{1}\frac{s_{X1}}{s_{Y}} $$
 
 $$b_{0} = \bar{Y} - b_{1}\bar{X_{1}} - b_{2}\bar{X_{2}} $$
 
+## Fit revisited
+```{r}
+mr.model$R2
+```
+
+
+
 ## Multiple correlation R
 
 $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2} $$
@@ -157,10 +167,10 @@ $$ R = \sqrt{b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
 $$ R^2 = {b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
 
 ## 
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-4.png" width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring 19/R2-4.png" width="700" height="500"/>
 
 ##
-<img src="~/Box Sync/5067 Regression Spring/5067 spring 18/R2-5.png" width="700" height="500"/>
+<img src="~/Box Sync/5067 Regression Spring/Spring 19/R2-5.png" width="700" height="500"/>
 
 ## sum of squares decomposition
 
@@ -172,6 +182,26 @@ $$  {SS_{regression}} = R^2({SS_{Y})} $$
 
 
 $$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
+## Check your model 
+
+```{r}
+library(tidyverse)
+
+fit <- lm(hp ~ ., mtcars)
+au <- broom::augment(fit)
+
+au.gg <- au %>% 
+  gather(x, val, -contains(".")) %>% 
+  ggplot(aes(val, .resid)) +
+  geom_point() +
+  facet_wrap(~x, scales = "free")
+```
+
+##
+```{r}
+print(au.gg)
+```
+
 
 ## significance tests
 
@@ -234,6 +264,13 @@ $$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\f
 ## simultaneous  
 - how do you interpret the regression coefficient
 - how do you interpret the fit of the model? 
+
+
+## endogeniety discussion ADD!!
+
+
+
+
 
 ## hierarchical / model comparison  
 - When you want to see if the fit of one model is better than another  
@@ -313,7 +350,7 @@ $$R_{Y.1234...p}^2 = r_{Y1}^2 + r_{Y(2.1)}^2 + r_{Y(3.21)}^2 + r_{Y(4.321)}^2 + 
 ```{r, echo = FALSE}
 library(tidyverse)
 library(forcats)
-one.way <- read.csv("~/Box Sync/5067 Regression Spring/5067 spring 18/anova.csv")
+one.way <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/anova.csv")
 one.way$group <- one.way$IV
 one.way$group <- as.factor(one.way$group)
 one.way <- one.way %>%

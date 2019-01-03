@@ -6,43 +6,7 @@ output: html_document
 
  <br> 
   
- - April 27th -  Take home #7 is posted    
- 
- - April  16th - MLM slides are up
-   
- - April 12th - Friendly reminder that exam 2 is pushed back to Thursday 4/19
- 
- - April 11th - Take home #6 is posted. Also, logistic chapter is updated.      
-     
- - April 10th -  Fit slides are posted  
- 
- -  April 5th - Logistic/Generalized linear model slies are posted
- 
- - April 1st - Take home #5 is posted
- 
- - March 28th - ANOVA readings posted  
-   
- - March 26th - Factorial ANOVA slides are posted    
-   
- - March 13 - Take home # 4 is posted  
- 
- - March 6th - Interaction lecture is posted  
- 
- - Feb 26th - Read this: https://www.buzzfeed.com/stephaniemlee/brian-wansink-cornell-p-hacking 
-  Also, the diagnostics lecture is posted
- 
-- Feb 18th - Syllabus updated to reflect Exam #1 will be on 2/22
-     
-- Feb 12th - Take home project #3 is posted. This will be the final take home before exam #1.      
-   
-- Feb 3rd - Take Home project #2 is posted. Also Multiple regression lecture is updated.
 
-- January 28th - Take Home project #1 is posted. You will need the Dawtry et al article and accompanying data found in the data tab on the website.   
-<br>
-- January 24th - Regression lecture is up! Also check this post out about power: https://approachingblog.wordpress.com/2018/01/24/powering-your-interaction-2/
-<br>
-- January 22nd - Lecture for correlation is now up as is the reading (Revelle). For the reading pay special attention to sections (4.4.1 - 4.4.3.3 and 4.5 - 4.6.1.1)  
-<br>
 
-- January 8th - website is live! Take a peak at the syllabus. First two lectures are updated (1. intro and 2. 2. glm), the rest are works in progress. 
+- January 4th - website is live! Take a peak at the syllabus. First two lectures are updated (1. intro and 2. glm), the rest are works in progress. 
 

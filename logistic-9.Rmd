@@ -19,13 +19,13 @@ Violates:
     - Normality of the errors  
     
 ## 
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.1.png" width="750" height="550"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/Spring_2019/Log.1.png" width="750" height="550"/>
 
 ##
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.2.png" width="750" height="550"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/Spring_2019/Log.2.png" width="750" height="550"/>
 
 ##
-<img src="/Users/Jackson/Box Sync/5067 Regression Spring/5067 spring 18/Log.3.png" width="750" height="550"/>
+<img src="/Users/Jackson/Box Sync/5067 Regression Spring/Spring_2019/Log.3.png" width="750" height="550"/>
 
 ## Need to think in terms of probabilities
 
