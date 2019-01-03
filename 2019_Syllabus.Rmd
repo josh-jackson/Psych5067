@@ -5,9 +5,11 @@ date: Spring 2019
 output:
   html_document: default
 ---
-<br>  
 
-####People#### 
+<br>
+
+#### People#### 
+
 **Instructor**: Joshua Jackson  
 **Office**: Room #315B  
 **Office hours**: 10-11 Wednesday and by appointment  
@@ -26,7 +28,7 @@ This course will provide a detailed overview of multiple regression as a data-an
 
 #### Class textbook#### 
 
-- Learning Statistics with R by Daniel Navarro <http://www.compcogscisydney.com/learning-statistics-with-r.html>
+- Learning Statistics with R by Daniel Navarro <https://learningstatisticswithr.com/book/>
 
 *Recommended text (not required)*
 
