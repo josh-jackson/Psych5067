@@ -3,7 +3,7 @@ title: "Introduction"
 output: ioslides_presentation
 ---
 
-## Goals for semester
+## goals for semester
 
 - Analyze and interpret general(ized) linear models
 
@@ -11,16 +11,16 @@ output: ioslides_presentation
 
 - Identify and diagnose problems when they arise
 
-##Important links
+## important links
 - [Class website](https://josh-jackson.github.io/Psych5067/)
 
 - [Class readings](https://josh-jackson.github.io/Psych5067/readings.html)
 
-- [LSR](https://health.adelaide.edu.au/psychology/ccs/teaching/lsr/)
+- [LSR](https://learningstatisticswithr.com/book/)
 
 - [Example data from class (and Rmd and all other materials)](https://github.com/josh-jackson/Psych5067) if you dont want to use class webpage. 
 
-## Important information
+## important information
 
 - Most important information is on the slides
 
@@ -36,11 +36,15 @@ output: ioslides_presentation
 
 - If too slow: ASK QUESTIONS AND COME AND VISIT ME. There are lots of interesting extensions. I have readings. 
 
-##Goals for today
+
+## Goals for today  
+
 - Review of last semester
 - Overview of this semester
 
-## What should you already know? 
+## what should you already know? 
+
+ 
 
 ## pragmatics
 
@@ -63,7 +67,7 @@ output: ioslides_presentation
 - bar, box, violin... 1. Avoid wow graphs, 2. use interpretable scales, 3. label 4. always provide a dispersion estimate and 5. if possible include raw data and/or the distribution (as dispersion only can hide oddities)
 
 
-## Theoretical probability distributions 
+## theoretical probability distributions 
 
 - how you measure your variables determine your analytic tool options
 
@@ -99,16 +103,15 @@ output: ioslides_presentation
 
 - meta-analytic thinking
 
-## How to suceed (in class)
+## how to suceed (in class)
 
 - Go through slides, work through code
 - Apply concepts to your own work
 - Devote time
 
-## Last thoughts
-- Any questions? 
+## looking forward
 
-- Looking forward: This semeter's themes are Relationships and Models
+-  This semeter's themes are Relationships and Models
 
 
 

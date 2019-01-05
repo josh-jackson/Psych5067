@@ -145,13 +145,6 @@
 
 </article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  id="example">
 
-<pre >## Parsed with column specification:
-## cols(
-##   id = col_integer(),
-##   tx = col_integer(),
-##   traffic.risk = col_double()
-## )</pre>
-
 <ul>
 <li>Get this data at my github account: <a href='https://github.com/josh-jackson/Psych5067' title=''>https://github.com/josh-jackson/Psych5067</a></li>
 </ul>
@@ -177,7 +170,7 @@
 
 <pre class = 'prettyprint lang-r'>ggplot(example.data) +
   aes(x = as.factor(tx), y = traffic.risk) +
-  geom_violin() + geom_boxplot()</pre>
+  geom_violin() + geom_boxplot() + geom_jitter()</pre>
 
 <p><img src="GLM-2_files/figure-html/unnamed-chunk-5-1.png" width="720" /></p>
 
@@ -253,7 +246,7 @@ anova(mod.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2>example summary</h2></hgroup><article  id="example-summary">
 
-<p>Same p-values for each test; same SS; same test! <br> - t-test gives you a t &amp; df (output may give you group mean and SD) - ANOVA gives you an F - linear model (regression) gives you an equation</p>
+<p>Same p-values for each test; same SS; same test! <br> - t-test gives you a t &amp; df (output may give you group mean and SD)<br/>- ANOVA gives you an F<br/>- linear model (regression) gives you an equation</p>
 
 </article></slide><slide class=""><hgroup><h2>ANOVA as regression</h2></hgroup><article  id="anova-as-regression">
 
@@ -287,27 +280,32 @@ anova(mod.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
-<pre class = 'prettyprint lang-r'>ggplot(example.data) +
-  aes(x = as.factor(tx), y = traffic.risk) +
-  geom_violin() + geom_boxplot()</pre>
-
 <p><img src="GLM-2_files/figure-html/unnamed-chunk-13-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
-<pre >## Warning: Removed 10 rows containing non-finite values (stat_smooth).</pre>
+<ul>
+<li>Intercept is the mean of group of variable tx that is coded 0</li>
+<li>regression coefficient is the difference in means between the groups (ie slope)</li>
+</ul>
 
-<pre >## Warning: Removed 10 rows containing missing values (geom_point).</pre>
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
 <p><img src="GLM-2_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Means and estimates</h2></hgroup><article  id="means-and-estimates">
+</article></slide><slide class=""><hgroup><h2>predicted scores</h2></hgroup><article  id="predicted-scores">
 
 <ul>
-<li>our test is a test about means (do groups differ?)</li>
-<li>our estimates convey information about the means <br></li>
-<li>How do the means relate to our estimates within the regression equation?</li>
+<li>Based on the output how do I calculate means for each group?</li>
 </ul>
+
+<pre class = 'prettyprint lang-r'>tidy(mod.1)</pre>
+
+<pre >## # A tibble: 2 x 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    2.65     0.0764     34.7  3.80e-101
+## 2 tx            -0.481    0.0974     -4.94 1.38e-  6</pre>
 
 </article></slide><slide class=""><hgroup><h2>ANOVA as regression</h2></hgroup><article  id="anova-as-regression-1">
 
@@ -319,7 +317,7 @@ anova(mod.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2>ANOVA as regression</h2></hgroup><article  id="anova-as-regression-2">
 
-<p>\[ Y_i = b_{0} + b_{1}X_i + e_i  \]</p>
+<p>\[ T.risk_i = b_{0} + b_{1}TX_i + e_i  \]</p>
 
 <pre >## # A tibble: 280 x 3
 ##       id    tx traffic.risk
@@ -336,11 +334,9 @@ anova(mod.1)</pre>
 ## 10    10     1         1.71
 ## # ... with 270 more rows</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
 
-<pre class = 'prettyprint lang-r'>library(dplyr)
-example.data$tx.r &lt;- as.factor(example.data$tx)
-example.data$tx.r &lt;- recode_factor(example.data$tx.r, &quot;0&quot; = &quot;control&quot;, &quot;1&quot; = &quot;treatment&quot;) </pre>
+<p>What happens if we didn’t have numbers in our dataframe?</p>
 
 <pre class = 'prettyprint lang-r'>example.data</pre>
 
@@ -359,25 +355,25 @@ example.data$tx.r &lt;- recode_factor(example.data$tx.r, &quot;0&quot; = &quot;c
 ## 10    10     1         1.71 treatment
 ## # ... with 270 more rows</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
 
-<pre class = 'prettyprint lang-r'>class(example.data$tx)</pre>
+<pre class = 'prettyprint lang-r'>mod.1 &lt;- lm(traffic.risk ~ tx, data = example.data)
+tidy(mod.1)</pre>
 
-<pre >## [1] &quot;integer&quot;</pre>
+<pre >## # A tibble: 2 x 5
+##   term        estimate std.error statistic   p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    2.65     0.0764     34.7  3.80e-101
+## 2 tx            -0.481    0.0974     -4.94 1.38e-  6</pre>
 
-<pre class = 'prettyprint lang-r'>class(example.data$tx.r)</pre>
+<pre class = 'prettyprint lang-r'>mod.1r &lt;- lm(traffic.risk ~ tx.r, data = example.data)
+tidy(mod.1r)</pre>
 
-<pre >## [1] &quot;factor&quot;</pre>
-
-<ul>
-<li><p>Do you find issues or differences if you use tx vs tx.r?</p></li>
-<li><p>What about if you did this:</p></li>
-</ul>
-
-<pre class = 'prettyprint lang-r'>example.data$tx.n &lt;- as.numeric(example.data$tx)
-class(example.data$tx.n)</pre>
-
-<pre >## [1] &quot;numeric&quot;</pre>
+<pre >## # A tibble: 2 x 5
+##   term          estimate std.error statistic   p.value
+##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)      2.65     0.0764     34.7  3.80e-101
+## 2 tx.rtreatment   -0.481    0.0974     -4.94 1.38e-  6</pre>
 
 </article></slide><slide class=""><hgroup><h2>what about if you had different values other than 0 and 1?</h2></hgroup><article  id="what-about-if-you-had-different-values-other-than-0-and-1">
 
@@ -390,23 +386,23 @@ class(example.data$tx.n)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Effect coding</h2></hgroup><article  id="effect-coding">
 
-<pre class = 'prettyprint lang-r'>example.data$tx.effect &lt;- dplyr::recode(example.data$tx.n, &quot;0&quot; = -1, &quot;1&quot; = 1) </pre>
+<pre class = 'prettyprint lang-r'>example.data$tx.effect &lt;- dplyr::recode(example.data$tx, &#39;0&#39; = -1, &#39;1&#39; = 1) </pre>
 
 <pre class = 'prettyprint lang-r'>example.data</pre>
 
-<pre >## # A tibble: 280 x 6
-##       id    tx traffic.risk tx.r       tx.n tx.effect
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-##  1     1     1         1.86 treatment     1         1
-##  2     2     1         1    treatment     1         1
-##  3     3     1         3.29 treatment     1         1
-##  4     4     1         2    treatment     1         1
-##  5     5     1         2.43 treatment     1         1
-##  6     6     1         3.29 treatment     1         1
-##  7     7     0         1.17 control       0        -1
-##  8     8     0         2.43 control       0        -1
-##  9     9     0         3    control       0        -1
-## 10    10     1         1.71 treatment     1         1
+<pre >## # A tibble: 280 x 5
+##       id    tx traffic.risk tx.r      tx.effect
+##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
+##  1     1     1         1.86 treatment         1
+##  2     2     1         1    treatment         1
+##  3     3     1         3.29 treatment         1
+##  4     4     1         2    treatment         1
+##  5     5     1         2.43 treatment         1
+##  6     6     1         3.29 treatment         1
+##  7     7     0         1.17 control          -1
+##  8     8     0         2.43 control          -1
+##  9     9     0         3    control          -1
+## 10    10     1         1.71 treatment         1
 ## # ... with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2>effect coding</h2></hgroup><article  id="effect-coding-1">
@@ -439,7 +435,7 @@ tidy(mod.1.eff)</pre>
 ## 2 tx            -0.481    0.0974     -4.94 1.38e-  6</pre>
 
 <ul>
-<li><p>Intercept: value when your predictor (model, X, IV, etc) is zero</p></li>
+<li><p>Intercept: value when your predictor X is zero</p></li>
 <li><p>Regression coefficent: one unit increase in X is associated with a (regression estimate) increase in Y</p></li>
 </ul>
 
@@ -449,7 +445,7 @@ tidy(mod.1.eff)</pre>
 
 <ol>
 <li>The intercept is the &ldquo;grand mean&rdquo; or &ldquo;mean of means&rdquo; if unbalanced</li>
-<li>The regression coefficient represents the group &ldquo;effect&rdquo; ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)</li>
+<li>The regression coefficient represents the group &ldquo;effect&rdquo; ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)</li>
 </ol>
 
 <ul>
@@ -462,7 +458,7 @@ tidy(mod.1.eff)</pre>
 
 <ol>
 <li>The intercept is the &ldquo;grand mean&rdquo; or &ldquo;mean of means&rdquo; if unbalanced</li>
-<li>The regression coefficient represens the group &ldquo;effect&rdquo; ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)</li>
+<li>The regression coefficient represents the group &ldquo;effect&rdquo; ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)</li>
 </ol>
 
 <ul>
@@ -470,27 +466,25 @@ tidy(mod.1.eff)</pre>
 <li><p>How do you calculate the predicted value of each group?</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Effect coding</h2></hgroup><article  id="effect-coding-4">
-
-<p>Thought Qs:</p>
-
-<ul>
-<li>What happens if you code the groups -.5 and .5?</li>
-<li>What are the pros and potential cons in this type of coding?</li>
-</ul>
-
 </article></slide><slide class=""><hgroup><h2>Dummy coding</h2></hgroup><article  id="dummy-coding">
 
 <ul>
 <li><p>More appropriate when you are interested in comparing to a specific group rather than an &ldquo;average person&rdquo;</p></li>
 <li>Intercept: value of the group coded zero</li>
-<li><p>Regression coefficient: difference between groups (in mean)</p></li>
-<li><p>How do you calculate the predicted value of each group?</p></li>
+<li><p>Regression coefficient: mean difference between groups</p></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Contrast coding coding</h2></hgroup><article  id="contrast-coding-coding">
+
+<ul>
+<li>As our models get more complex our coding schemes can too</li>
+<li>The basic interpretation of intercept and regression coefficient is the same regardless of coding</li>
+<li>What happens if you code the groups -.5 and .5?</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Intermission</h2></hgroup><article  id="intermission">
 
-<img src='~/Box%20Sync/5067%20Regression%20Spring/Spring%2019/intermission.gif' title=''/>
+<img src='intermission.gif' title=''/>
 
 </article></slide><slide class=""><hgroup><h2>Statistical Inference</h2></hgroup><article  id="statistical-inference">
 
@@ -521,9 +515,20 @@ tidy(mod.1.eff)</pre>
 <li>We want our predictions to be close to our actual data for each person (\(Y_{i}\))</li>
 <li>The difference between the actual data and our our prediction (\(Y_{i} - \hat{Y}_{i} = e\)) is the residual, how far we are &ldquo;off&rdquo;. This tells us how good our fit is.</li>
 <li>You can have the same estimates but completely different fit.</li>
+<li>Previously you have seen this looking at Eta Squared, SS Error and visualizing observations around group means</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>easy to examine with lm objects</h2></hgroup><article  id="easy-to-examine-with-lm-objects">
+</article></slide><slide class=""><hgroup><h2>Which one has better fit?</h2></hgroup><article  id="which-one-has-better-fit">
+
+<p><img src="GLM-2_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>easy to examine fit with lm objects</h2></hgroup><article  id="easy-to-examine-fit-with-lm-objects">
+
+<ul>
+<li>these are automatically created anytime you run a lm in R</li>
+</ul>
+
+<pre class = 'prettyprint lang-r'>mod.1 &lt;- lm(traffic.risk ~ tx, data = example.data)</pre>
 
 <pre class = 'prettyprint lang-r'>coefficients(mod.1)       # coefficients
 residuals(mod.1)          # residuals
@@ -531,14 +536,14 @@ fitted.values(mod.1)      # fitted values ie predicted
 summary(mod.1)$r.squared  # R-sq for the model
 summary(mod.1)$sigma      # se of the model</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
 
 <pre class = 'prettyprint lang-r'>coefficients(mod.1)</pre>
 
 <pre >## (Intercept)          tx 
 ##   2.6506410  -0.4811057</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
 
 <pre class = 'prettyprint lang-r'>fitted.values(mod.1)</pre>
 
@@ -611,7 +616,7 @@ summary(mod.1)$sigma      # se of the model</pre>
 ##      275      276      277      278      279      280 
 ## 2.650641 2.650641 2.650641 2.650641 2.650641 2.650641</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
 
 <pre class = 'prettyprint lang-r'>residuals(mod.1)</pre>
 
@@ -724,23 +729,23 @@ summary(mod.1)$sigma      # se of the model</pre>
 ##          276          277          278          279          280 
 ##  0.349358974 -0.364926740 -0.079212455 -0.507783883 -0.079212455</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
 
 <pre class = 'prettyprint lang-r'>example.data</pre>
 
-<pre >## # A tibble: 280 x 6
-##       id    tx traffic.risk tx.r       tx.n tx.effect
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;     &lt;dbl&gt;     &lt;dbl&gt;
-##  1     1     1         1.86 treatment     1         1
-##  2     2     1         1    treatment     1         1
-##  3     3     1         3.29 treatment     1         1
-##  4     4     1         2    treatment     1         1
-##  5     5     1         2.43 treatment     1         1
-##  6     6     1         3.29 treatment     1         1
-##  7     7     0         1.17 control       0        -1
-##  8     8     0         2.43 control       0        -1
-##  9     9     0         3    control       0        -1
-## 10    10     1         1.71 treatment     1         1
+<pre >## # A tibble: 280 x 5
+##       id    tx traffic.risk tx.r      tx.effect
+##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
+##  1     1     1         1.86 treatment         1
+##  2     2     1         1    treatment         1
+##  3     3     1         3.29 treatment         1
+##  4     4     1         2    treatment         1
+##  5     5     1         2.43 treatment         1
+##  6     6     1         3.29 treatment         1
+##  7     7     0         1.17 control          -1
+##  8     8     0         2.43 control          -1
+##  9     9     0         3    control          -1
+## 10    10     1         1.71 treatment         1
 ## # ... with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2>pop quiz, hotshot</h2></hgroup><article  id="pop-quiz-hotshot">
@@ -758,7 +763,7 @@ summary(mod.1)$sigma      # se of the model</pre>
 <pre class = 'prettyprint lang-r'>ggplot(fit.1.data, aes(.resid)) +
     geom_density()    </pre>
 
-<p><img src="GLM-2_files/figure-html/unnamed-chunk-31-1.png" width="720" /></p>
+<p><img src="GLM-2_files/figure-html/unnamed-chunk-33-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>an aside concerning lm objects</h2></hgroup><article  id="an-aside-concerning-lm-objects">
 
@@ -774,7 +779,7 @@ fit.1.tidy</pre>
 ## 1 (Intercept)    2.65     0.0764     34.7  3.80e-101
 ## 2 tx            -0.481    0.0974     -4.94 1.38e-  6</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
 <ul>
 <li>Augment ammends the original dataset with lm object content. The new variable names of have a &ldquo;.&rdquo;&quot; infront of the name to distinguish</li>
@@ -872,7 +877,7 @@ etaSquared(mod.1)</pre>
 <pre >##        eta.sq eta.sq.part
 ## tx 0.08344007  0.08344007</pre>
 
-</article></slide><slide class=""><hgroup><h2>R squared</h2></hgroup><article  id="r-squared">
+</article></slide><slide class=""><hgroup><h2>R squared for different coding schemes</h2></hgroup><article  id="r-squared-for-different-coding-schemes">
 
 <pre class = 'prettyprint lang-r'>tidy(anova(mod.1))</pre>
 

@@ -58,7 +58,7 @@ $$ \hat{Y} = b_{0} + b_{1}X  $$
 
 
 ## Example
-```{r, echo = FALSE, messages = FALSE}
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
 library(tidyverse)
 library(readr)
 example.data <- read_csv("~/Box Sync/5067 Regression Spring/Spring_2019/example.data.csv")
@@ -66,6 +66,7 @@ example.data <- read_csv("~/Box Sync/5067 Regression Spring/Spring_2019/example.
 ```
 
 - Get this data at my github account: https://github.com/josh-jackson/Psych5067
+
 ```{r}
 example.data
 ```
@@ -75,7 +76,7 @@ example.data
 ```{r, warning=FALSE}
 ggplot(example.data) +
   aes(x = as.factor(tx), y = traffic.risk) +
-  geom_violin() + geom_boxplot()
+  geom_violin() + geom_boxplot() + geom_jitter()
 ```
 
 ## example
@@ -113,11 +114,11 @@ anova(mod.1)
 ```
 
 ## example summary
-Same p-values for each test; same SS; same test!
-<br>
-- t-test gives you a t & df (output may give you group mean and SD)
-- ANOVA gives you an F
-- linear model (regression) gives you an equation
+Same p-values for each test; same SS; same test! 
+<br> 
+- t-test gives you a t & df (output may give you group mean and SD)  
+- ANOVA gives you an F  
+- linear model (regression) gives you an equation  
 
 
 ## ANOVA as regression
@@ -132,6 +133,7 @@ $$ T.risk_i = b_{0} + b_{1}TX_i + e_i  $$
 ## estimates
 
 ```{r, echo = FALSE}
+mod.1 <- lm(traffic.risk ~ tx, data = example.data)
 library(broom)
 tidy(mod.1)
 ```
@@ -147,15 +149,19 @@ example.data %>%
 ```
 
 ##
-```{r, warning=FALSE}
-ggplot(example.data) +
+```{r, warning=FALSE, echo = FALSE}
+library(dplyr)
+ggplot(example.data %>% filter(!is.na(tx))) +
   aes(x = as.factor(tx), y = traffic.risk) +
-  geom_violin() + geom_boxplot()
+  geom_violin() + geom_boxplot() + geom_jitter()
 ```
 
+##
+- Intercept is the mean of group of variable tx that is coded 0
+- regression coefficient is the difference in means between the groups (ie slope)
 
 ##
-```{r, echo=FALSE, cache=TRUE}
+```{r, echo=FALSE, cache=TRUE, warning= FALSE}
 library(ggplot2)
 ggplot(example.data, aes(x=tx, y=traffic.risk)) +
     geom_point() +    
@@ -164,12 +170,13 @@ ggplot(example.data, aes(x=tx, y=traffic.risk)) +
     
 ```
 
-## Means and estimates  
+## predicted scores
 
-- our test is a test about means (do groups differ?)
-- our estimates convey information about the means
-<br>
-- How do the means relate to our estimates within the regression equation? 
+- Based on the output how do I calculate means for each group? 
+
+```{r}
+tidy(mod.1)
+```
 
 
 ## ANOVA as regression
@@ -178,19 +185,20 @@ ggplot(example.data, aes(x=tx, y=traffic.risk)) +
 - What numbers you assign will impact the equation  
 
 ## ANOVA as regression
-$$ Y_i = b_{0} + b_{1}X_i + e_i  $$
+$$ T.risk_i = b_{0} + b_{1}TX_i + e_i  $$
 
 ```{r, echo =FALSE}
 example.data
 ```
 
 ## 
-```{r}
+```{r, echo = FALSE}
 library(dplyr)
 example.data$tx.r <- as.factor(example.data$tx)
 example.data$tx.r <- recode_factor(example.data$tx.r, "0" = "control", "1" = "treatment") 
 ```
 
+What happens if we didn't have numbers in our dataframe? 
 ```{r}
 example.data
 ```
@@ -199,19 +207,13 @@ example.data
 ##
 
 ```{r}
-class(example.data$tx)
+mod.1 <- lm(traffic.risk ~ tx, data = example.data)
+tidy(mod.1)
 ```
 
 ```{r}
-class(example.data$tx.r)
-```
-
-- Do you find issues or differences if you use tx vs tx.r? 
-
-- What about if you did this: 
-```{r}
-example.data$tx.n <- as.numeric(example.data$tx)
-class(example.data$tx.n)
+mod.1r <- lm(traffic.risk ~ tx.r, data = example.data)
+tidy(mod.1r)
 ```
 
 
@@ -225,7 +227,7 @@ class(example.data$tx.n)
 
 ## Effect coding
 ```{r}
-example.data$tx.effect <- dplyr::recode(example.data$tx.n, "0" = -1, "1" = 1) 
+example.data$tx.effect <- dplyr::recode(example.data$tx, '0' = -1, '1' = 1) 
 ```
 
 ```{r}
@@ -250,7 +252,7 @@ effect
 dummy <- tidy(mod.1)
 dummy
 ```
-- Intercept: value when your predictor (model, X, IV, etc) is zero
+- Intercept: value when your predictor X is zero
 
 - Regression coefficent: one unit increase in X is associated with a (regression estimate) increase in Y
 
@@ -258,7 +260,7 @@ dummy
 Consists of -1, 1s (And zeros for more than 2 groups)
 
 1. The intercept is the "grand mean" or "mean of means" if unbalanced
-2. The regression coefficient represents the group "effect" ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
+2. The regression coefficient represents the group "effect" ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
 
 - Common to use for Factorial ANOVA models 
 
@@ -266,31 +268,29 @@ Consists of -1, 1s (And zeros for more than 2 groups)
 Consists of -1, 1s (And zeros for more than 2 groups)
 
 1. The intercept is the "grand mean" or "mean of means" if unbalanced
-2. The regression coefficient represens the group "effect" ie the difference from the grand mean for the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
+2. The regression coefficient represents the group "effect" ie the difference between the grand mean and the group labeled 1 (we will revisit this when we have more than 2 groups as it will make more sense)
 
 - Common to use for Factorial ANOVA models 
 
 - How do you calculate the predicted value of each group? 
 
-## Effect coding
-
-Thought Qs: 
-
-- What happens if you code the groups -.5 and .5? 
-- What are the pros and potential cons in this type of coding? 
-
 ## Dummy coding
 - More appropriate when you are interested in comparing to a specific group rather than an "average person"  
 
 - Intercept: value of the group coded zero 
-- Regression coefficient: difference between groups (in mean)
+- Regression coefficient: mean difference between groups 
 
-- How do you calculate the predicted value of each group? 
+## Contrast coding coding
+
+- As our models get more complex our coding schemes can too
+- The basic interpretation of intercept and regression coefficient is the same regardless of coding
+- What happens if you code the groups -.5 and .5? 
+
 
 
 ## Intermission
 
-![](~/Box Sync/5067 Regression Spring/Spring 19/intermission.gif)
+![](~/Box Sync/5067 Regression Spring/Spring_2019/intermission.gif)
 
 
 ## Statistical Inference
@@ -312,9 +312,62 @@ $\hat{Y}_{i}$ = 2.6506410 + -0.4811057*$X_{i}$
 - We want our predictions to be close to our actual data for each person ($Y_{i}$)
 - The difference between the actual data and our our prediction ($Y_{i}  - \hat{Y}_{i} = e$) is the residual, how far we are "off". This tells us how good our fit is. 
 - You can have the same estimates but completely different fit. 
+- Previously you have seen this looking at Eta Squared, SS Error and visualizing observations around group means
 
 
-## easy to examine with lm objects
+
+## Which one has better fit? 
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+twogroup_fun = function(nrep = 100, b0 = 6, b1 = -2, sigma = 1) {
+     ngroup = 2
+     group = rep( c("group1", "group2"), each = nrep)
+     eps = rnorm(ngroup*nrep, 0, sigma)
+     traffic = b0 + b1*(group == "group2") + eps
+     growthfit = lm(traffic ~ group)
+     growthfit
+}
+
+
+twogroup_fun2 = function(nrep = 100, b0 = 6, b1 = -2, sigma = 2) {
+     ngroup = 2
+     group = rep( c("group1", "group2"), each = nrep)
+     eps = rnorm(ngroup*nrep, 0, sigma)
+     traffic = b0 + b1*(group == "group2") + eps
+     growthfit = lm(traffic ~ group)
+     growthfit
+}
+
+set.seed(16)
+library(broom)
+lm1 <- augment(twogroup_fun())
+
+set.seed(16)
+lm2 <- augment(twogroup_fun2())
+
+plot1<- ggplot(lm1) +
+  aes(x = group, y = traffic) +
+  geom_violin() + geom_boxplot() + geom_jitter() + ylim(-1, 11)
+
+plot2<- ggplot(lm2) +
+  aes(x = group, y = traffic) +
+  geom_violin() + geom_boxplot() + geom_jitter() + ylim(-1, 11)
+
+
+library(gridExtra)
+ grid.arrange(plot1, plot2, ncol=2)
+```
+
+
+
+
+## easy to examine fit with lm objects
+- these are automatically created anytime you run a lm in R
+```{r}
+mod.1 <- lm(traffic.risk ~ tx, data = example.data)
+```
+
+
 
 ```{r, eval=FALSE}
 coefficients(mod.1)       # coefficients
@@ -379,6 +432,7 @@ fit.1.tidy
 
 ##
 - Augment ammends the original dataset with lm object content. The new variable names of have a "."" infront of the name to distinguish
+
 ```{r, warning=FALSE}
 fit.1.data <- augment(mod.1) 
 head(fit.1.data)
@@ -452,7 +506,7 @@ library(lsr)
 etaSquared(mod.1)
 ```
 
-## R squared
+## R squared for different coding schemes
 
 ```{r}
 tidy(anova(mod.1))
