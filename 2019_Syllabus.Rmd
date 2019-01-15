@@ -12,9 +12,9 @@ output:
 
 **Instructor**: Joshua Jackson  
 **Office**: Room #315B  
-**Office hours**: 10-11 Wednesday and by appointment  
+**Office hours**: 2-3 Wednesday and by appointment  
 
-**TA**: Zöe Hawks  
+**AI**: Zöe Hawks  
 **Office**: Room #303D
 **Office hours**: T/TH: 8:30-9:30
 
@@ -28,7 +28,7 @@ This course will provide a detailed overview of multiple regression as a data-an
 
 #### Class textbook#### 
 
-- Learning Statistics with R by Daniel Navarro <https://learningstatisticswithr.com/book/>
+- Learning Statistics with R by Danielle Navarro <https://learningstatisticswithr.com/book/>
 
 *Recommended text (not required)*
 

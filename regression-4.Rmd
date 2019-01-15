@@ -3,6 +3,9 @@ title: "regression"
 output: ioslides_presentation
 ---  
 
+## Last time/this time
+- Last time, we looked at associations with two continuous variables
+- This time, we will extend regression framework to incorporate continuos predictors.
 
 ## We want to make eduated guesses
 - E(Y|X)
@@ -19,6 +22,7 @@ $$ \hat{Y} = b_{0} + b_{1}X  $$
 
 
 ## OLS
+- How do we find the regression estimates? 
 - Ordinary Least Squares (OLS) estimation
 - Minimizes deviations 
 
@@ -103,7 +107,8 @@ psych::describe(galton.data.1$parent)
 ```
 
 
-##residuals
+## residuals
+
 $$ \epsilon \sim N(0,\sigma) $$ 
 
 ```{r}
@@ -112,7 +117,8 @@ psych::describe(galton.data.1$parent)
 ```
 - variation that is left over in Y, after accounting for X
 
-##residuals not assocaited with X
+## residuals not assocaited with X
+
 ```{r, cache=TRUE}
 ggplot(galton.data.1, aes(x=.resid, y=child)) +
     geom_point() +    
@@ -135,7 +141,7 @@ ggplot(galton.data.1, aes(x=.fitted, y=child)) +
 
 ## Formal Description
 
-$$ Y_{ij} \sim \mathcal{N}(\mu,\,\sigma)\  $$
+$$ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  $$
 In english: Our DV for individual i is distributed normally with a mean of mu 
 and a standard deviation of sigma
 
@@ -170,7 +176,8 @@ $$ \frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2 $$
 summary(fit.1)$r.squared
 ```
 
-##Example
+
+## Example
 
 ```{r}
 cor.test(galton.data$parent, galton.data$child)
@@ -296,7 +303,6 @@ ggplot(d.1, aes(x=x.2, y=y.2)) +
 - (see equation later)
 
 
-
 ## Inferential tests
 ## Omnibus test
 
@@ -307,9 +313,54 @@ $$ F = \frac{MS_{regression}}{MS_{residial}} $$
 
 ## model comparison
 
-ADD!!!!
+- Last semester you looked at different models to see how their F and SSs changed depending on what predictors were included. We can do the same thing with regression models!   
 
-## Regression coefficient
+- The basic idea is asking how much variance remains unexplained in our model. This "left over" variance can be contrasted with an alternative model/hypothesis. We can ask does adding a new predictor variable help explain more variance or should we stick wtih a parsimonious model.   
+
+- Every model test you do implicitly implies you favoring that over an alternative model, typically the null. This framework allows you to be more flexible and explicit.   
+
+##
+```{r}
+fit.1 <- lm(parent ~ child, data = galton.data)
+fit.0 <- lm(parent ~ 1, data = galton)
+```
+
+
+## 
+```{r}
+summary(fit.0)
+```
+
+##
+```{r}
+summary(fit.1)
+```
+
+
+## 
+```{r}
+anova(fit.0)
+```
+
+##
+```{r}
+anova(fit.1)
+```
+
+
+##
+```{r}
+anova(fit.1, fit.0)
+```
+
+## model comparisons 
+
+- Model comparisons are redundent with nil/null hypotheses and coefficient tests right now, but will be more flexible down the road. 
+- Key is to start thikning about your implicit alternative models
+- The ultimate goal would be to create two models that represent two equally plausible theories. 
+- Theory A is made up of components XYZ, whereas theory B has QRS. You can then ask which theory(model) is better? 
+
+## regression coefficient
 
 $$ H_{0}: \beta_{XY}= 0 $$
 $$ H_{1}: \beta_{XY} \neq 0 $$
@@ -342,7 +393,7 @@ $$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
 ggplot(galton.data, aes(x=child, y=parent)) +
     geom_smooth(method=lm,   # Add linear regression line
                 se=TRUE) +     # Don't add shaded confidence region
-    labs(x = "parent height", y = "child height")
+    labs(x = "child height", y = "parent height")
 ```
 
 ## Confidence Bands
@@ -362,7 +413,7 @@ $$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{\frac {1}{n}+\frac{(X-\bar{X}ba
 
 ## Prediction
 - very similar to confidence bands around regressions line
-- differences is that is predicting and individual i's score, not the Y hat for a particular level of X.(A new Yi given X, rather than Ybar given x)
+- differences is that is predicting and individual i's score, not the Y hat for a particular level of X. (A new Yi given x, rather than Ybar given x)
 - Because there is greater variation in predicting an individual value rather than a collection of individual values (ie the mean) the prediction band is greater
 - Combines unknown variability in 1) the estimated mean (as reflected in se of b) 2) peoples scores around  mean (residual standard error) 
 

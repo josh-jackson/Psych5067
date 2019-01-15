@@ -144,6 +144,24 @@ $$b_{1}^* = b_{1}\frac{s_{X1}}{s_{Y}} $$
 
 $$b_{0} = \bar{Y} - b_{1}\bar{X_{1}} - b_{2}\bar{X_{2}} $$
 
+## How to visualize "controlling for"
+- example of x and y controlling for W. Taken from @nickchk 
+1. What is raw data? 
+
+
+## How to visualize "controlling for"
+2.what difference in X is explained by W. See the mean difference when W is dichotomous
+
+## How to visualize "controlling for"
+3. residualize X on W. Notice the means. Run the regresion
+
+## How to visualize "controlling for"
+4. What difference in Y is explained by W. 
+
+## How to visualize "controlling for"
+5. residualize Y on W. Notice the means. Run the regresion
+
+
 ## Fit revisited
 ```{r}
 mr.model$R2

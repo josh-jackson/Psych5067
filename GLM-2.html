@@ -121,9 +121,7 @@
 
 </article></slide><slide class=""><hgroup><h2>Regression Equation</h2></hgroup><article  id="regression-equation">
 
-<p>\[ Y = b_{0} + b_{1}X +e  \]</p>
-
-<p>\[ \hat{Y} = b_{0} + b_{1}X  \]</p>
+<p>\[ Y_i = b_{0} + b_{1}X_i +e_i  \]</p>
 
 </article></slide><slide class=""><hgroup><h2>Regression terms</h2></hgroup><article  id="regression-terms">
 
@@ -246,7 +244,13 @@ anova(mod.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2>example summary</h2></hgroup><article  id="example-summary">
 
-<p>Same p-values for each test; same SS; same test! <br> - t-test gives you a t &amp; df (output may give you group mean and SD)<br/>- ANOVA gives you an F<br/>- linear model (regression) gives you an equation</p>
+<p>Same p-values for each test; same SS; same test!<br/><br></p>
+
+<ul>
+<li>t-test gives you a t &amp; df (output may give you group mean and SD)<br/></li>
+<li>ANOVA gives you an F (and SSs)<br/></li>
+<li>linear model (regression) gives you an equation</li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>ANOVA as regression</h2></hgroup><article  id="anova-as-regression">
 
@@ -257,7 +261,7 @@ anova(mod.1)</pre>
 <li><p>The model only has a single \(b_{0}\) and \(b_{1}\) term. These are the regression parameters. \(b_{0}\) is the intercept and \(b_{1}\) quantifies the relationship between your model of the world and the DV.</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>estimates</h2></hgroup><article  id="estimates">
+</article></slide><slide class=""><hgroup><h2>What do the estimates tell us?</h2></hgroup><article  id="what-do-the-estimates-tell-us">
 
 <pre >## # A tibble: 2 x 5
 ##   term        estimate std.error statistic   p.value
@@ -278,20 +282,29 @@ anova(mod.1)</pre>
 ## 2     1                               2.17
 ## 3    NA                               2.29</pre>
 
+</article></slide><slide class=""><hgroup><h2>How to interpret regression estimates</h2></hgroup><article  id="how-to-interpret-regression-estimates">
+
+<ul>
+<li>Intercept is the mean of group of variable tx that is coded 0</li>
+<li>Regression coefficient is the difference in means between the groups (ie slope)</li>
+</ul>
+
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <p><img src="GLM-2_files/figure-html/unnamed-chunk-13-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
-<ul>
-<li>Intercept is the mean of group of variable tx that is coded 0</li>
-<li>regression coefficient is the difference in means between the groups (ie slope)</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
-
 <p><img src="GLM-2_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2>How to interpret regression estimates</h2></hgroup><article  id="how-to-interpret-regression-estimates-1">
+
+<ul>
+<li><p>The entire class will go over different ways to interpret these estimates/parameters/coefficients</p></li>
+<li>Intercept (B0) signifies the level of Y when your model IVs (Xs) are zero</li>
+<li><p>Regression (B1) signifies the difference for a one unit change in your X</p></li>
+<li><p>as with last semester you have estimates (like \(\bar{x}\)) and standard errors, which you can then ask whether they are likely assuming a null or create a CI</p></li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>predicted scores</h2></hgroup><article  id="predicted-scores">
 
@@ -312,7 +325,7 @@ anova(mod.1)</pre>
 <ul>
 <li>Nominal/categorical variables do not have any inherant numbers associated with them</li>
 <li>Need to assign them numbers</li>
-<li>What numbers you assign will impact the equation</li>
+<li>What numbers you assign will impact the equation/estimates/hypothesis you can test</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>ANOVA as regression</h2></hgroup><article  id="anova-as-regression-2">
@@ -334,7 +347,7 @@ anova(mod.1)</pre>
 ## 10    10     1         1.71
 ## # ... with 270 more rows</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
 <p>What happens if we didn’t have numbers in our dataframe?</p>
 
@@ -355,7 +368,7 @@ anova(mod.1)</pre>
 ## 10    10     1         1.71 treatment
 ## # ... with 270 more rows</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
 
 <pre class = 'prettyprint lang-r'>mod.1 &lt;- lm(traffic.risk ~ tx, data = example.data)
 tidy(mod.1)</pre>
@@ -380,7 +393,7 @@ tidy(mod.1r)</pre>
 <ul>
 <li>Infinite number of ways to code categorical variables, only a few meaningful ways<br/></li>
 <li>The R default is called &ldquo;dummy coding&rdquo;<br/></li>
-<li>Uses 0s and 1s to put numbers to categories</li>
+<li>Uses 0s and 1s to put numbers to categories. We will soon see what this looks like when you have more than 2 groups.</li>
 <li>Changing the numbers changes…?</li>
 </ul>
 
@@ -474,11 +487,10 @@ tidy(mod.1.eff)</pre>
 <li><p>Regression coefficient: mean difference between groups</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Contrast coding coding</h2></hgroup><article  id="contrast-coding-coding">
+</article></slide><slide class=""><hgroup><h2>Contrast coding</h2></hgroup><article  id="contrast-coding">
 
 <ul>
 <li>As our models get more complex our coding schemes can too</li>
-<li>The basic interpretation of intercept and regression coefficient is the same regardless of coding</li>
 <li>What happens if you code the groups -.5 and .5?</li>
 </ul>
 
@@ -514,8 +526,8 @@ tidy(mod.1.eff)</pre>
 <ul>
 <li>We want our predictions to be close to our actual data for each person (\(Y_{i}\))</li>
 <li>The difference between the actual data and our our prediction (\(Y_{i} - \hat{Y}_{i} = e\)) is the residual, how far we are &ldquo;off&rdquo;. This tells us how good our fit is.</li>
-<li>You can have the same estimates but completely different fit.</li>
-<li>Previously you have seen this looking at Eta Squared, SS Error and visualizing observations around group means</li>
+<li>You can have the same estimates for two models but completely different fit.</li>
+<li>Previously you have evaluated fit by looking at Eta Squared, SS Error and visualizing observations around group means</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Which one has better fit?</h2></hgroup><article  id="which-one-has-better-fit">
@@ -536,14 +548,14 @@ fitted.values(mod.1)      # fitted values ie predicted
 summary(mod.1)$r.squared  # R-sq for the model
 summary(mod.1)$sigma      # se of the model</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
 
 <pre class = 'prettyprint lang-r'>coefficients(mod.1)</pre>
 
 <pre >## (Intercept)          tx 
 ##   2.6506410  -0.4811057</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
 
 <pre class = 'prettyprint lang-r'>fitted.values(mod.1)</pre>
 
@@ -616,7 +628,7 @@ summary(mod.1)$sigma      # se of the model</pre>
 ##      275      276      277      278      279      280 
 ## 2.650641 2.650641 2.650641 2.650641 2.650641 2.650641</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
 
 <pre class = 'prettyprint lang-r'>residuals(mod.1)</pre>
 
@@ -729,7 +741,17 @@ summary(mod.1)$sigma      # se of the model</pre>
 ##          276          277          278          279          280 
 ##  0.349358974 -0.364926740 -0.079212455 -0.507783883 -0.079212455</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+</article></slide><slide class=""><hgroup><h2>pop quiz, hotshot</h2></hgroup><article  id="pop-quiz-hotshot">
+
+<p>\[ \hat{Y}_{i} = b_{0} + b_{1}X_{i}  \]</p>
+
+<p>\[ Y_{i} = b_{0} + b_{1}X_{i} +e_{i}  \] \[ Y_{i}  - \hat{Y}_{i} = e \]</p>
+
+<ul>
+<li>can you plug in numbers and calculate subject 3’s predicted and residual scores without explicitly asking for lm object residuals and fitted values?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
 
 <pre class = 'prettyprint lang-r'>example.data</pre>
 
@@ -747,16 +769,6 @@ summary(mod.1)$sigma      # se of the model</pre>
 ##  9     9     0         3    control          -1
 ## 10    10     1         1.71 treatment         1
 ## # ... with 270 more rows</pre>
-
-</article></slide><slide class=""><hgroup><h2>pop quiz, hotshot</h2></hgroup><article  id="pop-quiz-hotshot">
-
-<p>\[ \hat{Y}_{i} = b_{0} + b_{1}X_{i}  \]</p>
-
-<p>\[ Y_{i} = b_{0} + b_{1}X_{i} +e_{i}  \] \[ Y_{i}  - \hat{Y}_{i} = e \]</p>
-
-<ul>
-<li>can you plug in numbers and calculate subject 3’s predicted and residual scores without explicitly asking for lm object residuals and fitted values?</li>
-</ul>
 
 </article></slide><slide class=""><hgroup><h2>residuals</h2></hgroup><article  id="residuals">
 
@@ -779,10 +791,10 @@ fit.1.tidy</pre>
 ## 1 (Intercept)    2.65     0.0764     34.7  3.80e-101
 ## 2 tx            -0.481    0.0974     -4.94 1.38e-  6</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
 
 <ul>
-<li>Augment ammends the original dataset with lm object content. The new variable names of have a &ldquo;.&rdquo;&quot; infront of the name to distinguish</li>
+<li>Augment ammends the original dataset with lm object content. The new variable names of have a &ldquo;.&rdquo; infront of the name to distinguish</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>fit.1.data &lt;- augment(mod.1) 
@@ -812,7 +824,7 @@ head(fit.1.data)</pre>
 <li><p>What is our best guess (ie prediction) if we didn’t collect any data?</p></li>
 </ul>
 
-<p>\[ \hat{Y} = \bar{Y} \] - Regression can be thought of as: E(Y|X)</p>
+<p>\[ \hat{Y} = \bar{Y} \] - Regression can be thought of as: is E(Y|X) better than E(Y)?</p>
 
 </article></slide><slide class=""><hgroup><h2>Statistical Inference</h2></hgroup><article  id="statistical-inference-2">
 
@@ -821,7 +833,7 @@ head(fit.1.data)</pre>
 <li><p>Said differently, the closer our model is to the &ldquo;actual&rdquo; data generating model, our guesses (Y-hats) will be closer to our actual data (Ys)</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Partitioning variation in Y into 3 components</h2></hgroup><article  id="partitioning-variation-in-y-into-3-components">
+</article></slide><slide class=""><hgroup><h2>Partitioning variation</h2></hgroup><article  id="partitioning-variation">
 
 <ul>
 <li>We formally test how well we are doing with our guesses by partitioning variation</li>
@@ -844,6 +856,7 @@ head(fit.1.data)</pre>
 <ul>
 <li><p>SS total = SS between + SS within</p></li>
 <li><p>SS total = SS regression + SS residual (or error)</p></li>
+<li><p>Completely the same as last semester because REGRESSION IS ANOVA</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>What can we do with this?</h2></hgroup><article  id="what-can-we-do-with-this">
@@ -862,7 +875,8 @@ head(fit.1.data)</pre>
 <p>\[ \frac{s_{regression}^2}{s_{y}^2} = \frac{SS_{regression}}{SS_{Y}} = R^2 \]</p>
 
 <ul>
-<li>percent (of total) variance explained by your model</li>
+<li>percent (of total) variance explained by your model…which currently are groups</li>
+<li>another way of asking how much variance group status explains</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>R squared and Eta squared</h2></hgroup><article  id="r-squared-and-eta-squared">
@@ -894,6 +908,28 @@ etaSquared(mod.1)</pre>
 ##   &lt;chr&gt;     &lt;int&gt; &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;       &lt;dbl&gt;
 ## 1 tx.effect     1  14.8 14.8        24.4  0.00000138
 ## 2 Residuals   268 163.   0.607      NA   NA</pre>
+
+</article></slide><slide class=""><hgroup><h2>Note that the R2 p-value</h2></hgroup><article  id="note-that-the-r2-p-value">
+
+<pre >## 
+## Call:
+## lm(formula = traffic.risk ~ tx, data = example.data)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1.65064 -0.59811 -0.02668  0.54475  2.54475 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  2.65064    0.07637  34.707  &lt; 2e-16 ***
+## tx          -0.48111    0.09740  -4.939 1.38e-06 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.7789 on 268 degrees of freedom
+##   (10 observations deleted due to missingness)
+## Multiple R-squared:  0.08344,    Adjusted R-squared:  0.08002 
+## F-statistic:  24.4 on 1 and 268 DF,  p-value: 1.381e-06</pre>
 
 </article></slide><slide class=""><hgroup><h2>summary</h2></hgroup><article  id="summary">
 

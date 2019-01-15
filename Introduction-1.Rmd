@@ -53,7 +53,7 @@ output: ioslides_presentation
 - Reproducible reports: Rmd/LaTeX -> html/pdf 
 
 - Keep organized: R Projects 
-- Keep it visual: ggplot
+- Keep it visual: ggplot ggpubr
 - Keeping track/sharing: osf, github (recommended)
 - Keep it simple and readable: dplyr & tidyverse (strongly recommended)
 - Keep it interesting: shiny apps (recommended for advanced users)

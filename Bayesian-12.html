@@ -215,11 +215,6 @@ b1 &lt;- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)</pre>
 
 ## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;</pre>
 
-<pre >## Warning: There were 1 transitions after warmup that exceeded the maximum treedepth. Increase max_treedepth above 10. See
-## http://mc-stan.org/misc/warnings.html#maximum-treedepth-exceeded</pre>
-
-<pre >## Warning: Examine the pairs() plot to diagnose sampling problems</pre>
-
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
 <pre >##  Family: gaussian 
@@ -231,12 +226,12 @@ b1 &lt;- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)</pre>
 ## 
 ## Population-Level Effects: 
 ##           Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
-## Intercept     0.31      0.11     0.10     0.51       4353 1.00
-## peer          0.61      0.08     0.44     0.77       4500 1.00
+## Intercept     0.30      0.11     0.10     0.51       4500 1.00
+## peer          0.61      0.09     0.43     0.77       4500 1.00
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
-## sigma     0.97      0.04     0.89     1.06       4187 1.00
+## sigma     0.97      0.05     0.89     1.07       4500 1.00
 ## 
 ## Samples were drawn using sampling(NUTS). For each parameter, Eff.Sample 
 ## is a crude measure of effective sample size, and Rhat is the potential 

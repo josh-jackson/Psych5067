@@ -88,7 +88,14 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>We want to make eduated guesses</h2></hgroup><article  id="we-want-to-make-eduated-guesses">
+<slide class=""><hgroup><h2>Last time/this time</h2></hgroup><article  id="last-timethis-time">
+
+<ul>
+<li>Last time, we looked at associations with two continuous variables</li>
+<li>This time, we will extend regression framework to incorporate continuos predictors.</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>We want to make eduated guesses</h2></hgroup><article  id="we-want-to-make-eduated-guesses">
 
 <ul>
 <li>E(Y|X)</li>
@@ -103,6 +110,7 @@
 </article></slide><slide class=""><hgroup><h2>OLS</h2></hgroup><article  id="ols">
 
 <ul>
+<li>How do we find the regression estimates?</li>
 <li>Ordinary Least Squares (OLS) estimation</li>
 <li>Minimizes deviations</li>
 </ul>
@@ -235,7 +243,9 @@ head(galton.data.1)</pre>
 ##      se
 ## X1 0.06</pre>
 
-<p>##residuals \[ \epsilon \sim N(0,\sigma) \]</p>
+</article></slide><slide class=""><hgroup><h2>residuals</h2></hgroup><article  id="residuals">
+
+<p>\[ \epsilon \sim N(0,\sigma) \]</p>
 
 <pre class = 'prettyprint lang-r'>psych::describe(galton.data.1$.resid)</pre>
 
@@ -255,7 +265,7 @@ head(galton.data.1)</pre>
 <li>variation that is left over in Y, after accounting for X</li>
 </ul>
 
-<p>##residuals not assocaited with X</p>
+</article></slide><slide class=""><hgroup><h2>residuals not assocaited with X</h2></hgroup><article  id="residuals-not-assocaited-with-x">
 
 <pre class = 'prettyprint lang-r'>ggplot(galton.data.1, aes(x=.resid, y=child)) +
     geom_point() +    
@@ -281,7 +291,7 @@ head(galton.data.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Formal Description</h2></hgroup><article  id="formal-description">
 
-<p>\[ Y_{ij} \sim \mathcal{N}(\mu,\,\sigma)\  \] In english: Our DV for individual i is distributed normally with a mean of mu and a standard deviation of sigma</p>
+<p>\[ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  \] In english: Our DV for individual i is distributed normally with a mean of mu and a standard deviation of sigma</p>
 
 <ul>
 <li>sigma describes the spread of data around our prediction line (how close data points are to line/how small our residuals are)</li>
@@ -322,7 +332,7 @@ head(galton.data.1)</pre>
 
 <pre >## [1] 0.2104629</pre>
 
-<p>##Example</p>
+</article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  id="example-2">
 
 <pre class = 'prettyprint lang-r'>cor.test(galton.data$parent, galton.data$child)</pre>
 
@@ -524,9 +534,107 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 
 </article></slide><slide class=""><hgroup><h2>model comparison</h2></hgroup><article  id="model-comparison">
 
-<p>ADD!!!!</p>
+<ul>
+<li><p>Last semester you looked at different models to see how their F and SSs changed depending on what predictors were included. We can do the same thing with regression models!</p></li>
+<li><p>The basic idea is asking how much variance remains unexplained in our model. This &ldquo;left over&rdquo; variance can be contrasted with an alternative model/hypothesis. We can ask does adding a new predictor variable help explain more variance or should we stick wtih a parsimonious model.</p></li>
+<li><p>Every model test you do implicitly implies you favoring that over an alternative model, typically the null. This framework allows you to be more flexible and explicit.</p></li>
+</ul>
 
-</article></slide><slide class=""><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+
+<pre class = 'prettyprint lang-r'>fit.1 &lt;- lm(parent ~ child, data = galton.data)
+fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+
+<pre class = 'prettyprint lang-r'>summary(fit.0)</pre>
+
+<pre >## 
+## Call:
+## lm(formula = parent ~ 1, data = galton)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.3082 -0.8082  0.1918  1.1918  4.6918 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 68.30819    0.05867    1164   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.787 on 927 degrees of freedom</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
+
+<pre class = 'prettyprint lang-r'>summary(fit.1)</pre>
+
+<pre >## 
+## Call:
+## lm(formula = parent ~ child, data = galton.data)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.6702 -1.1702 -0.1471  1.1324  4.2722 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 46.13535    1.41225   32.67   &lt;2e-16 ***
+## child        0.32565    0.02073   15.71   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.589 on 926 degrees of freedom
+## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
+## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
+
+<pre class = 'prettyprint lang-r'>anova(fit.0)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: parent
+##            Df Sum Sq Mean Sq F value Pr(&gt;F)
+## Residuals 927 2961.4  3.1946</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+
+<pre class = 'prettyprint lang-r'>anova(fit.1)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Response: parent
+##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## child       1  623.26  623.26  246.84 &lt; 2.2e-16 ***
+## Residuals 926 2338.10    2.52                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
+
+<pre class = 'prettyprint lang-r'>anova(fit.1, fit.0)</pre>
+
+<pre >## Analysis of Variance Table
+## 
+## Model 1: parent ~ child
+## Model 2: parent ~ 1
+##   Res.Df    RSS Df Sum of Sq      F    Pr(&gt;F)    
+## 1    926 2338.1                                  
+## 2    927 2961.4 -1   -623.26 246.84 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
+
+</article></slide><slide class=""><hgroup><h2>model comparisons</h2></hgroup><article  id="model-comparisons">
+
+<ul>
+<li>Model comparisons are redundent with nil/null hypotheses and coefficient tests right now, but will be more flexible down the road.</li>
+<li>Key is to start thikning about your implicit alternative models</li>
+<li>The ultimate goal would be to create two models that represent two equally plausible theories.</li>
+<li>Theory A is made up of components XYZ, whereas theory B has QRS. You can then ask which theory(model) is better?</li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
 
 <p>\[ H_{0}: \beta_{XY}= 0 \] \[ H_{1}: \beta_{XY} \neq 0 \]</p>
 
@@ -561,7 +669,7 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands for regression line</h2></hgroup><article  id="confidence-bands-for-regression-line">
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-24-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-30-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
 
@@ -569,7 +677,7 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 <li>Compare mean estimate for height of 70 based on regression vs binning</li>
 </ul>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-25-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-31-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands-1">
 
@@ -579,14 +687,14 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 
 <ul>
 <li>very similar to confidence bands around regressions line</li>
-<li>differences is that is predicting and individual i’s score, not the Y hat for a particular level of X.(A new Yi given X, rather than Ybar given x)</li>
+<li>differences is that is predicting and individual i’s score, not the Y hat for a particular level of X. (A new Yi given x, rather than Ybar given x)</li>
 <li>Because there is greater variation in predicting an individual value rather than a collection of individual values (ie the mean) the prediction band is greater</li>
 <li>Combines unknown variability in 1) the estimated mean (as reflected in se of b) 2) peoples scores around mean (residual standard error)</li>
 </ul>
 
 <p>\[ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  \]</p>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
 
 <pre class = 'prettyprint lang-r'>temp_var &lt;- predict(fit.1, interval=&quot;prediction&quot;)
 new_df &lt;- cbind(galton.data, temp_var)
@@ -596,11 +704,11 @@ pred &lt;- ggplot(new_df, aes(x=child, y=parent))+
  geom_ribbon(aes(ymin = lwr, ymax = upr), 
                fill = &quot;blue&quot;, alpha = 0.1)</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
 
 <pre class = 'prettyprint lang-r'>pred</pre>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-27-1.png" width="720" /></p></article></slide>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-33-1.png" width="720" /></p></article></slide>
 
 
   <slide class="backdrop"></slide>

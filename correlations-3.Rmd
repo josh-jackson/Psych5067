@@ -3,12 +3,16 @@ title: "correlations"
 output: ioslides_presentation
 ---
 
+## Last time/this time
+
+- Looked at glm models and showed how they are the same as t-tests and ANOVA
+- Moving toward continuous predictor models
 
 ## Relationships
 
 - What is the relationship between IV and DV?
 
--  Measuring relationships depend on type of measurement
+- Measuring relationships depend on type of measurement
 
 - You have primarily been working wtih categorical IVs (t-test, ANOVA, chi-square)
 
@@ -299,7 +303,7 @@ $$ se_{z1-z2} = {\sqrt {se_{z1} + se_{z1}}} = {\sqrt {\frac{1}{n_{1}-3}+{\frac{1
   These are more easily tested via Structural Equation Modeling (SEM)
 3. Intra Class Correlation (ICC)
 
-- Again, best to do these tests in another framework (e.g., interaction, SEM)
+- Again, best to do these tests in another framework (e.g., interaction, SEM, MLM)
   
 ## Factors that influence r (and most other test statistics)
 1. Restriction of range (GRE scores and success)
