@@ -3,9 +3,9 @@ title: "Takehome 1 Correlations"
 output: html_document
 ---
 
-# (Roughly) Due: 2/6 
+# (Roughly) Due: 2/1 
 <br>
-Turn in via email to: Takehom.krrrtmtti39wm685@u.box.com by attaching 1) an rmd or a rnw file of your code and answers and 2) a pdf of said file. Use your last name to label the files (e.g,. "Jackson_takehome1") and include your name as part of the document front/top-matter.  
+Turn in via email to: Take_Ho.314j8z82srucfpz5@u.box.com by attaching 1) an rmd or a rnw file of your code and answers and 2) a pdf of said file. Use your last name to label the files (e.g,. "Jackson_takehome1") and include your name as part of the document front/top-matter.  
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers.   
 <br>
@@ -13,29 +13,19 @@ Note: "by hand" means using the formulas to calculate the answers. This is contr
 <br>
 <br>
 
-#### Please answer the questions below. Show all your code and results. You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset (found on the data page) to answer questions 3 - 11. 
+1. Load the HW_1 data into R. Create a 1) an informative plot/figure of the study variables and 2) a informative descriptives table of the study variables.  
 
-1.  You are contacted by the deans office. They ran a correlation between Wash U SAT scores and happiness and found a correlation of r = .21061 with a sample of N = 600. They want to know if this is lower than a published meta-analytic estimate (.2554)? Do this "by hand". Treat the meta-analytic estimate as the "population" 
+2. Run a 1) t-test, 2) one way anova, 3) linear model (regression) with dummy codes 4)  linear model with effect coding and 5) correlation between two variables using the HW_1 data. Describe one similarity and one difference you see across the models. 
 
-2. Create a 95% confidence interval around r = .30 "by hand" for sample sizes of N = 50 and N = 500. Interpret each CI in your own words and compare and contrast the two CIs.   
+#### THE QUESTIONS BELOW DO NOT INVOLVE HW_1 DATA:
 
-3. Using data from Dawtry et al. Study 1a, calculate cronbachs reliability for redistribution attitudes. (Note, some items may need to be reverse scored).  
+3. You are contacted by the deans office. They ran a correlation between Wash U SAT scores and happiness and found a correlation of r = .21061 with a sample of N = 600. They want to know if this is lower than a published meta-analytic estimate (.2554)? Do this "by hand". Treat the meta-analytic estimate as the "population" 
 
-4. Replicate the correlation matrix in Table 1. (Note: you will have to create a composite to do so)   
+4. Create a 95% confidence interval around r = .30 "by hand" for sample sizes of N = 50 and N = 500. Interpret each CI in your own words and compare and contrast the two CIs.   
 
-5. Calculate the means and standard deviations for Table 1 variables. 
 
-6. Graph the distributions of Household Income, Fairness and Satisfaction, Social circle mean income, population mean income, and political preference. Comment on anything you find irregular or interesting.  
 
-7. Create a scatter plot with a best fit line for redistribution and political preference variables.
 
-8. Dichotomize the political preferences data into a dichotomous conservative and democrat variable, assuming the midpoint is conservative. Run a t-test with redistribution. Run a Pearson Correlation. Run a one-way ANOVA. Then run a linear model with dummy coding. Any interesting commonalities or differences across the tests? 
-
-9. Using the newly created political preference group variable, calculate the correlation between support for redistribution and household income for each group. Do the confidence intervals around the estimates suggest conservatives and democrats are significantly different from one another? 
-
-10. Calculate a 95% confidence interval for each of the values in table 1. (Hint, don't do this "by hand")
-
-11. What level of power would the authors have for population inequality and support for redistribution if the the population effect size is .15. 
 
 
 
