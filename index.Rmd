@@ -4,6 +4,9 @@ output: html_document
 ---  
   
 
+
+- January 28th - Regression lecture updated
+
  <br> 
 
 

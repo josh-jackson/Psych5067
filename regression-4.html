@@ -121,6 +121,37 @@
 <li>Other estimation procedures possible (and necessary in some cases)</li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
+
+<p><img src="regression-4_files/figure-html/unnamed-chunk-2-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+
+<pre class = 'prettyprint lang-r'>ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_point(aes(y = .fitted), shape = 1) </pre>
+
+<p><img src="regression-4_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
+
+<pre class = 'prettyprint lang-r'>ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_point(aes(y = .fitted), shape = 1) +
+  geom_segment(aes( xend = x.1, yend = .fitted))</pre>
+
+<p><img src="regression-4_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
+
+<pre class = 'prettyprint lang-r'>ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  geom_point(aes(y = .fitted), shape = 1) +
+  geom_segment(aes( xend = x.1, yend = .fitted))</pre>
+
+<p><img src="regression-4_files/figure-html/unnamed-chunk-5-1.png" width="720" /></p>
+
 </article></slide><slide class=""><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient">
 
 <p>\[ b_{1} = \frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} \]</p>
@@ -149,23 +180,12 @@
 <li>intercept serves to adjust for differences in means between X and Y</li>
 </ul>
 
-<p>\[ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) \] - if standardized, intercept drops out<br/>- otherwise, intercept is where regression line crosses the y-axis at X = 0 - Also, notice that when X = \(\bar{X}\) the regression line goes through \(\bar{Y}\)</p>
+<p>\[ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) \] - if standardized, intercept drops out<br/>- otherwise, intercept is where regression line crosses the y-axis at X = 0<br/>- Also, notice that when X = \(\bar{X}\) the regression line goes through \(\bar{Y}\)</p>
 
 </article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  id="example">
 
 <pre class = 'prettyprint lang-r'>fit.1 &lt;- lm(parent ~ child, data = galton.data)
-anova(fit.1)</pre>
-
-<pre >## Analysis of Variance Table
-## 
-## Response: parent
-##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
-## child       1  623.26  623.26  246.84 &lt; 2.2e-16 ***
-## Residuals 926 2338.10    2.52                      
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
-
-<pre class = 'prettyprint lang-r'>summary(fit.1)</pre>
+summary(fit.1)</pre>
 
 <pre >## 
 ## Call:
@@ -186,17 +206,9 @@ anova(fit.1)</pre>
 ## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
 ## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
 
-<pre class = 'prettyprint lang-r'>library(psych)
-describe(galton.data$parent)</pre>
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
-<pre >##    vars   n  mean   sd median trimmed  mad min max range  skew kurtosis
-## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
-##      se
-## X1 0.06</pre>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
-
-<p><img src="regression-4_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-7-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>ANOVA table</h2></hgroup><article  id="anova-table">
 
@@ -227,7 +239,7 @@ head(galton.data.1)</pre>
 ## 5   64    61.7    66.2   0.142 -2.23  0.00802   1.59 0.00801      -1.41 
 ## 6   67.5  62.2    66.4   0.133  1.11  0.00698   1.59 0.00172       0.701</pre>
 
-</article></slide><slide class=""><hgroup><h2>fitted values, Y-hats</h2></hgroup><article  id="fitted-values-y-hats">
+</article></slide><slide class=""><hgroup><h2>Y-hats vs Ys</h2></hgroup><article  id="y-hats-vs-ys">
 
 <pre class = 'prettyprint lang-r'>psych::describe(galton.data.1$.fitted)      </pre>
 
@@ -242,6 +254,10 @@ head(galton.data.1)</pre>
 ## X1    1 928 68.31 1.79   68.5   68.32 1.48  64  73     9 -0.04     0.05
 ##      se
 ## X1 0.06</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
+
+<p><img src="regression-4_files/figure-html/unnamed-chunk-12-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>residuals</h2></hgroup><article  id="residuals">
 
@@ -265,13 +281,17 @@ head(galton.data.1)</pre>
 <li>variation that is left over in Y, after accounting for X</li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+
+<p><img src="regression-4_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+
 </article></slide><slide class=""><hgroup><h2>residuals not assocaited with X</h2></hgroup><article  id="residuals-not-assocaited-with-x">
 
 <pre class = 'prettyprint lang-r'>ggplot(galton.data.1, aes(x=.resid, y=child)) +
     geom_point() +    
     geom_smooth(method=lm)</pre>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-9-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-15-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>and yhat</h2></hgroup><article  id="and-yhat">
 
@@ -279,7 +299,7 @@ head(galton.data.1)</pre>
     geom_point() +    
     geom_smooth(method=lm)</pre>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-10-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-16-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>r(fitted and X) = 1</h2></hgroup><article  id="rfitted-and-x-1">
 
@@ -287,15 +307,7 @@ head(galton.data.1)</pre>
     geom_point() +    
     geom_smooth(method=lm)</pre>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
-
-</article></slide><slide class=""><hgroup><h2>Formal Description</h2></hgroup><article  id="formal-description">
-
-<p>\[ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  \] In english: Our DV for individual i is distributed normally with a mean of mu and a standard deviation of sigma</p>
-
-<ul>
-<li>sigma describes the spread of data around our prediction line (how close data points are to line/how small our residuals are)</li>
-</ul>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-17-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Statistical Inference</h2></hgroup><article  id="statistical-inference">
 
@@ -368,9 +380,11 @@ head(galton.data.1)</pre>
 </article></slide><slide class=""><hgroup><h2>Mean square error (MSE)</h2></hgroup><article  id="mean-square-error-mse">
 
 <ul>
+<li>AKA means square residual/within</li>
 <li>unbiased estimate of error variance</li>
 <li>measure of discrepancy between the data and the model</li>
 <li>the MSE is the variance around the fitted regression line</li>
+<li>just like MSwithin was variance around predicted group means</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>residual standard error</h2></hgroup><article  id="residual-standard-error">
@@ -406,8 +420,8 @@ head(galton.data.1)</pre>
 <p>\[ \hat{\sigma} \]</p>
 
 <ul>
-<li>Interpreted in original units (cf R2)</li>
-<li>Standard deviation of Y not accounted by model</li>
+<li>interpreted in original units (cf R2)</li>
+<li>standard deviation of Y not accounted by model</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>residual standard error/deviation (sigma)</h2></hgroup><article  id="residual-standard-errordeviation-sigma">
@@ -444,7 +458,7 @@ y.1 &lt;- .5 + .55 * x.1 + e.1
 d.1 &lt;- data.frame(x.1,y.1)
 m.1 &lt;- lm(y.1 ~ x.1, data = d.1)</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
 
 <pre class = 'prettyprint lang-r'>summary(m.1)</pre>
 
@@ -454,24 +468,24 @@ m.1 &lt;- lm(y.1 ~ x.1, data = d.1)</pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -2.7770 -0.6795  0.0252  0.6542  2.9066 
+## -3.0280 -0.6871  0.0023  0.7090  3.3020 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.50745    0.03120   16.26   &lt;2e-16 ***
-## x.1          0.53201    0.03044   17.48   &lt;2e-16 ***
+## (Intercept)  0.53554    0.03150   17.00   &lt;2e-16 ***
+## x.1          0.62992    0.03145   20.03   &lt;2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 0.9866 on 998 degrees of freedom
-## Multiple R-squared:  0.2344, Adjusted R-squared:  0.2336 
-## F-statistic: 305.6 on 1 and 998 DF,  p-value: &lt; 2.2e-16</pre>
+## Residual standard error: 0.996 on 998 degrees of freedom
+## Multiple R-squared:  0.2867, Adjusted R-squared:  0.2859 
+## F-statistic: 401.1 on 1 and 998 DF,  p-value: &lt; 2.2e-16</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-20-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-26-1.png" width="720" /></p>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
 
 <pre class = 'prettyprint lang-r'>x.2 &lt;- rnorm(1000, 0, 1)
 e.2 &lt;- rnorm(1000, 0, 2)
@@ -479,7 +493,7 @@ y.2 &lt;- .5 + .55 * x.2 + e.2
 d.2 &lt;- data.frame(x.2,y.2)
 m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
 
 <pre class = 'prettyprint lang-r'>summary(m.2)</pre>
 
@@ -489,22 +503,22 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -6.8560 -1.3276  0.0139  1.3092  6.3183 
+## -6.1107 -1.2806  0.0186  1.3581  5.7829 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)  0.52488    0.06275   8.364  &lt; 2e-16 ***
-## x.2          0.50284    0.06412   7.843 1.13e-14 ***
+## (Intercept)  0.47495    0.06294   7.547 1.01e-13 ***
+## x.2          0.64871    0.06418  10.107  &lt; 2e-16 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 1.984 on 998 degrees of freedom
-## Multiple R-squared:  0.05805,    Adjusted R-squared:  0.05711 
-## F-statistic: 61.51 on 1 and 998 DF,  p-value: 1.129e-14</pre>
+## Residual standard error: 1.99 on 998 degrees of freedom
+## Multiple R-squared:  0.09285,    Adjusted R-squared:  0.09194 
+## F-statistic: 102.2 on 1 and 998 DF,  p-value: &lt; 2.2e-16</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-23-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-29-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>r2 and residual standard deviation</h2></hgroup><article  id="r2-and-residual-standard-deviation">
 
@@ -512,7 +526,7 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 <li>two sides of same coin</li>
 <li>one in original units, the other standardized</li>
 <li>R2 can be tricky because the numerator and denominator can be changed in different ways.</li>
-<li>For example if variance in Y is changed but with the same model and residual standard error R2 could decline or increase</li>
+<li>for example if variance in Y is changed but with the same model and residual standard error R2 could decline or increase</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>standard errors for b</h2></hgroup><article  id="standard-errors-for-b">
@@ -521,8 +535,12 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 <li>represent our uncertainty (noise) in our estimate of the regression coefficient</li>
 <li>different from residual standard error/deviation (but proportional to).</li>
 <li>much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be &ldquo;possible&rdquo; if we ran the study again</li>
-<li>(see equation later)</li>
+<li>(see equation below)</li>
 </ul>
+
+</article></slide><slide class=""><hgroup><h2>data generating process</h2></hgroup><article  id="data-generating-process">
+
+<p>\[ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  \] in english: Our DV for individual i is distributed normally with a mean of mu and a standard deviation of sigma <br> - this describes how we think our DVs are generated, and the paramters of interest.<br/>- a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not - a different DGP will define what &ldquo;type&rdquo; of regression to use - for normal, \(\mu\) gets all the focus but \(\sigma\) is just as important</p>
 
 </article></slide><slide class=""><hgroup><h2>Inferential tests</h2></hgroup><article  id="inferential-tests">
 
@@ -540,12 +558,12 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 <li><p>Every model test you do implicitly implies you favoring that over an alternative model, typically the null. This framework allows you to be more flexible and explicit.</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
 
 <pre class = 'prettyprint lang-r'>fit.1 &lt;- lm(parent ~ child, data = galton.data)
 fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
 
 <pre class = 'prettyprint lang-r'>summary(fit.0)</pre>
 
@@ -565,7 +583,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 ## 
 ## Residual standard error: 1.787 on 927 degrees of freedom</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-14">
 
 <pre class = 'prettyprint lang-r'>summary(fit.1)</pre>
 
@@ -588,7 +606,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 ## Multiple R-squared:  0.2105, Adjusted R-squared:  0.2096 
 ## F-statistic: 246.8 on 1 and 926 DF,  p-value: &lt; 2.2e-16</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-15">
 
 <pre class = 'prettyprint lang-r'>anova(fit.0)</pre>
 
@@ -598,7 +616,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 ##            Df Sum Sq Mean Sq F value Pr(&gt;F)
 ## Residuals 927 2961.4  3.1946</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-16">
 
 <pre class = 'prettyprint lang-r'>anova(fit.1)</pre>
 
@@ -611,7 +629,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-17">
 
 <pre class = 'prettyprint lang-r'>anova(fit.1, fit.0)</pre>
 
@@ -631,7 +649,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 <li>Model comparisons are redundent with nil/null hypotheses and coefficient tests right now, but will be more flexible down the road.</li>
 <li>Key is to start thikning about your implicit alternative models</li>
 <li>The ultimate goal would be to create two models that represent two equally plausible theories.</li>
-<li>Theory A is made up of components XYZ, whereas theory B has QRS. You can then ask which theory(model) is better?</li>
+<li>Theory A is made up of components XYZ, whereas theory B has QRS components. You can then ask which theory(model) is better?</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
@@ -657,7 +675,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 <ul>
 <li>same idea, more complex se calculation as the calculation depends on how far the X value (here zero) is away from the mean of X</li>
 <li>farther from the mean, less information, thus more uncertainty</li>
-<li>We will come back and see this equation later</li>
+<li>we will come back and see this equation later</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Confidence interval for coefficents</h2></hgroup><article  id="confidence-interval-for-coefficents">
@@ -669,7 +687,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands for regression line</h2></hgroup><article  id="confidence-bands-for-regression-line">
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-30-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-36-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
 
@@ -677,24 +695,24 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 <li>Compare mean estimate for height of 70 based on regression vs binning</li>
 </ul>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-31-1.png" width="720" /></p>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-37-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands-1">
 
-<p>\[ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{\frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  \]</p>
+<p>\[ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  \]</p>
 
 </article></slide><slide class=""><hgroup><h2>Prediction</h2></hgroup><article  id="prediction">
 
 <ul>
 <li>very similar to confidence bands around regressions line</li>
-<li>differences is that is predicting and individual i’s score, not the Y hat for a particular level of X. (A new Yi given x, rather than Ybar given x)</li>
+<li>differences is that we are predicting and individual i’s score, not the Y hat for a particular level of X. (A new Yi given x, rather than Ybar given x)</li>
 <li>Because there is greater variation in predicting an individual value rather than a collection of individual values (ie the mean) the prediction band is greater</li>
 <li>Combines unknown variability in 1) the estimated mean (as reflected in se of b) 2) peoples scores around mean (residual standard error)</li>
 </ul>
 
-<p>\[ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  \]</p>
+<p>\[ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  \]</p>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-18">
 
 <pre class = 'prettyprint lang-r'>temp_var &lt;- predict(fit.1, interval=&quot;prediction&quot;)
 new_df &lt;- cbind(galton.data, temp_var)
@@ -704,11 +722,11 @@ pred &lt;- ggplot(new_df, aes(x=child, y=parent))+
  geom_ribbon(aes(ymin = lwr, ymax = upr), 
                fill = &quot;blue&quot;, alpha = 0.1)</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-19">
 
 <pre class = 'prettyprint lang-r'>pred</pre>
 
-<p><img src="regression-4_files/figure-html/unnamed-chunk-33-1.png" width="720" /></p></article></slide>
+<p><img src="regression-4_files/figure-html/unnamed-chunk-39-1.png" width="720" /></p></article></slide>
 
 
   <slide class="backdrop"></slide>

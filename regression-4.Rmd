@@ -30,6 +30,61 @@ $$ min\sum(Y_{i}-\hat{Y})^{2} $$
 
 - Other estimation procedures possible (and necessary in some cases)
 
+##  
+```{r,echo=FALSE, message=FALSE, cache=TRUE}
+library(psych)
+library(ggplot2)
+set.seed(123)
+x.1 <- rnorm(10, 0, 1)
+e.1 <- rnorm(10, 0, 2)
+y.1 <- .5 + .55 * x.1 + e.1
+d.1 <- data.frame(x.1,y.1)
+m.1 <- lm(y.1 ~ x.1, data = d.1)
+d1.f<- augment(m.1)
+```
+
+```{r, echo=FALSE, cache=TRUE}
+library(broom)
+library(dplyr)
+
+ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_smooth(method = lm, se = FALSE)
+
+
+```
+
+##
+
+```{r}
+ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_point(aes(y = .fitted), shape = 1) 
+```
+
+
+##
+
+```{r}
+ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_point(aes(y = .fitted), shape = 1) +
+  geom_segment(aes( xend = x.1, yend = .fitted))
+```
+
+
+
+##
+
+```{r}
+ggplot(d1.f , aes(x=x.1, y=y.1)) +
+    geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  geom_point(aes(y = .fitted), shape = 1) +
+  geom_segment(aes( xend = x.1, yend = .fitted))
+```
+
+
 ## Regression coefficient
 $$ b_{1} = \frac{cov_{XY}}{s_{x}^{2}} = r_{xy} \frac{s_{y}}{s_{x}} $$
 
@@ -53,23 +108,16 @@ $$ Y = b_{1}^{*}X + e  $$
 
 $$ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) $$
 - if standardized, intercept drops out  
-- otherwise, intercept is where regression line crosses the y-axis at X = 0
+- otherwise, intercept is where regression line crosses the y-axis at X = 0  
 - Also, notice that when X = $\bar{X}$ the regression line  goes through  $\bar{Y}$
 
 
 ## Example
-```{r,echo=FALSE, message=FALSE, cache=TRUE}
-library(psych)
-library(ggplot2)
-galton.data <- galton
-```
+
 
 ```{r}
 fit.1 <- lm(parent ~ child, data = galton.data)
-anova(fit.1)
 summary(fit.1)
-library(psych)
-describe(galton.data$parent)
 ```
 
 
@@ -78,7 +126,8 @@ describe(galton.data$parent)
 ```{r, echo=FALSE, cache=TRUE}
 ggplot(galton.data, aes(x=child, y=parent)) +
     geom_point() +    
-    geom_smooth(method=loess, formula = y ~ x)
+    geom_smooth(method=lm,   # Add linear regression line
+                se=FALSE)
 ```
 
 ## ANOVA table
@@ -97,13 +146,31 @@ head(galton.data.1)
 ```
 
 
-## fitted values, Y-hats
+## Y-hats vs Ys
 ```{r}
 psych::describe(galton.data.1$.fitted)      
 ```
 
 ```{r}
 psych::describe(galton.data.1$parent)
+```
+
+##
+
+```{r,echo=FALSE, cache=TRUE}
+library(gridExtra)
+
+gg1 <- galton.data.1 %>% 
+  ggplot +
+  geom_density(aes(x = .fitted)) +
+  xlim(64,74)
+gg2 <- galton.data.1 %>% 
+  ggplot +
+  geom_density(aes(x = parent)) +
+  xlim(64,74)
+
+grid.arrange(gg1,gg2)
+
 ```
 
 
@@ -116,6 +183,23 @@ psych::describe(galton.data.1$.resid)
 psych::describe(galton.data.1$parent)
 ```
 - variation that is left over in Y, after accounting for X
+
+## 
+
+```{r, echo=FALSE,}
+
+gg3 <- galton.data.1 %>% 
+  ggplot +
+  geom_density(aes(x = .resid)) +
+  xlim(-5,5)
+gg4 <- galton.data.1 %>% 
+  ggplot +
+  geom_density(aes(x = parent)) +
+  xlim(64,74)
+
+grid.arrange(gg3,gg4)
+```
+
 
 ## residuals not assocaited with X
 
@@ -139,13 +223,6 @@ ggplot(galton.data.1, aes(x=.fitted, y=child)) +
     geom_smooth(method=lm)
 ```
 
-## Formal Description
-
-$$ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  $$
-In english: Our DV for individual i is distributed normally with a mean of mu 
-and a standard deviation of sigma
-
-- sigma describes the spread of data around our prediction line (how close data points are to line/how small our residuals are)
 
 ## Statistical Inference
 - The way the world is = our model + error
@@ -199,9 +276,11 @@ $$  {SS_{residual}} = SS_{Y} - R^2({SS_{Y})} $$
 $$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
 
 ## Mean square error (MSE)
+- AKA means square residual/within
 - unbiased estimate of error variance
 - measure of discrepancy between the data and the model
 - the MSE is the variance around the fitted regression line
+- just like MSwithin was variance around predicted group means
 
 ## residual standard error
 MSE = 2.52 
@@ -217,8 +296,8 @@ summary(fit.1)
 
 $$ \hat{\sigma} $$
 
-- Interpreted in original units (cf R2)
-- Standard deviation of Y not accounted by model
+- interpreted in original units (cf R2)
+- standard deviation of Y not accounted by model
 
 
 ## residual standard error/deviation (sigma)
@@ -293,14 +372,26 @@ ggplot(d.1, aes(x=x.2, y=y.2)) +
 - two sides of same coin
 - one in original units, the other standardized 
 - R2 can be tricky because the numerator and denominator can be changed in different ways. 
-- For example if variance in Y is changed but with the same model and residual standard error R2 could decline or increase
+- for example if variance in Y is changed but with the same model and residual standard error R2 could decline or increase
 
 
 ## standard errors for b
 - represent our uncertainty (noise) in our estimate of the regression coefficient 
 - different from residual standard error/deviation (but proportional to). 
 - much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be "possible" if we ran the study again
-- (see equation later)
+- (see equation below)
+
+## data generating process
+
+$$ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  $$
+in english: Our DV for individual i is distributed normally with a mean of mu 
+and a standard deviation of sigma
+<br>
+- this describes how we think our DVs are generated, and the paramters of interest.   
+- a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not
+- a different DGP will define what "type" of regression to use
+- for normal, $\mu$ gets all the focus but $\sigma$ is just as important
+
 
 
 ## Inferential tests
@@ -358,7 +449,7 @@ anova(fit.1, fit.0)
 - Model comparisons are redundent with nil/null hypotheses and coefficient tests right now, but will be more flexible down the road. 
 - Key is to start thikning about your implicit alternative models
 - The ultimate goal would be to create two models that represent two equally plausible theories. 
-- Theory A is made up of components XYZ, whereas theory B has QRS. You can then ask which theory(model) is better? 
+- Theory A is made up of components XYZ, whereas theory B has QRS components. You can then ask which theory(model) is better? 
 
 ## regression coefficient
 
@@ -381,7 +472,7 @@ $$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
 
 - same idea, more complex se calculation as the calculation depends on how far the X value (here zero) is away from the mean of X
 - farther from the mean, less information, thus more uncertainty 
-- We will come back and see this equation later
+- we will come back and see this equation later
 
 ## Confidence interval for coefficents
 
@@ -408,16 +499,17 @@ ggplot(galton.data, aes(x=child, y=parent)) +
 
 ## Confidence Bands
 
-$$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{\frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  $$
+$$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{\frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  $$
+
 
 
 ## Prediction
 - very similar to confidence bands around regressions line
-- differences is that is predicting and individual i's score, not the Y hat for a particular level of X. (A new Yi given x, rather than Ybar given x)
+- differences is that we are predicting and individual i's score, not the Y hat for a particular level of X. (A new Yi given x, rather than Ybar given x)
 - Because there is greater variation in predicting an individual value rather than a collection of individual values (ie the mean) the prediction band is greater
 - Combines unknown variability in 1) the estimated mean (as reflected in se of b) 2) peoples scores around  mean (residual standard error) 
 
-$$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X}bar)^2}{(n-1)s_{X}^2}}  $$
+$$ \hat{Y}\pm t_{critical} * se_{residual}*\sqrt{1+ \frac {1}{n}+\frac{(X-\bar{X})^2}{(n-1)s_{X}^2}}  $$
 
 ##
 
