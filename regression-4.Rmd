@@ -1,6 +1,7 @@
 ---
 title: "regression"
 output: ioslides_presentation
+widescreen: true
 ---  
 
 ## Last time/this time
@@ -34,6 +35,7 @@ $$ min\sum(Y_{i}-\hat{Y})^{2} $$
 ```{r,echo=FALSE, message=FALSE, cache=TRUE}
 library(psych)
 library(ggplot2)
+library(broom)
 set.seed(123)
 x.1 <- rnorm(10, 0, 1)
 e.1 <- rnorm(10, 0, 2)
@@ -116,6 +118,8 @@ $$ \hat{Y} = \bar{Y} + r_{xy} \frac{s_{y}}{s_{x}}(X-\bar{X}) $$
 
 
 ```{r}
+library(psych)
+galton.data <- galton
 fit.1 <- lm(parent ~ child, data = galton.data)
 summary(fit.1)
 ```
@@ -300,7 +304,7 @@ $$ \hat{\sigma} $$
 - standard deviation of Y not accounted by model
 
 
-## residual standard error/deviation (sigma)
+## residual standard error/deviation  
 
 
 ```{r}
@@ -309,7 +313,7 @@ psych::describe(galton.data.1$.resid)
 ```
 
 
-## residual standard error/deviation (sigma)
+## residual standard error/deviation 
 
 ```{r}
 summary(fit.1)$sigma 

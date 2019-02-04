@@ -1,6 +1,7 @@
 ---
 title: "Introduction"
 output: ioslides_presentation
+widescreen: true
 ---
 
 ## goals for semester

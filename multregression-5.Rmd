@@ -1,6 +1,7 @@
 ---
 title: "Multiple Regression"
 output: ioslides_presentation
+widescreen: true
 ---
 
 

@@ -3,51 +3,39 @@ title: "Takehome-2 Regression"
 output: html_document
 ---
 
-#### Please answer the questions below. Show all your code and results. You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset (found on the data page) to answer questions 3 - 11. 
+#### Please answer the questions below. Show all your code and results. You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset (found on the data page) to answer questions 1 - 7. 
 
-3. Using data from Dawtry et al. Study 1a, calculate cronbachs reliability for redistribution attitudes. (Note, some items may need to be reverse scored).  
+1. Using data from Dawtry et al. Study 1a, calculate cronbachs reliability for redistribution attitudes. (Note, some items may need to be reverse scored).  
 
-4. Replicate the correlation matrix in Table 1. (Note: you will have to create a composite to do so)   
+2. Replicate the correlation matrix in Table 1. (Note: you will have to create a composite to do so)   
 
-5. Calculate the means and standard deviations for Table 1 variables. 
+3. Calculate the means and standard deviations for Table 1 variables. 
 
-6. Graph the distributions of Household Income, Fairness and Satisfaction, Social circle mean income, population mean income, and political preference. Comment on anything you find irregular or interesting.  
+4. Graph the distributions of Household Income, Fairness and Satisfaction, Social circle mean income, population mean income, and political preference. Comment on anything you find irregular or interesting.  
 
-7. Create a scatter plot with a best fit line for redistribution and political preference variables.
+5. Run a regression where political preferences predit redistribution. Interpret the intercept, the regression coefficient and R2. Then create a scatter plot with a best fit line between redistribution and political preference variables. 
 
-8. Dichotomize the political preferences data into a dichotomous conservative and democrat variable, assuming the midpoint is conservative. Then run a linear model with dummy coding. 
+6. Dichotomize the political preferences data into a dichotomous conservative and democrat variable, assuming the midpoint is conservative. Then run a linear model with dummy coding predicting redistribution. What are the conceptual differences between the regression in #5 and #6. Which one would you prefer?  
 
-9. Using the newly created political preference group variable, calculate the correlation between support for redistribution and household income for each group. Do the confidence intervals around the two estimates suggest conservatives and democrats are significantly different from one another? 
+7. Calculate a 95% confidence interval around the mean for each of the values in table 1. (Hint, don't do this "by hand")
 
-10. Calculate a 95% confidence interval for each of the values in table 1. (Hint, don't do this "by hand")
+*You do not need to use any data to answer questions 8 & 9.*
 
-11. What level of power would the authors have for population inequality and support for redistribution if the the population effect size is .15. 
+8. You are given data with two variables, X and Y. The mean of X is 3 with a SD .75. Y has a mean of 4 with a SD of .50. The correlation between the two is r = .3. "By hand", calculate the regression equation. Interpret each term in equation. 
+
+9. "By hand," convert the equation in #8 into a standardized regression equation. Interpet each term. 
+
+*You will need to use the anxiety data to answer questions 10 - 14.*
+
+10. Using the Anxiety data, run a regression with Social Support (X) predicting Anxiety(Y). Then run a regression with Anxiety predicting Social Support. What is similar and different between these analyese? 
+
+11. Graph the regression with Anxiety as the DV. Include confidence band and raw data points.  
+
+12. For the regression of Social Support predicting Anxiety, correlate the fitted values with: a. residuals, b. Social Support, c., Anxiety. Explain the patterns you find.   
+
+13. Using the anova function for the model output, calculate R squared "by hand" using numbers in the anova table.  
+
+14. For the same model, interpret the residual standard error. 
 
 
-
-# Due: 2/13   
-<br>
-Turn in via email to: Takehom.krrrtmtti39wm685@u.box.com by attaching 1) an rmd or a rnw file of your code and answers and 2) a pdf of said file. Use your last name to label the files (e.g,. "Jackson_takehome2") and include your name as part of the document front/top-matter. 
-<br>
-All take home projects are **INDEPENDENT** projects; do not share code or discuss answers.   
-
-
-#### Please answer the questions below. Show all your code and results. You will need to use the anxiety data to answer questions 3 - 11.
-
-1. You are given data with two variables, X and Y. The mean of X is 3 with a SD .75. Y has a mean of 4 with a SD of .50. The correlation between the two is r = .3. "By hand", calculate the regression equation. Interpret each term in equation. 
-
-2. "By hand," convert the equation in #1 into a standardized regression equation. Interpet each term. 
-
-3. Using the Anxiety data, run a regression with Social Support (X) predicting Anxiety(Y). Then run a regression with Anxiety predicting Social Support. What is similar and different between these analyese? 
-
-4. Graph the regression with Anxiety as the DV. Include confidence band and raw data points.  
-
-5. For the regression of Social Support predicting Anxiety, correlate the fitted values with: a. residuals, b. Social Support, c., Anxiety. Explain the patterns you find.   
-
-6. Using the anova function for the model output, calculate R squared "by hand". Interpret. 
-
-7. For the same model, interpret the residual standard error. 
-
-8. Using the group variable to predict Support, run a regression using a. existing group "factor" labels, b. transforming the factor scores into dummy codes with tx = 0, c. dummy codes with control = 0 and 4. effect codes. Interpret each term and then compare and contrast results across models. 
- 
 

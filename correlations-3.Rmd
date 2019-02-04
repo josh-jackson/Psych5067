@@ -1,6 +1,7 @@
 ---
 title: "correlations"
 output: ioslides_presentation
+widescreen: true
 ---
 
 ## Last time/this time

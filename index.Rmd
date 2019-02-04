@@ -2,26 +2,23 @@
 title: "Updates and announcements"
 output: html_document
 ---  
-  
+<br>
 
+- Homework #2 is now available. Due 2/13  
+<br>
 
-- January 28th - Regression lecture updated
+- January 28th - Regression lecture updated  
 
- <br> 
-
-
+ 
 - January 23rd - Homework #1 is now available. Due 2/1.  
 
-<br>
+
 
 - January 23rd -  Correlation lecture updated  
 
-<br>
+
 
 - January 15th - Learn tidyverse! http://psychnet.wustl.edu/new/r-training-documents/ (If you're not on WashU's secure wireless, username = securepsych and pw = psych4ever). Relevant tidyverse workshops include: dplyr (2016-2017), broomtidy (2016-2017), plotting in tidyverse (2017-2018), and data wrangling (2018-2019)  
-
-
-<br>
 
 - January 4th - website is live! Take a peak at the syllabus. First two lectures are updated (1. intro and 2. glm), the rest are works in progress. 
 
