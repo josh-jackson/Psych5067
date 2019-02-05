@@ -5,6 +5,8 @@ output: html_document
 
 #### Please answer the questions below. Show all your code and results. You will need to use the Dawtry et al., 2015 Psychological Science article and the accompanying dataset (found on the data page) to answer questions 1 - 7. 
 
+#### Turn in your assignments via email to: Takehom.r8bmtely2bxeavd5@u.box.com by attaching the rmd and pdf to the email.
+
 1. Using data from Dawtry et al. Study 1a, calculate cronbachs reliability for redistribution attitudes. (Note, some items may need to be reverse scored).  
 
 2. Replicate the correlation matrix in Table 1. (Note: you will have to create a composite to do so)   
