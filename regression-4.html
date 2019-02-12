@@ -535,14 +535,14 @@ m.2 &lt;- lm(y.2 ~ x.2, data = d.2)</pre>
 
 <ul>
 <li>represent our uncertainty (noise) in our estimate of the regression coefficient</li>
-<li>different from residual standard error/deviation (but proportional to).</li>
-<li>much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be &ldquo;possible&rdquo; if we ran the study again</li>
-<li>(see equation below)</li>
+<li>different from residual standard error/deviation (but proportional to)<br/></li>
+<li>much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be &ldquo;possible&rdquo; if we ran the study again<br/></li>
+<li>(see equation later)</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>data generating process</h2></hgroup><article  id="data-generating-process">
 
-<p>\[ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  \] in english: Our DV for individual i is distributed normally with a mean of mu and a standard deviation of sigma <br> - this describes how we think our DVs are generated, and the paramters of interest.<br/>- a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not - a different DGP will define what &ldquo;type&rdquo; of regression to use - for normal, \(\mu\) gets all the focus but \(\sigma\) is just as important</p>
+<p>\[ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  \] in english: Our DV for individual i is distributed normally with a mean of mu and a standard deviation of sigma<br/><br> - this describes how we think our DVs are generated, and the paramters of interest<br/>- a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not<br/>- a different DGP will define what &ldquo;type&rdquo; of regression to use<br/>- for normal, \(\mu\) gets all the focus but \(\sigma\) is just as important</p>
 
 </article></slide><slide class=""><hgroup><h2>Inferential tests</h2></hgroup><article  id="inferential-tests">
 
@@ -656,7 +656,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 
 </article></slide><slide class=""><hgroup><h2>regression coefficient</h2></hgroup><article  id="regression-coefficient-1">
 
-<p>\[ H_{0}: \beta_{XY}= 0 \] \[ H_{1}: \beta_{XY} \neq 0 \]</p>
+<p>\[ H_{0}: \beta_{1}= 0 \] \[ H_{1}: \beta_{1} \neq 0 \]</p>
 
 </article></slide><slide class=""><hgroup><h2>What does the regression coefficient test?</h2></hgroup><article  id="what-does-the-regression-coefficient-test">
 
@@ -670,7 +670,7 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Regression coefficient</h2></hgroup><article  id="regression-coefficient-2">
 
-<p>\[ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \] \[ t(n-2) = \frac{b_{yx}}{se_{b}} \] ** what is standardized equation?</p>
+<p>\[ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} \] \[ t(n-2) = \frac{b_{1}}{se_{b}} \] ** what is standardized equation?</p>
 
 </article></slide><slide class=""><hgroup><h2>Intercept</h2></hgroup><article  id="intercept">
 
@@ -689,12 +689,21 @@ fit.0 &lt;- lm(parent ~ 1, data = galton)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands for regression line</h2></hgroup><article  id="confidence-bands-for-regression-line">
 
+<pre >## Warning: Removed 19 rows containing non-finite values (stat_smooth).</pre>
+
+<pre >## Warning: Removed 19 rows containing missing values (geom_point).</pre>
+
+<pre >## Warning: Removed 1 rows containing non-finite values (stat_smooth).</pre>
+
+<pre >## Warning: Removed 1 rows containing missing values (geom_point).</pre>
+
 <p><img src="regression-4_files/figure-html/unnamed-chunk-36-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2>Confidence Bands</h2></hgroup><article  id="confidence-bands">
 
 <ul>
 <li>Compare mean estimate for height of 70 based on regression vs binning</li>
+<li>Model uses all data where binning uses much less</li>
 </ul>
 
 <p><img src="regression-4_files/figure-html/unnamed-chunk-37-1.png" width="720" /></p>

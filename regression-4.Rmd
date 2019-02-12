@@ -345,6 +345,7 @@ ggplot(d.1, aes(x = x.1,y =  y.1)) +
     geom_smooth(method = lm) +
    scale_x_continuous(limits = c(-3, 3))  +
   scale_y_continuous(limits = c(-6, 6))
+
 ```
 
 ##
@@ -381,20 +382,20 @@ ggplot(d.1, aes(x=x.2, y=y.2)) +
 
 ## standard errors for b
 - represent our uncertainty (noise) in our estimate of the regression coefficient 
-- different from residual standard error/deviation (but proportional to). 
-- much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be "possible" if we ran the study again
-- (see equation below)
+- different from residual standard error/deviation (but proportional to)  
+- much like previously we can take our estimate (b) and put confidence regions around it to get an estimate of what could be "possible" if we ran the study again  
+- (see equation later)
 
 ## data generating process
 
 $$ Y_{i} \sim \mathcal{N}(\mu,\,\sigma)\  $$
 in english: Our DV for individual i is distributed normally with a mean of mu 
-and a standard deviation of sigma
+and a standard deviation of sigma  
 <br>
-- this describes how we think our DVs are generated, and the paramters of interest.   
-- a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not
-- a different DGP will define what "type" of regression to use
-- for normal, $\mu$ gets all the focus but $\sigma$ is just as important
+- this describes how we think our DVs are generated, and the paramters of interest      
+- a standard regression model assumes this, but we will see other DGPs such as binomial or poisson that do not  
+- a different DGP will define what "type" of regression to use  
+- for normal, $\mu$ gets all the focus but $\sigma$ is just as important 
 
 
 
@@ -457,8 +458,8 @@ anova(fit.1, fit.0)
 
 ## regression coefficient
 
-$$ H_{0}: \beta_{XY}= 0 $$
-$$ H_{1}: \beta_{XY} \neq 0 $$
+$$ H_{0}: \beta_{1}= 0 $$
+$$ H_{1}: \beta_{1} \neq 0 $$
 
 ## What does the regression coefficient test?
 - Does X provide any predictive information? 
@@ -469,7 +470,7 @@ $$ H_{1}: \beta_{XY} \neq 0 $$
 
 ## Regression coefficient
 $$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-r_{xy}^2}{n-2}}} $$
-$$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
+$$ t(n-2) = \frac{b_{1}}{se_{b}} $$
 ** what is standardized equation? 
 
 ## Intercept
@@ -485,14 +486,39 @@ $$ t(n-2) = \frac{b_{yx}}{se_{b}} $$
 
 ## Confidence Bands for regression line
 ```{r, echo=FALSE, message=FALSE}
-ggplot(galton.data, aes(x=child, y=parent)) +
-    geom_smooth(method=lm,   # Add linear regression line
-                se=TRUE) +     # Don't add shaded confidence region
-    labs(x = "child height", y = "parent height")
+set.seed(123)
+
+px.1 <- rnorm(1000, 0, 1)
+pe.1 <- rnorm(1000, 0, 1)
+py.1 <- .5 + .55 * px.1 + pe.1
+pd.1 <- data.frame(px.1,py.1)
+
+px.2 <- rnorm(100, 0, 1)
+pe.2 <- rnorm(100, 0, 1)
+py.2 <- .5 + .55 * px.2 + pe.2
+pd.2 <- data.frame(px.2,py.2)
+
+
+p1 <- ggplot(pd.1, aes(x = px.1,y =  py.1)) +
+    geom_point() +    
+    geom_smooth(method = lm) +
+   scale_x_continuous(limits = c(-3, 3))  +
+  scale_y_continuous(limits = c(-3, 3))
+
+p2 <- ggplot(pd.2, aes(x=px.2, y=py.2)) +
+    geom_point() +    
+    geom_smooth(method=lm) +
+  scale_x_continuous(limits = c(-3, 3))  +
+  scale_y_continuous(limits = c(-3, 3))
+
+library(cowplot)
+plot_grid(p1, p2, ncol=2, labels = c("N = 1000", "N = 100"))
+
 ```
 
 ## Confidence Bands
 - Compare mean estimate for height of 70 based on regression vs binning
+- Model uses all data where binning uses much less
 
 ```{r, echo=FALSE}
 ggplot(galton.data, aes(x=child, y=parent)) +
