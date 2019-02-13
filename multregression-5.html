@@ -88,7 +88,7 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>casual relationships</h2></hgroup><article  id="casual-relationships">
+<slide class=""><hgroup><h2>causal relationships</h2></hgroup><article  id="causal-relationships">
 
 <ul>
 <li>does parent SES cause better grades?
@@ -119,7 +119,7 @@
 
 </article></slide><slide class=""><hgroup><h2>Coefficient of Determination</h2></hgroup><article  id="coefficient-of-determination">
 
-<p>\[R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} \]</p>
+<p>\[R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}^2} \]</p>
 
 </article></slide><slide class=""><hgroup><h2>GPA = SES + Peer relationships</h2></hgroup><article  id="gpa-ses-peer-relationships">
 
@@ -134,7 +134,8 @@
 </article></slide><slide class=""><hgroup><h2>types of correlations</h2></hgroup><article  id="types-of-correlations">
 
 <ul>
-<li>pearson ignores all outside variables</li>
+<li>pearson (our standard correlation measure) ignores all outside variables<br/></li>
+<li>also called bi-variate correlation</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>types of correlations</h2></hgroup><article  id="types-of-correlations-1">
@@ -182,6 +183,10 @@
 
 <p>\[ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  \]</p>
 
+</article></slide><slide class=""><hgroup><h2>interpretting multiple regression model</h2></hgroup><article  id="interpretting-multiple-regression-model">
+
+<p>\[ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  \]<br/>- intercept is when all predictors = 0<br/>- regression coefficients are &ldquo;partial&rdquo; regression coefficients<br/>- predicted change in y for a 1 unit change in x, <em>holding all other predictors constant</em> - similar to semi-partial correlation</p>
+
 </article></slide><slide class=""><hgroup><h2>how to interpret multiple regression cofficients?</h2></hgroup><article  id="how-to-interpret-multiple-regression-cofficients">
 
 <ul>
@@ -194,10 +199,6 @@
 <li>correlate new measures</li>
 </ol></li>
 </ul>
-
-</article></slide><slide class=""><hgroup><h2>interpretting multiple regression model</h2></hgroup><article  id="interpretting-multiple-regression-model">
-
-<p>\[ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  \]<br/>- intercept is when all predictors = 0<br/>- regression coefficients are &ldquo;partial&rdquo; regression coefficients<br/>- predicted change in y for a 1 unit change in x, <em>holding all other predictors constant</em></p>
 
 </article></slide><slide class=""><hgroup><h2>example</h2></hgroup><article  id="example">
 
@@ -278,40 +279,30 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 </article></slide><slide class=""><hgroup><h2>How to visualize &ldquo;controlling for&rdquo;</h2></hgroup><article  id="how-to-visualize-controlling-for">
 
 <ul>
-<li>example of x and y controlling for W. Taken from <span class="cite">@nickchk</span></li>
+<li>example of x and y controlling for W. Taken from <span class="cite">@nickchk</span> <img src='control.gif' title=''/></li>
 </ul>
-
-<ol>
-<li>What is raw data?</li>
-</ol>
-
-</article></slide><slide class=""><hgroup><h2>How to visualize &ldquo;controlling for&rdquo;</h2></hgroup><article  id="how-to-visualize-controlling-for-1">
-
-<p>2.what difference in X is explained by W. See the mean difference when W is dichotomous</p>
-
-</article></slide><slide class=""><hgroup><h2>How to visualize &ldquo;controlling for&rdquo;</h2></hgroup><article  id="how-to-visualize-controlling-for-2">
-
-<ol>
-<li>residualize X on W. Notice the means. Run the regresion</li>
-</ol>
-
-</article></slide><slide class=""><hgroup><h2>How to visualize &ldquo;controlling for&rdquo;</h2></hgroup><article  id="how-to-visualize-controlling-for-3">
-
-<ol>
-<li>What difference in Y is explained by W.</li>
-</ol>
-
-</article></slide><slide class=""><hgroup><h2>How to visualize &ldquo;controlling for&rdquo;</h2></hgroup><article  id="how-to-visualize-controlling-for-4">
-
-<ol>
-<li>residualize Y on W. Notice the means. Run the regresion</li>
-</ol>
 
 </article></slide><slide class=""><hgroup><h2>Fit revisited</h2></hgroup><article  id="fit-revisited">
 
-<pre class = 'prettyprint lang-r'>mr.model$R2</pre>
-
-<pre >## NULL</pre>
+<pre >## 
+## Call:
+## lm(formula = Stress ~ Support + Anxiety, data = Multipleregression)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1958 -0.8994 -0.1370  0.9990  3.6995 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -0.31587    0.85596  -0.369 0.712792    
+## Support      0.40618    0.05115   7.941 1.49e-12 ***
+## Anxiety      0.25609    0.06740   3.799 0.000234 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 1.519 on 115 degrees of freedom
+## Multiple R-squared:  0.3556, Adjusted R-squared:  0.3444 
+## F-statistic: 31.73 on 2 and 115 DF,  p-value: 1.062e-11</pre>
 
 </article></slide><slide class=""><hgroup><h2>Multiple correlation R</h2></hgroup><article  id="multiple-correlation-r">
 
@@ -330,11 +321,11 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
-<p><img src="~/Box Sync/5067 Regression Spring/Spring 19/R2-4.png" width="700" height="500"/></p>
+<p><img src="R2-4.png" width="700" height="500"/></p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
 
-<p><img src="~/Box Sync/5067 Regression Spring/Spring 19/R2-5.png" width="700" height="500"/></p>
+<p><img src="R2-5.png" width="700" height="500"/></p>
 
 </article></slide><slide class=""><hgroup><h2>sum of squares decomposition</h2></hgroup><article  id="sum-of-squares-decomposition">
 
@@ -342,24 +333,7 @@ visreg2d(mr.model,&quot;Support&quot;, &quot;Anxiety&quot;, plot.type = &quot;pe
 
 <p>\[  \frac{SS_{regression}}{SS_{Y}} = R^2 \] \[  {SS_{regression}} = R^2({SS_{Y})} \]</p>
 
-<p>\[  {SS_{residual}} = (1- R^2){SS_{Y}} \] ## Check your model</p>
-
-<pre class = 'prettyprint lang-r'>library(tidyverse)
-
-fit &lt;- lm(hp ~ ., mtcars)
-au &lt;- broom::augment(fit)
-
-au.gg &lt;- au %&gt;% 
-  gather(x, val, -contains(&quot;.&quot;)) %&gt;% 
-  ggplot(aes(val, .resid)) +
-  geom_point() +
-  facet_wrap(~x, scales = &quot;free&quot;)</pre>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
-
-<pre class = 'prettyprint lang-r'>print(au.gg)</pre>
-
-<p><img src="multregression-5_files/figure-html/unnamed-chunk-6-1.png" width="720" /></p>
+<p>\[  {SS_{residual}} = (1- R^2){SS_{Y}} \]</p>
 
 </article></slide><slide class=""><hgroup><h2>significance tests</h2></hgroup><article  id="significance-tests">
 
@@ -395,7 +369,7 @@ au.gg &lt;- au %&gt;%
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <pre class = 'prettyprint lang-r'>summary(mr.model)</pre>
 
@@ -459,8 +433,6 @@ au.gg &lt;- au %&gt;%
 <li>how do you interpret the fit of the model?</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>endogeniety discussion ADD!!</h2></hgroup><article  id="endogeniety-discussion-add">
-
 </article></slide><slide class=""><hgroup><h2>hierarchical / model comparison</h2></hgroup><article  id="hierarchical-model-comparison">
 
 <ul>
@@ -476,9 +448,9 @@ au.gg &lt;- au %&gt;%
 <li>Order is dependent on a priori hypothesis</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
-<p><img src="/Users/jackson/Box Sync/5067 Regression Spring/5067 spring 18/R2-6.png" width="700" height="500"/></p>
+<p><img src="R2-6.png" width="700" height="500"/></p>
 
 </article></slide><slide class=""><hgroup><h2>R-square change</h2></hgroup><article  id="r-square-change">
 
@@ -717,7 +689,7 @@ levels(one.way$group.2)</pre>
 
 <pre >## [1] &quot;tx2&quot;     &quot;control&quot; &quot;tx1&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
 <pre class = 'prettyprint lang-r'>model.2 &lt;- lm(drugs ~ group.2, data = one.way ) 
 tidy(summary(model.2))</pre>
@@ -800,7 +772,7 @@ describe(one.way$drugs)</pre>
 <li>you may want to do &ldquo;weighted&rdquo; effect coding</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
 
 <pre class = 'prettyprint lang-r'>anova(model.3)</pre>
 
@@ -835,7 +807,7 @@ tidy(model.4)</pre>
 ## 2 group1        0.424     0.102      4.14  0.0000473
 ## 3 group3        0.0911    0.0937     0.972 0.332</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
 
 <pre class = 'prettyprint lang-r'>contrasts(one.way$group) &lt;- contr.treatment(3, base = 3)
 model.5 &lt;- lm(drugs ~ group, data = one.way ) 

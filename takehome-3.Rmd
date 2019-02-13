@@ -3,9 +3,10 @@ title: "takehome-3"
 output: html_document
 ---
 
-# Due: 2/20  
+# Due: 2/25
+
 <br>
-Turn in via email to: Takehom.krrrtmtti39wm685@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file (e.g,. "Jackson_takehome3")and include your name as part of the document front/top-matter.  
+Turn in via email to: Take_ho.27aftnuqyb3w03oo@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file (e.g,. "Jackson_takehome3")and include your name as part of the document front/top-matter.  
 <br>
 All take home projects are **INDEPENDENT** projects; do not share code or answers.   
 
@@ -13,24 +14,23 @@ Please use the th.project.3 dataset to answer the questions below. These data we
 
 1. Calculate the semi-partial and a partial correlation for health and friends, controlling for SES and happiness using a series of multiple regression analyses (ie do not use a function for semi-partial and partial correlations). 
 
-2. Perform a multiple regression where Health is regressed on friends, SES and happiness. Interpret each coefficient. 
+2. Perform a multiple regression where Health is regressed on (predicted by) friends, SES and happiness. Interpret each regresion coefficient. 
 
-3. Graph the (2-d) relationship between health and happy as found in the above regression. Make sure the association controls for the remaining variables in the model. 
+3. What is similar and what is different between the partial correlation in #1 and the friends regression coefficient in #2? 
 
-4. For the above regression, calculate variance explained using the anova table and interpret the residual standard error 
+4. Graph the (2-d) relationship between health and happiness as found in the above regression. Make sure the association controls for the remaining variables in the model. Include data points in your graph and a confidence band. 
 
-5. Include the group variable mood.group into the regression model from #2. 
-  a) Interpret the new coefficients
+5. Describe why the confidence band looks like a bow tie in the above graph. 
+
+6. For the above regression, calculate variance explained using the anova table and interpret the residual standard error 
+
+7. Add the group variable mood.group into the regression model from #2. 
+  a) Interpret the coefficients
   b) Is there a significant increase in variance explained compared to the initial regression in #2? If so, what is the estimate? 
-  c) Recode the group coefficients to -1,0 and 1. Rerun the model. Interpret each regression coefficient including the intercept. 
-  d) For the model you ran in c, is the change in variance explained different from the change in variance explained from question b? Why or why not? 
+  c) Recode the group contrasts into effect coding (-1,0 and 1). Rerun the model. Interpret each regression coefficient including the intercept. 
+  d) For the model you ran in c, is the change in variance explained different from the change in variance explained from question 7b? Why or why not? 
 
 
-**** note that the below questions will not be tesed on Exam 1: 
-
-6. Check each of the six assumptions discussed in class. Note: not every assumption may be directly examined. Describe how you *would* test the assumption. 
-
-7.	Examine possible outliers. Directly state what each plot tells you. Are there any cases that are suspicious?  What is the impact on the analysis of these cases, if any? 
 
   
   

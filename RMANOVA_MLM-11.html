@@ -600,6 +600,10 @@ summary(model.3)
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
 
+<pre >## Warning in checkConv(attr(opt, &quot;derivs&quot;), opt$par, ctrl =
+## control$checkConv, : Model failed to converge with max|grad| = 0.00986507
+## (tol = 0.002, component 1)</pre>
+
 <pre >## Linear mixed model fit by REML [&#39;lmerMod&#39;]
 ## Formula: alcuse ~ time + (1 + time | id)
 ##    Data: alcohol1
@@ -608,23 +612,25 @@ summary(model.3)
 ## 
 ## Scaled residuals: 
 ##      Min       1Q   Median       3Q      Max 
-## -2.48287 -0.37933 -0.07858  0.38876  2.49284 
+## -2.48441 -0.37859 -0.07889  0.38922  2.49339 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance Std.Dev. Corr 
-##  id       (Intercept) 0.6355   0.7972        
-##           time        0.1552   0.3939   -0.23
-##  Residual             0.3373   0.5808        
+##  id       (Intercept) 0.6361   0.7976        
+##           time        0.1553   0.3941   -0.23
+##  Residual             0.3369   0.5805        
 ## Number of obs: 246, groups:  id, 82
 ## 
 ## Fixed effects:
 ##             Estimate Std. Error t value
-## (Intercept)  0.65130    0.10573   6.160
+## (Intercept)  0.65130    0.10575   6.159
 ## time         0.27065    0.06284   4.307
 ## 
 ## Correlation of Fixed Effects:
 ##      (Intr)
-## time -0.441</pre>
+## time -0.440
+## convergence code: 0
+## Model failed to converge with max|grad| = 0.00986507 (tol = 0.002, component 1)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
 
@@ -658,11 +664,11 @@ summary(model.4)</pre>
 ## 
 ## Scaled residuals: 
 ##     Min      1Q  Median      3Q     Max 
-## -2.5522 -0.3827 -0.1063  0.3585  2.3708 
+## -2.5522 -0.3827 -0.1063  0.3585  2.3707 
 ## 
 ## Random effects:
 ##  Groups   Name        Variance Std.Dev. Corr 
-##  id       (Intercept) 0.5068   0.7119        
+##  id       (Intercept) 0.5069   0.7119        
 ##           time        0.1586   0.3982   -0.23
 ##  Residual             0.3373   0.5808        
 ## Number of obs: 246, groups:  id, 82
@@ -670,8 +676,8 @@ summary(model.4)</pre>
 ## Fixed effects:
 ##             Estimate Std. Error t value
 ## (Intercept)  0.31595    0.13232   2.388
-## time         0.29296    0.08527   3.435
-## coa          0.74321    0.19698   3.773
+## time         0.29296    0.08527   3.436
+## coa          0.74321    0.19699   3.773
 ## time:coa    -0.04943    0.12695  -0.389
 ## 
 ## Correlation of Fixed Effects:
@@ -931,7 +937,7 @@ summary(ex.1)</pre>
 
 <pre class = 'prettyprint lang-r'>reghelper::ICC(ex.1)</pre>
 
-<pre >## [1] 0.3948896</pre>
+<pre >## [1] 0.3948898</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-25">
 
@@ -989,14 +995,14 @@ summary(ex.3)</pre>
 ## Random effects:
 ##  Groups   Name        Variance Std.Dev. Corr
 ##  Subject  (Intercept) 749.1    27.37        
-##           A1          975.3    31.23    0.46
+##           A1          975.2    31.23    0.46
 ##  Residual             905.9    30.10        
 ## Number of obs: 180, groups:  Subject, 18
 ## 
 ## Fixed effects:
 ##             Estimate Std. Error t value
 ## (Intercept)  271.630      7.189  37.785
-## A1            53.755      8.621   6.236
+## A1            53.755      8.620   6.236
 ## 
 ## Correlation of Fixed Effects:
 ##    (Intr)
@@ -1008,24 +1014,26 @@ summary(ex.3)</pre>
 
 <pre >## $Subject
 ##     (Intercept)         A1
-## 308  21.7017693  42.407727
-## 309 -55.2429138 -44.640515
-## 310 -45.8929881 -33.269807
-## 330  11.6395169 -19.842088
-## 331  16.6578842 -18.864320
-## 332   4.6913134   7.716570
-## 333  13.5915312   4.514793
-## 334  -4.4328944   4.341514
-## 335 -22.2291063 -51.989519
-## 337  49.5023089  45.908933
-## 349 -20.2346493   1.492818
-## 350  -1.3749587  38.017575
-## 351  -1.6480955 -14.837968
-## 352  28.9500122  12.620995
-## 369   5.2872776   3.261775
-## 370 -15.1367314  24.262257
-## 371   0.7332725  -9.958518
-## 372  13.4374511   8.857780</pre>
+## 308  21.7019920  42.407315
+## 309 -55.2428019 -44.640574
+## 310 -45.8928542 -33.269923
+## 330  11.6391798 -19.841564
+## 331  16.6575039 -18.863738
+## 332   4.6913460   7.716506
+## 333  13.5914343   4.514921
+## 334  -4.4328004   4.341370
+## 335 -22.2294260 -51.988948
+## 337  49.5022719  45.908883
+## 349 -20.2344170   1.492485
+## 350  -1.3745363  38.016890
+## 351  -1.6482370 -14.837734
+## 352  28.9498380  12.621214
+## 369   5.2872561   3.261798
+## 370 -15.1363095  24.261603
+## 371   0.7331579  -9.958333
+## 372  13.4374024   8.857830
+## 
+## with conditional variances for &quot;Subject&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-31">
 

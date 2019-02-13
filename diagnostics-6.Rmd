@@ -38,7 +38,7 @@ Properties: Unbiased, Efficient (se minimum), Consistent (N decreases se)
 |-------------------------------|--------------------------------|
 |1. Measured without error	    |	  Reliability                  |
 |2. Correctly specified form 		|	  Residuals against predicted  |
-|3. Correctly specified model		|	  Theory                       | 
+|3. Correctly specified model		|	  Theory, endogeneity test     | 
 |4. Homoscedasticity 						|		Residuals against predicted  |
 |5. Independent Errors 				 	|		Design                       |
 |6. Normality of the Errors     |   q-q plot or distribution     |
@@ -99,6 +99,7 @@ ggplot(data = a_data, aes(x=.fitted, y=.resid)) +
 ## Assumption 3: Correctly specified model
 
 
+# endogeniety discussion ADD!!
 
 
 

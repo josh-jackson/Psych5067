@@ -5,7 +5,7 @@ widescreen: true
 ---
 
 
-## casual relationships
+## causal relationships
 - does parent SES cause better grades?
     + r(gpa, ses) = .33, b = .41
 - potential confound of peer relationships
@@ -25,7 +25,7 @@ $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
 
 ## Coefficient of Determination
 
-$$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
+$$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}^2} $$
 
 
 ## GPA = SES + Peer relationships
@@ -38,7 +38,8 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}} $$
 
 
 ## types of correlations
-- pearson ignores all outside variables
+- pearson (our standard correlation measure) ignores all outside variables  
+- also called bi-variate correlation  
 
 ## types of correlations
 - semi-partial  
@@ -75,6 +76,12 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 
 $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
 
+## interpretting multiple regression model
+$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$  
+- intercept is when all predictors = 0  
+- regression coefficients are "partial" regression coefficients  
+- predicted change in y for a 1 unit change in x, *holding all other predictors constant* 
+- similar to semi-partial correlation
 
 ## how to interpret multiple regression cofficients? 
 - residual in simple regression can be thought of as a measure of Y that is left over after accounting for your DV
@@ -83,11 +90,7 @@ $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
     2. create measure of Y independent of X2
     3. correlate new measures
 
-## interpretting multiple regression model
-$$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$  
-- intercept is when all predictors = 0  
-- regression coefficients are "partial" regression coefficients  
-- predicted change in y for a 1 unit change in x, *holding all other predictors constant*  
+
 
 ## example
 ```{r, echo = FALSE, message=FALSE}
@@ -147,25 +150,15 @@ $$b_{0} = \bar{Y} - b_{1}\bar{X_{1}} - b_{2}\bar{X_{2}} $$
 
 ## How to visualize "controlling for"
 - example of x and y controlling for W. Taken from @nickchk 
-1. What is raw data? 
+![](~/Box Sync/5067 Regression Spring/Spring_2019/control.gif)
 
 
-## How to visualize "controlling for"
-2.what difference in X is explained by W. See the mean difference when W is dichotomous
 
-## How to visualize "controlling for"
-3. residualize X on W. Notice the means. Run the regresion
-
-## How to visualize "controlling for"
-4. What difference in Y is explained by W. 
-
-## How to visualize "controlling for"
-5. residualize Y on W. Notice the means. Run the regresion
 
 
 ## Fit revisited
-```{r}
-mr.model$R2
+```{r, echo = F}
+summary(mr.model)
 ```
 
 
@@ -186,10 +179,10 @@ $$ R = \sqrt{b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
 $$ R^2 = {b_{1}^*r_{Y1} + b_{2}^*r_{Y2}} $$
 
 ## 
-<img src="~/Box Sync/5067 Regression Spring/Spring 19/R2-4.png" width="700" height="500"/>
+<img src="R2-4.png" width="700" height="500"/>
 
 ##
-<img src="~/Box Sync/5067 Regression Spring/Spring 19/R2-5.png" width="700" height="500"/>
+<img src="R2-5.png" width="700" height="500"/>
 
 ## sum of squares decomposition
 
@@ -201,26 +194,7 @@ $$  {SS_{regression}} = R^2({SS_{Y})} $$
 
 
 $$  {SS_{residual}} = (1- R^2){SS_{Y}} $$
-## Check your model 
-
-```{r}
-library(tidyverse)
-
-fit <- lm(hp ~ ., mtcars)
-au <- broom::augment(fit)
-
-au.gg <- au %>% 
-  gather(x, val, -contains(".")) %>% 
-  ggplot(aes(val, .resid)) +
-  geom_point() +
-  facet_wrap(~x, scales = "free")
-```
-
-##
-```{r}
-print(au.gg)
-```
-
+  
 
 ## significance tests
 
@@ -285,11 +259,6 @@ $$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\f
 - how do you interpret the fit of the model? 
 
 
-## endogeniety discussion ADD!!
-
-
-
-
 
 ## hierarchical / model comparison  
 - When you want to see if the fit of one model is better than another  
@@ -302,7 +271,7 @@ $$ se_{b} = \frac{s_{Y}}{s_{X}}{\sqrt{\frac {1-R_{Y\hat{Y}}^2}{n-p-1}}} \sqrt{\f
 
 
 ##   
-<img src="/Users/jackson/Box Sync/5067 Regression Spring/5067 spring 18/R2-6.png" width="700" height="500"/>
+<img src="R2-6.png" width="700" height="500"/>
 
 
 ## R-square change

@@ -32,3 +32,9 @@ Using the dataset labeled th.project.4 answer the questions below. The dataset l
 10. What are the estimated values for each of the groups in #9 controlling for friendship? 
 
 11. Use a different coding scheme than the one you chose to use in #9. How did this change the results? Interpret each of the regression coefficients. 
+
+**** note that the below questions will not be tesed on Exam : 
+
+6. Check each of the six assumptions discussed in class. Note: not every assumption may be directly examined. Describe how you *would* test the assumption. 
+
+7.	Examine possible outliers. Directly state what each plot tells you. Are there any cases that are suspicious?  What is the impact on the analysis of these cases, if any? 
