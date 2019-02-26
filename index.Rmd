@@ -5,11 +5,12 @@ output: html_document
 <br>
 
   
-- Homework #3 is now available. Due 2/25  
-
-- Multiple Regression lecture updated. Also, graded homeworks should be available via BOX.   
+- UPDATE: Homework #3 is now available. Due 3/5  
+- Diagnostics lecture updated.
 
 <br>
+
+- Multiple Regression lecture updated. Also, graded homeworks should be available via BOX.   
 - Homework #2 is now available. Due 2/13  
 - January 28th - Regression lecture updated  
 - January 23rd - Homework #1 is now available. Due 2/1.  

@@ -54,8 +54,8 @@ model.1 <- lm(Anxiety ~ Stress + Support, a_data)
 a_data<- augment(model.1)
 a_data
 ```
-## residuals are very important
-
+## residuals are very important 
+They tell us where our model went wrong
 ```{r, echo = FALSE, warning=FALSE}
 
 model.0 <- lm(Anxiety ~ Support , a_data)
@@ -68,8 +68,11 @@ ggplot(a_data.0, aes(x = Support, y = Anxiety)) +
   geom_point() +
   geom_point(aes(y = .fitted), shape = 1)
 ```
+One predictor: Anxiety ~ Support
+
 
 ## with stress in the model
+
 ```{r, echo = FALSE}
 
 ggplot(a_data, aes(x = Support, y = Anxiety)) +
@@ -77,6 +80,8 @@ ggplot(a_data, aes(x = Support, y = Anxiety)) +
   geom_point() +
   geom_point(aes(y = .fitted), shape = 1)
 ```
+Two predictor: Anxiety ~ Support + Stress
+
 
 
 
@@ -97,9 +102,17 @@ ggplot(data = a_data, aes(x=.fitted, y=.resid)) +
 
 
 ## Assumption 3: Correctly specified model
+- This is especially important for multiple regression. 
+- Two problems: 
+  1. "Over control" and your coefficient is no longer interpretable
+  2. "Under control" and your coefficient is no longer interpretable
 
 
-# endogeniety discussion ADD!!
+## Endogeniety 
+- Where your error term is associated with a predictor. 
+- Typically when you leave out an important predictor.  
+- Can also occur if you "condition on a collider". Many ways this can happen but one common one is selecting a sample (clinical students, college students) that is associated with your variables of interest (e.g., emotion regulation, memory ability)
+
 
 
 
@@ -152,11 +165,11 @@ qqPlot(model.1)
 
 |       Assumption              |       	Fix                      |
 |-------------------------------|----------------------------------|
-|1. Measured without error	    |	Factor scores, SEM, more data    |
+|1. Measured without error	    |	SEM, factor scores, more data, better design    |
 |2. Correctly specified form 		|	Different model                  |
-|3. Correctly specified model		|	 ¯`\_`(ツ)`_`/¯                  |
-|4. Homoscedasticity 						|	Bootstraps, WLS,transformations  |
-|5. Independent Errors 				 	| Use differ method                |
+|3. Correctly specified model		|	 ¯`\_`(ツ)`_`/¯  & specificity analyses|
+|4. Homoscedasticity 						|	Bootstraps, WLS, transformations  |
+|5. Independent Errors 				 	| Use differ analysis method                |
 |6. Normality of the Errors     | Additional IVs, differnt form    |
 
 ## Robustness? 
@@ -232,5 +245,6 @@ geom_text(aes(label = rownames(a_data), vjust = -1))
 ## recommendations
 - Analyze data with/without outliers and see how results change   
 - If you throw out cases you must believe it is not representative of population of interest or have appropriate explanation 
+- Don't throw out data just to be "safe". Data are hard to collect and outliers are expected! 
 
 

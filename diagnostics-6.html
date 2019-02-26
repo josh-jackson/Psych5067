@@ -213,11 +213,11 @@ a_data</pre>
 
 </article></slide><slide class=""><hgroup><h2>residuals are very important</h2></hgroup><article  id="residuals-are-very-important">
 
-<p><img src="diagnostics-6_files/figure-html/unnamed-chunk-2-1.png" width="720" /></p>
+<p>They tell us where our model went wrong <img src="diagnostics-6_files/figure-html/unnamed-chunk-2-1.png" width="720" /> One predictor: Anxiety ~ Support</p>
 
 </article></slide><slide class=""><hgroup><h2>with stress in the model</h2></hgroup><article  id="with-stress-in-the-model">
 
-<p><img src="diagnostics-6_files/figure-html/unnamed-chunk-3-1.png" width="720" /></p>
+<p><img src="diagnostics-6_files/figure-html/unnamed-chunk-3-1.png" width="720" /> Two predictor: Anxiety ~ Support + Stress</p>
 
 </article></slide><slide class=""><hgroup><h2>Assumption 1: No measurement error in our independent variables</h2></hgroup><article  id="assumption-1-no-measurement-error-in-our-independent-variables">
 
@@ -229,7 +229,23 @@ a_data</pre>
 
 </article></slide><slide class=""><hgroup><h2>Assumption 3: Correctly specified model</h2></hgroup><article  id="assumption-3-correctly-specified-model">
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>endogeniety discussion ADD!!</h2></hgroup><article  id="endogeniety-discussion-add">
+<ul>
+<li>This is especially important for multiple regression.</li>
+<li>Two problems:
+
+<ol>
+<li>&ldquo;Over control&rdquo; and your coefficient is no longer interpretable</li>
+<li>&ldquo;Under control&rdquo; and your coefficient is no longer interpretable</li>
+</ol></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Endogeniety</h2></hgroup><article  id="endogeniety">
+
+<ul>
+<li>Where your error term is associated with a predictor.</li>
+<li>Typically when you leave out an important predictor.<br/></li>
+<li>Can also occur if you &ldquo;condition on a collider&rdquo;. Many ways this can happen but one common one is selecting a sample (clinical students, college students) that is associated with your variables of interest (e.g., emotion regulation, memory ability)</li>
+</ul>
 
 </article></slide><slide class=""><hgroup><h2>Assumption 4: Homoscedasticity</h2></hgroup><article  id="assumption-4-homoscedasticity">
 
@@ -270,7 +286,7 @@ qqPlot(model.1)</pre>
 </tr>
 <tr class="odd">
 <td align="left">1. Measured without error</td>
-<td align="left">Factor scores, SEM, more data</td>
+<td align="left">SEM, factor scores, more data, better design</td>
 </tr>
 <tr class="even">
 <td align="left">2. Correctly specified form</td>
@@ -278,15 +294,15 @@ qqPlot(model.1)</pre>
 </tr>
 <tr class="odd">
 <td align="left">3. Correctly specified model</td>
-<td align="left">¯<code>\_</code>(ツ)<code>_</code>/¯</td>
+<td align="left">¯<code>\_</code>(ツ)<code>_</code>/¯ &amp; specificity analyses</td>
 </tr>
 <tr class="even">
 <td align="left">4. Homoscedasticity</td>
-<td align="left">Bootstraps, WLS,transformations</td>
+<td align="left">Bootstraps, WLS, transformations</td>
 </tr>
 <tr class="odd">
 <td align="left">5. Independent Errors</td>
-<td align="left">Use differ method</td>
+<td align="left">Use differ analysis method</td>
 </tr>
 <tr class="even">
 <td align="left">6. Normality of the Errors</td>
@@ -379,6 +395,7 @@ qqPlot(model.1)</pre>
 <ul>
 <li>Analyze data with/without outliers and see how results change<br/></li>
 <li>If you throw out cases you must believe it is not representative of population of interest or have appropriate explanation</li>
+<li>Don’t throw out data just to be &ldquo;safe&rdquo;. Data are hard to collect and outliers are expected!</li>
 </ul></article></slide>
 
 

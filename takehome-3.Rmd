@@ -3,7 +3,7 @@ title: "takehome-3"
 output: html_document
 ---
 
-# Due: 2/25
+# Due: 3/5
 
 <br>
 Turn in via email to: Take_ho.27aftnuqyb3w03oo@u.box.com by attaching an rmd or a rnw file of your code and answers. Use your last name to label the file (e.g,. "Jackson_takehome3")and include your name as part of the document front/top-matter.  
