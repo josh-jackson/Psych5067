@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -77,7 +81,7 @@
 
 <body style="opacity: 0">
 
-<slides>
+<slides class="layout-widescreen">
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -198,7 +202,7 @@ a_data</pre>
 
 <pre >## # A tibble: 118 x 10
 ##    Anxiety Stress Support .fitted .se.fit  .resid    .hat .sigma .cooksd
-##  *   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
 ##  1   10.2    3.20    6.16    8.15   0.270  2.03   0.0186    1.98 6.80e-3
 ##  2    5.59   7.01    8.91    8.31   0.273 -2.73   0.0191    1.97 1.25e-2
 ##  3    6.58   6.17   10.5     7.06   0.215 -0.474  0.0118    1.99 2.30e-4
@@ -209,7 +213,7 @@ a_data</pre>
 ##  8    3.41   1.77    4.1     8.65   0.392 -5.24   0.0392    1.93 9.90e-2
 ##  9    8.66   3.75    5.39    8.81   0.265 -0.154  0.0180    1.99 3.77e-5
 ## 10    4.85   5.45   13.9     4.91   0.373 -0.0597 0.0354    1.99 1.15e-5
-## # ... with 108 more rows, and 1 more variable: .std.resid &lt;dbl&gt;</pre>
+## # … with 108 more rows, and 1 more variable: .std.resid &lt;dbl&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>residuals are very important</h2></hgroup><article  id="residuals-are-very-important">
 

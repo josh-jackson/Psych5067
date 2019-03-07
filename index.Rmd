@@ -4,12 +4,12 @@ output: html_document
 ---  
 <br>
 
+
+- Interaction lecture posted. New associated reading "AMPPS" to go along with Cohen and Aiken chapter
+<br>
   
 - UPDATE: Homework #3 is now available. Due 3/5  
 - Diagnostics lecture updated.
-
-<br>
-
 - Multiple Regression lecture updated. Also, graded homeworks should be available via BOX.   
 - Homework #2 is now available. Due 2/13  
 - January 28th - Regression lecture updated  

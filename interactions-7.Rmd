@@ -1,11 +1,9 @@
 ---
 title: "Interactions"
 output: ioslides_presentation
+widescreen: true
 ---
 
-##
-
-check out jtools package to look at interactions and AMPPS paper on visualizing interactions **
 
 
 ## What are interactions?
@@ -62,7 +60,7 @@ PlotSlope(slope.1)
 
 ```
 
-## Goals for today
+## Outline
 - interpretation
 - centering
 - plotting
@@ -181,6 +179,7 @@ $\hat{Y} = 1.2 + .6X$ @ 0
 <br>
 $\hat{Y} = 2.1 + 1.05X$ @ 3  
 
+
 ## To interpret output, you need to look at graphs
 - a priori hypotheses not always correct
 - form of interaction meaningful in addition to whether there is an interaction
@@ -280,7 +279,8 @@ df = n-p-1
 - predict and do by hand
 - pequod
 - sjPlot
-- reghelper (in development), others.. 
+- jtools
+- AMPSS shiny app, others.. 
 
 
 ## 
@@ -330,16 +330,30 @@ scale_x_continuous("Support Levels (centered)")+ scale_y_continuous("Stress Leve
 scale_color_discrete("Anxiety")+ theme_bw()
 ```
 
+##
+
+```{r}
+library(jtools)
+```
+
+
+## marginal effects, Johnson-Neyman, etc
+
+
 
 ## errata mark II
 
 - non linear associations can masquerade as interactions
 - should test whether polynomial interactions serve as a more simplistic explanation
 
+
+
+
 ## polynomial regression 
 - Linear lines often make bad predictions
 - Some relationships are not linear (weight and height across lifespan)
-- Sort of poor to model non linear data but useful to know
+- Sort of poor to model non linear data but useful to kno
+
 
 ## polynomial regression 
 - contain a series of higher order function for a single variable  

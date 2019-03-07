@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -77,7 +81,7 @@
 
 <body style="opacity: 0">
 
-<slides>
+<slides class="layout-widescreen">
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -88,11 +92,7 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2></h2></hgroup><article  id="section">
-
-<p>check out jtools package to look at interactions and AMPPS paper on visualizing interactions **</p>
-
-</article></slide><slide class=""><hgroup><h2>What are interactions?</h2></hgroup><article  id="what-are-interactions">
+<slide class=""><hgroup><h2>What are interactions?</h2></hgroup><article  id="what-are-interactions">
 
 <ul>
 <li>When the effect of one predictor depends on the levels of another</li>
@@ -104,7 +104,7 @@
 
 <p><img src="3d.png" width="750" height="550"/></p>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
 <p>\[ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ \]</p>
 
@@ -118,7 +118,7 @@
 
 <p><img src="interactions-7_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Goals for today</h2></hgroup><article  id="goals-for-today">
+</article></slide><slide class=""><hgroup><h2>Outline</h2></hgroup><article  id="outline">
 
 <ul>
 <li>interpretation</li>
@@ -126,7 +126,7 @@
 <li>plotting</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
 
 <p>\[ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ \]</p>
 
@@ -192,7 +192,7 @@
 <li>plus minus SD, clinicial cutoffs, meaningful divisions (degrees)</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <p><img src="interactions-7_files/figure-html/unnamed-chunk-7-1.png" width="720" /></p>
 
@@ -355,10 +355,11 @@ tidy(vcov(mr.model.c))</pre>
 <li>predict and do by hand</li>
 <li>pequod</li>
 <li>sjPlot</li>
-<li>reghelper (in development), others..</li>
+<li>jtools</li>
+<li>AMPSS shiny app, others..</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
 <pre class = 'prettyprint lang-r'>library(pequod)
 int.model &lt;- lmres(Stress ~ Support.c* Anxiety.c, data = Multipleregression)
@@ -367,7 +368,7 @@ PlotSlope(slope.1)</pre>
 
 <p><img src="interactions-7_files/figure-html/unnamed-chunk-10-1.png" width="720" /></p>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
 <pre class = 'prettyprint lang-r'>library(sjPlot)
 sjp.int(mr.model.c, 
@@ -375,7 +376,7 @@ sjp.int(mr.model.c,
         mdrt.values = &quot;meansd&quot;,
         swap.pred = TRUE)</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
 
 <pre class = 'prettyprint lang-r'>support.c.values &lt;- range(Multipleregression$Support.c)
 anxiety.c.values &lt;- c(-sd(Multipleregression$Anxiety.c), 0,
@@ -391,7 +392,7 @@ plot.data</pre>
 ## 5 -2.869767  1.092455
 ## 6  2.902433  1.092455</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
 
 <pre class = 'prettyprint lang-r'>plot.data$Stress &lt;- predict(mr.model.c, newdata=plot.data) 
 plot.data$Anxiety.c &lt;- factor(plot.data$Anxiety.c, labels = c(&quot;-1SD&quot;, &quot;Mean&quot;, &quot;+1SD&quot;))
@@ -405,9 +406,15 @@ plot.data</pre>
 ## 5 -2.869767      +1SD 7.883496
 ## 6  2.902433      +1SD 2.627232</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
 
 <p><img src="interactions-7_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
+
+<pre class = 'prettyprint lang-r'>library(jtools)</pre>
+
+</article></slide><slide class=""><hgroup><h2>marginal effects, Johnson-Neyman, etc</h2></hgroup><article  id="marginal-effects-johnson-neyman-etc">
 
 </article></slide><slide class=""><hgroup><h2>errata mark II</h2></hgroup><article  id="errata-mark-ii">
 
@@ -421,7 +428,7 @@ plot.data</pre>
 <ul>
 <li>Linear lines often make bad predictions</li>
 <li>Some relationships are not linear (weight and height across lifespan)</li>
-<li>Sort of poor to model non linear data but useful to know</li>
+<li>Sort of poor to model non linear data but useful to kno</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>polynomial regression</h2></hgroup><article  id="polynomial-regression-1">
@@ -432,7 +439,7 @@ plot.data</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
 
-<p><img src="interactions-7_files/figure-html/unnamed-chunk-15-1.png" width="720" /></p>
+<p><img src="interactions-7_files/figure-html/unnamed-chunk-16-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
 
@@ -480,7 +487,7 @@ tidy(quad.c)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
-<p><img src="interactions-7_files/figure-html/unnamed-chunk-18-1.png" width="720" /></p>
+<p><img src="interactions-7_files/figure-html/unnamed-chunk-19-1.png" width="720" /></p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
 

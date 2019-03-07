@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -205,16 +209,6 @@ options (mc.cores=parallel::detectCores ()) # Run on multiple cores
 
 b1 &lt;- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)</pre>
 
-<pre >## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;</pre>
-
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
 <pre >##  Family: gaussian 
@@ -226,12 +220,12 @@ b1 &lt;- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)</pre>
 ## 
 ## Population-Level Effects: 
 ##           Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
-## Intercept     0.30      0.11     0.10     0.51       4095 1.00
-## peer          0.61      0.09     0.44     0.77       4001 1.00
+## Intercept     0.30      0.11     0.10     0.51       4456 1.00
+## peer          0.61      0.09     0.44     0.78       4539 1.00
 ## 
 ## Family Specific Parameters: 
 ##       Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
-## sigma     0.97      0.04     0.89     1.07       3590 1.00
+## sigma     0.97      0.04     0.89     1.07       4879 1.00
 ## 
 ## Samples were drawn using sampling(NUTS). For each parameter, Eff.Sample 
 ## is a crude measure of effective sample size, and Rhat is the potential 
@@ -269,38 +263,16 @@ summary(lm.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
 
-<pre class = 'prettyprint lang-r'>library(shinystan)
-launch_shiny(b1) </pre>
+<pre class = 'prettyprint lang-r'>#library(shinystan)
+#launch_shiny(b1) </pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
 
-<pre class = 'prettyprint lang-r'>pp_check(b1, re_formula = NA, type = &quot;dens_overlay&quot;)</pre>
-
-<pre >## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;</pre>
-
-<pre >## Using 10 posterior samples for ppc type &#39;dens_overlay&#39; by default.</pre>
-
-<pre >## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;</pre>
-
-<p><img src="Bayesian-12_files/figure-html/unnamed-chunk-10-1.png" width="720" /></p>
+<pre class = 'prettyprint lang-r'>#pp_check(b1, re_formula = NA, type = &quot;dens_overlay&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
 
-<pre class = 'prettyprint lang-r'>pp_check(b1, type = &quot;scatter_avg&quot;, nsamples = 100)</pre>
-
-<pre >## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;
-
-## Warning in is.na(x): is.na() applied to non-(list or vector) of type &#39;NULL&#39;</pre>
-
-<p><img src="Bayesian-12_files/figure-html/unnamed-chunk-11-1.png" width="720" /></p>
+<pre class = 'prettyprint lang-r'>#pp_check(b1, type = &quot;scatter_avg&quot;, nsamples = 100)</pre>
 
 </article></slide><slide class=""><hgroup><h2>Bayes Factor</h2></hgroup><article  id="bayes-factor"></article></slide>
 

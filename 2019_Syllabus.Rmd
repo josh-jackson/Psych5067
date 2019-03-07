@@ -87,7 +87,7 @@ Note that dates and readings are tentative. Topics will likely shift; all change
 | 7    | 2/26  |   **Exam 1**                           |                    |        |
 | -    | 2/28   | Assumptions, model diagnostics        |                    |                      |
 | 8    | 3/5   |  Assumptions, model diagnostics        |                    |                      |
-| -    | 3/7   |  Moderation/interaction               |                     | Cohen and Aiken  Chapter        |
+| -    | 3/7   |  Moderation/interaction               |                     | AMPPS; Cohen and Aiken Chapter        |
 | 9    | 3/12  | **Spring Break!**                    |                      |                      |
 | -    | 3/14  | **Spring Break!**                     |                     |                      |
 | 10   | 3/19  |  Moderation/interaction               |                   |          |

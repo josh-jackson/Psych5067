@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -151,7 +155,7 @@
 
 <pre >## # A tibble: 280 x 3
 ##       id    tx traffic.risk
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
+##    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
 ##  1     1     1         1.86
 ##  2     2     1         1   
 ##  3     3     1         3.29
@@ -162,7 +166,7 @@
 ##  8     8     0         2.43
 ##  9     9     0         3   
 ## 10    10     1         1.71
-## # ... with 270 more rows</pre>
+## # … with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
@@ -277,7 +281,7 @@ anova(mod.1)</pre>
 
 <pre >## # A tibble: 3 x 2
 ##      tx `mean(traffic.risk, na.rm = TRUE)`
-##   &lt;int&gt;                              &lt;dbl&gt;
+##   &lt;dbl&gt;                              &lt;dbl&gt;
 ## 1     0                               2.65
 ## 2     1                               2.17
 ## 3    NA                               2.29</pre>
@@ -334,7 +338,7 @@ anova(mod.1)</pre>
 
 <pre >## # A tibble: 280 x 3
 ##       id    tx traffic.risk
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt;
+##    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt;
 ##  1     1     1         1.86
 ##  2     2     1         1   
 ##  3     3     1         3.29
@@ -345,7 +349,7 @@ anova(mod.1)</pre>
 ##  8     8     0         2.43
 ##  9     9     0         3   
 ## 10    10     1         1.71
-## # ... with 270 more rows</pre>
+## # … with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
@@ -355,7 +359,7 @@ anova(mod.1)</pre>
 
 <pre >## # A tibble: 280 x 4
 ##       id    tx traffic.risk tx.r     
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;    
+##    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;    
 ##  1     1     1         1.86 treatment
 ##  2     2     1         1    treatment
 ##  3     3     1         3.29 treatment
@@ -366,7 +370,7 @@ anova(mod.1)</pre>
 ##  8     8     0         2.43 control  
 ##  9     9     0         3    control  
 ## 10    10     1         1.71 treatment
-## # ... with 270 more rows</pre>
+## # … with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
 
@@ -405,7 +409,7 @@ tidy(mod.1r)</pre>
 
 <pre >## # A tibble: 280 x 5
 ##       id    tx traffic.risk tx.r      tx.effect
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
+##    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
 ##  1     1     1         1.86 treatment         1
 ##  2     2     1         1    treatment         1
 ##  3     3     1         3.29 treatment         1
@@ -416,7 +420,7 @@ tidy(mod.1r)</pre>
 ##  8     8     0         2.43 control          -1
 ##  9     9     0         3    control          -1
 ## 10    10     1         1.71 treatment         1
-## # ... with 270 more rows</pre>
+## # … with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2>effect coding</h2></hgroup><article  id="effect-coding-1">
 
@@ -757,7 +761,7 @@ summary(mod.1)$sigma      # se of the model</pre>
 
 <pre >## # A tibble: 280 x 5
 ##       id    tx traffic.risk tx.r      tx.effect
-##    &lt;int&gt; &lt;int&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
+##    &lt;dbl&gt; &lt;dbl&gt;        &lt;dbl&gt; &lt;fct&gt;         &lt;dbl&gt;
 ##  1     1     1         1.86 treatment         1
 ##  2     2     1         1    treatment         1
 ##  3     3     1         3.29 treatment         1
@@ -768,7 +772,7 @@ summary(mod.1)$sigma      # se of the model</pre>
 ##  8     8     0         2.43 control          -1
 ##  9     9     0         3    control          -1
 ## 10    10     1         1.71 treatment         1
-## # ... with 270 more rows</pre>
+## # … with 270 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2>residuals</h2></hgroup><article  id="residuals">
 
@@ -802,14 +806,14 @@ head(fit.1.data)</pre>
 
 <pre >## # A tibble: 6 x 10
 ##   .rownames traffic.risk    tx .fitted .se.fit .resid    .hat .sigma
-##   &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##   &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 1                 1.86     1    2.17  0.0605 -0.312 0.00602  0.780
 ## 2 2                 1        1    2.17  0.0605 -1.17  0.00602  0.777
 ## 3 3                 3.29     1    2.17  0.0605  1.12  0.00602  0.777
 ## 4 4                 2        1    2.17  0.0605 -0.170 0.00602  0.780
 ## 5 5                 2.43     1    2.17  0.0605  0.259 0.00602  0.780
 ## 6 6                 3.29     1    2.17  0.0605  1.12  0.00602  0.777
-## # ... with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</pre>
+## # … with 2 more variables: .cooksd &lt;dbl&gt;, .std.resid &lt;dbl&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>pop quiz, hotshot, part deux</h2></hgroup><article  id="pop-quiz-hotshot-part-deux">
 
