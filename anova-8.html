@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -703,13 +707,13 @@ em.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 
 <pre class = 'prettyprint lang-r'>em.1</pre>
 
-<pre >##  group   SupportLevel   emmean        SE  df lower.CL  upper.CL
-##  Control low          9.124690 0.7532869 112 7.632149 10.617231
-##  Tx      low          7.614147 1.3047312 112 5.028989 10.199304
-##  Control med          8.146441 0.3715188 112 7.410324  8.882558
-##  Tx      med          8.511322 0.4125922 112 7.693823  9.328821
-##  Control high         5.543123 0.7146307 112 4.127174  6.959072
-##  Tx      high         6.253008 0.4196456 112 5.421534  7.084482
+<pre >##  group   SupportLevel emmean    SE  df lower.CL upper.CL
+##  Control low            9.12 0.753 112     7.63    10.62
+##  Tx      low            7.61 1.305 112     5.03    10.20
+##  Control med            8.15 0.372 112     7.41     8.88
+##  Tx      med            8.51 0.413 112     7.69     9.33
+##  Control high           5.54 0.715 112     4.13     6.96
+##  Tx      high           6.25 0.420 112     5.42     7.08
 ## 
 ## Confidence level used: 0.95</pre>
 
@@ -719,9 +723,9 @@ em.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 
 <pre >## NOTE: Results may be misleading due to involvement in interactions</pre>
 
-<pre >##  group     emmean        SE  df lower.CL upper.CL
-##  Control 7.604751 0.3675995 112 6.876400 8.333103
-##  Tx      7.459492 0.4771045 112 6.514171 8.404814
+<pre >##  group   emmean    SE  df lower.CL upper.CL
+##  Control   7.60 0.368 112     6.88     8.33
+##  Tx        7.46 0.477 112     6.51     8.40
 ## 
 ## Results are averaged over the levels of: SupportLevel 
 ## Confidence level used: 0.95</pre>
@@ -733,16 +737,16 @@ em.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 <pre >## NOTE: Results may be misleading due to involvement in interactions</pre>
 
 <pre >## $emmeans
-##  group     emmean        SE  df lower.CL upper.CL
-##  Control 7.604751 0.3675995 112 6.876400 8.333103
-##  Tx      7.459492 0.4771045 112 6.514171 8.404814
+##  group   emmean    SE  df lower.CL upper.CL
+##  Control   7.60 0.368 112     6.88     8.33
+##  Tx        7.46 0.477 112     6.51     8.40
 ## 
 ## Results are averaged over the levels of: SupportLevel 
 ## Confidence level used: 0.95 
 ## 
 ## $contrasts
-##  contrast     estimate       SE  df t.ratio p.value
-##  Control - Tx 0.145259 0.602294 112   0.241  0.8099
+##  contrast     estimate    SE  df t.ratio p.value
+##  Control - Tx    0.145 0.602 112 0.241   0.8099 
 ## 
 ## Results are averaged over the levels of: SupportLevel</pre>
 
@@ -750,22 +754,22 @@ em.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 
 <pre class = 'prettyprint lang-r'>pairs(em.1, adjust = &quot;tukey&quot;)</pre>
 
-<pre >##  contrast                     estimate        SE  df t.ratio p.value
-##  Control,low - Tx,low        1.5105433 1.5065739 112   1.003  0.9162
-##  Control,low - Control,med   0.9782492 0.8399211 112   1.165  0.8526
-##  Control,low - Tx,med        0.6133680 0.8588792 112   0.714  0.9799
-##  Control,low - Control,high  3.5815670 1.0383344 112   3.449  0.0101
-##  Control,low - Tx,high       2.8716817 0.8622898 112   3.330  0.0146
-##  Tx,low - Control,med       -0.5322941 1.3565949 112  -0.392  0.9988
-##  Tx,low - Tx,med            -0.8971753 1.3684137 112  -0.656  0.9863
-##  Tx,low - Control,high       2.0710237 1.4876225 112   1.392  0.7316
-##  Tx,low - Tx,high            1.3611384 1.3705568 112   0.993  0.9193
-##  Control,med - Tx,med       -0.3648812 0.5552104 112  -0.657  0.9861
-##  Control,med - Control,high  2.6033178 0.8054336 112   3.232  0.0196
-##  Control,med - Tx,high       1.8934325 0.5604718 112   3.378  0.0126
-##  Tx,med - Control,high       2.9681990 0.8251845 112   3.597  0.0062
-##  Tx,med - Tx,high            2.2583137 0.5885022 112   3.837  0.0028
-##  Control,high - Tx,high     -0.7098853 0.8287337 112  -0.857  0.9558
+<pre >##  contrast                   estimate    SE  df t.ratio p.value
+##  Control,low - Tx,low          1.511 1.507 112  1.003  0.9162 
+##  Control,low - Control,med     0.978 0.840 112  1.165  0.8526 
+##  Control,low - Tx,med          0.613 0.859 112  0.714  0.9799 
+##  Control,low - Control,high    3.582 1.038 112  3.449  0.0101 
+##  Control,low - Tx,high         2.872 0.862 112  3.330  0.0146 
+##  Tx,low - Control,med         -0.532 1.357 112 -0.392  0.9988 
+##  Tx,low - Tx,med              -0.897 1.368 112 -0.656  0.9863 
+##  Tx,low - Control,high         2.071 1.488 112  1.392  0.7316 
+##  Tx,low - Tx,high              1.361 1.371 112  0.993  0.9193 
+##  Control,med - Tx,med         -0.365 0.555 112 -0.657  0.9861 
+##  Control,med - Control,high    2.603 0.805 112  3.232  0.0196 
+##  Control,med - Tx,high         1.893 0.560 112  3.378  0.0126 
+##  Tx,med - Control,high         2.968 0.825 112  3.597  0.0062 
+##  Tx,med - Tx,high              2.258 0.589 112  3.837  0.0028 
+##  Control,high - Tx,high       -0.710 0.829 112 -0.857  0.9558 
 ## 
 ## P value adjustment: tukey method for comparing a family of 6 estimates</pre>
 
@@ -777,13 +781,13 @@ em.1&lt;- emmeans(aov.1, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 #contrast(em.1, method = &quot;pairwise&quot;)
 contrast(em.1, method = &quot;eff&quot;)</pre>
 
-<pre >##  contrast               estimate        SE  df t.ratio p.value
-##  Control,low effect   1.59256821 0.6848238 112   2.326  0.0437
-##  Tx,low effect        0.08202487 1.1070555 112   0.074  0.9411
-##  Control,med effect   0.61431902 0.4274424 112   1.437  0.1841
-##  Tx,med effect        0.97920021 0.4518603 112   2.167  0.0485
-##  Control,high effect -1.98899879 0.6566234 112  -3.029  0.0179
-##  Tx,high effect      -1.27911352 0.4561701 112  -2.804  0.0179
+<pre >##  contrast            estimate    SE  df t.ratio p.value
+##  Control,low effect     1.593 0.685 112  2.326  0.0437 
+##  Tx,low effect          0.082 1.107 112  0.074  0.9411 
+##  Control,med effect     0.614 0.427 112  1.437  0.1841 
+##  Tx,med effect          0.979 0.452 112  2.167  0.0485 
+##  Control,high effect   -1.989 0.657 112 -3.029  0.0179 
+##  Tx,high effect        -1.279 0.456 112 -2.804  0.0179 
 ## 
 ## P value adjustment: fdr method for 6 tests</pre>
 
@@ -793,15 +797,15 @@ contrast(em.1, method = &quot;eff&quot;)</pre>
 
 <pre >## SupportLevel = low:
 ##  model term df1 df2 F.ratio p.value
-##  group        1 112   1.005  0.3182
+##  group        1 112   1.005 0.3182 
 ## 
 ## SupportLevel = med:
 ##  model term df1 df2 F.ratio p.value
-##  group        1 112   0.432  0.5124
+##  group        1 112   0.432 0.5124 
 ## 
 ## SupportLevel = high:
 ##  model term df1 df2 F.ratio p.value
-##  group        1 112   0.734  0.3935</pre>
+##  group        1 112   0.734 0.3935</pre>
 
 </article></slide><slide class=""><hgroup><h2>more post hoc tests</h2></hgroup><article  id="more-post-hoc-tests">
 
@@ -996,13 +1000,13 @@ summary(aov.2)</pre>
 <pre class = 'prettyprint lang-r'>em.2&lt;- emmeans(aov.2, c(&quot;group&quot;, &quot;SupportLevel&quot;))
 em.2</pre>
 
-<pre >##  group   SupportLevel   emmean        SE  df lower.CL  upper.CL
-##  Control low          9.395306 0.7710288 111 7.867461 10.923151
-##  Tx      low          8.132124 1.3436644 111 5.469563 10.794685
-##  Control med          8.196489 0.3710552 111 7.461218  8.931759
-##  Tx      med          8.555469 0.4114513 111 7.740151  9.370788
-##  Control high         5.480706 0.7120352 111 4.069761  6.891651
-##  Tx      high         6.027439 0.4441021 111 5.147421  6.907457
+<pre >##  group   SupportLevel emmean    SE  df lower.CL upper.CL
+##  Control low            9.40 0.771 111     7.87    10.92
+##  Tx      low            8.13 1.344 111     5.47    10.79
+##  Control med            8.20 0.371 111     7.46     8.93
+##  Tx      med            8.56 0.411 111     7.74     9.37
+##  Control high           5.48 0.712 111     4.07     6.89
+##  Tx      high           6.03 0.444 111     5.15     6.91
 ## 
 ## Confidence level used: 0.95</pre>
 
@@ -1010,13 +1014,13 @@ em.2</pre>
 
 <pre class = 'prettyprint lang-r'>em.1</pre>
 
-<pre >##  group   SupportLevel   emmean        SE  df lower.CL  upper.CL
-##  Control low          9.124690 0.7532869 112 7.632149 10.617231
-##  Tx      low          7.614147 1.3047312 112 5.028989 10.199304
-##  Control med          8.146441 0.3715188 112 7.410324  8.882558
-##  Tx      med          8.511322 0.4125922 112 7.693823  9.328821
-##  Control high         5.543123 0.7146307 112 4.127174  6.959072
-##  Tx      high         6.253008 0.4196456 112 5.421534  7.084482
+<pre >##  group   SupportLevel emmean    SE  df lower.CL upper.CL
+##  Control low            9.12 0.753 112     7.63    10.62
+##  Tx      low            7.61 1.305 112     5.03    10.20
+##  Control med            8.15 0.372 112     7.41     8.88
+##  Tx      med            8.51 0.413 112     7.69     9.33
+##  Control high           5.54 0.715 112     4.13     6.96
+##  Tx      high           6.25 0.420 112     5.42     7.08
 ## 
 ## Confidence level used: 0.95</pre></article></slide>
 

@@ -190,20 +190,20 @@ plot(b1)
 
 ##
 ```{r, eval=FALSE}
-library(shinystan)
-launch_shiny(b1) 
+#library(shinystan)
+#launch_shiny(b1) 
 ```
 
 ##
 
-```{r}
-pp_check(b1, re_formula = NA, type = "dens_overlay")
+```{r, eval = FALSE}
+#pp_check(b1, re_formula = NA, type = "dens_overlay")
 ```
 
 ##
 
-```{r}
-pp_check(b1, type = "scatter_avg", nsamples = 100)
+```{r, eval = FALSE}
+#pp_check(b1, type = "scatter_avg", nsamples = 100)
 
 ```
 

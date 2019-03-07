@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -356,16 +360,16 @@ model.iris &lt;- train(Sepal.Length~., data=iris, trControl=train_control)</pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 135, 136, 136, 135, 134, 136, ... 
+## Summary of sample sizes: 133, 135, 137, 135, 135, 134, ... 
 ## Resampling results across tuning parameters:
 ## 
-##   mtry  RMSE       Rsquared  MAE      
-##   2     0.3417545  0.846265  0.2806196
-##   3     0.3337489  0.855679  0.2762095
-##   5     0.3356387  0.853748  0.2748540
+##   mtry  RMSE       Rsquared   MAE      
+##   2     0.3402743  0.8472294  0.2801583
+##   3     0.3295844  0.8560070  0.2748062
+##   5     0.3262353  0.8545375  0.2703525
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
-## The final value used for the model was mtry = 3.</pre>
+## The final value used for the model was mtry = 5.</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 

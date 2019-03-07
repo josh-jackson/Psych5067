@@ -54,6 +54,10 @@
       font-style: italic;
     }
 
+    summary {
+      display: list-item;
+    }
+
     slides > slide {
       -webkit-transition: all 0.4s ease-in-out;
       -moz-transition: all 0.4s ease-in-out;
@@ -77,7 +81,7 @@
 
 <body style="opacity: 0">
 
-<slides>
+<slides class="layout-widescreen">
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -118,7 +122,7 @@
 
 <p><img src="interactions-7_files/figure-html/unnamed-chunk-4-1.png" width="720" /></p>
 
-</article></slide><slide class=""><hgroup><h2>Goals for today</h2></hgroup><article  id="goals-for-today">
+</article></slide><slide class=""><hgroup><h2>Outline</h2></hgroup><article  id="outline">
 
 <ul>
 <li>interpretation</li>
@@ -355,7 +359,8 @@ tidy(vcov(mr.model.c))</pre>
 <li>predict and do by hand</li>
 <li>pequod</li>
 <li>sjPlot</li>
-<li>reghelper (in development), others..</li>
+<li>jtools</li>
+<li>AMPSS shiny app, others..</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
@@ -409,6 +414,12 @@ plot.data</pre>
 
 <p><img src="interactions-7_files/figure-html/unnamed-chunk-14-1.png" width="720" /></p>
 
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
+
+<pre class = 'prettyprint lang-r'>library(jtools)</pre>
+
+</article></slide><slide class=""><hgroup><h2>marginal effects, Johnson-Neyman, etc</h2></hgroup><article  id="marginal-effects-johnson-neyman-etc">
+
 </article></slide><slide class=""><hgroup><h2>errata mark II</h2></hgroup><article  id="errata-mark-ii">
 
 <ul>
@@ -421,7 +432,7 @@ plot.data</pre>
 <ul>
 <li>Linear lines often make bad predictions</li>
 <li>Some relationships are not linear (weight and height across lifespan)</li>
-<li>Sort of poor to model non linear data but useful to know</li>
+<li>Sort of poor to model non linear data but useful to kno</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>polynomial regression</h2></hgroup><article  id="polynomial-regression-1">
@@ -430,11 +441,11 @@ plot.data</pre>
 <li>contain a series of higher order function for a single variable<br/><br> Linear \(\hat{Y} = b_{0} + b_{1}X\)<br/><br> Quadratic \(\hat{Y} = b_{0} + b_{1}X + b_{2}X^2\)<br/><br> Cubic \(\hat{Y} = b_{0} + b_{1}X + b_{2}X^2 + b_{3}X^3\)</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-9">
-
-<p><img src="interactions-7_files/figure-html/unnamed-chunk-15-1.png" width="720" /></p>
-
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+
+<p><img src="interactions-7_files/figure-html/unnamed-chunk-16-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
 <pre class = 'prettyprint lang-r'>library(broom)
 tidy(quad)</pre>
@@ -478,11 +489,11 @@ tidy(quad.c)</pre>
 ## 2 hp.c         -0.0899   0.00952       -9.44 2.39e-10
 ## 3 I(hp.c^2)     0.000421 0.0000984      4.27 1.89e- 4</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
-
-<p><img src="interactions-7_files/figure-html/unnamed-chunk-18-1.png" width="720" /></p>
-
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
+
+<p><img src="interactions-7_files/figure-html/unnamed-chunk-19-1.png" width="720" /></p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
 
 <ul>
 <li>The b2 coefficient is the acceleration</li>
