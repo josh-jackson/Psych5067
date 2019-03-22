@@ -59,14 +59,17 @@ $$ \sigma = \sqrt{\frac{\sum{(x-\mu)^2}}{N}} $$
 
 ## Associations
 Covariation (cross products)
-$$ SS = {\sum{(x-\bar{x})(y-\bar{y})}}} $$
+$$ SS = {\sum{(x-\bar{x})(y-\bar{y})}} $$
 
 
 $$ SS = {\sum{{(x-\mu_{x})(y-\mu_{y})}}} $$
 
+
+
 ## Associations
 Covariance
 $$ cov_{xy}^{2} = {\frac{\sum{(x-\bar{x})(y-\bar{y})}}{N-1}} $$
+
 $$ \sigma_{xy}^{2} = {\frac{\sum{(x-\mu_{x})(y-\mu_{y})}}{N}} $$
 
 >- Covariance matrix is basis for many analyses
