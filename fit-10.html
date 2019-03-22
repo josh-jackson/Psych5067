@@ -360,6 +360,7 @@ model.iris &lt;- train(Sepal.Length~., data=iris, trControl=train_control)</pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
+<<<<<<< HEAD
 ## Summary of sample sizes: 135, 133, 136, 136, 136, 135, ... 
 ## Resampling results across tuning parameters:
 ## 
@@ -367,9 +368,18 @@ model.iris &lt;- train(Sepal.Length~., data=iris, trControl=train_control)</pre>
 ##   2     0.3506728  0.8283389  0.2843626
 ##   3     0.3353081  0.8373137  0.2760237
 ##   5     0.3281629  0.8403975  0.2682228
+=======
+## Summary of sample sizes: 136, 134, 134, 136, 135, 135, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  RMSE       Rsquared   MAE      
+##   2     0.3333401  0.8375343  0.2705978
+##   3     0.3194812  0.8519834  0.2626222
+##   5     0.3199915  0.8580135  0.2631575
+>>>>>>> 637b91e34e4b690808ee7461487d3d1bea2e502b
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
-## The final value used for the model was mtry = 5.</pre>
+## The final value used for the model was mtry = 3.</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
