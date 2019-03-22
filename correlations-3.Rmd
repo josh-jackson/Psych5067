@@ -62,7 +62,12 @@ Covariation (cross products)
 $$ SS = {\sum{(x-\bar{x})(y-\bar{y})}} $$
 
 
-$$ SS = {\sum{{(x-\mu_{x})(y-\mu_{y})}}} $$
+
+
+$$ SS = {\sum{{(x-\mu_{x}})(y-\mu_{y})}} $$
+
+
+
 
 
 
@@ -165,12 +170,16 @@ mtext(expression(list(mu[1]==0,mu[2]==0,sigma[11]==10,sigma[22]==10,sigma[12 ]==
 
 
 $$ H_{0}: \rho_{xy} = 0 $$
+
 $$ H_{A}: \rho_{xy} \neq 0 $$
+
 
 Test statistic
 
 $$  t = {\frac{r}{SE_{r}}} $$
+
 $$  t = {\frac{r}{\sqrt{\frac{1-r^{2}}{N-2}}}} $$
+
 
 df = N-2
 
@@ -272,7 +281,7 @@ $$ z^{'} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} $$
 
 ## Fisher’s r to z’ transformation
 
-<img src="fisher.png" width="600" height="500"/>
+<img src="fisher.png" width="600" height="500">
 
 
 ##  Steps for computing confidence interval
