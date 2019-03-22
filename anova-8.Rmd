@@ -122,7 +122,7 @@ $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varep
 ## example
 
 ```{r, echo=FALSE, message=FALSE}
-data <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/Anxiety.data.csv")
+data <- read.csv("Anxiety.data.csv")
 
 library(dplyr)
 # getting the group means 
