@@ -31,10 +31,10 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}^2} $$
 ## GPA = SES + Peer relationships
 -Can be thought of as overlapping Venn diagrams
 
-<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2-1.png" width="700" height="500"/>
+<img src="R2-1.png" width="700" height="500"/>
 
 ## redundent vs non-redundent information 
-<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2.png" width="700" height="500"/>
+<img src="R2.png" width="700" height="500"/>
 
 
 ## types of correlations
@@ -47,7 +47,7 @@ $$R^2 = \frac{SS_{reggression}} {SS_{Y}} = \frac{s_{\hat{Y}}^2}{s_{Y}^2} $$
     
 ## semi-partial
 
-<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2-2.png"width="700" height="500"/>
+<img src="R2-2.png" width="700" height="500"/>
 
 
 ## semi-partial
@@ -59,7 +59,7 @@ $$ sr^2 = R_{Y.12}^2 - r_{Y2}^2 $$
 - the extent to which the part of X1  that is independent of X2  is correlated with the part of Y that is also independent of X2 
 
 ## partial correlation
-<img src="~/Box Sync/5067 Regression Spring/Spring_2019/R2-3.png" width="500" height="500"/>
+<img src="R2-3.png" width="500" height="500"/>
 
 ## partial correlation
 $$ pr = r_{y1.2} = \frac{r_{Y1}-r_{Y2}r_{12} }{\sqrt{1-r_{Y2}^2}\sqrt{1-r_{12}^2}} $$
@@ -94,7 +94,7 @@ $$ \hat{Y} = b_{0} + b_{1}X_{1} + b_{2}X_{2}+...+b_{p}X_{p}  $$
 
 ## example
 ```{r, echo = FALSE, message=FALSE}
-Multipleregression <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/Multipleregression.csv")
+Multipleregression <- read.csv("Multipleregression.csv")
 ```
 
 ```{r}
@@ -150,7 +150,7 @@ $$b_{0} = \bar{Y} - b_{1}\bar{X_{1}} - b_{2}\bar{X_{2}} $$
 
 ## How to visualize "controlling for"
 - example of x and y controlling for W. Taken from @nickchk 
-![](~/Box Sync/5067 Regression Spring/Spring_2019/control.gif)
+![](control.gif)
 
 
 
@@ -338,7 +338,7 @@ $$R_{Y.1234...p}^2 = r_{Y1}^2 + r_{Y(2.1)}^2 + r_{Y(3.21)}^2 + r_{Y(4.321)}^2 + 
 ```{r, echo = FALSE}
 library(tidyverse)
 library(forcats)
-one.way <- read.csv("~/Box Sync/5067 Regression Spring/Spring_2019/anova.csv")
+one.way <- read.csv("anova.csv")
 one.way$group <- one.way$IV
 one.way$group <- as.factor(one.way$group)
 one.way <- one.way %>%

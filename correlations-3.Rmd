@@ -267,7 +267,7 @@ $$ z^{'} = {\frac{1}{2}}ln{\frac{1+r}{1-r}} $$
 
 ## Fisher’s r to z’ transformation
 
-<img src="~/Box Sync/5067 Regression Spring/Spring_2019/fisher.png" width="600" height="500"/>
+<img src="fisher.png" width="600" height="500"/>
 
 
 ##  Steps for computing confidence interval

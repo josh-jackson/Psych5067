@@ -4,7 +4,7 @@ output: html_document
 ---  
 <br>
 
-
+- Interaction homework #4 posted. Due 3/31
 - Interaction lecture posted. New associated reading "AMPPS" to go along with Cohen and Aiken chapter
 <br>
   
