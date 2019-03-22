@@ -359,12 +359,12 @@ $$ r_{XX} $$
 - true score variance divided by observed variance
 - how do you assess theoretical variance i.e., true score variance? 
 
-$$ r_{XY} = r_{X_{T} Y_{T}} {\sqrt {r_{XX} r_{YY}}} $$
+$$ r_{XY} = r_{X_{T} Y_{T}} {\sqrt{r_{XX}r_{YY}}} $$
 $$ r_{XY} = .6 {\sqrt {(.70) (.70)}} $$
 
 ## Reliability
 
-$$ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX} r_{YY}}}}} $$
+$$ r_{X_{T} Y_{T}} =  = {\frac {r_{XY}} {\sqrt{{r_{XX}r_{YY}}}}} $$
 
 $$ r_{X_{T} Y_{T}} =  = {\frac {.30} {\sqrt{(.70)(.70)}}} $$
 
