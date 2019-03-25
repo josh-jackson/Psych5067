@@ -10,6 +10,7 @@ widescreen: true
 - 2-way = 2 IVs, 3-way = 3 IVs, etc
 - Advantages include: 1) efficiency 2) generalizability 3) interactions
 
+
 ## factorial ANOVA
 
 |      |       |Factor| A          | Marginal Means       |
@@ -20,6 +21,12 @@ widescreen: true
 |      | happy |  7.3 |     8.0    |  7.66                |
 |______|_______|______|____________|______________________|
 | M.M  |       | 7.77 |   6.0      | 6.88                 | 
+
+
+## A note on terminology
+
+- This is just regression with multiple nominal IVs
+- Discussed as a different from regression because of historical reasons
 
 ## SS decomposition
 - SStotal = SSbetween + SSwithin  
@@ -41,7 +48,7 @@ widescreen: true
 ## what do interactions with nominal data look like? 
 - and can I "see" main effects too? 
 
-## equation
+## coneptual equation
 
 - similar to effect coding within regression
 
@@ -50,16 +57,7 @@ $$ Y_{ijk} = \mu + \alpha_{j} + \beta_{k} + \alpha \beta_{jk}+\varepsilon_{ijk} 
 $$ \alpha_{j} =  \mu_{j} -  \mu $$
 
 
-```{r}
-library(tidyverse)
-tribble(
-  ~x, ~y,  ~z,
-  "a", 2,  3.6,
-  "b", 1,  8.5
-)
 
-
-```
 
 
 ## interactions 
@@ -176,7 +174,43 @@ $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varep
 contrasts(data$group)
 contrasts(data$SupportLevel)
 ```
-- we will see why this doesn't matter soon
+- we will see why this doesn't matter
+
+## 
+
+```{r}
+
+data$group.effect <- data$group
+data$SupportLevel.effect <- data$SupportLevel
+
+contrasts(data$group.effect) <- contr.sum(2)
+contrasts(data$SupportLevel.effect) <- contr.sum(3)
+
+contrasts(data$group.effect)
+contrasts(data$SupportLevel.effect)
+```
+
+
+##
+
+```{r}
+lm.1.effect <- lm(Anxiety ~ group.effect + SupportLevel.effect + group.effect*SupportLevel.effect, data=data)
+tidy(lm.1.effect)
+```
+
+
+## 
+
+```{r}
+anova(lm.1.effect)
+```
+
+##
+
+```{r}
+anova(lm.1)
+```
+
 
 ## Interpretting interactions 
 - beyond noticing whether cell means look different we can do formal tests  
@@ -199,13 +233,15 @@ anova(aov.0, aov.1)
 $$ Y_{ijk} = b_{0} + b_{1}J1 + b_{2}K1 + b_{3}K2 + b_{4}J1K1 + b_{5}J1K2 +\varepsilon_{ijk} $$
 - Remember, this is likely done with default dummy 
 - Typically not used as you are likely interested in more than just a few comparisons
+- Same is true even if we use effect coding
 
 ## Interpretting interactions part 2
 
 '3. Planned contrasts/Post hoc comparisons/simple main effects
  
  - All of these fall under the rubric of 'contrasts'  
- - The most basic o these is Tukey honestly significant difference
+ - The most basic of these is Tukey honestly significant difference
+ - Note: TukeyHSD function requires aov model not lm
  
 ## 
 
@@ -218,23 +254,26 @@ TukeyHSD(aov.1)
 
 - Planned contrasts, a priori: Holm, Dunn-Bonnferoni, perhaps Tukey
 - All pairwise comparisons (maybe a priori): Tukey
-- Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at night
+- Post hoc fishing: Scheffe, perhaps Tukey if you can sleep at nigh
 
 ## 
 ```{r, message = FALSE}
 # library(lsmeans) outdated, but code still works
 library(emmeans) ## new and shiny
-em.1<- emmeans(aov.1, c("group", "SupportLevel"))
+em.1<- emmeans(lm.1, c("group", "SupportLevel"))
 # can be used to test numerous a prior and post hoc hypotheses
+# can use both lm and aov models (and more!)
 # estimated means especially important for graphing
 # see more here: 
 #https://cran.r-project.org/web/packages/emmeans/vignettes/basics.html
 ```
 
-## Quick plot
+#### Quick plot
 ```{r}
 emmip(aov.1, group ~ SupportLevel)
 ```
+
+
 
 ##
 ```{r}
@@ -254,6 +293,11 @@ emmeans(aov.1, pairwise ~ group)
 ```
 
 
+```{r}
+emmeans(aov.1, pairwise ~ SupportLevel)
+```
+
+
 ## emmeans can also do tukey (and other adjustments)
 
 ```{r}
@@ -264,8 +308,9 @@ pairs(em.1, adjust = "tukey")
 ## post hoc tests
 
 ```{r}
-# equivalent to pairs function above
+# can use contrast function to get equivalent to pairs function 
 #contrast(em.1, method = "pairwise")
+#or look at effects rather than pairwise
 contrast(em.1, method = "eff")
 ```
 
@@ -282,7 +327,7 @@ joint_tests(aov.1, by = "SupportLevel")
 # multcomp::glht(aov.1)
 
 # Nice package that allows you to do many of the same functions as 
-# lsmeans but it has one major downside: MASS is loaded and 
+# emmeans but it has one major downside: MASS is loaded and 
 # thus masks dplyr::select
 ```
 
@@ -298,6 +343,7 @@ testInteractions(aov.1, pairwise="SupportLevel")
 testInteractions(aov.1, pairwise="group")
 ```
 
+
 ## different types of Sums of Squares
 - 3 types, 3 different hypotheses testing strategies   
 - Type 1, hierarchical (what R does)  
@@ -309,7 +355,7 @@ testInteractions(aov.1, pairwise="group")
 
 
 ## Type 1: Hierarchical (what R does) 
-- Think of it as model comparisons  
+- Think of it as model comparisons. You always have to compare to something     
 A: anova(null, Factor A)  
 B: anova(Factor A, FactorA+B)  
 AB: anova(FactorA+B, FactorA+B+A*B)  
@@ -339,6 +385,7 @@ AB: anova(FactorA+B, FactorA+B+A*B)
 
 ## Effect sizes
 - Eta squared is like R squared for an effect SS effect / SS total    
+<br>
 - Partial eta squared (SS effect / (SS effect + SS resid))  
 - the variance explained by a given variable of the variance remaining explained by other predictors  
 - Partial will always be larger, but not interpretable with sig interaction   
@@ -356,11 +403,11 @@ etaSquared(aov.1)
 - Better than eta, adjusts for bias
 - Omega Squared is always smaller than Eta Squared.  
 - see: http://daniellakens.blogspot.com/2015/06/why-you-should-use-omega-squared.html   
-- cohen's f is used in pwr  
+- cohen's f is used in pwr but it isn't popular or intuitive  
 
 ## ANCOVA
 - ANalysis of COVAriance
-- aka regression with continuous and nominal variables
+- aka regression with continuous and nominal variables 
 - given a special name because of historical reasons
 - Typically, when someone says they are doing an ANCOVA they are focused on comparing group means adjusted for some covariate
 
