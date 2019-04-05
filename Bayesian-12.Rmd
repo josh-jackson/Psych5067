@@ -165,14 +165,14 @@ alcohol1 <- read.csv("alcohol1.txt")
 
 ```{r, message=FALSE}
 library(brms)
-options (mc.cores=parallel::detectCores ()) # Run on multiple cores
+#options (mc.cores=parallel::detectCores ()) # Run on multiple cores
 
-b1 <- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)
+#b1 <- brm(alcuse ~ peer, data=alcohol1, chains=3, iter=3000)
 ```
 
 ##
 ```{r, echo=FALSE}
-summary(b1)
+#summary(b1)
 ```
 
 
@@ -185,7 +185,7 @@ summary(lm.1)
 
 ##
 ```{r}
-plot(b1)
+#plot(b1)
 ```
 
 ##
