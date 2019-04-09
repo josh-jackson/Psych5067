@@ -36,9 +36,14 @@ $$  \hat{p}_{i} \leftrightsquigarrow b_{0} + b_{1}X_{1} + b_{2}X_{2}... b_{3}X_{
 
 ## Generalized linear models 
 
-- extend the general linear model framework    
+- extend the general linear model framework
+- used to describe different Data Generating Processes (DGPs) other than gausian normal
 - need to use if the range of Y is restricted (e.g. binary, count) and/or the variance of Y depends on the mean  
 <br>
+
+
+
+## Generalized linear models 
 
 - made up of two functions  
 1. Link Function - describes how the mean depends on the predictors $g(\mu) = \eta_{i}$
@@ -56,13 +61,15 @@ $E[ε_{i}] = 0$ and $var[ε_{i}] = s^2$
 Typically we assume $ε_{i}\sim N(0,σ^2)$
 as a basis for inference, e.g. t-tests
 
+- This assumption is easy to make as the mean and variance are not related. For other types of distributions they may be related or you may have some idea about what shape the errors will take. 
+
 ## Generalized linear model
 
 - need to accomplish two goals: 
   1. specify a link function  
   2. need to specify the error structure  
   
-- luckily this  handled together
+- luckily this often handled together with a single step
 
 ## General Linear Model
 
@@ -72,8 +79,6 @@ as a basis for inference, e.g. t-tests
 
 - Variance Function (describes how the variance depends on the mean, related to a particular distribution) $\phi V(\mu) = 1*\sigma^2$
 
-- in other words, it assumes the gaussian normal distribution
-
 ##  
 
 - In some situations (not when working with a dichotomous outcome) an IV variable can be transformed to improve linearity and homogeneity of variance  
@@ -82,7 +87,7 @@ as a basis for inference, e.g. t-tests
       + transformation must simulateneously improve linearity and homogeneity of variance   
       + transformation may not be defined by the boundaries of the sample space
 
-## Link function for logistc
+## Link function for logistic
 
 - we need to map (0,1) to $(-\infty, \infty)$
 - Logistic regression uses the logistic function to link the predicted probabilities to the predictors   
@@ -156,9 +161,9 @@ glm(formula, family = gaussian, data, weights, subset,
 ```
 
 ## Family Argument
-The family argument takes (the name of) a family function which specifies:  
-  1. the link function  
-  2. the variance function  
+The family argument  specifies link & variance function   
+- Family specifies variance, while link specifies link  
+- Families have default links, usually can leave  
   
 ```{r, eval=FALSE}
 
@@ -167,7 +172,8 @@ glm(y ~ X1+ X2 + X3 , family = binomial, data = dataset)
   binomial(link = "logit")
   gaussian(link = "identity")
   Gamma(link = "inverse")
-  inverse.gaussian(link = "1/mu2")   poisson(link = "log")
+  inverse.gaussian(link = "1/mu2")  
+  poisson(link = "log")
 ```
 
 ## how to interpret
@@ -195,14 +201,14 @@ mortality <- Personality_longevity %>%
                      labels=c("premature","normal"))) %>% 
   select(-Time)
   
-mortality$premature.d <- dplyr::recode(mortality$premature.d, normal ="1", premature="0")
+mortality$NOT.premature <- dplyr::recode(mortality$premature.d, normal ="1", premature="0")
   
-mortality$premature.d <- as.numeric(as.character(mortality$premature.d))
+mortality$NOT.premature <- as.numeric(as.character(mortality$NOT.premature ))
   
 ```
 
 ```{r}
-# 0 = premature
+# 1 = not premature
 mortality
 ```
 
@@ -210,14 +216,14 @@ mortality
 
 ```{r}
 
-death.1 <- lm(premature.d ~ Intelligence_Self , data = mortality)
+death.1 <- lm(NOT.premature ~ Intelligence_Self , data = mortality)
 summary(death.1)
 ```
 
 ## 
 ```{r}
 
-death.2 <- glm(premature.d ~ Intelligence_Self , data = mortality)
+death.2 <- glm(NOT.premature ~ Intelligence_Self , data = mortality)
 summary(death.2)
 ```
 
@@ -233,7 +239,7 @@ anova(death.2)
 
 ##
 ```{r}
-death.3 <- glm(premature.d ~ Intelligence_Self,
+death.3 <- glm(NOT.premature ~ Intelligence_Self,
                family = binomial, data = mortality)
 summary(death.3)
 ```
@@ -255,28 +261,26 @@ exp(1)^(.08012*20 + 0.28695)
 ```
 
 
-##
+## probit 
+
 ```{r}
-death.4 <- glm(premature.d ~ Intelligence_Self,
+death.4 <- glm(NOT.premature ~ Intelligence_Self,
         family = binomial(link = "probit"), data = mortality)
 summary(death.4)
 ```
 
-## count data
+## 
 
-```{r, eval =FALSE}
-num.rejects <- glm(rejections ~ Intelligence_SelF, 
-                   family=poisson, data = mortality)
-summary(num.rejects)
+```{r}
+both <- glm(NOT.premature ~ Intelligence_Mate +Intelligence_Self, 
+                 family = binomial, data = mortality)
+summary(both)
 ```
 
-```{r, echo=FALSE}
-## dispersion parameter
 
-# - more/less variability than expected under the assumed distribution
-# - normal linear model based on gausian normal mean and sd are independent
-# - overdispersion leads to biases parameter estimates and standard errors
-# - can adjust for it
+##
+
+```{r}
+cor(mortality$Intelligence_Self, mortality$Intelligence_Mate)
 ```
-
 

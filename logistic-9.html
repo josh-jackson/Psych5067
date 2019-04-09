@@ -124,8 +124,14 @@
 </article></slide><slide class=""><hgroup><h2>Generalized linear models</h2></hgroup><article  id="generalized-linear-models">
 
 <ul>
-<li>extend the general linear model framework<br/></li>
-<li><p>need to use if the range of Y is restricted (e.g. binary, count) and/or the variance of Y depends on the mean<br/><br></p></li>
+<li>extend the general linear model framework</li>
+<li>used to describe different Data Generating Processes (DGPs) other than gausian normal</li>
+<li>need to use if the range of Y is restricted (e.g. binary, count) and/or the variance of Y depends on the mean<br/><br></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Generalized linear models</h2></hgroup><article  id="generalized-linear-models-1">
+
+<ul>
 <li>made up of two functions<br/></li>
 </ul>
 
@@ -138,6 +144,10 @@
 
 <p>In LMs, we assume that the errors \(ε_{i}\) are independent and identically distributed such that <br> <br> \(E[ε_{i}] = 0\) and \(var[ε_{i}] = s^2\) <br> <br> Typically we assume \(ε_{i}\sim N(0,σ^2)\) as a basis for inference, e.g. t-tests</p>
 
+<ul>
+<li>This assumption is easy to make as the mean and variance are not related. For other types of distributions they may be related or you may have some idea about what shape the errors will take.</li>
+</ul>
+
 </article></slide><slide class=""><hgroup><h2>Generalized linear model</h2></hgroup><article  id="generalized-linear-model">
 
 <ul>
@@ -147,7 +157,7 @@
 <li>specify a link function<br/></li>
 <li>need to specify the error structure</li>
 </ol></li>
-<li>luckily this handled together</li>
+<li>luckily this often handled together with a single step</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>General Linear Model</h2></hgroup><article  id="general-linear-model">
@@ -156,7 +166,6 @@
 <li><p>GLM (aka regression as you know it) is a special case of Generalized Linear Models</p></li>
 <li><p>Link function (describes how the mean depends on the predictors) is \(g(\mu) = \mu\).</p></li>
 <li><p>Variance Function (describes how the variance depends on the mean, related to a particular distribution) \(\phi V(\mu) = 1*\sigma^2\)</p></li>
-<li><p>in other words, it assumes the gaussian normal distribution</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
@@ -166,7 +175,7 @@
 <li>problems:<br/>+ response variable has changed!<br/>+ transformation must simulateneously improve linearity and homogeneity of variance<br/>+ transformation may not be defined by the boundaries of the sample space</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Link function for logistc</h2></hgroup><article  id="link-function-for-logistc">
+</article></slide><slide class=""><hgroup><h2>Link function for logistic</h2></hgroup><article  id="link-function-for-logistic">
 
 <ul>
 <li>we need to map (0,1) to \((-\infty, \infty)\)</li>
@@ -236,14 +245,15 @@
 
 </article></slide><slide class=""><hgroup><h2>Family Argument</h2></hgroup><article  id="family-argument">
 
-<p>The family argument takes (the name of) a family function which specifies:<br/>1. the link function<br/>2. the variance function</p>
+<p>The family argument specifies link &amp; variance function<br/>- Family specifies variance, while link specifies link<br/>- Families have default links, usually can leave</p>
 
 <pre class = 'prettyprint lang-r'>glm(y ~ X1+ X2 + X3 , family = binomial, data = dataset)
 
   binomial(link = &quot;logit&quot;)
   gaussian(link = &quot;identity&quot;)
   Gamma(link = &quot;inverse&quot;)
-  inverse.gaussian(link = &quot;1/mu2&quot;)   poisson(link = &quot;log&quot;)</pre>
+  inverse.gaussian(link = &quot;1/mu2&quot;)  
+  poisson(link = &quot;log&quot;)</pre>
 
 </article></slide><slide class=""><hgroup><h2>how to interpret</h2></hgroup><article  id="how-to-interpret">
 
@@ -257,32 +267,32 @@
 
 </article></slide><slide class=""><hgroup><h2>example</h2></hgroup><article  id="example">
 
-<pre class = 'prettyprint lang-r'># 0 = premature
+<pre class = 'prettyprint lang-r'># 1 = not premature
 mortality</pre>
 
-<pre >## # A tibble: 300 x 3
-##    Intelligence_Self Intelligence_Mate premature.d
-##                &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;
-##  1                22                19           1
-##  2                22                18           1
-##  3                21                21           1
-##  4                22                17           1
-##  5                19                18           1
-##  6                19                20           0
-##  7                16                18           1
-##  8                15                11           0
-##  9                16                21           1
-## 10                19                22           1
+<pre >## # A tibble: 300 x 4
+##    Intelligence_Self Intelligence_Mate premature.d NOT.premature
+##                &lt;dbl&gt;             &lt;dbl&gt; &lt;fct&gt;               &lt;dbl&gt;
+##  1                22                19 normal                  1
+##  2                22                18 normal                  1
+##  3                21                21 normal                  1
+##  4                22                17 normal                  1
+##  5                19                18 normal                  1
+##  6                19                20 premature               0
+##  7                16                18 normal                  1
+##  8                15                11 premature               0
+##  9                16                21 normal                  1
+## 10                19                22 normal                  1
 ## # … with 290 more rows</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7">
 
-<pre class = 'prettyprint lang-r'>death.1 &lt;- lm(premature.d ~ Intelligence_Self , data = mortality)
+<pre class = 'prettyprint lang-r'>death.1 &lt;- lm(NOT.premature ~ Intelligence_Self , data = mortality)
 summary(death.1)</pre>
 
 <pre >## 
 ## Call:
-## lm(formula = premature.d ~ Intelligence_Self, data = mortality)
+## lm(formula = NOT.premature ~ Intelligence_Self, data = mortality)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
@@ -301,12 +311,12 @@ summary(death.1)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-8">
 
-<pre class = 'prettyprint lang-r'>death.2 &lt;- glm(premature.d ~ Intelligence_Self , data = mortality)
+<pre class = 'prettyprint lang-r'>death.2 &lt;- glm(NOT.premature ~ Intelligence_Self , data = mortality)
 summary(death.2)</pre>
 
 <pre >## 
 ## Call:
-## glm(formula = premature.d ~ Intelligence_Self, data = mortality)
+## glm(formula = NOT.premature ~ Intelligence_Self, data = mortality)
 ## 
 ## Deviance Residuals: 
 ##     Min       1Q   Median       3Q      Max  
@@ -333,7 +343,7 @@ summary(death.2)</pre>
 
 <pre >## Analysis of Variance Table
 ## 
-## Response: premature.d
+## Response: NOT.premature
 ##                    Df Sum Sq Mean Sq F value  Pr(&gt;F)  
 ## Intelligence_Self   1  0.537 0.53653  3.8256 0.05141 .
 ## Residuals         298 41.793 0.14025                  
@@ -348,7 +358,7 @@ summary(death.2)</pre>
 ## 
 ## Model: gaussian, link: identity
 ## 
-## Response: premature.d
+## Response: NOT.premature
 ## 
 ## Terms added sequentially (first to last)
 ## 
@@ -359,13 +369,13 @@ summary(death.2)</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
-<pre class = 'prettyprint lang-r'>death.3 &lt;- glm(premature.d ~ Intelligence_Self,
+<pre class = 'prettyprint lang-r'>death.3 &lt;- glm(NOT.premature ~ Intelligence_Self,
                family = binomial, data = mortality)
 summary(death.3)</pre>
 
 <pre >## 
 ## Call:
-## glm(formula = premature.d ~ Intelligence_Self, family = binomial, 
+## glm(formula = NOT.premature ~ Intelligence_Self, family = binomial, 
 ##     data = mortality)
 ## 
 ## Deviance Residuals: 
@@ -409,15 +419,15 @@ summary(death.3)</pre>
 
 <pre >## [1] 0.8686814</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
+</article></slide><slide class=""><hgroup><h2>probit</h2></hgroup><article  id="probit">
 
-<pre class = 'prettyprint lang-r'>death.4 &lt;- glm(premature.d ~ Intelligence_Self,
+<pre class = 'prettyprint lang-r'>death.4 &lt;- glm(NOT.premature ~ Intelligence_Self,
         family = binomial(link = &quot;probit&quot;), data = mortality)
 summary(death.4)</pre>
 
 <pre >## 
 ## Call:
-## glm(formula = premature.d ~ Intelligence_Self, family = binomial(link = &quot;probit&quot;), 
+## glm(formula = NOT.premature ~ Intelligence_Self, family = binomial(link = &quot;probit&quot;), 
 ##     data = mortality)
 ## 
 ## Deviance Residuals: 
@@ -439,11 +449,42 @@ summary(death.4)</pre>
 ## 
 ## Number of Fisher Scoring iterations: 4</pre>
 
-</article></slide><slide class=""><hgroup><h2>count data</h2></hgroup><article  id="count-data">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
 
-<pre class = 'prettyprint lang-r'>num.rejects &lt;- glm(rejections ~ Intelligence_SelF, 
-                   family=poisson, data = mortality)
-summary(num.rejects)</pre></article></slide>
+<pre class = 'prettyprint lang-r'>both &lt;- glm(NOT.premature ~ Intelligence_Mate +Intelligence_Self, 
+                 family = binomial, data = mortality)
+summary(both)</pre>
+
+<pre >## 
+## Call:
+## glm(formula = NOT.premature ~ Intelligence_Mate + Intelligence_Self, 
+##     family = binomial, data = mortality)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.2470   0.4346   0.5495   0.6517   1.5110  
+## 
+## Coefficients:
+##                   Estimate Std. Error z value Pr(&gt;|z|)   
+## (Intercept)        2.05138    0.99581   2.060   0.0394 * 
+## Intelligence_Mate -0.12693    0.04993  -2.542   0.0110 * 
+## Intelligence_Self  0.11906    0.04475   2.661   0.0078 **
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 273.53  on 299  degrees of freedom
+## Residual deviance: 262.80  on 297  degrees of freedom
+## AIC: 268.8
+## 
+## Number of Fisher Scoring iterations: 4</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-14">
+
+<pre class = 'prettyprint lang-r'>cor(mortality$Intelligence_Self, mortality$Intelligence_Mate)</pre>
+
+<pre >## [1] 0.3557737</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

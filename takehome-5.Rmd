@@ -17,7 +17,7 @@ Data (project 5 data) come from experiment 1 in Maglio & Polman (2014) where the
 
 1. What are the sample sizes for each group? 
 
-2.Run a factorial ANOVA using . Interpret the SSs and Fs. 
+2.Run the factorial ANOVA from Experiment 1. Interpret the SSs and Fs. 
 
 3. What is the effect size associated with each of your terms? What is the R2 for the model? 
 

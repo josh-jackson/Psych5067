@@ -5,11 +5,13 @@ output: html_document
 <br>
 
 
+- Logistic regression/GLM lecture posted
 - ANOVA takehome is posted. Due 4/19
-- ANOVA lecture posted
+
 
 
 <br>
+- ANOVA lecture posted
 - Interaction homework #4 posted. Due 3/31
 - Interaction lecture posted. New associated reading "AMPPS" to go along with Cohen and Aiken chapter
 - Homework #3 is now available. Due 3/5  

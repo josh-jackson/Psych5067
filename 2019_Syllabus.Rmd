@@ -94,14 +94,14 @@ Note that dates and readings are tentative. Topics will likely shift; all change
 | -    | 3/21  |  Polynomials                         |                      |                      |
 | 11   | 3/26  |  Factorial ANOVA                     |    Chapter 16        |        Myers chapter  9 and 10 |
 | -    | 3/28  |  Factorial ANOVA                     |                     |       |
-| 12   | 4/2   | Cont and cat predictors (ANCOVA)     |                      |                      |
-| -    | 4/4   |  Logistic regression/GLM            |                     |     Cohen Logistic Chapter |
-| 13   | 4/9  | Over/underfitting and validation     |                     |      Yarkoni Westfall     |    
-| -    | 4/11  | Repeated measures/MLM               |                      | Hoffman BRM                     |                     
-| 14   | 4/16  | Repeated measures/MLM              |                      | |
+| 12   | 4/2   | Factorial ANOVA      |                      |                      |
+| -    | 4/4   | Logistic regression/GLM            |                     |     Cohen Logistic Chapter |
+| 13   | 4/9   | Cont and cat predictors (ANCOVA)     |                     |      Yarkoni Westfall     |    
+| -    | 4/11  | Logistic regression/GLM |                      | Hoffman BRM                     |     
+| 14   | 4/16  | Over/underfitting and validation              |                      | |
 | -    | 4/18  | **Exam 2**                         |             |          |
-| 15   | 4/23  | Bayesian statistics                  |  Chapter 17         | Kruschke PBR                     |
-| -    | 4/25  | Bayesian regression                  |                      |                      |
+| 15   | 4/23  |  Repeated measures/MLM                  |  Chapter 17         | Kruschke PBR                     |
+| -    | 4/25  | Summary                  |                      |                      |
 | -    | 5/?   | **Final Exam** TBA                   |                      |                      |
 
 
