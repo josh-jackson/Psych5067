@@ -81,7 +81,7 @@
 
 <body style="opacity: 0">
 
-<slides>
+<slides class="layout-widescreen">
 
   <slide class="title-slide segue nobackground">
         <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
@@ -142,7 +142,7 @@
 </article></slide><slide class=""><hgroup><h2>Overfitting</h2></hgroup><article  id="overfitting-1">
 
 <ul>
-<li>Even if we have a set number of predictors we are going to use we tend ot overfit</li>
+<li>Even if we have a set number of predictors we are going to use we tend to overfit</li>
 </ul>
 
 <p>\[ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ \]</p>
@@ -360,13 +360,13 @@ model.iris &lt;- train(Sepal.Length~., data=iris, trControl=train_control)</pre>
 ## 
 ## No pre-processing
 ## Resampling: Cross-Validated (10 fold) 
-## Summary of sample sizes: 133, 136, 136, 136, 134, 135, ... 
+## Summary of sample sizes: 136, 136, 136, 134, 134, 135, ... 
 ## Resampling results across tuning parameters:
 ## 
 ##   mtry  RMSE       Rsquared   MAE      
-##   2     0.3489097  0.8280530  0.2794978
-##   3     0.3313245  0.8406505  0.2695973
-##   5     0.3231921  0.8489003  0.2631217
+##   2     0.3437608  0.8414101  0.2803895
+##   3     0.3299322  0.8506577  0.2706173
+##   5     0.3275509  0.8518740  0.2676229
 ## 
 ## RMSE was used to select the optimal model using the smallest value.
 ## The final value used for the model was mtry = 5.</pre>

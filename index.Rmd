@@ -4,14 +4,16 @@ output: html_document
 ---  
 <br>
 
+** FINAL EXAM is 5/7 at 9:30 am. **
 
-- Logistic regression/GLM lecture posted
-- ANOVA takehome is posted. Due 4/19
 
+- Logistic takehome (the last one!) is posted. Due 5/6
+- Fit lecture is posted
 
 
 <br>
-- ANOVA lecture posted
+- Logistic regression/GLM lecture posted
+- ANOVA lecture and homework #5 is posted
 - Interaction homework #4 posted. Due 3/31
 - Interaction lecture posted. New associated reading "AMPPS" to go along with Cohen and Aiken chapter
 - Homework #3 is now available. Due 3/5  

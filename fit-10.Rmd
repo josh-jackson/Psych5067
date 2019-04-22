@@ -1,6 +1,7 @@
 ---
 title: "fit"
 output: ioslides_presentation
+widescreen: TRUE
 ---
 
 ## How to build a regression model
@@ -49,7 +50,7 @@ pred.1 <- predict(model.1)
 
 ## Overfitting 
 
-- Even if we have a set number of predictors we are going to use we tend ot overfit
+- Even if we have a set number of predictors we are going to use we tend to overfit
 
 $$ \hat{Y} = b_{0} + b_{1}X + b_{2}Z + b_{3}XZ $$
 

@@ -204,6 +204,8 @@ mortality <- Personality_longevity %>%
 mortality$NOT.premature <- dplyr::recode(mortality$premature.d, normal ="1", premature="0")
   
 mortality$NOT.premature <- as.numeric(as.character(mortality$NOT.premature ))
+
+
   
 ```
 
